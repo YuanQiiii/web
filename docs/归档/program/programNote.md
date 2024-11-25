@@ -7225,7 +7225,7 @@ int main() {
   > class ClassName<char> {}; // 特化时实例化
   > 
   > template <typename T>
-  > class ClassName<T*> {}; // 偏特化，使用指针类型时实例化
+  > class ClassName< T* > {}; // 偏特化，使用指针类型时实例化
   > ```
   >
   > ### 7. 模板模板参数
@@ -7705,8 +7705,8 @@ int main() {
 template <class T> class myClassA {};
 template <class T> class myClassB {};
 template <class T1, class T2, int size> class CTemp {
-  friend myClassA<T1>;
-  friend myClassB<T2>;
+  friend myClassA< T1 >;
+  friend myClassB< T2 >;
 
 private:
   T1 elements[size];
@@ -8571,7 +8571,7 @@ class multiset {};
 
 ```c++
 multiset <A> a;
-multiset<A, less<A>> a; // 二者等效
+multiset<A, less<A> > a; // 二者等效
 ```
 
 

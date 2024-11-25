@@ -1990,7 +1990,7 @@ int main()
 
 #### bitset
 
-##### bitset<位数>(要表示的数)
+##### bitset< 位数 >(要表示的数)
 
 #### string
 

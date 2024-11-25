@@ -37,6 +37,10 @@ jobs:
       - name: 安装依赖
         run: npm install      
         
+      - name: 链接检查
+        run: npx markdown-link-check '**/*.md'
+        continue-on-error: false
+        
       - name: 生成导航菜单
         run: npm run generate-nav
 

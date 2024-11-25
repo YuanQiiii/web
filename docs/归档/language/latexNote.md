@@ -49,7 +49,7 @@
 
 ### 大写希腊字母
 
-&gt; 将原有的小写希腊字母的首字母大写即可
+> 将原有的小写希腊字母的首字母大写即可
 
 ```latex
 %A 
@@ -80,9 +80,9 @@
 \Phi
 ```
 
-### 运算符 &amp; 空格
+### 运算符 & 空格
 
-普通字符在数学公式中含义一样，除了 # $ % &amp; ~ _ ^ \ { } 若要在数学环境中表示这些符号# $ % &amp; _ { }，需要分别表示为# $ % &amp; _ { }，即在个字符前加上`\ `。
+普通字符在数学公式中含义一样,除了 # $ % & ~ _ ^ \ { } 若要在数学环境中表示这些符号# $ % & _ { },需要分别表示为# $ % & _ { },即在个字符前加上`\ `.
 
 ```latex
 %单空格 
@@ -97,8 +97,8 @@ a \qquad b
 \$	
 %%	 
 \%
-%&amp;
-\&amp;
+%&
+\&
 %_
 \_
 %–
@@ -107,9 +107,9 @@ a \qquad b
 
 ### 上下标
 
-对于上标使用 下划线表示“ _ ” ；对于上标使用 “ ^ ”表示。
+对于上标使用 下划线表示" _ " ;对于上标使用 " ^ "表示.
 
-在此需要注意的是：$LaTex$​表达式默认的是 “ _ ” “ ^ ” 之后的**一位**才是上下标的内容，对于超过一个字母的上下标需要使用 { } 将它括起来
+在此需要注意的是:$LaTex$​表达式默认的是 " _ " " ^ " 之后的**一位**才是上下标的内容,对于超过一个字母的上下标需要使用 { } 将它括起来
 
 ```latex
 \hat{a}
@@ -171,7 +171,7 @@ $\vec{a}$
 ```
 $\widehat{a}$
 
-这些重音符号可用于表示变量的不同数学和科学含义，如导数、向量和其他特殊功能。在撰写数学或物理学文献时，使用这些修饰符可以帮助传达精确的概念。
+这些重音符号可用于表示变量的不同数学和科学含义,如导数、向量和其他特殊功能.在撰写数学或物理学文献时,使用这些修饰符可以帮助传达精确的概念.
 
 ### log
 
@@ -185,7 +185,7 @@ log_{e}{xy}
 
 ### 括号
 
-$$LaTex$$表达式中的 ( ) 、 [ ] 均可以正常使用，但是对于 { } 需要使用[转义字符](https://so.csdn.net/so/search?q=转义字符&amp;spm=1001.2101.3001.7020)使用，即使用 “\{” 和 “\}” 表示 { }
+$$LaTex$$表达式中的 ( ) 、 [ ] 均可以正常使用,但是对于 { } 需要使用[转义字符](https://so.csdn.net/so/search?q=转义字符&spm=1001.2101.3001.7020)使用,即使用 "\{" 和 "\}" 表示 { }
 
 ```latex
 \left( A \right)
@@ -217,16 +217,16 @@ $\lceil A \rceil$
 ```
 $\lfloor A \rfloor$
 
-对于需要调整大小的标准数学符号，如圆括号、方括号等，您可以使用 `\left` 和 `\right` 命令，或者 `\bigl`, `\Bigl`, `\biggl`, `\Biggl` 等命令来调整左边符号的大小，以及 `\bigr`, `\Bigr`, `\biggr`, `\Biggr` 等命令来调整右边符号的大小。下面是一些例子：
+对于需要调整大小的标准数学符号,如圆括号、方括号等,您可以使用 `\left` 和 `\right` 命令,或者 `\bigl`, `\Bigl`, `\biggl`, `\Biggl` 等命令来调整左边符号的大小,以及 `\bigr`, `\Bigr`, `\biggr`, `\Biggr` 等命令来调整右边符号的大小.下面是一些例子:
 
 ```latex
 \Biggl( \biggl( \Bigl( \bigl( A \bigr) \Bigr) \biggr) \Biggr)
 ```
 $\Biggl( \biggl( \Bigl( \bigl( A \bigr) \Bigr) \biggr) \Biggr)$
 
-**请注意，`\left` 和 `\right` 命令总是成对出现，用以自动调整与中间内容相匹配的大小。而 `\bigl`, `\Bigl`, `\biggl`, `\Biggl` 等命令需要与 `\bigr`, `\Bigr`, `\biggr`, `\Biggr` 等对应的命令成对使用，以确保左右符号的大小相匹配**
+**请注意,`\left` 和 `\right` 命令总是成对出现,用以自动调整与中间内容相匹配的大小.而 `\bigl`, `\Bigl`, `\biggl`, `\Biggl` 等命令需要与 `\bigr`, `\Bigr`, `\biggr`, `\Biggr` 等对应的命令成对使用,以确保左右符号的大小相匹配**
 
-在撰写具有复杂分隔符的数学文档时，这些命令非常有用，因为它们能帮助清晰地表示嵌套的数学结构。
+在撰写具有复杂分隔符的数学文档时,这些命令非常有用,因为它们能帮助清晰地表示嵌套的数学结构.
 
 $f(x)=\begin{cases} x = \cos(t) \\y = \sin(t) \\ z = \frac xy \end{cases}$
 
@@ -234,51 +234,51 @@ $f(x)=\begin{cases} x = \cos(t) \\y = \sin(t) \\ z = \frac xy \end{cases}$
 f(x)=\begin{cases} x = \cos(t) \\y = \sin(t) \\ z = \frac xy \end{cases}
 ```
 
-$f(x)=\begin{cases} 0&amp; \text{x=0}\\1&amp; \text{x!=0} \end{cases}$
+$f(x)=\begin{cases} 0& \text{x=0}\\1& \text{x!=0} \end{cases}$
 
 ```latex
-f(x)=\begin{cases} 0&amp; \text{x=0}\\1&amp; \text{x!=0} \end{cases}
+f(x)=\begin{cases} 0& \text{x=0}\\1& \text{x!=0} \end{cases}
 ```
 
 ### 矩阵
 
-$\begin{matrix} 0 &amp; 1 \\ 1 &amp; 0 \end{matrix}$
+$\begin{matrix} 0 & 1 \\ 1 & 0 \end{matrix}$
 
 ```latex
-\begin{matrix} 0 &amp; 1 \\ 1 &amp; 0 \end{matrix}
+\begin{matrix} 0 & 1 \\ 1 & 0 \end{matrix}
 ```
 
-$\begin{pmatrix} 0 &amp; -i \\ i &amp; 0 \end{pmatrix}\\$
+$\begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}\\$
 
 ```latex
-\begin{pmatrix} 0 &amp; -i \\ i &amp; 0 \end{pmatrix}\\
+\begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}\\
 ```
 
-$\begin{bmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{bmatrix}$
+$\begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$
 
 ```latex
-\begin{bmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{bmatrix}
+\begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}
 ```
 
-$\begin{Bmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{Bmatrix}$
+$\begin{Bmatrix} 1 & 0 \\ 0 & -1 \end{Bmatrix}$
 
 ```latex
-\begin{Bmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{Bmatrix}
+\begin{Bmatrix} 1 & 0 \\ 0 & -1 \end{Bmatrix}
 ```
 
-$\begin{vmatrix} a &amp; b \\ c &amp; d \end{vmatrix}$
+$\begin{vmatrix} a & b \\ c & d \end{vmatrix}$
 
 ```latex
-\begin{vmatrix} a &amp; b \\ c &amp; d \end{vmatrix}
+\begin{vmatrix} a & b \\ c & d \end{vmatrix}
 ```
 
-$\begin{Vmatrix} i &amp; 0 \\ 0 &amp; -i \end{Vmatrix}$
+$\begin{Vmatrix} i & 0 \\ 0 & -i \end{Vmatrix}$
 
 ```latex
-\begin{Vmatrix} i &amp; 0 \\ 0 &amp; -i \end{Vmatrix}
+\begin{Vmatrix} i & 0 \\ 0 & -i \end{Vmatrix}
 ```
 
-### 求和&amp;积分
+### 求和&积分
 
 $\sum$ 
 
@@ -347,18 +347,18 @@ $\sqrt[3]{\frac xy}$
 \cfrac {a}{b} % 适用于复杂分数表示式,上述三种适用于简单分数表达式
 ```
 
-&gt; `\cfrac`和`\frac`都是用来表示分数的LaTeX命令，但它们有一些区别：
-&gt;
-&gt; 1. `\cfrac`: `\cfrac{a}{b}`表示一个带有水平线的分数，水平线会根据分子和分母的大小自动调整长度，适用于较大的分数表达式。
-&gt; 2. `\frac`: `\frac{a}{b}`表示一个普通的分数，水平线的长度会固定为分子和分母的长度，适用于简单的分数表达式。
-&gt;
-&gt; 如果您需要显示一个较大的分数表达式，可以考虑使用`\cfrac`命令，如果是简单的分数表达式，则可以使用`\frac`命令。
+> `\cfrac`和`\frac`都是用来表示分数的LaTeX命令,但它们有一些区别:
+>
+> 1. `\cfrac`: `\cfrac{a}{b}`表示一个带有水平线的分数,水平线会根据分子和分母的大小自动调整长度,适用于较大的分数表达式.
+> 2. `\frac`: `\frac{a}{b}`表示一个普通的分数,水平线的长度会固定为分子和分母的长度,适用于简单的分数表达式.
+>
+> 如果您需要显示一个较大的分数表达式,可以考虑使用`\cfrac`命令,如果是简单的分数表达式,则可以使用`\frac`命令.
 
 ### 特殊函数
 
-&gt; - 间距
-&gt;   - 插入正间距`\,`
-&gt;   - 插入负间距`\i`
+> - 间距
+>   - 插入正间距`\,`
+>   - 插入负间距`\i`
 
 $\lim\,\,\,\,\,\lim_{x\to 0}\,\,\,\,\,\sin x\,\,\,\,\,\cos x\,\,\,\,\,\hat x\,\,\,\,\,\widehat{xy}\,\,\,\,\,\bar x\,\,\,\,\,\overline{xyz}\,\,\,\,\,\vec x\,\,\,\,\,\overrightarrow{xyz}\,\,\,\,\,\overleftrightarrow{xyz}\,\,\,\,\,\stackrel{F.T}{\longrightarrow}\,\,\,\,\,\dot x\,\,\,\,\,\ddot x$
 
@@ -397,12 +397,12 @@ $\lim\,\,\,\,\,\lim_{x\to 0}\,\,\,\,\,\sin x\,\,\,\,\,\cos x\,\,\,\,\,\hat x\,\,
 ```latex
 \lt
 ```
-$&lt;$
+$<$
 
 ```latex
 \gt
 ```
-$&gt;$
+$>$
 
 ```latex
 \le
@@ -744,7 +744,7 @@ $\varphi$
 ```
 $\ell$
 
-&gt;  Please note that some commands such as `\not` are not symbols themselves but rather are combined with other symbols to create a negated version (e.g., `\not\lt` creates a "not less than" symbol). Also, the `\choose` command is typically part of a larger construct to create binomial coefficients, so I've provided the `\binom` version instead for a correct standalone command.
+>  Please note that some commands such as `\not` are not symbols themselves but rather are combined with other symbols to create a negated version (e.g., `\not\lt` creates a "not less than" symbol). Also, the `\choose` command is typically part of a larger construct to create binomial coefficients, so I've provided the `\binom` version instead for a correct standalone command.
 
 ### 字体
 
@@ -788,4 +788,4 @@ $\mathscr{ABCDE}$
 ```
 $\mathfrak{ABCDE}$
 
-&gt; 请注意 `\Bbb` 命令在许多 LaTeX 系统中已经过时，取而代之的是 `\mathbb`。另外， `\mathscr` 需要 `mathrsfs` 包，而 `\mathfrak` 需要 `amssymb` 或者 `amsfonts` 包。如果你在使用 LaTeX 的时候这些命令没有正常工作，可能需要在文档的序言部分添加相应的包。
+> 请注意 `\Bbb` 命令在许多 LaTeX 系统中已经过时,取而代之的是 `\mathbb`.另外, `\mathscr` 需要 `mathrsfs` 包,而 `\mathfrak` 需要 `amssymb` 或者 `amsfonts` 包.如果你在使用 LaTeX 的时候这些命令没有正常工作,可能需要在文档的序言部分添加相应的包.

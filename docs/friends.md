@@ -14,7 +14,7 @@ const members = [
     name: 'c+v',
     title: 'Friend',
     links: [
-      { icon: ⚡️
+      { icon: 'github'
       , link: 'https://pku-cs-cjw.top/' }
     ]
   }

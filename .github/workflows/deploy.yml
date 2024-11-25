@@ -29,6 +29,9 @@ jobs:
       - name: 运行 check.py
         run: python check.py
 
+      - name: 运行 alter.py
+        run: python alter.py
+
       - name: 设置 Node.js
         uses: actions/setup-node@v4
         with:

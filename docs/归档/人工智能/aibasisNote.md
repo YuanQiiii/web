@@ -12,7 +12,7 @@
 
 例如，假设你有这样的目录结构：
 
-```
+```cmd
 mypackage/
     __init__.py
     submodule1.py

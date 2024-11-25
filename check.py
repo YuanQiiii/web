@@ -1,6 +1,5 @@
 import os
 import re
-from bs4 import BeautifulSoup
 
 def convert_img_tags_and_punctuations(content):
     """
@@ -50,16 +49,9 @@ def convert_img_tags_and_punctuations(content):
 
     return content
 
-def fix_unclosed_tags(content):
-    """
-    使用 BeautifulSoup 自动修复未闭合的 HTML 标签。
-    """
-    soup = BeautifulSoup(content, 'html.parser')
-    return str(soup)
-
 def process_markdown_file(file_path):
     """
-    处理单个 Markdown 文件：替换图片标签、替换标点、修复未闭合标签。
+    处理单个 Markdown 文件：替换图片标签、替换标点
     """
     with open(file_path, 'r', encoding='utf-8') as file:
         content = file.read()
@@ -76,8 +68,6 @@ def process_markdown_file(file_path):
             text = parts[i]
             # 替换 <img> 标签和中文标点
             text = convert_img_tags_and_punctuations(text)
-            # 使用 BeautifulSoup 修复未闭合的 HTML 标签
-            text = fix_unclosed_tags(text)
             parts[i] = text
 
     # 重新组合内容

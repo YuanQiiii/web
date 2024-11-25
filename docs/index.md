@@ -42,6 +42,7 @@ $\sum_{n=1}^{\infty} \frac{x^n}{n!} = e^x$
 ```python
 print("Hello World!")
 ```
+
 ```cpp
 #include<iostream>
 using namespace std;
@@ -162,6 +163,7 @@ const config = {
 
 export default config
 ```
+
 ```ts [config.ts]
 import type { UserConfig } from 'vitepress'
 

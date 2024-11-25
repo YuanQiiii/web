@@ -473,7 +473,6 @@ int main()
 - 可以通过判断结尾是否是\0,来判断字符串的结束
 
 </string>
-
 ```cpp
 #include <iostream>
 using namespace std;

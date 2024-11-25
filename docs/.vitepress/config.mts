@@ -14,7 +14,7 @@ export default defineConfig({
   },
   base: '/web/',
   title: "HomePage",
-  description: "Eric's HomePage",
+  description: "a long story",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     search: {

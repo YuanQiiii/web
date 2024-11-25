@@ -5,6 +5,7 @@ const docsDir = path.join(__dirname, 'docs');
 const navItemsFile = path.join(docsDir, '.vitepress', 'navItems.js');
 
 // 获取所有 Markdown 文件，组织为导航菜单项
+// 最多两层目录 笔记>书签>具体文件
 function getNavItems(dir, basePath = '') {
   const items = [];
   const entries = fs.readdirSync(dir);

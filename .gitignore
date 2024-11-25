@@ -1,3 +1,4 @@
-# 忽略 VitePress 生成的文件和目录
+# See https://help.github.com/ignore-files/ for more about ignoring files.
 docs/.vitepress/dist
 docs/.vitepress/cache
+node_modules

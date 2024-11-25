@@ -8,10 +8,10 @@ hero:
   actions:
     - theme: brand
       text: 普心
-      link: docs\笔记\当前的学习重心\普通心理学B.md
+      link: \笔记\当前的学习重心\普通心理学B.md
     - theme: brand
       text: 社心
-      link: docs\笔记\当前的学习重心\社会心理学.md
+      link: \笔记\当前的学习重心\社会心理学.md
 
 features:
   - icon: A
@@ -22,7 +22,7 @@ features:
     details: 支持Latex公式
   - icon: C
     title: 图片
-    details: 支持Markdown中的图片插入 
+    details: 支持Markdown中的图片
 
   
 ---

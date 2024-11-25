@@ -1,3 +1,5 @@
+@echo off
+
 REM automate the git push process
 
 echo Navigate to project directory
@@ -6,7 +8,7 @@ cd /d "C:\Users\exqin\Desktop\web"
 echo ..........
 
 echo Add all changes
-git add .
+git add . || (echo Failed to add changes & exit /b 1)
 
 echo ..........
 
@@ -16,7 +18,7 @@ git commit -m "auto push" || echo No changes to commit.
 echo ..........
 
 echo Push to remote repository
-git push
+git push || (echo Failed to push changes & exit /b 1)
 
 echo ..........
 

@@ -1,0 +1,3 @@
+# 忽略 VitePress 生成的文件和目录
+docs/.vitepress/dist
+docs/.vitepress/cache

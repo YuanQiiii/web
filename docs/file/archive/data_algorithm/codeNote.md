@@ -20,7 +20,7 @@
 
   - ![时间复杂度，不同数据规模的差异](./codeNote.assets/20200728191447384-20230310124015324.png)
 
-    - `O(1)常数阶 < O(logn)对数阶 < O(n)线性阶 < O(nlogn)线性对数阶 < O(n^2)平方阶 < O(n^3)立方阶 < O(2^n)指数阶`
+    - `O(1)常数阶 &lt; O(logn)对数阶 &lt; O(n)线性阶 &lt; O(nlogn)线性对数阶 &lt; O(n^2)平方阶 &lt; O(n^3)立方阶 &lt; O(2^n)指数阶`
 
       - 当然也要注意常数
 
@@ -100,7 +100,7 @@
   - 数组是存放在连续内存空间上的相同类型数据的集合
   - 数组可以方便的通过下标索引的方式获取到下标下对应的数据(下标索引其实是地址的一种更方便的使用形式)
   - 数组下标都是从0开始的(在任何语言中通用)
-  - 数组内存空间的地址是连续的(不能删除,只能覆盖)  **==>**  删除数组中元素时要移动其他元素
+  - 数组内存空间的地址是连续的(不能删除,只能覆盖)  **==&gt;**  删除数组中元素时要移动其他元素
 
 - 进阶用法
 
@@ -116,43 +116,43 @@
 
 #### [704. 二分查找](https://leetcode.cn/problems/binary-search/)
 
-> 给定一个 `n` 个元素有序的（升序）整型数组 `nums` 和一个目标值 `target` ，写一个函数搜索 `nums` 中的 `target`，如果目标值存在返回下标，否则返回 `-1`。
->
->
-> **示例 1:**
->
-> ```
-> 输入: nums = [-1,0,3,5,9,12], target = 9
-> 输出: 4
-> 解释: 9 出现在 nums 中并且下标为 4
-> ```
->
-> **示例 2:**
->
-> ```
-> 输入: nums = [-1,0,3,5,9,12], target = 2
-> 输出: -1
-> 解释: 2 不存在 nums 中因此返回 -1
-> ```
->
->  
->
-> **提示：**
->
-> 1. 你可以假设 `nums` 中的所有元素是不重复的。
-> 2. `n` 将在 `[1, 10000]`之间。
-> 3. `nums` 的每个元素都将在 `[-9999, 9999]`之间。
+&gt; 给定一个 `n` 个元素有序的（升序）整型数组 `nums` 和一个目标值 `target` ，写一个函数搜索 `nums` 中的 `target`，如果目标值存在返回下标，否则返回 `-1`。
+&gt;
+&gt;
+&gt; **示例 1:**
+&gt;
+&gt; ```
+&gt; 输入: nums = [-1,0,3,5,9,12], target = 9
+&gt; 输出: 4
+&gt; 解释: 9 出现在 nums 中并且下标为 4
+&gt; ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ```
+&gt; 输入: nums = [-1,0,3,5,9,12], target = 2
+&gt; 输出: -1
+&gt; 解释: 2 不存在 nums 中因此返回 -1
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; 1. 你可以假设 `nums` 中的所有元素是不重复的。
+&gt; 2. `n` 将在 `[1, 10000]`之间。
+&gt; 3. `nums` 的每个元素都将在 `[-9999, 9999]`之间。
 
 ```c++
 class Solution {
 public:
-    int search(vector<int>& nums, int target) {
+    int search(vector<int>&amp; nums, int target) {
         int left = 0, right = nums.size() - 1;
-        while (left <= right) {
+        while (left &lt;= right) {
             int middle = left + (right - left) / 2;
-            if (target > nums[middle]) {
+            if (target &gt; nums[middle]) {
                 left = middle + 1;
-            } else if (target < nums[middle]) {
+            } else if (target &lt; nums[middle]) {
                 right = middle - 1;
             } else {
                 return middle;
@@ -166,13 +166,13 @@ public:
 ```c++
 class Solution {
 public:
-    int search(vector<int>& nums, int target) {
+    int search(vector<int>&amp; nums, int target) {
         int left = 0, right = nums.size();
-        while (left < right) {
-            int middle = left + (right - left) >> 1;
-            if (target > nums[middle]) {
+        while (left &lt; right) {
+            int middle = left + (right - left) &gt;&gt; 1;
+            if (target &gt; nums[middle]) {
                 left = middle + 1;
-            } else if (target < nums[middle]) {
+            } else if (target &lt; nums[middle]) {
                 right = middle;
             } else {
                 return middle;
@@ -186,21 +186,21 @@ public:
 - `left`,`right`的设置取决于你的**合法区间**的设置
   - 如果是闭区间,使用`int left = 0, right = nums.size() - 1;`
   - 如果是左闭右开区间,使用`int left = 0, right = nums.size();`
-- `while`的条件判断取`<`还是`<=`和上面的条件要求一致,如果可以取等即代表使用了**闭区间**
-- `>>`和`<<`可能会被忽视,但是后面可以用于**状态压缩**
+- `while`的条件判断取`&lt;`还是`&lt;=`和上面的条件要求一致,如果可以取等即代表使用了**闭区间**
+- `&gt;&gt;`和`&lt;&lt;`可能会被忽视,但是后面可以用于**状态压缩**
 - 要注意所有的分支都应当返回结果
 - 注意在`middle`的计算中出现了**加法**运算,要避免数据超出`int`所表示的范围(c++/c)
 
 ```python
 class Solution:
-    def search(self, nums: List[int], target: int) -> int:
+    def search(self, nums: List[int], target: int) -&gt; int:
         left = 0
         right = len(nums) - 1
-        while left <= right:
+        while left &lt;= right:
             middle = left + (right - left) // 2
-            if target > nums[middle]:
+            if target &gt; nums[middle]:
                 left = middle + 1
-            elif target < nums[middle]:
+            elif target &lt; nums[middle]:
                 right = middle - 1
             else:
                 return middle
@@ -214,61 +214,61 @@ class Solution:
 
 #### [35. 搜索插入位置](https://leetcode.cn/problems/search-insert-position/)
 
-> 给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。
->
-> 请必须使用时间复杂度为 `O(log n)` 的算法。
->
->  
->
-> **示例 1:**
->
-> ```
-> 输入: nums = [1,3,5,6], target = 5
-> 输出: 2
-> ```
->
-> **示例 2:**
->
-> ```
-> 输入: nums = [1,3,5,6], target = 2
-> 输出: 1
-> ```
->
-> **示例 3:**
->
-> ```
-> 输入: nums = [1,3,5,6], target = 7
-> 输出: 4
-> ```
->
->  
->
-> **提示:**
->
-> - `1 <= nums.length <= 10^4`
-> - `-10^4 <= nums[i] <= 10^4`
-> - `nums` 为 **无重复元素** 的 **升序** 排列数组
-> - `-10^4 <= target <= 10^4`
+&gt; 给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。
+&gt;
+&gt; 请必须使用时间复杂度为 `O(log n)` 的算法。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1:**
+&gt;
+&gt; ```
+&gt; 输入: nums = [1,3,5,6], target = 5
+&gt; 输出: 2
+&gt; ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ```
+&gt; 输入: nums = [1,3,5,6], target = 2
+&gt; 输出: 1
+&gt; ```
+&gt;
+&gt; **示例 3:**
+&gt;
+&gt; ```
+&gt; 输入: nums = [1,3,5,6], target = 7
+&gt; 输出: 4
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示:**
+&gt;
+&gt; - `1 &lt;= nums.length &lt;= 10^4`
+&gt; - `-10^4 &lt;= nums[i] &lt;= 10^4`
+&gt; - `nums` 为 **无重复元素** 的 **升序** 排列数组
+&gt; - `-10^4 &lt;= target &lt;= 10^4`
 
 ```c++
 class Solution {
 public:
-    int searchInsert(vector<int>& nums, int target) {
+    int searchInsert(vector<int>&amp; nums, int target) {
         int left = 0, right = nums.size() - 1;
-        while (left <= right) {
-            int middle = (left + right) >> 1;
-            if (target > nums[middle]) { // 目标值在右区间
+        while (left &lt;= right) {
+            int middle = (left + right) &gt;&gt; 1;
+            if (target &gt; nums[middle]) { // 目标值在右区间
                 left = middle + 1;
-            } else if (target < nums[middle]) { // 目标值在左区间
+            } else if (target &lt; nums[middle]) { // 目标值在左区间
                 right = middle - 1;
             } else {
                 return middle; // 目标值在中间
             }
         }
         return left; //目标值不在区间之内
-        // 在所有元素之前 ==> 0 ==> 一直更新右边界 ==> left
-        // 在所有元素之后 ==> num.size() ==> 一直更新左边界 ==> left
-        // 在元素集合内部 ==> 更新左右边界,但是不断趋向于目标值,直到left和right翻转 ==> left 
+        // 在所有元素之前 ==&gt; 0 ==&gt; 一直更新右边界 ==&gt; left
+        // 在所有元素之后 ==&gt; num.size() ==&gt; 一直更新左边界 ==&gt; left
+        // 在元素集合内部 ==&gt; 更新左右边界,但是不断趋向于目标值,直到left和right翻转 ==&gt; left 
         
     }
 };
@@ -276,14 +276,14 @@ public:
 
 ```python
 class Solution:
-    def searchInsert(self, nums: List[int], target: int) -> int:
+    def searchInsert(self, nums: List[int], target: int) -&gt; int:
         left = 0
         right = len(nums) - 1
-        while left <= right:
+        while left &lt;= right:
             middle = (left + right) // 2
-            if nums[middle] < target:
+            if nums[middle] &lt; target:
                 left = middle + 1
-            elif nums[middle] > target:
+            elif nums[middle] &gt; target:
                 right = middle - 1
             else:
                 return middle
@@ -296,53 +296,53 @@ class Solution:
 
 #### [34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/)
 
-> 给你一个按照非递减顺序排列的整数数组 `nums`，和一个目标值 `target`。请你找出给定目标值在数组中的开始位置和结束位置。
->
-> 如果数组中不存在目标值 `target`，返回 `[-1, -1]`。
->
-> 你必须设计并实现时间复杂度为 `O(log n)` 的算法解决此问题。
->
-> **示例 1：**
->
-> ```
-> 输入：nums = [5,7,7,8,8,10], target = 8
-> 输出：[3,4]
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：nums = [5,7,7,8,8,10], target = 6
-> 输出：[-1,-1]
-> ```
->
-> **示例 3：**
->
-> ```
-> 输入：nums = [], target = 0
-> 输出：[-1,-1]
-> ```
->
-> **提示：**
->
-> - `0 <= nums.length <= 105`
-> - `-109 <= nums[i] <= 109`
-> - `nums` 是一个非递减数组
-> - `-109 <= target <= 109`
+&gt; 给你一个按照非递减顺序排列的整数数组 `nums`，和一个目标值 `target`。请你找出给定目标值在数组中的开始位置和结束位置。
+&gt;
+&gt; 如果数组中不存在目标值 `target`，返回 `[-1, -1]`。
+&gt;
+&gt; 你必须设计并实现时间复杂度为 `O(log n)` 的算法解决此问题。
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：nums = [5,7,7,8,8,10], target = 8
+&gt; 输出：[3,4]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：nums = [5,7,7,8,8,10], target = 6
+&gt; 输出：[-1,-1]
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ```
+&gt; 输入：nums = [], target = 0
+&gt; 输出：[-1,-1]
+&gt; ```
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `0 &lt;= nums.length &lt;= 105`
+&gt; - `-109 &lt;= nums[i] &lt;= 109`
+&gt; - `nums` 是一个非递减数组
+&gt; - `-109 &lt;= target &lt;= 109`
 
 ```c++
 class Solution {
 public:
-    vector<int> searchRange(vector<int>& nums, int target) {
+    vector<int> searchRange(vector<int>&amp; nums, int target) {
         int left = 0, right = nums.size() - 1;
         int middle, point = -1;
         bool flag = false; // 找到目标数据则为true
         vector<int> ans(2, -1);
-        while (left <= right) {
+        while (left &lt;= right) {
             middle = (right + left) / 2;
-            if (target > nums[middle]) {
+            if (target &gt; nums[middle]) {
                 left = middle + 1;
-            } else if (target < nums[middle]) {
+            } else if (target &lt; nums[middle]) {
                 right = middle - 1;
             } else {
                 point = middle;
@@ -352,7 +352,7 @@ public:
         }
         // 找到之后向左右延伸,这里使用了for循环来寻找,当然也可以使用while循环
         if (flag) {
-            for (int i = point; i < nums.size(); i++) {
+            for (int i = point; i &lt; nums.size(); i++) {
                 if (nums[i] == target) {
                     right = i;
                     continue;
@@ -361,7 +361,7 @@ public:
                 }
             }
             ans[1] = right;
-            for (int i = point; i >= 0; i--) {
+            for (int i = point; i &gt;= 0; i--) {
                 if (nums[i] == target) {
                     left = i;
                     continue;
@@ -378,18 +378,18 @@ public:
 
 ```python
 class Solution:
-    def searchRange(self, nums: List[int], target: int) -> List[int]:
+    def searchRange(self, nums: List[int], target: int) -&gt; List[int]:
         length = len(nums)
         left = 0
         right = length - 1
         point = 0
         flag = False
         ans = [-1, -1]
-        while left <= right:
+        while left &lt;= right:
             middle = left + (right - left) // 2
-            if target > nums[middle]:
+            if target &gt; nums[middle]:
                 left = middle + 1
-            elif target < nums[middle]:
+            elif target &lt; nums[middle]:
                 right = middle - 1
             else:
                 ans[0] = ans[1] = middle
@@ -397,12 +397,12 @@ class Solution:
                 break
         # while循环版
         if flag:
-            while ans[1] < length - 1:
+            while ans[1] &lt; length - 1:
                 if nums[ans[1] + 1] == target:
                     ans[1] += 1
                 else:
                     break
-            while ans[0] > 0:
+            while ans[0] &gt; 0:
                 if nums[ans[0] - 1] == target:
                     ans[0] -= 1
                 else:
@@ -415,19 +415,19 @@ class Solution:
   - 一个在**二分查找**中普遍的现象是`left`会不断向右,(如果没有在循环内部终止)直至大于`right`,`right`会不断向左,直至小于`left`
   - 则`left`和`right`终止的位置会在目标值的两侧,也就是**未经处理的边界**
   - 一个数组会有以下三种情况
-    - 目标值大于或小于全体数据 ==> 对应的一侧`leftwall`或`rightwall`不被更新
-    - 目标值在数组中没有出现 ==> `leftwall`或`rightwall`的差值小于1
-    - 目标值出现 ==> `leftwall`或`rightwall`一个指向目标片段的前方,一个指向后方(不包含该元素)
+    - 目标值大于或小于全体数据 ==&gt; 对应的一侧`leftwall`或`rightwall`不被更新
+    - 目标值在数组中没有出现 ==&gt; `leftwall`或`rightwall`的差值小于1
+    - 目标值出现 ==&gt; `leftwall`或`rightwall`一个指向目标片段的前方,一个指向后方(不包含该元素)
 
 ```c++
 class Solution {
 private:
-    int searchRightWall(vector<int>& nums, int target) {
+    int searchRightWall(vector<int>&amp; nums, int target) {
         int left = 0, right = nums.size() - 1;
         int rightwall = -2;
-        while (left <= right) {
-            int middle = left + ((right - left) >> 1);
-            if (nums[middle] > target) {
+        while (left &lt;= right) {
+            int middle = left + ((right - left) &gt;&gt; 1);
+            if (nums[middle] &gt; target) {
                 right = middle - 1;
             } else {
                 left = middle + 1;
@@ -436,12 +436,12 @@ private:
         }
         return rightwall;
     }
-    int searchLeftWall(vector<int>& nums, int target) {
+    int searchLeftWall(vector<int>&amp; nums, int target) {
         int left = 0, right = nums.size() - 1;
         int leftwall = -2;
-        while (left <= right) {
-            int middle = left + ((right - left) >> 1);
-            if (nums[middle] >= target) {
+        while (left &lt;= right) {
+            int middle = left + ((right - left) &gt;&gt; 1);
+            if (nums[middle] &gt;= target) {
                 right = middle - 1;
                 leftwall = right;
             } else {
@@ -452,13 +452,13 @@ private:
     }
 
 public:
-    vector<int> searchRange(vector<int>& nums, int target) {
+    vector<int> searchRange(vector<int>&amp; nums, int target) {
         int leftwall = searchLeftWall(nums, target),
             rightwall = searchRightWall(nums, target);
         if (rightwall == -2 || leftwall == -2) {
             return {-1, -1};
         }
-        if (rightwall - leftwall > 1) {
+        if (rightwall - leftwall &gt; 1) {
             return {leftwall + 1, rightwall - 1};
         }
         return {-1, -1};
@@ -468,38 +468,38 @@ public:
 
 ```python
 class Solution:
-    def searchLeftWall(self, nums: List[int], target: int) -> int:
+    def searchLeftWall(self, nums: List[int], target: int) -&gt; int:
         left = 0
         right = len(nums) - 1
         leftWall = -2
-        while left <= right:
+        while left &lt;= right:
             middle = left + (right - left) // 2
-            if nums[middle] >= target:
+            if nums[middle] &gt;= target:
                 right = middle - 1
                 leftWall = right
             else:
                 left = middle + 1
         return leftWall
 
-    def searchRightWall(self, nums: List[int], target: int) -> int:
+    def searchRightWall(self, nums: List[int], target: int) -&gt; int:
         left = 0
         right = len(nums) - 1
         rightWall = -2
-        while left <= right:
+        while left &lt;= right:
             middle = left + (right - left) // 2
-            if nums[middle] > target:
+            if nums[middle] &gt; target:
                 right = middle - 1
             else:
                 left = middle + 1
                 rightWall = left
         return rightWall
 
-    def searchRange(self, nums: List[int], target: int) -> List[int]:
+    def searchRange(self, nums: List[int], target: int) -&gt; List[int]:
         leftWall = self.searchLeftWall(nums, target)
         rightWall = self.searchRightWall(nums, target)
         if leftWall == -2 or rightWall == -2:
             return [-1, -1]
-        if rightWall - leftWall > 1:
+        if rightWall - leftWall &gt; 1:
             return [leftWall + 1, rightWall - 1]
         return [-1, -1]
 ```
@@ -514,67 +514,67 @@ class Solution:
 
 #### [27. 移除元素](https://leetcode.cn/problems/remove-element/)
 
-> 给你一个数组 `nums` 和一个值 `val`，你需要 **[原地](https://baike.baidu.com/item/原地算法)** 移除所有数值等于 `val` 的元素，并返回移除后数组的新长度。
->
-> 不要使用额外的数组空间，你必须仅使用 `O(1)` 额外空间并 **[原地](https://baike.baidu.com/item/原地算法)修改输入数组**。
->
-> 元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
->
->  
->
-> **说明:**
->
-> 为什么返回数值是整数，但输出的答案是数组呢?
->
-> 请注意，输入数组是以**「引用」**方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。
->
-> 你可以想象内部操作如下:
->
-> ```
-> // nums 是以“引用”方式传递的。也就是说，不对实参作任何拷贝
-> int len = removeElement(nums, val);
-> 
-> // 在函数里修改输入数组对于调用者是可见的。
-> // 根据你的函数返回的长度, 它会打印出数组中 该长度范围内 的所有元素。
-> for (int i = 0; i < len; i++) {
->     print(nums[i]);
-> }
-> ```
->
->  
->
-> **示例 1：**
->
-> ```
-> 输入：nums = [3,2,2,3], val = 3
-> 输出：2, nums = [2,2]
-> 解释：函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。你不需要考虑数组中超出新长度后面的元素。例如，函数返回的新长度为 2 ，而 nums = [2,2,3,3] 或 nums = [2,2,0,0]，也会被视作正确答案。
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：nums = [0,1,2,2,3,0,4,2], val = 2
-> 输出：5, nums = [0,1,3,0,4]
-> 解释：函数应该返回新的长度 5, 并且 nums 中的前五个元素为 0, 1, 3, 0, 4。注意这五个元素可为任意顺序。你不需要考虑数组中超出新长度后面的元素。
-> ```
->
->  
->
-> **提示：**
->
-> - `0 <= nums.length <= 100`
-> - `0 <= nums[i] <= 50`
-> - `0 <= val <= 100`
+&gt; 给你一个数组 `nums` 和一个值 `val`，你需要 **[原地](https://baike.baidu.com/item/原地算法)** 移除所有数值等于 `val` 的元素，并返回移除后数组的新长度。
+&gt;
+&gt; 不要使用额外的数组空间，你必须仅使用 `O(1)` 额外空间并 **[原地](https://baike.baidu.com/item/原地算法)修改输入数组**。
+&gt;
+&gt; 元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
+&gt;
+&gt;  
+&gt;
+&gt; **说明:**
+&gt;
+&gt; 为什么返回数值是整数，但输出的答案是数组呢?
+&gt;
+&gt; 请注意，输入数组是以**「引用」**方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。
+&gt;
+&gt; 你可以想象内部操作如下:
+&gt;
+&gt; ```
+&gt; // nums 是以“引用”方式传递的。也就是说，不对实参作任何拷贝
+&gt; int len = removeElement(nums, val);
+&gt; 
+&gt; // 在函数里修改输入数组对于调用者是可见的。
+&gt; // 根据你的函数返回的长度, 它会打印出数组中 该长度范围内 的所有元素。
+&gt; for (int i = 0; i &lt; len; i++) {
+&gt;     print(nums[i]);
+&gt; }
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：nums = [3,2,2,3], val = 3
+&gt; 输出：2, nums = [2,2]
+&gt; 解释：函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。你不需要考虑数组中超出新长度后面的元素。例如，函数返回的新长度为 2 ，而 nums = [2,2,3,3] 或 nums = [2,2,0,0]，也会被视作正确答案。
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：nums = [0,1,2,2,3,0,4,2], val = 2
+&gt; 输出：5, nums = [0,1,3,0,4]
+&gt; 解释：函数应该返回新的长度 5, 并且 nums 中的前五个元素为 0, 1, 3, 0, 4。注意这五个元素可为任意顺序。你不需要考虑数组中超出新长度后面的元素。
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `0 &lt;= nums.length &lt;= 100`
+&gt; - `0 &lt;= nums[i] &lt;= 50`
+&gt; - `0 &lt;= val &lt;= 100`
 
 ```c++
 class Solution {
 public:
-    int removeElement(vector<int>& nums, int val) {
-        for (int i = 0; i < nums.size(); i++) {
+    int removeElement(vector<int>&amp; nums, int val) {
+        for (int i = 0; i &lt; nums.size(); i++) {
             if (nums[i] == val) {
                 int move_i = i;
-                while (move_i < nums.size() - 1) {
+                while (move_i &lt; nums.size() - 1) {
                     nums[move_i] = nums[move_i + 1];
                     move_i++;
                 }
@@ -582,10 +582,10 @@ public:
                 i = 0;
             }
         }
-        for (int i = 0; i < nums.size(); i++) {
+        for (int i = 0; i &lt; nums.size(); i++) {
             if (nums[i] == val) {
                 int move_i = i;
-                while (move_i < nums.size() - 1) {
+                while (move_i &lt; nums.size() - 1) {
                     nums[move_i] = nums[move_i + 1];
                     move_i++;
                 }
@@ -600,19 +600,19 @@ public:
 
 ```python
 class Solution:
-    def removeElement(self, nums: List[int], val: int) -> int:
+    def removeElement(self, nums: List[int], val: int) -&gt; int:
         i = 0
-        while i < len(nums):
+        while i &lt; len(nums):
             if nums[i] == val:
                 nums.pop(i)
             i += 1
         i = 0
-        while i < len(nums):
+        while i &lt; len(nums):
             if nums[i] == val:
                 nums.pop(i)
             i += 1
         i = 0
-        while i < len(nums):
+        while i &lt; len(nums):
             if nums[i] == val:
                 nums.pop(i)
             i += 1
@@ -621,7 +621,7 @@ class Solution:
 
 - 使用了一种非常暴力的办法,甚至可以说是愚蠢(在一次删除操作没有达成目标时,再次使用相同操作)
 - 本质上是数组性质的深刻理解(数组的元素不能被直接删除,只能通过覆盖重写的方式实现删除的效果)
-  - 库函数 **==>** c++的`vector`中,如果使用了`erase`方法,则数组会被重排,`size`也会随之减小(并不是`O(1)`的操作,而是`O(n)`的操作,只是将下面的操作流程封装起来使用)
+  - 库函数 **==&gt;** c++的`vector`中,如果使用了`erase`方法,则数组会被重排,`size`也会随之减小(并不是`O(1)`的操作,而是`O(n)`的操作,只是将下面的操作流程封装起来使用)
     - 关于**库函数的使用**:如果可以直接用库函数解决,那么就不要使用库函数,如果库函数只是我们实现算法的一小步,并且我们知道它的实现逻辑和时空复杂度,那么是可以使用的,同时也减少了出错的概率
   - 对于一般的数组而言(没有`vector`的特性),则需要移动后续元素到前面覆盖删除位置完成删除操作以保证数组数据的地址连续性
 
@@ -629,11 +629,11 @@ class Solution:
 // 一种更加简洁的暴力算法
 class Solution {
 public:
-    int removeElement(vector<int>& nums, int val) {
+    int removeElement(vector<int>&amp; nums, int val) {
         int length = nums.size();
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i &lt; length; i++) {
             if (nums[i] == val) {
-                for (int j = i; j < length - 1; j++) {
+                for (int j = i; j &lt; length - 1; j++) {
                     nums[j] = nums[j + 1];
                 }
                 length--;
@@ -647,10 +647,10 @@ public:
 
 ```python
 class Solution:
-    def removeElement(self, nums: List[int], val: int) -> int:
+    def removeElement(self, nums: List[int], val: int) -&gt; int:
         length = len(nums)
         i = 0
-        while i < length:
+        while i &lt; length:
             if nums[i] == val:
                 for j in range(i, length - 1):
                     nums[j] = nums[j + 1]
@@ -668,9 +668,9 @@ class Solution:
 ```c++
 class Solution {
 public:
-    int removeElement(vector<int>& nums, int val) {
+    int removeElement(vector<int>&amp; nums, int val) {
         int fast = 0, slow = 0;
-        for (; fast < nums.size(); fast++) {
+        for (; fast &lt; nums.size(); fast++) {
             if (nums[fast] != val) {
                 nums[slow] = nums[fast];
                 slow++;
@@ -683,7 +683,7 @@ public:
 
 ```python
 class Solution:
-    def removeElement(self, nums: List[int], val: int) -> int:
+    def removeElement(self, nums: List[int], val: int) -&gt; int:
         fast = slow = 0
         for fast in range(len(nums)):
             if nums[fast] != val:
@@ -701,61 +701,61 @@ class Solution:
 
 #### [26.删除排序数组中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)
 
-> 给你一个 **非严格递增排列** 的数组 `nums` ，请你**[原地](http://baike.baidu.com/item/原地算法)** 删除重复出现的元素，使每个元素 **只出现一次** ，返回删除后数组的新长度。元素的 **相对顺序** 应该保持 **一致** 。然后返回 `nums` 中唯一元素的个数。
->
-> 考虑 `nums` 的唯一元素的数量为 `k` ，你需要做以下事情确保你的题解可以被通过：
->
-> - 更改数组 `nums` ，使 `nums` 的前 `k` 个元素包含唯一元素，并按照它们最初在 `nums` 中出现的顺序排列。`nums` 的其余元素与 `nums` 的大小不重要。
-> - 返回 `k` 。
->
-> **判题标准:**
->
-> 系统会用下面的代码来测试你的题解:
->
-> ```
-> int[] nums = [...]; // 输入数组
-> int[] expectedNums = [...]; // 长度正确的期望答案
-> 
-> int k = removeDuplicates(nums); // 调用
-> 
-> assert k == expectedNums.length;
-> for (int i = 0; i < k; i++) {
->     assert nums[i] == expectedNums[i];
-> }
-> ```
->
-> 如果所有断言都通过，那么您的题解将被 **通过**。
->
->  
->
-> **示例 1：**
->
-> ```
-> 输入：nums = [1,1,2]
-> 输出：2, nums = [1,2,_]
-> 解释：函数应该返回新的长度 2 ，并且原数组 nums 的前两个元素被修改为 1, 2 。不需要考虑数组中超出新长度后面的元素。
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：nums = [0,0,1,1,1,2,2,3,3,4]
-> 输出：5, nums = [0,1,2,3,4]
-> 解释：函数应该返回新的长度 5 ， 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4 。不需要考虑数组中超出新长度后面的元素。
-> ```
->
-> **提示：**
->
-> - `1 <= nums.length <= 3 * 104`
-> - `-104 <= nums[i] <= 104`
-> - `nums` 已按 **非严格递增** 排列
+&gt; 给你一个 **非严格递增排列** 的数组 `nums` ，请你**[原地](http://baike.baidu.com/item/原地算法)** 删除重复出现的元素，使每个元素 **只出现一次** ，返回删除后数组的新长度。元素的 **相对顺序** 应该保持 **一致** 。然后返回 `nums` 中唯一元素的个数。
+&gt;
+&gt; 考虑 `nums` 的唯一元素的数量为 `k` ，你需要做以下事情确保你的题解可以被通过：
+&gt;
+&gt; - 更改数组 `nums` ，使 `nums` 的前 `k` 个元素包含唯一元素，并按照它们最初在 `nums` 中出现的顺序排列。`nums` 的其余元素与 `nums` 的大小不重要。
+&gt; - 返回 `k` 。
+&gt;
+&gt; **判题标准:**
+&gt;
+&gt; 系统会用下面的代码来测试你的题解:
+&gt;
+&gt; ```
+&gt; int[] nums = [...]; // 输入数组
+&gt; int[] expectedNums = [...]; // 长度正确的期望答案
+&gt; 
+&gt; int k = removeDuplicates(nums); // 调用
+&gt; 
+&gt; assert k == expectedNums.length;
+&gt; for (int i = 0; i &lt; k; i++) {
+&gt;     assert nums[i] == expectedNums[i];
+&gt; }
+&gt; ```
+&gt;
+&gt; 如果所有断言都通过，那么您的题解将被 **通过**。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：nums = [1,1,2]
+&gt; 输出：2, nums = [1,2,_]
+&gt; 解释：函数应该返回新的长度 2 ，并且原数组 nums 的前两个元素被修改为 1, 2 。不需要考虑数组中超出新长度后面的元素。
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：nums = [0,0,1,1,1,2,2,3,3,4]
+&gt; 输出：5, nums = [0,1,2,3,4]
+&gt; 解释：函数应该返回新的长度 5 ， 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4 。不需要考虑数组中超出新长度后面的元素。
+&gt; ```
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `1 &lt;= nums.length &lt;= 3 * 104`
+&gt; - `-104 &lt;= nums[i] &lt;= 104`
+&gt; - `nums` 已按 **非严格递增** 排列
 
 ```c++
 class Solution {
 public:
-    int removeDuplicates(vector<int>& nums) {
+    int removeDuplicates(vector<int>&amp; nums) {
         int slow = 0, fast = 1;
-        for (; fast < nums.size(); fast++) {
+        for (; fast &lt; nums.size(); fast++) {
             if (nums[fast] != nums[slow]) {
                 nums[slow + 1] = nums[fast];
                 slow++;
@@ -768,7 +768,7 @@ public:
 
 ```python
 class Solution:
-    def removeDuplicates(self, nums: List[int]) -> int:
+    def removeDuplicates(self, nums: List[int]) -&gt; int:
         fast = 1
         slow = 0
         for fast in range(1, len(nums)):
@@ -784,49 +784,49 @@ class Solution:
 
 #### [283.移动零](https://leetcode.cn/problems/move-zeroes/)
 
-> 给定一个数组 `nums`，编写一个函数将所有 `0` 移动到数组的末尾，同时保持非零元素的相对顺序。
->
-> **请注意** ，必须在不复制数组的情况下原地对数组进行操作。
->
->  
->
-> **示例 1:**
->
-> ```
-> 输入: nums = [0,1,0,3,12]
-> 输出: [1,3,12,0,0]
-> ```
->
-> **示例 2:**
->
-> ```
-> 输入: nums = [0]
-> 输出: [0]
-> ```
->
->  
->
-> **提示**:
->
-> - `1 <= nums.length <= 104`
-> - `-231 <= nums[i] <= 231 - 1`
->
->  
->
-> **进阶：**你能尽量减少完成的操作次数吗？
+&gt; 给定一个数组 `nums`，编写一个函数将所有 `0` 移动到数组的末尾，同时保持非零元素的相对顺序。
+&gt;
+&gt; **请注意** ，必须在不复制数组的情况下原地对数组进行操作。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1:**
+&gt;
+&gt; ```
+&gt; 输入: nums = [0,1,0,3,12]
+&gt; 输出: [1,3,12,0,0]
+&gt; ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ```
+&gt; 输入: nums = [0]
+&gt; 输出: [0]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示**:
+&gt;
+&gt; - `1 &lt;= nums.length &lt;= 104`
+&gt; - `-231 &lt;= nums[i] &lt;= 231 - 1`
+&gt;
+&gt;  
+&gt;
+&gt; **进阶：**你能尽量减少完成的操作次数吗？
 
 ```c++
 class Solution {
 public:
-    void moveZeroes(vector<int>& nums) {
+    void moveZeroes(vector<int>&amp; nums) {
         int fast = 0, slow = 0;
-        for (; fast < nums.size(); fast++) {
+        for (; fast &lt; nums.size(); fast++) {
             if (nums[fast] != 0) {
                 nums[slow] = nums[fast];
                 slow++;
             }
         }
-        for (int j = slow; j < nums.size(); j++) {
+        for (int j = slow; j &lt; nums.size(); j++) {
             nums[j] = 0;
         }
     }
@@ -835,7 +835,7 @@ public:
 
 ```python
 class Solution:
-    def moveZeroes(self, nums: List[int]) -> None:
+    def moveZeroes(self, nums: List[int]) -&gt; None:
         """
         Do not return anything, modify nums in-place instead.
         """
@@ -853,42 +853,42 @@ class Solution:
 
 #### [844.比较含退格的字符串](https://leetcode.cn/problems/backspace-string-compare/)
 
-> 给定 `s` 和 `t` 两个字符串，当它们分别被输入到空白的文本编辑器后，如果两者相等，返回 `true` 。`#` 代表退格字符。
->
-> **注意：**如果对空文本输入退格字符，文本继续为空。
->
->  
->
-> **示例 1：**
->
-> ```
-> 输入：s = "ab#c", t = "ad#c"
-> 输出：true
-> 解释：s 和 t 都会变成 "ac"。
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：s = "ab##", t = "c#d#"
-> 输出：true
-> 解释：s 和 t 都会变成 ""。
-> ```
->
-> **示例 3：**
->
-> ```
-> 输入：s = "a#c", t = "b"
-> 输出：false
-> 解释：s 会变成 "c"，但 t 仍然是 "b"。
-> ```
->
->  
->
-> **提示：**
->
-> - `1 <= s.length, t.length <= 200`
-> - `s` 和 `t` 只含有小写字母以及字符 `'#'`
+&gt; 给定 `s` 和 `t` 两个字符串，当它们分别被输入到空白的文本编辑器后，如果两者相等，返回 `true` 。`#` 代表退格字符。
+&gt;
+&gt; **注意：**如果对空文本输入退格字符，文本继续为空。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：s = "ab#c", t = "ad#c"
+&gt; 输出：true
+&gt; 解释：s 和 t 都会变成 "ac"。
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：s = "ab##", t = "c#d#"
+&gt; 输出：true
+&gt; 解释：s 和 t 都会变成 ""。
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ```
+&gt; 输入：s = "a#c", t = "b"
+&gt; 输出：false
+&gt; 解释：s 会变成 "c"，但 t 仍然是 "b"。
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `1 &lt;= s.length, t.length &lt;= 200`
+&gt; - `s` 和 `t` 只含有小写字母以及字符 `'#'`
 
 - 栈方法(后续的章节里会展开)
 
@@ -898,7 +898,7 @@ class Solution {
 public:
     bool backspaceCompare(string s, string t) {
         stack<char> sStack, tStack;
-        for (int i = 0; i < s.size(); i++) {
+        for (int i = 0; i &lt; s.size(); i++) {
             if (s[i] == '#') {
                 if (!sStack.empty()) {
                     sStack.pop();
@@ -907,7 +907,7 @@ public:
                 sStack.push(s[i]);
             }
         }
-        for (int i = 0; i < t.size(); i++) {
+        for (int i = 0; i &lt; t.size(); i++) {
             if (t[i] == '#') {
                 if (!tStack.empty()) {
                     tStack.pop();
@@ -942,7 +942,7 @@ public:
 
 ```python
 class Solution:
-    def backspaceCompare(self, s: str, t: str) -> bool:
+    def backspaceCompare(self, s: str, t: str) -&gt; bool:
         sList = []
         tList = []
         for i in range(len(s)):
@@ -978,34 +978,34 @@ public:
     bool backspaceCompare(string s, string t) {
         int i = s.size() - 1, j = t.size() - 1; // 逆序遍历
         int skipS = 0, skipT = 0; // 未消耗的退格数目
-        while (i >= 0 || j >= 0) {
+        while (i &gt;= 0 || j &gt;= 0) {
             // 寻找s的一个合法字符
-            while (i >= 0) {
+            while (i &gt;= 0) {
                 if (s[i] == '#') {
                     skipS++, i--;
-                } else if (skipS > 0) {
+                } else if (skipS &gt; 0) {
                     skipS--, i--;
                 } else {
                     break;
                 }
             } 
             // 寻找t的一个合法字符
-            while (j >= 0) {
+            while (j &gt;= 0) {
                 if (t[j] == '#') {
                     skipT++, j--;
-                } else if (skipT > 0) {
+                } else if (skipT &gt; 0) {
                     skipT--, j--;
                 } else {
                     break;
                 }
             }
             // 判断是否相等
-            if (i >= 0 && j >= 0) {
+            if (i &gt;= 0 &amp;&amp; j &gt;= 0) {
                 if (s[i] != t[j]) {
                     return false;
                 }
             } else {
-                if (i >= 0 || j >= 0) { //有至少一个指针已经指向了字符串之外(长度不一)
+                if (i &gt;= 0 || j &gt;= 0) { //有至少一个指针已经指向了字符串之外(长度不一)
                     return false;
                 }
             }
@@ -1018,35 +1018,35 @@ public:
 
 ```python
 class Solution:
-    def backspaceCompare(self, s: str, t: str) -> bool:
+    def backspaceCompare(self, s: str, t: str) -&gt; bool:
         i = len(s) - 1
         j = len(t) - 1
         skipS = 0
         skipT = 0
-        while i >= 0 or j >= 0:
-            while i >= 0:
+        while i &gt;= 0 or j &gt;= 0:
+            while i &gt;= 0:
                 if s[i] == "#":
                     skipS += 1
                     i -= 1
-                elif skipS > 0:
+                elif skipS &gt; 0:
                     skipS -= 1
                     i -= 1
                 else:
                     break
-            while j >= 0:
+            while j &gt;= 0:
                 if t[j] == "#":
                     skipT += 1
                     j -= 1
-                elif skipT > 0:
+                elif skipT &gt; 0:
                     skipT -= 1
                     j -= 1
                 else:
                     break
-            if i >= 0 and j >= 0:
+            if i &gt;= 0 and j &gt;= 0:
                 if s[i] != t[j]:
                     return False
             else:
-                if i >= 0 or j >= 0:
+                if i &gt;= 0 or j &gt;= 0:
                     return False
             i -= 1
             j -= 1
@@ -1055,33 +1055,33 @@ class Solution:
 
 #### [977.有序数组的平方](https://leetcode.cn/problems/squares-of-a-sorted-array/)
 
-> 给你一个按 **非递减顺序** 排序的整数数组 `nums`，返回 **每个数字的平方** 组成的新数组，要求也按 **非递减顺序** 排序。
->
-> **示例 1：**
->
-> ```
-> 输入：nums = [-4,-1,0,3,10]
-> 输出：[0,1,9,16,100]
-> 解释：平方后，数组变为 [16,1,0,9,100]
-> 排序后，数组变为 [0,1,9,16,100]
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：nums = [-7,-3,2,3,11]
-> 输出：[4,9,9,49,121]
-> ```
->
-> **提示：**
->
-> - `1 <= nums.length <= 104`
-> - `-104 <= nums[i] <= 104`
-> - `nums` 已按 **非递减顺序** 排序
->
-> **进阶：**
->
-> - 请你设计时间复杂度为 `O(n)` 的算法解决本问题
+&gt; 给你一个按 **非递减顺序** 排序的整数数组 `nums`，返回 **每个数字的平方** 组成的新数组，要求也按 **非递减顺序** 排序。
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：nums = [-4,-1,0,3,10]
+&gt; 输出：[0,1,9,16,100]
+&gt; 解释：平方后，数组变为 [16,1,0,9,100]
+&gt; 排序后，数组变为 [0,1,9,16,100]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：nums = [-7,-3,2,3,11]
+&gt; 输出：[4,9,9,49,121]
+&gt; ```
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `1 &lt;= nums.length &lt;= 104`
+&gt; - `-104 &lt;= nums[i] &lt;= 104`
+&gt; - `nums` 已按 **非递减顺序** 排序
+&gt;
+&gt; **进阶：**
+&gt;
+&gt; - 请你设计时间复杂度为 `O(n)` 的算法解决本问题
 
 - 暴力做法(直接平方+排序)
   - `python`中`list`的`sort()`方法的一些参数
@@ -1090,13 +1090,13 @@ class Solution:
   - `c++`中`algorithm`头文件下`std::sort()`函数的一些参数
     - `first` 和 `last`：指定排序范围的首元素和尾元素的迭代器。排序将从 `first` 开始，直到 `last` 的前一个元素。
       - 注意是**迭代器**,对于`vector`或者`string`排序要使用相应的迭代器;对一般数组排序使用地址即可
-    - `comp`（可选）：指定一个自定义的比较函数，用于确定元素的顺序。默认情况下，使用 `<` 运算符进行比较。比较函数应该接受两个参数，并返回一个布尔值，表示第一个参数是否小于第二个参数。
+    - `comp`（可选）：指定一个自定义的比较函数，用于确定元素的顺序。默认情况下，使用 `&lt;` 运算符进行比较。比较函数应该接受两个参数，并返回一个布尔值，表示第一个参数是否小于第二个参数。
 
 ```c++
 class Solution {
 public:
-    vector<int> sortedSquares(vector<int>& nums) {
-        for (int i = 0; i < nums.size(); i++) {
+    vector<int> sortedSquares(vector<int>&amp; nums) {
+        for (int i = 0; i &lt; nums.size(); i++) {
             nums[i] = nums[i] * nums[i];
         }
         sort(nums.begin(), nums.end());
@@ -1107,7 +1107,7 @@ public:
 
 ```python
 class Solution:
-    def sortedSquares(self, nums: List[int]) -> List[int]:
+    def sortedSquares(self, nums: List[int]) -&gt; List[int]:
         for i in range(len(nums)):
             nums[i] = nums[i] * nums[i]
         nums.sort()
@@ -1120,14 +1120,14 @@ class Solution:
 // 其实是三个指针
 class Solution {
 public:
-    vector<int> sortedSquares(vector<int>& nums) {
+    vector<int> sortedSquares(vector<int>&amp; nums) {
         int leftptr = 0, rightptr = nums.size() - 1;
         int newptr = rightptr;
         vector<int> output(nums.size(), 0);
-        while (leftptr <= rightptr) {
+        while (leftptr &lt;= rightptr) {
             int a = nums[leftptr] * nums[leftptr],
                 b = nums[rightptr] * nums[rightptr];
-            if (a >= b) {
+            if (a &gt;= b) {
                 output[newptr] = a;
                 leftptr++;
             } else {
@@ -1143,15 +1143,15 @@ public:
 
 ```python
 class Solution:
-    def sortedSquares(self, nums: List[int]) -> List[int]:
+    def sortedSquares(self, nums: List[int]) -&gt; List[int]:
         output = [0] * len(nums)
         leftptr = 0
         newptr = rightptr = len(nums) - 1
         # 提前计算出来会减少重复的计算
         for i in range(len(nums)):
             nums[i] = nums[i] ** 2
-        while leftptr <= rightptr:
-            if nums[leftptr] >= nums[rightptr]:
+        while leftptr &lt;= rightptr:
+            if nums[leftptr] &gt;= nums[rightptr]:
                 output[newptr] = nums[leftptr]
                 leftptr += 1
             else:
@@ -1207,41 +1207,41 @@ class Solution:
 
 #### [209.长度最小的子数组](https://leetcode.cn/problems/minimum-size-subarray-sum/)
 
-> 给定一个含有 `n` 个正整数的数组和一个正整数 `target` **。**
->
-> 找出该数组中满足其总和大于等于 `target` 的长度最小的 **连续子数组** `[numsl, numsl+1, ..., numsr-1, numsr]` ，并返回其长度**。**如果不存在符合条件的子数组，返回 `0` 。
->
->  
->
-> **示例 1：**
->
-> ```
-> 输入：target = 7, nums = [2,3,1,2,4,3]
-> 输出：2
-> 解释：子数组 [4,3] 是该条件下的长度最小的子数组。
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：target = 4, nums = [1,4,4]
-> 输出：1
-> ```
->
-> **示例 3：**
->
-> ```
-> 输入：target = 11, nums = [1,1,1,1,1,1,1,1]
-> 输出：0
-> ```
->
->  
->
-> **提示：**
->
-> - `1 <= target <= 109`
-> - `1 <= nums.length <= 105`
-> - `1 <= nums[i] <= 105`
+&gt; 给定一个含有 `n` 个正整数的数组和一个正整数 `target` **。**
+&gt;
+&gt; 找出该数组中满足其总和大于等于 `target` 的长度最小的 **连续子数组** `[numsl, numsl+1, ..., numsr-1, numsr]` ，并返回其长度**。**如果不存在符合条件的子数组，返回 `0` 。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：target = 7, nums = [2,3,1,2,4,3]
+&gt; 输出：2
+&gt; 解释：子数组 [4,3] 是该条件下的长度最小的子数组。
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：target = 4, nums = [1,4,4]
+&gt; 输出：1
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ```
+&gt; 输入：target = 11, nums = [1,1,1,1,1,1,1,1]
+&gt; 输出：0
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `1 &lt;= target &lt;= 109`
+&gt; - `1 &lt;= nums.length &lt;= 105`
+&gt; - `1 &lt;= nums[i] &lt;= 105`
 
 - 暴力解法,遇到特别大的数据规模会超时
   - 时间复杂度:`O(n^2)`
@@ -1250,14 +1250,14 @@ class Solution:
 ```c++
 class Solution {
 public:
-    int minSubArrayLen(int target, vector<int>& nums) {
+    int minSubArrayLen(int target, vector<int>&amp; nums) {
         int length = nums.size();
         bool flag = false;
-        for (int i = 0; i < nums.size(); i++) {
+        for (int i = 0; i &lt; nums.size(); i++) {
             int sum = 0;
-            for (int j = i; j < nums.size(); j++) {
+            for (int j = i; j &lt; nums.size(); j++) {
                 sum += nums[j];
-                if (sum >= target) {
+                if (sum &gt;= target) {
                     flag = true;
                     length = min(j - i + 1, length);
                     break;
@@ -1280,21 +1280,21 @@ public:
 ```c++
 class Solution {
 public:
-    int minSubArrayLen(int target, vector<int>& nums) {
+    int minSubArrayLen(int target, vector<int>&amp; nums) {
         int n = nums.size();
-        vector<unsigned long long int> sNums(n, 0);
+        vector<unsigned int="" long=""> sNums(n, 0);
         unsigned long long sum{0};
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i &lt; n; i++) {
             sum += nums[i];
             sNums[i] = sum;
         }
-        if (sum < target) {
+        if (sum &lt; target) {
             return 0;
         } else {
             int length = n;
-            for (int j = n - 1; j >= 0; j--) {
-                for (int k = j; k >= 0; k--) {
-                    if (sNums[j] - sNums[k] >= target) {
+            for (int j = n - 1; j &gt;= 0; j--) {
+                for (int k = j; k &gt;= 0; k--) {
+                    if (sNums[j] - sNums[k] &gt;= target) {
                         length = min(length, j - k);
                     }
                 }
@@ -1312,15 +1312,15 @@ public:
 ```c++
 class Solution {
 public:
-    int minSubArrayLen(int target, vector<int>& nums) {
+    int minSubArrayLen(int target, vector<int>&amp; nums) {
         int n = nums.size();
-        vector<unsigned long long int> sNums(n + 1, 0);
+        vector<unsigned int="" long=""> sNums(n + 1, 0);
         unsigned long long sum{0};
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i &lt; n; i++) {
             sum += nums[i];
             sNums[i + 1] = sum;
         }
-        if (sum < target) {
+        if (sum &lt; target) {
             return 0;
         }
         int lPtr = 0, rPtr = 1;
@@ -1328,8 +1328,8 @@ public:
         // lPtr是窗口的左端点,被动更新
         int ans = n;
         bool flag = false;
-        for (; rPtr <= n; rPtr++) {
-            while (sNums[rPtr] - sNums[lPtr] >= target) {
+        for (; rPtr &lt;= n; rPtr++) {
+            while (sNums[rPtr] - sNums[lPtr] &gt;= target) {
                 flag = true;
                 lPtr++;
                 ans = min(rPtr - lPtr + 1, ans);
@@ -1347,14 +1347,14 @@ public:
 ```python
 # 优化了连续子序列和的计算方式(有点像"忒修斯之船")
 class Solution:
-    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+    def minSubArrayLen(self, target: int, nums: List[int]) -&gt; int:
         ans = len(nums)
         lPtr = 0
         sNum = 0
         flag = False
         for rPtr in range(0, len(nums)):
             sNum += nums[rPtr]
-            while sNum >= target:
+            while sNum &gt;= target:
                 flag = True
                 ans = min(rPtr - lPtr + 1, ans)
                 sNum -= nums[lPtr]
@@ -1367,56 +1367,56 @@ class Solution:
 
 #### [904. 水果成篮](https://leetcode.cn/problems/fruit-into-baskets/)
 
->你正在探访一家农场，农场从左到右种植了一排果树。这些树用一个整数数组 `fruits` 表示，其中 `fruits[i]` 是第 `i` 棵树上的水果 **种类** 。
->
->你想要尽可能多地收集水果。然而，农场的主人设定了一些严格的规矩，你必须按照要求采摘水果：
->
->- 你只有 **两个** 篮子，并且每个篮子只能装 **单一类型** 的水果。每个篮子能够装的水果总量没有限制。
->- 你可以选择任意一棵树开始采摘，你必须从 **每棵** 树（包括开始采摘的树）上 **恰好摘一个水果** 。采摘的水果应当符合篮子中的水果类型。每采摘一次，你将会向右移动到下一棵树，并继续采摘。
->- 一旦你走到某棵树前，但水果不符合篮子的水果类型，那么就必须停止采摘。
->
->给你一个整数数组 `fruits` ，返回你可以收集的水果的 **最大** 数目。
->
->**示例 1：**
->
->```
->输入：fruits = [1,2,1]
->输出：3
->解释：可以采摘全部 3 棵树。
->```
->
->**示例 2：**
->
->```
->输入：fruits = [0,1,2,2]
->输出：3
->解释：可以采摘 [1,2,2] 这三棵树。
->如果从第一棵树开始采摘，则只能采摘 [0,1] 这两棵树。
->```
->
->**示例 3：**
->
->```
->输入：fruits = [1,2,3,2,2]
->输出：4
->解释：可以采摘 [2,3,2,2] 这四棵树。
->如果从第一棵树开始采摘，则只能采摘 [1,2] 这两棵树。
->```
->
->**示例 4：**
->
->```
->输入：fruits = [3,3,3,1,2,1,1,2,3,3,4]
->输出：5
->解释：可以采摘 [1,2,1,1,2] 这五棵树。
->```
->
->
->
->**提示：**
->
->- `1 <= fruits.length <= 105`
->- `0 <= fruits[i] < fruits.length`
+&gt;你正在探访一家农场，农场从左到右种植了一排果树。这些树用一个整数数组 `fruits` 表示，其中 `fruits[i]` 是第 `i` 棵树上的水果 **种类** 。
+&gt;
+&gt;你想要尽可能多地收集水果。然而，农场的主人设定了一些严格的规矩，你必须按照要求采摘水果：
+&gt;
+&gt;- 你只有 **两个** 篮子，并且每个篮子只能装 **单一类型** 的水果。每个篮子能够装的水果总量没有限制。
+&gt;- 你可以选择任意一棵树开始采摘，你必须从 **每棵** 树（包括开始采摘的树）上 **恰好摘一个水果** 。采摘的水果应当符合篮子中的水果类型。每采摘一次，你将会向右移动到下一棵树，并继续采摘。
+&gt;- 一旦你走到某棵树前，但水果不符合篮子的水果类型，那么就必须停止采摘。
+&gt;
+&gt;给你一个整数数组 `fruits` ，返回你可以收集的水果的 **最大** 数目。
+&gt;
+&gt;**示例 1：**
+&gt;
+&gt;```
+&gt;输入：fruits = [1,2,1]
+&gt;输出：3
+&gt;解释：可以采摘全部 3 棵树。
+&gt;```
+&gt;
+&gt;**示例 2：**
+&gt;
+&gt;```
+&gt;输入：fruits = [0,1,2,2]
+&gt;输出：3
+&gt;解释：可以采摘 [1,2,2] 这三棵树。
+&gt;如果从第一棵树开始采摘，则只能采摘 [0,1] 这两棵树。
+&gt;```
+&gt;
+&gt;**示例 3：**
+&gt;
+&gt;```
+&gt;输入：fruits = [1,2,3,2,2]
+&gt;输出：4
+&gt;解释：可以采摘 [2,3,2,2] 这四棵树。
+&gt;如果从第一棵树开始采摘，则只能采摘 [1,2] 这两棵树。
+&gt;```
+&gt;
+&gt;**示例 4：**
+&gt;
+&gt;```
+&gt;输入：fruits = [3,3,3,1,2,1,1,2,3,3,4]
+&gt;输出：5
+&gt;解释：可以采摘 [1,2,1,1,2] 这五棵树。
+&gt;```
+&gt;
+&gt;
+&gt;
+&gt;**提示：**
+&gt;
+&gt;- `1 &lt;= fruits.length &lt;= 105`
+&gt;- `0 &lt;= fruits[i] &lt; fruits.length`
 
 ```c++
 // 还没写......
@@ -1424,54 +1424,54 @@ class Solution:
 
 #### [76.最小覆盖子串](https://leetcode.cn/problems/minimum-window-substring/)
 
-> 给你一个字符串 `s` 、一个字符串 `t` 。返回 `s` 中涵盖 `t` 所有字符的最小子串。如果 `s` 中不存在涵盖 `t` 所有字符的子串，则返回空字符串 `""` 。
->
->  
->
-> **注意：**
->
-> - 对于 `t` 中重复字符，我们寻找的子字符串中该字符数量必须不少于 `t` 中该字符数量。
-> - 如果 `s` 中存在这样的子串，我们保证它是唯一的答案。
->
->  
->
-> **示例 1：**
->
-> ```
-> 输入：s = "ADOBECODEBANC", t = "ABC"
-> 输出："BANC"
-> 解释：最小覆盖子串 "BANC" 包含来自字符串 t 的 'A'、'B' 和 'C'。
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：s = "a", t = "a"
-> 输出："a"
-> 解释：整个字符串 s 是最小覆盖子串。
-> ```
->
-> **示例 3:**
->
-> ```
-> 输入: s = "a", t = "aa"
-> 输出: ""
-> 解释: t 中两个字符 'a' 均应包含在 s 的子串中，
-> 因此没有符合条件的子字符串，返回空字符串。
-> ```
->
->  
->
-> **提示：**
->
-> - `m == s.length`
-> - `n == t.length`
-> - `1 <= m, n <= 105`
-> - `s` 和 `t` 由英文字母组成
->
->  
->
-> **进阶：**你能设计一个在 `o(m+n)` 时间内解决此问题的算法吗？
+&gt; 给你一个字符串 `s` 、一个字符串 `t` 。返回 `s` 中涵盖 `t` 所有字符的最小子串。如果 `s` 中不存在涵盖 `t` 所有字符的子串，则返回空字符串 `""` 。
+&gt;
+&gt;  
+&gt;
+&gt; **注意：**
+&gt;
+&gt; - 对于 `t` 中重复字符，我们寻找的子字符串中该字符数量必须不少于 `t` 中该字符数量。
+&gt; - 如果 `s` 中存在这样的子串，我们保证它是唯一的答案。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：s = "ADOBECODEBANC", t = "ABC"
+&gt; 输出："BANC"
+&gt; 解释：最小覆盖子串 "BANC" 包含来自字符串 t 的 'A'、'B' 和 'C'。
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：s = "a", t = "a"
+&gt; 输出："a"
+&gt; 解释：整个字符串 s 是最小覆盖子串。
+&gt; ```
+&gt;
+&gt; **示例 3:**
+&gt;
+&gt; ```
+&gt; 输入: s = "a", t = "aa"
+&gt; 输出: ""
+&gt; 解释: t 中两个字符 'a' 均应包含在 s 的子串中，
+&gt; 因此没有符合条件的子字符串，返回空字符串。
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `m == s.length`
+&gt; - `n == t.length`
+&gt; - `1 &lt;= m, n &lt;= 105`
+&gt; - `s` 和 `t` 由英文字母组成
+&gt;
+&gt;  
+&gt;
+&gt; **进阶：**你能设计一个在 `o(m+n)` 时间内解决此问题的算法吗？
 
 ```c++
 // 还没写......
@@ -1479,42 +1479,42 @@ class Solution:
 
 #### [59. 螺旋矩阵 II](https://leetcode.cn/problems/spiral-matrix-ii/)
 
-> 给你一个正整数 `n` ，生成一个包含 `1` 到 `n2` 所有元素，且元素按顺时针顺序螺旋排列的 `n x n` 正方形矩阵 `matrix` 。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/spiraln.jpg)
->
-> ```
-> 输入：n = 3
-> 输出：[[1,2,3],[8,9,4],[7,6,5]]
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：n = 1
-> 输出：[[1]]
-> ```
->
->  
->
-> **提示：**
->
-> - `1 <= n <= 20`
+&gt; 给你一个正整数 `n` ，生成一个包含 `1` 到 `n2` 所有元素，且元素按顺时针顺序螺旋排列的 `n x n` 正方形矩阵 `matrix` 。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/spiraln.jpg)
+&gt;
+&gt; ```
+&gt; 输入：n = 3
+&gt; 输出：[[1,2,3],[8,9,4],[7,6,5]]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：n = 1
+&gt; 输出：[[1]]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `1 &lt;= n &lt;= 20`
 
 ```c++
 class Solution {
 public:
-    vector<vector<int>> generateMatrix(int n) {
-        vector<vector<int>> matrix(n, vector<int>(n, 0));
+    vector<vector<int>&gt; generateMatrix(int n) {
+        vector<vector<int>&gt; matrix(n, vector<int>(n, 0));
         int di[4] = {0, 1, 0, -1}, dj[4] = {1, 0, -1, 0}, ptr = 1, i = 0, j = 0, direction = 0;
-        while (ptr <= n * n) {
+        while (ptr &lt;= n * n) {
             matrix[i][j] = ptr;
             int ni = i + di[direction], nj = j + dj[direction];
-            if (ni < 0 || nj < 0 || ni >= n || nj >= n || matrix[ni][nj] != 0) { // 模拟,检查是否越界
+            if (ni &lt; 0 || nj &lt; 0 || ni &gt;= n || nj &gt;= n || matrix[ni][nj] != 0) { // 模拟,检查是否越界
                 direction = (direction + 1) % 4;
             }
             i += di[direction];
@@ -1529,17 +1529,17 @@ public:
 ```c++
 class Solution {
 public:
-    vector<vector<int>> generateMatrix(int n) {
-        vector<vector<int>> matrix(n, vector<int>(n, 0));
-        vector<vector<int>> doneMatrix(n + 2, vector<int>(n + 2, 1)); // 使用了一个记录矩阵
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= n; j++) {
+    vector<vector<int>&gt; generateMatrix(int n) {
+        vector<vector<int>&gt; matrix(n, vector<int>(n, 0));
+        vector<vector<int>&gt; doneMatrix(n + 2, vector<int>(n + 2, 1)); // 使用了一个记录矩阵
+        for (int i = 1; i &lt;= n; i++) {
+            for (int j = 1; j &lt;= n; j++) {
                 doneMatrix[i][j] = 0;
             }
         }
         int di[4] = {0, 1, 0, -1}, dj[4] = {1, 0, -1, 0}, ptr = 1, i = 0, j = 0,
             direction = 0;
-        while (ptr <= n * n) {
+        while (ptr &lt;= n * n) {
             matrix[i][j] = ptr;
             doneMatrix[i + 1][j + 1] = 1; // 整体平移一波
             if (doneMatrix[i + di[direction] + 1][j + dj[direction] + 1]) {
@@ -1557,18 +1557,18 @@ public:
 
 ```python
 class Solution:
-    def generateMatrix(self, n: int) -> List[List[int]]:
+    def generateMatrix(self, n: int) -&gt; List[List[int]]:
         ptr = 1
         matrix = [[0 for _ in range(n)] for _ in range(n)] # 列表推导式
         di = [0, 1, 0, -1]
         dj = [1, 0, -1, 0]
         direction = 0
         i = j = 0
-        while ptr <= n**2:
+        while ptr &lt;= n**2:
             matrix[i][j] = ptr
             pi = i + di[direction]
             pj = j + dj[direction]
-            if not (pi >= 0 and pi < n and pj >= 0 and pj < n and matrix[pi][pj] == 0):
+            if not (pi &gt;= 0 and pi &lt; n and pj &gt;= 0 and pj &lt; n and matrix[pi][pj] == 0):
                 direction = (direction + 1) % 4
             i = i + di[direction]
             j = j + dj[direction]
@@ -1659,52 +1659,52 @@ class Solution:
 
 #### [54. 螺旋矩阵](https://leetcode.cn/problems/spiral-matrix/)
 
-> 给你一个 `m` 行 `n` 列的矩阵 `matrix` ，请按照 **顺时针螺旋顺序** ，返回矩阵中的所有元素。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/spiral1.jpg)
->
-> ```
-> 输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
-> 输出：[1,2,3,6,9,8,7,4,5]
-> ```
->
-> **示例 2：**
->
-> ![img](./codeNote.assets/spiral.jpg)
->
-> ```
-> 输入：matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
-> 输出：[1,2,3,4,8,12,11,10,9,5,6,7]
-> ```
->
->  
->
-> **提示：**
->
-> - `m == matrix.length`
-> - `n == matrix[i].length`
-> - `1 <= m, n <= 10`
-> - `-100 <= matrix[i][j] <= 100`
+&gt; 给你一个 `m` 行 `n` 列的矩阵 `matrix` ，请按照 **顺时针螺旋顺序** ，返回矩阵中的所有元素。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/spiral1.jpg)
+&gt;
+&gt; ```
+&gt; 输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
+&gt; 输出：[1,2,3,6,9,8,7,4,5]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ![img](./codeNote.assets/spiral.jpg)
+&gt;
+&gt; ```
+&gt; 输入：matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
+&gt; 输出：[1,2,3,4,8,12,11,10,9,5,6,7]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `m == matrix.length`
+&gt; - `n == matrix[i].length`
+&gt; - `1 &lt;= m, n &lt;= 10`
+&gt; - `-100 &lt;= matrix[i][j] &lt;= 100`
 
 ```c++
 class Solution {
 public:
-    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+    vector<int> spiralOrder(vector<vector<int>&gt;&amp; matrix) {
         int i = 0, j = 0;
         int n = matrix.size();
         int m = matrix[0].size();
         vector<int> ans;
         int di[4] = {0, 1, 0, -1}, dj[4] = {1, 0, -1, 0}, direction = 0;
         int ptr = 1;
-        while (ptr <= m * n) {
+        while (ptr &lt;= m * n) {
             ans.push_back(matrix[i][j]);
             matrix[i][j] = 101; // 注意题目中的数据范围,这里取了个巧
             int pi = i + di[direction], pj = j + dj[direction];
-            if (!(pi >= 0 && pi < n && pj >= 0 && pj < m &&
+            if (!(pi &gt;= 0 &amp;&amp; pi &lt; n &amp;&amp; pj &gt;= 0 &amp;&amp; pj &lt; m &amp;&amp;
                   matrix[pi][pj] != 101)) {
                 direction = (direction + 1) % 4;
             }
@@ -1721,7 +1721,7 @@ public:
 
 ```python
 class Solution:
-    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+    def spiralOrder(self, matrix: List[List[int]]) -&gt; List[int]:
         n = len(matrix)
         m = len(matrix[0])
         ans = []
@@ -1730,13 +1730,13 @@ class Solution:
         dj = [1, 0, -1, 0]
         ptr = 1
         direction = 0
-        while ptr <= m * n:
+        while ptr &lt;= m * n:
             ans.append(matrix[i][j])
             matrix[i][j] = 101
             pi = i + di[direction]
             pj = j + dj[direction]
             if not (
-                pi >= 0 and pi < n and pj >= 0 and pj < m and matrix[pi][pj] != 101
+                pi &gt;= 0 and pi &lt; n and pj &gt;= 0 and pj &lt; m and matrix[pi][pj] != 101
             ):
                 direction = (direction + 1) % 4
             i = i + di[direction]
@@ -1760,7 +1760,7 @@ class Solution:
 - 链表是一种通过指针串联在一起的线性结构，每一个节点由两部分组成，一个是**数据域**一个是**指针域**（存放指向下一个节点的指针），最后一个节点的指针域指向null（空指针的意思）。
 
 - 链表基本分为**三类**
-  - 单链表 ==> 单向查询
+  - 单链表 ==&gt; 单向查询
     - 指针域只能指向节点的下一个节点
 
     - 一个例子
@@ -1781,10 +1781,10 @@ class Solution:
                 self.val = val
                 self.next = next
 
-  - 双链表 ==> 双向查询
+  - 双链表 ==&gt; 双向查询
     - 每一个节点有两个指针域，一个指向下一个节点，一个指向上一个节点
 
-  - 循环链表 ==> 可以用来解决**约瑟夫环**问题
+  - 循环链表 ==&gt; 可以用来解决**约瑟夫环**问题
     - 双链表的一种特殊形式,**首尾相连**
   
 - 链表不同于数组,在空间上并不是连续的,通过**指针**串联在一起,一般形式为结构体`struct`
@@ -1800,7 +1800,7 @@ class Solution:
 
 - 成员操作符
   - `.`（点操作符）：点操作符用于直接访问对象的成员变量或成员函数。它适用于对象本身（非指针）的访问，通过对象名后面跟上成员名来访问相应的成员。例如，`object.member`。
-  - `->`（箭头操作符）：箭头操作符用于通过指针访问对象的成员变量或成员函数。它适用于指向对象的指针的访问，通过指针变量后面跟上箭头`->`和成员名来访问相应的成员。例如，`pointer->member`。
+  - `-&gt;`（箭头操作符）：箭头操作符用于通过指针访问对象的成员变量或成员函数。它适用于指向对象的指针的访问，通过指针变量后面跟上箭头`-&gt;`和成员名来访问相应的成员。例如，`pointer-&gt;member`。
   
 - **虚拟头节点**(哨兵节点)`dummy`
 
@@ -1810,47 +1810,47 @@ class Solution:
 
 #### [203. 移除链表元素](https://leetcode.cn/problems/remove-linked-list-elements/)
 
-> 给你一个链表的头节点 `head` 和一个整数 `val` ，请你删除链表中所有满足 `Node.val == val` 的节点，并返回 **新的头节点** 。
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/removelinked-list.jpg)
->
-> ```
-> 输入：head = [1,2,6,3,4,5,6], val = 6
-> 输出：[1,2,3,4,5]
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：head = [], val = 1
-> 输出：[]
-> ```
->
-> **示例 3：**
->
-> ```
-> 输入：head = [7,7,7,7], val = 7
-> 输出：[]
-> ```
->
-> ```c++
-> // Definition for singly-linked list.
-> struct ListNode {
->     int val;
->     ListNode* next;
->     ListNode() : val(0), next(nullptr) {}
->     ListNode(int x) : val(x), next(nullptr) {}
->     ListNode(int x, ListNode* next) : val(x), next(next) {}
-> };
-> ```
->
-> **提示：**
->
-> - 列表中的节点数目在范围 `[0, 104]` 内
-> - `1 <= Node.val <= 50`
-> - `0 <= val <= 50`
+&gt; 给你一个链表的头节点 `head` 和一个整数 `val` ，请你删除链表中所有满足 `Node.val == val` 的节点，并返回 **新的头节点** 。
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/removelinked-list.jpg)
+&gt;
+&gt; ```
+&gt; 输入：head = [1,2,6,3,4,5,6], val = 6
+&gt; 输出：[1,2,3,4,5]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：head = [], val = 1
+&gt; 输出：[]
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ```
+&gt; 输入：head = [7,7,7,7], val = 7
+&gt; 输出：[]
+&gt; ```
+&gt;
+&gt; ```c++
+&gt; // Definition for singly-linked list.
+&gt; struct ListNode {
+&gt;     int val;
+&gt;     ListNode* next;
+&gt;     ListNode() : val(0), next(nullptr) {}
+&gt;     ListNode(int x) : val(x), next(nullptr) {}
+&gt;     ListNode(int x, ListNode* next) : val(x), next(next) {}
+&gt; };
+&gt; ```
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 列表中的节点数目在范围 `[0, 104]` 内
+&gt; - `1 &lt;= Node.val &lt;= 50`
+&gt; - `0 &lt;= val &lt;= 50`
 
 ```c++
 // 分类讨论
@@ -1859,20 +1859,20 @@ public:
     ListNode* removeElements(ListNode* head, int val) {
         ListNode* temp = head;
         // 目标值在头节点上
-        while (head != nullptr && head->val == val) {
-            head = head->next;
+        while (head != nullptr &amp;&amp; head-&gt;val == val) {
+            head = head-&gt;next;
             delete temp;
             temp = head;
         }
         // 目标值在非头节点上
-        while (temp != nullptr && temp->next != nullptr) {
+        while (temp != nullptr &amp;&amp; temp-&gt;next != nullptr) {
             ListNode* deletePtr = head; // 释放内存
-            if (temp->next->val == val) {
-                deletePtr = temp->next;
-                temp->next = temp->next->next;
+            if (temp-&gt;next-&gt;val == val) {
+                deletePtr = temp-&gt;next;
+                temp-&gt;next = temp-&gt;next-&gt;next;
                 delete deletePtr;
             } else {
-                temp = temp->next;
+                temp = temp-&gt;next;
             }
         }
         return head;
@@ -1888,16 +1888,16 @@ public:
         ListNode* dummyHead = new ListNode(0, head); //对象的实例化
         ListNode* deletePtr = nullptr;
         ListNode* temp = dummyHead;
-        while (temp->next != nullptr) {
-            if (temp->next->val == val) {
-                deletePtr = temp->next;
-                temp->next = temp->next->next;
+        while (temp-&gt;next != nullptr) {
+            if (temp-&gt;next-&gt;val == val) {
+                deletePtr = temp-&gt;next;
+                temp-&gt;next = temp-&gt;next-&gt;next;
                 delete deletePtr;
             } else {
-                temp = temp->next;
+                temp = temp-&gt;next;
             }
         }
-        return dummyHead->next;
+        return dummyHead-&gt;next;
     }
 };
 ```
@@ -1912,7 +1912,7 @@ public:
 #         self.val = val
 #         self.next = next
 class Solution:
-    def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
+    def removeElements(self, head: Optional[ListNode], val: int) -&gt; Optional[ListNode]:
         dummyHead = ListNode(0, head)
         temp = dummyHead
         while temp.next != None:
@@ -1929,49 +1929,49 @@ class Solution:
 
 #### [707. 设计链表](https://leetcode.cn/problems/design-linked-list/)
 
-> 你可以选择使用单链表或者双链表，设计并实现自己的链表。
->
-> 单链表中的节点应该具备两个属性：`val` 和 `next` 。`val` 是当前节点的值，`next` 是指向下一个节点的指针/引用。
->
-> 如果是双向链表，则还需要属性 `prev` 以指示链表中的上一个节点。假设链表中的所有节点下标从 **0** 开始。
->
-> 实现 `MyLinkedList` 类：
->
-> - `MyLinkedList()` 初始化 `MyLinkedList` 对象。
-> - `int get(int index)` 获取链表中下标为 `index` 的节点的值。如果下标无效，则返回 `-1` 。
-> - `void addAtHead(int val)` 将一个值为 `val` 的节点插入到链表中第一个元素之前。在插入完成后，新节点会成为链表的第一个节点。
-> - `void addAtTail(int val)` 将一个值为 `val` 的节点追加到链表中作为链表的最后一个元素。
-> - `void addAtIndex(int index, int val)` 将一个值为 `val` 的节点插入到链表中下标为 `index` 的节点之前。如果 `index` 等于链表的长度，那么该节点会被追加到链表的末尾。如果 `index` 比长度更大，该节点将 **不会插入** 到链表中。
-> - `void deleteAtIndex(int index)` 如果下标有效，则删除链表中下标为 `index` 的节点。
->
->
->
-> **示例：**
->
-> ```
-> 输入
-> ["MyLinkedList", "addAtHead", "addAtTail", "addAtIndex", "get", "deleteAtIndex", "get"]
-> [[], [1], [3], [1, 2], [1], [1], [1]]
-> 输出
-> [null, null, null, null, 2, null, 3]
-> 
-> 解释
-> MyLinkedList myLinkedList = new MyLinkedList();
-> myLinkedList.addAtHead(1);
-> myLinkedList.addAtTail(3);
-> myLinkedList.addAtIndex(1, 2);    // 链表变为 1->2->3
-> myLinkedList.get(1);              // 返回 2
-> myLinkedList.deleteAtIndex(1);    // 现在，链表变为 1->3
-> myLinkedList.get(1);              // 返回 3
-> ```
->
->
->
-> **提示：**
->
-> - `0 <= index, val <= 1000`
-> - 请不要使用内置的 LinkedList 库。
-> - 调用 `get`、`addAtHead`、`addAtTail`、`addAtIndex` 和 `deleteAtIndex` 的次数不超过 `2000` 。
+&gt; 你可以选择使用单链表或者双链表，设计并实现自己的链表。
+&gt;
+&gt; 单链表中的节点应该具备两个属性：`val` 和 `next` 。`val` 是当前节点的值，`next` 是指向下一个节点的指针/引用。
+&gt;
+&gt; 如果是双向链表，则还需要属性 `prev` 以指示链表中的上一个节点。假设链表中的所有节点下标从 **0** 开始。
+&gt;
+&gt; 实现 `MyLinkedList` 类：
+&gt;
+&gt; - `MyLinkedList()` 初始化 `MyLinkedList` 对象。
+&gt; - `int get(int index)` 获取链表中下标为 `index` 的节点的值。如果下标无效，则返回 `-1` 。
+&gt; - `void addAtHead(int val)` 将一个值为 `val` 的节点插入到链表中第一个元素之前。在插入完成后，新节点会成为链表的第一个节点。
+&gt; - `void addAtTail(int val)` 将一个值为 `val` 的节点追加到链表中作为链表的最后一个元素。
+&gt; - `void addAtIndex(int index, int val)` 将一个值为 `val` 的节点插入到链表中下标为 `index` 的节点之前。如果 `index` 等于链表的长度，那么该节点会被追加到链表的末尾。如果 `index` 比长度更大，该节点将 **不会插入** 到链表中。
+&gt; - `void deleteAtIndex(int index)` 如果下标有效，则删除链表中下标为 `index` 的节点。
+&gt;
+&gt;
+&gt;
+&gt; **示例：**
+&gt;
+&gt; ```
+&gt; 输入
+&gt; ["MyLinkedList", "addAtHead", "addAtTail", "addAtIndex", "get", "deleteAtIndex", "get"]
+&gt; [[], [1], [3], [1, 2], [1], [1], [1]]
+&gt; 输出
+&gt; [null, null, null, null, 2, null, 3]
+&gt; 
+&gt; 解释
+&gt; MyLinkedList myLinkedList = new MyLinkedList();
+&gt; myLinkedList.addAtHead(1);
+&gt; myLinkedList.addAtTail(3);
+&gt; myLinkedList.addAtIndex(1, 2);    // 链表变为 1-&gt;2-&gt;3
+&gt; myLinkedList.get(1);              // 返回 2
+&gt; myLinkedList.deleteAtIndex(1);    // 现在，链表变为 1-&gt;3
+&gt; myLinkedList.get(1);              // 返回 3
+&gt; ```
+&gt;
+&gt;
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `0 &lt;= index, val &lt;= 1000`
+&gt; - 请不要使用内置的 LinkedList 库。
+&gt; - 调用 `get`、`addAtHead`、`addAtTail`、`addAtIndex` 和 `deleteAtIndex` 的次数不超过 `2000` 。
 
 - 单链表
 
@@ -1991,19 +1991,19 @@ private:
 public:
     // 构造函数
     MyLinkedList() {
-        this->size = 0;
-        this->head = nullptr;
+        this-&gt;size = 0;
+        this-&gt;head = nullptr;
     }
  // 获取指定位置的节点值
     int get(int index) {
-        if (index < 0 || index >= size) {
+        if (index &lt; 0 || index &gt;= size) {
             return -1;
         }
         ListNode* current = head;
-        for (int i = 0; i < index; i++) {
-            current = current->next;
+        for (int i = 0; i &lt; index; i++) {
+            current = current-&gt;next;
         }
-        return current->val;
+        return current-&gt;val;
     }
  // 在链表头上加入一个节点
     void addAtHead(int val) {
@@ -2018,15 +2018,15 @@ public:
             return;
         }
         ListNode* current = head;
-        while (current->next != nullptr) {
-            current = current->next;
+        while (current-&gt;next != nullptr) {
+            current = current-&gt;next;
         }
-        current->next = new ListNode(val);
+        current-&gt;next = new ListNode(val);
         size++;
     }
     // 在指定节点前加入一个节点
     void addAtIndex(int index, int val) {
-        if (index < 0 || index > size) {
+        if (index &lt; 0 || index &gt; size) {
             return;
         }
         if (index == 0) {
@@ -2034,28 +2034,28 @@ public:
             return;
         }
         ListNode* current = head;
-        for (int i = 0; i < index - 1; i++) {
-            current = current->next;
+        for (int i = 0; i &lt; index - 1; i++) {
+            current = current-&gt;next;
         }
-        ListNode* newNode = new ListNode(val, current->next);
-        current->next = newNode;
+        ListNode* newNode = new ListNode(val, current-&gt;next);
+        current-&gt;next = newNode;
         size++;
     }
  // 删除指定节点
     void deleteAtIndex(int index) {
-        if (index < 0 || index >= size) {
+        if (index &lt; 0 || index &gt;= size) {
             return;
         }
         ListNode* current = head;
         if (index == 0) {
-            head = head->next;
+            head = head-&gt;next;
             delete current;
         } else {
-            for (int i = 0; i < index - 1; i++) {
-                current = current->next;
+            for (int i = 0; i &lt; index - 1; i++) {
+                current = current-&gt;next;
             }
-            ListNode* deletePtr = current->next;
-            current->next = current->next->next;
+            ListNode* deletePtr = current-&gt;next;
+            current-&gt;next = current-&gt;next-&gt;next;
             delete deletePtr;
         }
         size--;
@@ -2064,7 +2064,7 @@ public:
     ~MyLinkedList() {
         ListNode* current = head;
         while (current != nullptr) {
-            ListNode* next = current->next;
+            ListNode* next = current-&gt;next;
             delete current;
             current = next;
         }
@@ -2087,20 +2087,20 @@ class MyLinkedList:
         self.head = None  # self指向自身
         self.size = 0
 
-    def get(self, index: int) -> int:
-        if index < 0 or index >= self.size:
+    def get(self, index: int) -&gt; int:
+        if index &lt; 0 or index &gt;= self.size:
             return -1
         current = self.head
         for _ in range(index):
             current = current.next
         return current.val
 
-    def addAtHead(self, val: int) -> None:
+    def addAtHead(self, val: int) -&gt; None:
         newNode = ListNode(val, self.head)
         self.head = newNode
         self.size += 1
 
-    def addAtTail(self, val: int) -> None:
+    def addAtTail(self, val: int) -&gt; None:
         if self.head == None:
             self.addAtHead(val)
         else:
@@ -2110,8 +2110,8 @@ class MyLinkedList:
             current.next = ListNode(val)
             self.size += 1
 
-    def addAtIndex(self, index: int, val: int) -> None:
-        if index < 0 or index > self.size:
+    def addAtIndex(self, index: int, val: int) -&gt; None:
+        if index &lt; 0 or index &gt; self.size:
             pass
         elif index == 0:
             self.addAtHead(val)
@@ -2127,8 +2127,8 @@ class MyLinkedList:
             self.size += 1
             self.head = dummy_head.next # 哑节点的后续操作
 
-    def deleteAtIndex(self, index: int) -> None:
-        if index < 0 or index >= self.size:
+    def deleteAtIndex(self, index: int) -&gt; None:
+        if index &lt; 0 or index &gt;= self.size:
             return
         if index == 0:
             self.head = self.head.next
@@ -2168,19 +2168,19 @@ private:
 
 public:
     MyLinkedList() {
-        this->size = 0;
-        this->head = nullptr;
+        this-&gt;size = 0;
+        this-&gt;head = nullptr;
     }
 
     int get(int index) {
-        if (index < 0 || index >= size) {
+        if (index &lt; 0 || index &gt;= size) {
             return -1;
         }
         ListNode* current = head;
-        for (int i = 0; i < index; i++) {
-            current = current->next;
+        for (int i = 0; i &lt; index; i++) {
+            current = current-&gt;next;
         }
-        return current->val;
+        return current-&gt;val;
     }
 
     void addAtHead(int val) {
@@ -2195,15 +2195,15 @@ public:
             return;
         }
         ListNode* current = head;
-        while (current->next != nullptr) {
-            current = current->next;
+        while (current-&gt;next != nullptr) {
+            current = current-&gt;next;
         }
-        current->next = new ListNode(val, current, nullptr);
+        current-&gt;next = new ListNode(val, current, nullptr);
         size++;
     }
 
     void addAtIndex(int index, int val) {
-        if (index < 0 || index > size) {
+        if (index &lt; 0 || index &gt; size) {
             return;
         }
         if (index == 0) {
@@ -2211,33 +2211,33 @@ public:
             return;
         }
         ListNode* current = head;
-        for (int i = 0; i < index - 1; i++) {
-            current = current->next;
+        for (int i = 0; i &lt; index - 1; i++) {
+            current = current-&gt;next;
         }
-        ListNode* newNode = new ListNode(val, current, current->next);
-        current->next = newNode;
+        ListNode* newNode = new ListNode(val, current, current-&gt;next);
+        current-&gt;next = newNode;
         size++;
     }
 
     void deleteAtIndex(int index) {
-        if (index < 0 || index >= size) {
+        if (index &lt; 0 || index &gt;= size) {
             return;
         }
         ListNode* current = head;
         if (index == 0) {
-            head = head->next;
+            head = head-&gt;next;
             if (head != nullptr) { // 边界的细节
-                head->prev = nullptr;
+                head-&gt;prev = nullptr;
             }
             delete current;
         } else {
-            for (int i = 0; i < index - 1; i++) {
-                current = current->next;
+            for (int i = 0; i &lt; index - 1; i++) {
+                current = current-&gt;next;
             }
-            ListNode* deletePtr = current->next;
-            current->next = deletePtr->next;
-            if (current->next != nullptr) { // 边界的细节
-                current->next->prev = current;
+            ListNode* deletePtr = current-&gt;next;
+            current-&gt;next = deletePtr-&gt;next;
+            if (current-&gt;next != nullptr) { // 边界的细节
+                current-&gt;next-&gt;prev = current;
             }
             delete deletePtr;
         }
@@ -2247,7 +2247,7 @@ public:
     ~MyLinkedList() {
         ListNode* current = head;
         while (current != nullptr) {
-            ListNode* next = current->next;
+            ListNode* next = current-&gt;next;
             delete current;
             current = next;
         }
@@ -2270,8 +2270,8 @@ class MyLinkedList:
         self.head = None  # self指向自身
         self.size = 0
 
-    def get(self, index: int) -> int:
-        if index < 0 or index >= self.size:
+    def get(self, index: int) -&gt; int:
+        if index &lt; 0 or index &gt;= self.size:
             return -1
         if self.size == 0:
             return -1
@@ -2283,12 +2283,12 @@ class MyLinkedList:
         else:
             return -1
 
-    def addAtHead(self, val: int) -> None:
+    def addAtHead(self, val: int) -&gt; None:
         newNode = ListNode(val, None, self.head)
         self.head = newNode
         self.size += 1
 
-    def addAtTail(self, val: int) -> None:
+    def addAtTail(self, val: int) -&gt; None:
         if self.head == None:
             self.addAtHead(val)
         else:
@@ -2298,8 +2298,8 @@ class MyLinkedList:
             current.next = ListNode(val, current, None)
             self.size += 1
 
-    def addAtIndex(self, index: int, val: int) -> None:
-        if index < 0 or index > self.size:
+    def addAtIndex(self, index: int, val: int) -&gt; None:
+        if index &lt; 0 or index &gt; self.size:
             pass
         elif index == 0:
             self.addAtHead(val)
@@ -2315,8 +2315,8 @@ class MyLinkedList:
             self.size += 1
             self.head = dummy_head.next
 
-    def deleteAtIndex(self, index: int) -> None:
-        if index < 0 or index >= self.size:
+    def deleteAtIndex(self, index: int) -&gt; None:
+        if index &lt; 0 or index &gt;= self.size:
             return
 
         if index == 0:
@@ -2351,45 +2351,45 @@ Your MyLinkedList object will be instantiated and called as such:
 
 #### [206. 反转链表](https://leetcode.cn/problems/reverse-linked-list/)
 
-> 给你单链表的头节点 `head` ，请你反转链表，并返回反转后的链表。
->
->
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/rev1ex1.jpg)
->
-> ```
-> 输入：head = [1,2,3,4,5]
-> 输出：[5,4,3,2,1]
-> ```
->
-> **示例 2：**
->
-> ![img](./codeNote.assets/rev1ex2.jpg)
->
-> ```
-> 输入：head = [1,2]
-> 输出：[2,1]
-> ```
->
-> **示例 3：**
->
-> ```
-> 输入：head = []
-> 输出：[]
-> ```
->
-> ![206_反转链表](./codeNote.assets/20210218090901207.png)
->
-> **提示：**
->
-> - 链表中节点的数目范围是 `[0, 5000]`
-> - `-5000 <= Node.val <= 5000`
->
->
->
-> **进阶：**链表可以选用迭代或递归方式完成反转。你能否用两种方法解决这道题？
+&gt; 给你单链表的头节点 `head` ，请你反转链表，并返回反转后的链表。
+&gt;
+&gt;
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/rev1ex1.jpg)
+&gt;
+&gt; ```
+&gt; 输入：head = [1,2,3,4,5]
+&gt; 输出：[5,4,3,2,1]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ![img](./codeNote.assets/rev1ex2.jpg)
+&gt;
+&gt; ```
+&gt; 输入：head = [1,2]
+&gt; 输出：[2,1]
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ```
+&gt; 输入：head = []
+&gt; 输出：[]
+&gt; ```
+&gt;
+&gt; ![206_反转链表](./codeNote.assets/20210218090901207.png)
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 链表中节点的数目范围是 `[0, 5000]`
+&gt; - `-5000 &lt;= Node.val &lt;= 5000`
+&gt;
+&gt;
+&gt;
+&gt; **进阶：**链表可以选用迭代或递归方式完成反转。你能否用两种方法解决这道题？
 
 - 双指针法
 
@@ -2410,8 +2410,8 @@ public:
         ListNode* fast = head;
         ListNode* slow = nullptr;
         while (fast != nullptr) {
-            ListNode* temp = fast->next;
-            fast->next = slow;
+            ListNode* temp = fast-&gt;next;
+            fast-&gt;next = slow;
             slow = fast;
             fast = temp;
         }
@@ -2433,7 +2433,7 @@ public:
          self.next = next
 """
 class Solution:
-    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    def reverseList(self, head: Optional[ListNode]) -&gt; Optional[ListNode]:
         fast = head
         slow = None
         while fast!=None:
@@ -2446,58 +2446,58 @@ class Solution:
 
 #### [24. 两两交换链表中的节点](https://leetcode.cn/problems/swap-nodes-in-pairs/)
 
-> 给你一个链表，两两交换其中相邻的节点，并返回交换后链表的头节点。你必须在不修改节点内部的值的情况下完成本题（即，只能进行节点交换）。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/swap_ex1.jpg)
->
-> ```
-> 输入：head = [1,2,3,4]
-> 输出：[2,1,4,3]
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：head = []
-> 输出：[]
-> ```
->
-> **示例 3：**
->
-> ```
-> 输入：head = [1]
-> 输出：[1]
-> ```
->
->  
->
-> **提示：**
->
-> - 链表中节点的数目在范围 `[0, 100]` 内
-> - `0 <= Node.val <= 100`
+&gt; 给你一个链表，两两交换其中相邻的节点，并返回交换后链表的头节点。你必须在不修改节点内部的值的情况下完成本题（即，只能进行节点交换）。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/swap_ex1.jpg)
+&gt;
+&gt; ```
+&gt; 输入：head = [1,2,3,4]
+&gt; 输出：[2,1,4,3]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：head = []
+&gt; 输出：[]
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ```
+&gt; 输入：head = [1]
+&gt; 输出：[1]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 链表中节点的数目在范围 `[0, 100]` 内
+&gt; - `0 &lt;= Node.val &lt;= 100`
 
 ```c++
 class Solution {
 public:
     ListNode* swapPairs(ListNode* head) {
-        if (head == nullptr || head->next == nullptr) {
+        if (head == nullptr || head-&gt;next == nullptr) {
             return head;
         }
         ListNode dummy = ListNode(0, head);
-        ListNode* prev = &dummy; // prev 初始化为 dummy 节点
+        ListNode* prev = &amp;dummy // prev 初始化为 dummy 节点
 
-        while (prev->next != nullptr && prev->next->next != nullptr) {
-            ListNode* first = prev->next;        // 第一个节点
-            ListNode* second = prev->next->next; // 第二个节点
+        while (prev-&gt;next != nullptr &amp;&amp; prev-&gt;next-&gt;next != nullptr) {
+            ListNode* first = prev-&gt;next;        // 第一个节点
+            ListNode* second = prev-&gt;next-&gt;next; // 第二个节点
 
             // 交换 first 和 second
-            first->next = second->next;
-            second->next = first;
-            prev->next = second;
+            first-&gt;next = second-&gt;next;
+            second-&gt;next = first;
+            prev-&gt;next = second;
 
             // 移动 prev 节点，准备下一对交换
             prev = first;
@@ -2517,7 +2517,7 @@ public:
          self.next = next
 """
 class Solution:
-    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    def swapPairs(self, head: Optional[ListNode]) -&gt; Optional[ListNode]:
         if head == None or head.next == None:
             return head
         dummy = ListNode(0, head)
@@ -2537,45 +2537,45 @@ class Solution:
 
 #### [19. 删除链表的倒数第 N 个结点](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/)
 
-> 给你一个链表，删除链表的倒数第 `n` 个结点，并且返回链表的头结点。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/remove_ex1.jpg)
->
-> ```
-> 输入：head = [1,2,3,4,5], n = 2
-> 输出：[1,2,3,5]
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：head = [1], n = 1
-> 输出：[]
-> ```
->
-> **示例 3：**
->
-> ```
-> 输入：head = [1,2], n = 1
-> 输出：[1]
-> ```
->
->  
->
-> **提示：**
->
-> - 链表中结点的数目为 `sz`
-> - `1 <= sz <= 30`
-> - `0 <= Node.val <= 100`
-> - `1 <= n <= sz`
->
->  
->
-> **进阶：**你能尝试使用一趟扫描实现吗？
+&gt; 给你一个链表，删除链表的倒数第 `n` 个结点，并且返回链表的头结点。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/remove_ex1.jpg)
+&gt;
+&gt; ```
+&gt; 输入：head = [1,2,3,4,5], n = 2
+&gt; 输出：[1,2,3,5]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：head = [1], n = 1
+&gt; 输出：[]
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ```
+&gt; 输入：head = [1,2], n = 1
+&gt; 输出：[1]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 链表中结点的数目为 `sz`
+&gt; - `1 &lt;= sz &lt;= 30`
+&gt; - `0 &lt;= Node.val &lt;= 100`
+&gt; - `1 &lt;= n &lt;= sz`
+&gt;
+&gt;  
+&gt;
+&gt; **进阶：**你能尝试使用一趟扫描实现吗？
 
 ```c++
 /*
@@ -2593,17 +2593,17 @@ public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
         ListNode* current = head;
         int nodeNumber = 1;
-        while (current->next != nullptr) {
+        while (current-&gt;next != nullptr) {
             nodeNumber++;
-            current = current->next;
+            current = current-&gt;next;
         }
         ListNode dummy = ListNode(0, head);
-        current = &dummy;
-        for (int i = 0; i < nodeNumber - n; i++) {
-            current = current->next;
+        current = &amp;dummy
+        for (int i = 0; i &lt; nodeNumber - n; i++) {
+            current = current-&gt;next;
         }
-        ListNode* temp = current->next;
-        current->next = current->next->next;
+        ListNode* temp = current-&gt;next;
+        current-&gt;next = current-&gt;next-&gt;next;
         delete temp;
         return dummy.next; // 本身就是链表节点内指针域的数据,数据类型为LinkNode指针
     }
@@ -2619,7 +2619,7 @@ public:
          self.next = next
 """
 class Solution:
-    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -&gt; Optional[ListNode]:
         nodeNumber = 1
         current = head
         while current.next != None:
@@ -2635,70 +2635,70 @@ class Solution:
 
 #### [面试题 02.07. 链表相交](https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/)
 
-> 给你两个单链表的头节点 `headA` 和 `headB` ，请你找出并返回两个单链表相交的起始节点。如果两个链表没有交点，返回 `null` 。
->
-> 图示两个链表在节点 `c1` 开始相交**：**
->
-> [![img](./codeNote.assets/160_statement.png)](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_statement.png)
->
-> 题目数据 **保证** 整个链式结构中不存在环。
->
-> **注意**，函数返回结果后，链表必须 **保持其原始结构** 。
->
->
->
-> **示例 1：**
->
-> [![img](./codeNote.assets/160_example_1.png)](https://assets.leetcode.com/uploads/2018/12/13/160_example_1.png)
->
-> ```
-> 输入：intersectVal = 8, listA = [4,1,8,4,5], listB = [5,0,1,8,4,5], skipA = 2, skipB = 3
-> 输出：Intersected at '8'
-> 解释：相交节点的值为 8 （注意，如果两个链表相交则不能为 0）。
-> 从各自的表头开始算起，链表 A 为 [4,1,8,4,5]，链表 B 为 [5,0,1,8,4,5]。
-> 在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。
-> ```
->
-> **示例 2：**
->
-> [![img](./codeNote.assets/160_example_2.png)](https://assets.leetcode.com/uploads/2018/12/13/160_example_2.png)
->
-> ```
-> 输入：intersectVal = 2, listA = [0,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
-> 输出：Intersected at '2'
-> 解释：相交节点的值为 2 （注意，如果两个链表相交则不能为 0）。
-> 从各自的表头开始算起，链表 A 为 [0,9,1,2,4]，链表 B 为 [3,2,4]。
-> 在 A 中，相交节点前有 3 个节点；在 B 中，相交节点前有 1 个节点。
-> ```
->
-> **示例 3：**
->
-> [![img](./codeNote.assets/160_example_3.png)](https://assets.leetcode.com/uploads/2018/12/13/160_example_3.png)
->
-> ```
-> 输入：intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
-> 输出：null
-> 解释：从各自的表头开始算起，链表 A 为 [2,6,4]，链表 B 为 [1,5]。
-> 由于这两个链表不相交，所以 intersectVal 必须为 0，而 skipA 和 skipB 可以是任意值。
-> 这两个链表不相交，因此返回 null 。
-> ```
->
->
->
-> **提示：**
->
-> - `listA` 中节点数目为 `m`
-> - `listB` 中节点数目为 `n`
-> - `0 <= m, n <= 3 * 104`
-> - `1 <= Node.val <= 105`
-> - `0 <= skipA <= m`
-> - `0 <= skipB <= n`
-> - 如果 `listA` 和 `listB` 没有交点，`intersectVal` 为 `0`
-> - 如果 `listA` 和 `listB` 有交点，`intersectVal == listA[skipA + 1] == listB[skipB + 1]`
->
->
->
-> **进阶：**你能否设计一个时间复杂度 `O(n)` 、仅用 `O(1)` 内存的解决方案？
+&gt; 给你两个单链表的头节点 `headA` 和 `headB` ，请你找出并返回两个单链表相交的起始节点。如果两个链表没有交点，返回 `null` 。
+&gt;
+&gt; 图示两个链表在节点 `c1` 开始相交**：**
+&gt;
+&gt; [![img](./codeNote.assets/160_statement.png)](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_statement.png)
+&gt;
+&gt; 题目数据 **保证** 整个链式结构中不存在环。
+&gt;
+&gt; **注意**，函数返回结果后，链表必须 **保持其原始结构** 。
+&gt;
+&gt;
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; [![img](./codeNote.assets/160_example_1.png)](https://assets.leetcode.com/uploads/2018/12/13/160_example_1.png)
+&gt;
+&gt; ```
+&gt; 输入：intersectVal = 8, listA = [4,1,8,4,5], listB = [5,0,1,8,4,5], skipA = 2, skipB = 3
+&gt; 输出：Intersected at '8'
+&gt; 解释：相交节点的值为 8 （注意，如果两个链表相交则不能为 0）。
+&gt; 从各自的表头开始算起，链表 A 为 [4,1,8,4,5]，链表 B 为 [5,0,1,8,4,5]。
+&gt; 在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; [![img](./codeNote.assets/160_example_2.png)](https://assets.leetcode.com/uploads/2018/12/13/160_example_2.png)
+&gt;
+&gt; ```
+&gt; 输入：intersectVal = 2, listA = [0,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
+&gt; 输出：Intersected at '2'
+&gt; 解释：相交节点的值为 2 （注意，如果两个链表相交则不能为 0）。
+&gt; 从各自的表头开始算起，链表 A 为 [0,9,1,2,4]，链表 B 为 [3,2,4]。
+&gt; 在 A 中，相交节点前有 3 个节点；在 B 中，相交节点前有 1 个节点。
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; [![img](./codeNote.assets/160_example_3.png)](https://assets.leetcode.com/uploads/2018/12/13/160_example_3.png)
+&gt;
+&gt; ```
+&gt; 输入：intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
+&gt; 输出：null
+&gt; 解释：从各自的表头开始算起，链表 A 为 [2,6,4]，链表 B 为 [1,5]。
+&gt; 由于这两个链表不相交，所以 intersectVal 必须为 0，而 skipA 和 skipB 可以是任意值。
+&gt; 这两个链表不相交，因此返回 null 。
+&gt; ```
+&gt;
+&gt;
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `listA` 中节点数目为 `m`
+&gt; - `listB` 中节点数目为 `n`
+&gt; - `0 &lt;= m, n &lt;= 3 * 104`
+&gt; - `1 &lt;= Node.val &lt;= 105`
+&gt; - `0 &lt;= skipA &lt;= m`
+&gt; - `0 &lt;= skipB &lt;= n`
+&gt; - 如果 `listA` 和 `listB` 没有交点，`intersectVal` 为 `0`
+&gt; - 如果 `listA` 和 `listB` 有交点，`intersectVal == listA[skipA + 1] == listB[skipB + 1]`
+&gt;
+&gt;
+&gt;
+&gt; **进阶：**你能否设计一个时间复杂度 `O(n)` 、仅用 `O(1)` 内存的解决方案？
 
 - 注意**对齐操作**
 
@@ -2719,30 +2719,30 @@ public:
         }
         int nodeNumberA = 1, nodeNumberB = 1;
         ListNode* currentA = headA;
-        while (currentA->next != nullptr) {
-            currentA = currentA->next;
+        while (currentA-&gt;next != nullptr) {
+            currentA = currentA-&gt;next;
             nodeNumberA++;
         }
         ListNode* currentB = headB;
-        while (currentB->next != nullptr) {
-            currentB = currentB->next;
+        while (currentB-&gt;next != nullptr) {
+            currentB = currentB-&gt;next;
             nodeNumberB++;
         }
         // 得到二者长度
         currentB = headB;
         currentA = headA;
-        if (nodeNumberA >= nodeNumberB) {
-            for (int i = 0; i < nodeNumberA - nodeNumberB; i++) {
-                currentA = currentA->next;
+        if (nodeNumberA &gt;= nodeNumberB) {
+            for (int i = 0; i &lt; nodeNumberA - nodeNumberB; i++) {
+                currentA = currentA-&gt;next;
             }
         } else {
-            for (int i = 0; i < nodeNumberB - nodeNumberA; i++) {
-                currentB = currentB->next;
+            for (int i = 0; i &lt; nodeNumberB - nodeNumberA; i++) {
+                currentB = currentB-&gt;next;
             }
         }
         while (currentA != currentB) {
-            currentA = currentA->next;
-            currentB = currentB->next;
+            currentA = currentA-&gt;next;
+            currentB = currentB-&gt;next;
         }
         if (currentA == nullptr) {
             return nullptr;
@@ -2762,7 +2762,7 @@ public:
 
 
 class Solution:
-    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -&gt; ListNode:
         if headA == None or headB == None:
             return None
         nodeNumberA = 1
@@ -2777,7 +2777,7 @@ class Solution:
             nodeNumberB += 1
         currentA = headA
         currentB = headB
-        if nodeNumberA >= nodeNumberB:
+        if nodeNumberA &gt;= nodeNumberB:
             for _ in range(nodeNumberA - nodeNumberB):
                 currentA = currentA.next
         else:
@@ -2795,57 +2795,57 @@ class Solution:
 
 #### [142. 环形链表 II](https://leetcode.cn/problems/linked-list-cycle-ii/)
 
-> 给定一个链表的头节点  `head` ，返回链表开始入环的第一个节点。 *如果链表无环，则返回 `null`。*
->
-> 如果链表中有某个节点，可以通过连续跟踪 `next` 指针再次到达，则链表中存在环。 为了表示给定链表中的环，评测系统内部使用整数 `pos` 来表示链表尾连接到链表中的位置（**索引从 0 开始**）。如果 `pos` 是 `-1`，则在该链表中没有环。**注意：`pos` 不作为参数进行传递**，仅仅是为了标识链表的实际情况。
->
-> **不允许修改** 链表。
->
->
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/circularlinkedlist.png)
->
-> ```
-> 输入：head = [3,2,0,-4], pos = 1
-> 输出：返回索引为 1 的链表节点
-> 解释：链表中有一个环，其尾部连接到第二个节点。
-> ```
->
-> **示例 2：**
->
-> ![img](./codeNote.assets/circularlinkedlist_test2.png)
->
-> ```
-> 输入：head = [1,2], pos = 0
-> 输出：返回索引为 0 的链表节点
-> 解释：链表中有一个环，其尾部连接到第一个节点。
-> ```
->
-> **示例 3：**
->
-> ![img](./codeNote.assets/circularlinkedlist_test3.png)
->
-> ```
-> 输入：head = [1], pos = -1
-> 输出：返回 null
-> 解释：链表中没有环。
-> ```
->
->  
->
-> **提示：**
->
-> - 链表中节点的数目范围在范围 `[0, 104]` 内
-> - `-105 <= Node.val <= 105`
-> - `pos` 的值为 `-1` 或者链表中的一个有效索引
->
->  
->
-> **进阶：**你是否可以使用 `O(1)` 空间解决此题？
+&gt; 给定一个链表的头节点  `head` ，返回链表开始入环的第一个节点。 *如果链表无环，则返回 `null`。*
+&gt;
+&gt; 如果链表中有某个节点，可以通过连续跟踪 `next` 指针再次到达，则链表中存在环。 为了表示给定链表中的环，评测系统内部使用整数 `pos` 来表示链表尾连接到链表中的位置（**索引从 0 开始**）。如果 `pos` 是 `-1`，则在该链表中没有环。**注意：`pos` 不作为参数进行传递**，仅仅是为了标识链表的实际情况。
+&gt;
+&gt; **不允许修改** 链表。
+&gt;
+&gt;
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/circularlinkedlist.png)
+&gt;
+&gt; ```
+&gt; 输入：head = [3,2,0,-4], pos = 1
+&gt; 输出：返回索引为 1 的链表节点
+&gt; 解释：链表中有一个环，其尾部连接到第二个节点。
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ![img](./codeNote.assets/circularlinkedlist_test2.png)
+&gt;
+&gt; ```
+&gt; 输入：head = [1,2], pos = 0
+&gt; 输出：返回索引为 0 的链表节点
+&gt; 解释：链表中有一个环，其尾部连接到第一个节点。
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ![img](./codeNote.assets/circularlinkedlist_test3.png)
+&gt;
+&gt; ```
+&gt; 输入：head = [1], pos = -1
+&gt; 输出：返回 null
+&gt; 解释：链表中没有环。
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 链表中节点的数目范围在范围 `[0, 104]` 内
+&gt; - `-105 &lt;= Node.val &lt;= 105`
+&gt; - `pos` 的值为 `-1` 或者链表中的一个有效索引
+&gt;
+&gt;  
+&gt;
+&gt; **进阶：**你是否可以使用 `O(1)` 空间解决此题？
 
 ```c++
 /**
@@ -2863,21 +2863,21 @@ public:
         ListNode* slow = head;
         ListNode* index1 = head;
         ListNode* index2 = nullptr;
-        while (fast != nullptr &&
-               fast->next != nullptr) { // 没有环结构在这里终止
-            fast = fast->next->next;
-            slow = slow->next;
+        while (fast != nullptr &amp;&amp;
+               fast-&gt;next != nullptr) { // 没有环结构在这里终止
+            fast = fast-&gt;next-&gt;next;
+            slow = slow-&gt;next;
             if (fast == slow) { // 有环结构在这里终止
                 index2 = fast;
                 break;
             }
         }
-        if (!(fast != nullptr && fast->next != nullptr)) {
+        if (!(fast != nullptr &amp;&amp; fast-&gt;next != nullptr)) {
             return nullptr;
         }
         while (index1 != index2) {
-            index1 = index1->next;
-            index2 = index2->next;
+            index1 = index1-&gt;next;
+            index2 = index2-&gt;next;
         }
         return index2;
     }
@@ -2897,7 +2897,7 @@ public:
 
 
 class Solution:
-    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    def detectCycle(self, head: Optional[ListNode]) -&gt; Optional[ListNode]:
         fast = head
         slow = head
         index1 = head
@@ -2993,7 +2993,7 @@ class Solution:
 - `--`：将迭代器移动到容器中的上一个元素。
 - `*`：返回迭代器当前指向的元素的引用。
 - `==` 和 `!=`：用于比较两个迭代器是否相等。
-- `->`：用于访问迭代器当前指向的元素的成员（如果该元素是一个对象）。
+- `-&gt;`：用于访问迭代器当前指向的元素的成员（如果该元素是一个对象）。
 
 以下是一个使用迭代器遍历向量的示例：
 
@@ -3006,7 +3006,7 @@ int main() {
 
     // 迭代器遍历向量
     for (std::vector<int>::iterator it = myVector.begin(); it != myVector.end(); ++it) {
-        std::cout << *it << " ";
+        std::cout &lt;&lt; *it &lt;&lt; " ";
     }
 
     return 0;
@@ -3083,7 +3083,7 @@ auto pi = 3.14f;  // 推导为 float 类型
 8. 集合操作：
 
    - `union(other_set)`: 返回一个新的`set`，包含原始`set`和`other_set`中的所有元素。
-     - `&`：交集运算符，返回两个集合的交集。
+     - `&amp;`：交集运算符，返回两个集合的交集。
    - `intersection(other_set)`: 返回一个新的`set`，包含原始`set`和`other_set`中共有的元素。
      - `|`：并集运算符，返回两个集合的并集。
    - `difference(other_set)`: 返回一个新的`set`，包含原始`set`中存在但`other_set`中不存在的元素。
@@ -3095,36 +3095,36 @@ auto pi = 3.14f;  // 推导为 float 类型
 
 #### [242. 有效的字母异位词](https://leetcode.cn/problems/valid-anagram/)
 
-> 给定两个字符串 `*s*` 和 `*t*` ，编写一个函数来判断 `*t*` 是否是 `*s*` 的字母异位词。
->
-> **注意：**若 `*s*` 和 `*t*` 中每个字符出现的次数都相同，则称 `*s*` 和 `*t*` 互为字母异位词。
->
->  
->
-> **示例 1:**
->
-> ```
-> 输入: s = "anagram", t = "nagaram"
-> 输出: true
-> ```
->
-> **示例 2:**
->
-> ```
-> 输入: s = "rat", t = "car"
-> 输出: false
-> ```
->
->  
->
-> **提示:**
->
-> - `1 <= s.length, t.length <= 5 * 104`
-> - `s` 和 `t` 仅包含小写字母
->
->  
->
-> **进阶:** 如果输入字符串包含 unicode 字符怎么办？你能否调整你的解法来应对这种情况？
+&gt; 给定两个字符串 `*s*` 和 `*t*` ，编写一个函数来判断 `*t*` 是否是 `*s*` 的字母异位词。
+&gt;
+&gt; **注意：**若 `*s*` 和 `*t*` 中每个字符出现的次数都相同，则称 `*s*` 和 `*t*` 互为字母异位词。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1:**
+&gt;
+&gt; ```
+&gt; 输入: s = "anagram", t = "nagaram"
+&gt; 输出: true
+&gt; ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ```
+&gt; 输入: s = "rat", t = "car"
+&gt; 输出: false
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示:**
+&gt;
+&gt; - `1 &lt;= s.length, t.length &lt;= 5 * 104`
+&gt; - `s` 和 `t` 仅包含小写字母
+&gt;
+&gt;  
+&gt;
+&gt; **进阶:** 如果输入字符串包含 unicode 字符怎么办？你能否调整你的解法来应对这种情况？
 
 ```c++
 class Solution {
@@ -3140,7 +3140,7 @@ public:
 
 ```python
 class Solution:
-    def isAnagram(self, s: str, t: str) -> bool:
+    def isAnagram(self, s: str, t: str) -&gt; bool:
         ss = set(s)
         ts = set(t)
         return ss==ts
@@ -3151,34 +3151,34 @@ class Solution:
 
 #### [349. 两个数组的交集](https://leetcode.cn/problems/intersection-of-two-arrays/)
 
-> 给定两个数组 `nums1` 和 `nums2` ，返回 *它们的交集* 。输出结果中的每个元素一定是 **唯一** 的。我们可以 **不考虑输出结果的顺序** 。
->
-> **示例 1：**
->
-> ```
-> 输入：nums1 = [1,2,2,1], nums2 = [2,2]
-> 输出：[2]
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：nums1 = [4,9,5], nums2 = [9,4,9,8,4]
-> 输出：[9,4]
-> 解释：[4,9] 也是可通过的
-> ```
->
->  
->
-> **提示：**
->
-> - `1 <= nums1.length, nums2.length <= 1000`
-> - `0 <= nums1[i], nums2[i] <= 1000`
+&gt; 给定两个数组 `nums1` 和 `nums2` ，返回 *它们的交集* 。输出结果中的每个元素一定是 **唯一** 的。我们可以 **不考虑输出结果的顺序** 。
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：nums1 = [1,2,2,1], nums2 = [2,2]
+&gt; 输出：[2]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+&gt; 输出：[9,4]
+&gt; 解释：[4,9] 也是可通过的
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `1 &lt;= nums1.length, nums2.length &lt;= 1000`
+&gt; - `0 &lt;= nums1[i], nums2[i] &lt;= 1000`
 
 ```c++
 class Solution {
 public:
-    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+    vector<int> intersection(vector<int>&amp; nums1, vector<int>&amp; nums2) {
         unordered_set<int> sans;
         unordered_set<int> temp(nums1.begin(), nums1.end());
         for (int num : nums2) {
@@ -3194,46 +3194,46 @@ public:
 
 ```python
 class Solution:
-    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+    def intersection(self, nums1: List[int], nums2: List[int]) -&gt; List[int]:
         s1 = set(nums1)
         s2 = set(nums2)
-        return list(s1 & s2)
+        return list(s1 &amp; s2)
 ```
 
 [350. 两个数组的交集 II](https://leetcode.cn/problems/intersection-of-two-arrays-ii/)
 
-> 给你两个整数数组 `nums1` 和 `nums2` ，请你以数组形式返回两数组的交集。返回结果中每个元素出现的次数，应与元素在两个数组中都出现的次数一致（如果出现次数不一致，则考虑取较小值）。可以不考虑输出结果的顺序。
->
->  
->
-> **示例 1：**
->
-> ```
-> 输入：nums1 = [1,2,2,1], nums2 = [2,2]
-> 输出：[2,2]
-> ```
->
-> **示例 2:**
->
-> ```
-> 输入：nums1 = [4,9,5], nums2 = [9,4,9,8,4]
-> 输出：[4,9]
-> ```
->
->  
->
-> **提示：**
->
-> - `1 <= nums1.length, nums2.length <= 1000`
-> - `0 <= nums1[i], nums2[i] <= 1000`
->
->  
->
-> ***\*进阶\**：**
->
-> - 如果给定的数组已经排好序呢？你将如何优化你的算法？
-> - 如果 `nums1` 的大小比 `nums2` 小，哪种方法更优？
-> - 如果 `nums2` 的元素存储在磁盘上，内存是有限的，并且你不能一次加载所有的元素到内存中，你该怎么办？
+&gt; 给你两个整数数组 `nums1` 和 `nums2` ，请你以数组形式返回两数组的交集。返回结果中每个元素出现的次数，应与元素在两个数组中都出现的次数一致（如果出现次数不一致，则考虑取较小值）。可以不考虑输出结果的顺序。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：nums1 = [1,2,2,1], nums2 = [2,2]
+&gt; 输出：[2,2]
+&gt; ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ```
+&gt; 输入：nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+&gt; 输出：[4,9]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `1 &lt;= nums1.length, nums2.length &lt;= 1000`
+&gt; - `0 &lt;= nums1[i], nums2[i] &lt;= 1000`
+&gt;
+&gt;  
+&gt;
+&gt; ***\*进阶\**：**
+&gt;
+&gt; - 如果给定的数组已经排好序呢？你将如何优化你的算法？
+&gt; - 如果 `nums1` 的大小比 `nums2` 小，哪种方法更优？
+&gt; - 如果 `nums2` 的元素存储在磁盘上，内存是有限的，并且你不能一次加载所有的元素到内存中，你该怎么办？
 
 ```c++
 ```
@@ -3244,42 +3244,42 @@ class Solution:
 
 #### [202. 快乐数](https://leetcode.cn/problems/happy-number/)
 
-> 编写一个算法来判断一个数 `n` 是不是快乐数。
->
-> **「快乐数」** 定义为：
->
-> - 对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和。
-> - 然后重复这个过程直到这个数变为 1，也可能是 **无限循环** 但始终变不到 1。
-> - 如果这个过程 **结果为** 1，那么这个数就是快乐数。
->
-> 如果 `n` 是 *快乐数* 就返回 `true` ；不是，则返回 `false` 。
->
->  
->
-> **示例 1：**
->
-> ```
-> 输入：n = 19
-> 输出：true
-> 解释：
-> 1^2 + 9^2 = 82
-> 8^2 + 2^2 = 68
-> 6^2 + 8^2 = 100
-> 1^2 + 0^2 + 0^2 = 1
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：n = 2
-> 输出：false
-> ```
->
->  
->
-> **提示：**
->
-> - `1 <= n <= 2^31 - 1`
+&gt; 编写一个算法来判断一个数 `n` 是不是快乐数。
+&gt;
+&gt; **「快乐数」** 定义为：
+&gt;
+&gt; - 对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和。
+&gt; - 然后重复这个过程直到这个数变为 1，也可能是 **无限循环** 但始终变不到 1。
+&gt; - 如果这个过程 **结果为** 1，那么这个数就是快乐数。
+&gt;
+&gt; 如果 `n` 是 *快乐数* 就返回 `true` ；不是，则返回 `false` 。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：n = 19
+&gt; 输出：true
+&gt; 解释：
+&gt; 1^2 + 9^2 = 82
+&gt; 8^2 + 2^2 = 68
+&gt; 6^2 + 8^2 = 100
+&gt; 1^2 + 0^2 + 0^2 = 1
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：n = 2
+&gt; 输出：false
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `1 &lt;= n &lt;= 2^31 - 1`
 
 ```c++
 class Solution {
@@ -3306,7 +3306,7 @@ public:
 
 ```python
 class Solution:
-    def isHappy(self, n: int) -> bool:
+    def isHappy(self, n: int) -&gt; bool:
         temp = 0
         sumNum = 0
         result = set()
@@ -3326,56 +3326,56 @@ class Solution:
 
 #### [1. 两数之和](https://leetcode.cn/problems/two-sum/)
 
-> 给定一个整数数组 `nums` 和一个整数目标值 `target`，请你在该数组中找出 **和为目标值** *`target`* 的那 **两个** 整数，并返回它们的数组下标。
->
-> 你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。
->
-> 你可以按任意顺序返回答案。
->
->  
->
-> **示例 1：**
->
-> ```
-> 输入：nums = [2,7,11,15], target = 9
-> 输出：[0,1]
-> 解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：nums = [3,2,4], target = 6
-> 输出：[1,2]
-> ```
->
-> **示例 3：**
->
-> ```
-> 输入：nums = [3,3], target = 6
-> 输出：[0,1]
-> ```
->
->  
->
-> **提示：**
->
-> - `2 <= nums.length <= 104`
-> - `-109 <= nums[i] <= 109`
-> - `-109 <= target <= 109`
-> - **只会存在一个有效答案**
->
->  
->
-> **进阶：**你可以想出一个时间复杂度小于 `O(n2)` 的算法吗？
+&gt; 给定一个整数数组 `nums` 和一个整数目标值 `target`，请你在该数组中找出 **和为目标值** *`target`* 的那 **两个** 整数，并返回它们的数组下标。
+&gt;
+&gt; 你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。
+&gt;
+&gt; 你可以按任意顺序返回答案。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：nums = [2,7,11,15], target = 9
+&gt; 输出：[0,1]
+&gt; 解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：nums = [3,2,4], target = 6
+&gt; 输出：[1,2]
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ```
+&gt; 输入：nums = [3,3], target = 6
+&gt; 输出：[0,1]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `2 &lt;= nums.length &lt;= 104`
+&gt; - `-109 &lt;= nums[i] &lt;= 109`
+&gt; - `-109 &lt;= target &lt;= 109`
+&gt; - **只会存在一个有效答案**
+&gt;
+&gt;  
+&gt;
+&gt; **进阶：**你可以想出一个时间复杂度小于 `O(n2)` 的算法吗？
 
 ```c++
 // 暴力解法
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        for (int i = 0; i < nums.size(); i++) {
-            for (int j = i + 1; j < nums.size(); j++) {
+    vector<int> twoSum(vector<int>&amp; nums, int target) {
+        for (int i = 0; i &lt; nums.size(); i++) {
+            for (int j = i + 1; j &lt; nums.size(); j++) {
                 if (nums[i] + nums[j] == target) {
                     return {i, j};
                 }
@@ -3387,14 +3387,14 @@ public:
 // map || unordered_map
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        unordered_map<int, int> umap;
-        for (int i = 0; i < nums.size(); i++) {
+    vector<int> twoSum(vector<int>&amp; nums, int target) {
+        unordered_map<int, int=""> umap;
+        for (int i = 0; i &lt; nums.size(); i++) {
             auto iter = umap.find(target - nums[i]);
             if (iter != umap.end()) {
-                return {iter->second, i};
+                return {iter-&gt;second, i};
             }
-            umap.insert(pair<int, int>(nums[i], i));
+            umap.insert(pair<int, int="">(nums[i], i));
         }
         return {-1, -1};
     }
@@ -3408,8 +3408,8 @@ public:
   2. 创建`std::pair`对象：可以使用以下方式创建`std::pair`对象：
 
      ```cpp
-     std::pair<T1, T2> myPair; // 创建一个空的pair对象，其中T1和T2分别是两个元素的类型
-     std::pair<T1, T2> myPair(value1, value2); // 创建一个带有初始值的pair对象
+     std::pair<t1, t2=""> myPair; // 创建一个空的pair对象，其中T1和T2分别是两个元素的类型
+     std::pair<t1, t2=""> myPair(value1, value2); // 创建一个带有初始值的pair对象
      std::make_pair(value1, value2); // 使用make_pair函数创建一个带有初始值的pair对象
      ```
 
@@ -3437,21 +3437,21 @@ public:
   6. 使用`std::pair`作为函数的返回值：`std::pair`常用于函数返回多个值的情况，例如：
 
      ```cpp
-     std::pair<int, int> getMinMax(const std::vector<int>& nums) {
+     std::pair<int, int=""> getMinMax(const std::vector<int>&amp; nums) {
          int minVal = *std::min_element(nums.begin(), nums.end());
          int maxVal = *std::max_element(nums.begin(), nums.end());
          return std::make_pair(minVal, maxVal);
      }
      
      // 使用返回的pair对象
-     std::pair<int, int> result = getMinMax(nums);
+     std::pair<int, int=""> result = getMinMax(nums);
      int minValue = result.first;
      int maxValue = result.second;
      ```
 
 ```python
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
+    def twoSum(self, nums: List[int], target: int) -&gt; List[int]:
         num_dict = dict()
         for i in range(len(nums)):
             temp = num_dict.get(target - nums[i])
@@ -3463,37 +3463,37 @@ class Solution:
 
 #### [454. 四数相加 II](https://leetcode.cn/problems/4sum-ii/)
 
-> 给你四个整数数组 `nums1`、`nums2`、`nums3` 和 `nums4` ，数组长度都是 `n` ，请你计算有多少个元组 `(i, j, k, l)` 能满足：
->
-> - `0 <= i, j, k, l < n`
-> - `nums1[i] + nums2[j] + nums3[k] + nums4[l] == 0`
->
-> **示例 1：**
->
-> ```
->输入：nums1 = [1,2], nums2 = [-2,-1], nums3 = [-1,2], nums4 = [0,2]
-> 输出：2
-> 解释：
-> 两个元组如下：
-> 1. (0, 0, 0, 1) -> nums1[0] + nums2[0] + nums3[0] + nums4[1] = 1 + (-2) + (-1) + 2 = 0
-> 2. (1, 1, 0, 0) -> nums1[1] + nums2[1] + nums3[0] + nums4[0] = 2 + (-1) + (-1) + 0 = 0
-> ```
->
-> **示例 2：**
->
-> ```
->输入：nums1 = [0], nums2 = [0], nums3 = [0], nums4 = [0]
-> 输出：1
-> ```
->
-> **提示：**
->
-> - `n == nums1.length`
->- `n == nums2.length`
-> - `n == nums3.length`
->- `n == nums4.length`
-> - `1 <= n <= 200`
-> - `-2^28^ <= nums1[i], nums2[i], nums3[i], nums4[i] <= 2^28`
+&gt; 给你四个整数数组 `nums1`、`nums2`、`nums3` 和 `nums4` ，数组长度都是 `n` ，请你计算有多少个元组 `(i, j, k, l)` 能满足：
+&gt;
+&gt; - `0 &lt;= i, j, k, l &lt; n`
+&gt; - `nums1[i] + nums2[j] + nums3[k] + nums4[l] == 0`
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt;输入：nums1 = [1,2], nums2 = [-2,-1], nums3 = [-1,2], nums4 = [0,2]
+&gt; 输出：2
+&gt; 解释：
+&gt; 两个元组如下：
+&gt; 1. (0, 0, 0, 1) -&gt; nums1[0] + nums2[0] + nums3[0] + nums4[1] = 1 + (-2) + (-1) + 2 = 0
+&gt; 2. (1, 1, 0, 0) -&gt; nums1[1] + nums2[1] + nums3[0] + nums4[0] = 2 + (-1) + (-1) + 0 = 0
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt;输入：nums1 = [0], nums2 = [0], nums3 = [0], nums4 = [0]
+&gt; 输出：1
+&gt; ```
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `n == nums1.length`
+&gt;- `n == nums2.length`
+&gt; - `n == nums3.length`
+&gt;- `n == nums4.length`
+&gt; - `1 &lt;= n &lt;= 200`
+&gt; - `-2^28^ &lt;= nums1[i], nums2[i], nums3[i], nums4[i] &lt;= 2^28`
 
 - 暴力法:  Time Complexity : O(n^4^)
 - 拆分哈希表:  Time Complexity : O(m\*n + o\*p)
@@ -3502,13 +3502,13 @@ class Solution:
 // 暴力解法(超时)
 class Solution {
 public:
-    int fourSumCount(vector<int>& nums1, vector<int>& nums2, vector<int>& nums3,
-                     vector<int>& nums4) {
+    int fourSumCount(vector<int>&amp; nums1, vector<int>&amp; nums2, vector<int>&amp; nums3,
+                     vector<int>&amp; nums4) {
         int ans = 0;
-        for (int i = 0; i < nums1.size(); i++) {
-            for (int j = 0; j < nums2.size(); j++) {
-                for (int k = 0; k < nums3.size(); k++) {
-                    for (int l = 0; l < nums4.size(); l++) {
+        for (int i = 0; i &lt; nums1.size(); i++) {
+            for (int j = 0; j &lt; nums2.size(); j++) {
+                for (int k = 0; k &lt; nums3.size(); k++) {
+                    for (int l = 0; l &lt; nums4.size(); l++) {
                         if (nums1[i] + nums2[j] + nums3[k] + nums4[l] == 0) {
                             ans++;
                         }
@@ -3522,11 +3522,11 @@ public:
 // unordered_map 对暴力法降次
 class Solution {
 public:
-    int fourSumCount(vector<int>& nums1, vector<int>& nums2, vector<int>& nums3,
-                     vector<int>& nums4) {
-        unordered_map<int, int> umap;
-        for (int i = 0; i < nums1.size(); i++) {
-            for (int j = 0; j < nums2.size(); j++) {
+    int fourSumCount(vector<int>&amp; nums1, vector<int>&amp; nums2, vector<int>&amp; nums3,
+                     vector<int>&amp; nums4) {
+        unordered_map<int, int=""> umap;
+        for (int i = 0; i &lt; nums1.size(); i++) {
+            for (int j = 0; j &lt; nums2.size(); j++) {
                 int sum = nums1[i] + nums2[j];
                 if (umap.find(sum) == umap.end()) {
                     umap[sum] = 1;
@@ -3536,8 +3536,8 @@ public:
             }
         }
         int ans = 0;
-        for (int i = 0; i < nums3.size(); i++) {
-            for (int j = 0; j < nums4.size(); j++) {
+        for (int i = 0; i &lt; nums3.size(); i++) {
+            for (int j = 0; j &lt; nums4.size(); j++) {
                 int sum = nums3[i] + nums4[j];
                 if (umap.find(0 - sum) != umap.end()) {
                     ans += umap[0 - sum];
@@ -3550,8 +3550,8 @@ public:
 // 另一写法
 class Solution {
 public:
-    int fourSumCount(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D) {
-        unordered_map<int, int> umap; //key:a+b的数值，value:a+b数值出现的次数
+    int fourSumCount(vector<int>&amp; A, vector<int>&amp; B, vector<int>&amp; C, vector<int>&amp; D) {
+        unordered_map<int, int=""> umap; //key:a+b的数值，value:a+b数值出现的次数
         // 遍历大A和大B数组，统计两个数组元素之和，和出现的次数，放到map中
         for (int a : A) {
             for (int b : B) {
@@ -3577,7 +3577,7 @@ public:
 class Solution:
     def fourSumCount(
         self, nums1: List[int], nums2: List[int], nums3: List[int], nums4: List[int]
-    ) -> int:
+    ) -&gt; int:
         numDict = dict()
         for i in nums1:
             for j in nums2:
@@ -3597,39 +3597,39 @@ class Solution:
 
 #### [383. 赎金信](https://leetcode.cn/problems/ransom-note/)
 
-> 给你两个字符串：`ransomNote` 和 `magazine` ，判断 `ransomNote` 能不能由 `magazine` 里面的字符构成。
->
-> 如果可以，返回 `true` ；否则返回 `false` 。
->
-> `magazine` 中的每个字符只能在 `ransomNote` 中使用一次。
->
->  
->
-> **示例 1：**
->
-> ```
-> 输入：ransomNote = "a", magazine = "b"
-> 输出：false
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：ransomNote = "aa", magazine = "ab"
-> 输出：false
-> ```
->
-> **示例 3：**
->
-> ```
-> 输入：ransomNote = "aa", magazine = "aab"
-> 输出：true
-> ```
->
-> **提示：**
->
-> - `1 <= ransomNote.length, magazine.length <= 105`
->- `ransomNote` 和 `magazine` 由小写英文字母组成
+&gt; 给你两个字符串：`ransomNote` 和 `magazine` ，判断 `ransomNote` 能不能由 `magazine` 里面的字符构成。
+&gt;
+&gt; 如果可以，返回 `true` ；否则返回 `false` 。
+&gt;
+&gt; `magazine` 中的每个字符只能在 `ransomNote` 中使用一次。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：ransomNote = "a", magazine = "b"
+&gt; 输出：false
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：ransomNote = "aa", magazine = "ab"
+&gt; 输出：false
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ```
+&gt; 输入：ransomNote = "aa", magazine = "aab"
+&gt; 输出：true
+&gt; ```
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `1 &lt;= ransomNote.length, magazine.length &lt;= 105`
+&gt;- `ransomNote` 和 `magazine` 由小写英文字母组成
 
 ```c++
 class Solution {
@@ -3642,8 +3642,8 @@ public:
         for (char iter : magazine) {
             arr2[iter - 'a']++;
         }
-        for (int i = 0; i < 26; i++) {
-            if (arr2[i] - arr1[i] < 0) {
+        for (int i = 0; i &lt; 26; i++) {
+            if (arr2[i] - arr1[i] &lt; 0) {
                 return false;
             }
         }
@@ -3654,27 +3654,27 @@ public:
 
 ```python
 class Solution:
-    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+    def canConstruct(self, ransomNote: str, magazine: str) -&gt; bool:
         list1 = [0 for _ in range(26)]
         list2 = [0 for _ in range(26)]
-        # ord(char) -> int 可以返回字符的ascii码对应整型
-        # char(int) -> str 相对的
+        # ord(char) -&gt; int 可以返回字符的ascii码对应整型
+        # char(int) -&gt; str 相对的
         for item in ransomNote:
             list1[ord(item) - ord('a')] += 1
         for item in magazine:
             list2[ord(item) - ord('a')] += 1
         for i in range(26):
-            if list2[i] - list1[i] < 0:
+            if list2[i] - list1[i] &lt; 0:
                 return False
         return True
     
 # python风格
 class Solution:
-    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+    def canConstruct(self, ransomNote: str, magazine: str) -&gt; bool:
         r_set = set(ransomNote)
         r_list = list(r_set)
         for char in r_list:
-            if char  not in magazine or ransomNote.count(char) > magazine.count(char):
+            if char  not in magazine or ransomNote.count(char) &gt; magazine.count(char):
                 return False
         return True    
 ```
@@ -3708,47 +3708,47 @@ class Solution:
 
 #### [15. 三数之和](https://leetcode.cn/problems/3sum/)
 
-> 给你一个整数数组 `nums` ，判断是否存在三元组 `[nums[i], nums[j], nums[k]]` 满足 `i != j`、`i != k` 且 `j != k` ，同时还满足 `nums[i] + nums[j] + nums[k] == 0` 。请
->
-> 你返回所有和为 `0` 且不重复的三元组。
->
-> **注意：**答案中不可以包含重复的三元组。
->
-> **示例 1：**
->
-> ```
-> 输入：nums = [-1,0,1,2,-1,-4]
-> 输出：[[-1,-1,2],[-1,0,1]]
-> 解释：
-> nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0 。
-> nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0 。
-> nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0 。
-> 不同的三元组是 [-1,0,1] 和 [-1,-1,2] 。
-> 注意，输出的顺序和三元组的顺序并不重要。
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：nums = [0,1,1]
-> 输出：[]
-> 解释：唯一可能的三元组和不为 0 。
-> ```
->
-> **示例 3：**
->
-> ```
-> 输入：nums = [0,0,0]
-> 输出：[[0,0,0]]
-> 解释：唯一可能的三元组和为 0 。
-> ```
->
->
->
-> **提示：**
->
-> - `3 <= nums.length <= 3000`
-> - `-105 <= nums[i] <= 105`
+&gt; 给你一个整数数组 `nums` ，判断是否存在三元组 `[nums[i], nums[j], nums[k]]` 满足 `i != j`、`i != k` 且 `j != k` ，同时还满足 `nums[i] + nums[j] + nums[k] == 0` 。请
+&gt;
+&gt; 你返回所有和为 `0` 且不重复的三元组。
+&gt;
+&gt; **注意：**答案中不可以包含重复的三元组。
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：nums = [-1,0,1,2,-1,-4]
+&gt; 输出：[[-1,-1,2],[-1,0,1]]
+&gt; 解释：
+&gt; nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0 。
+&gt; nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0 。
+&gt; nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0 。
+&gt; 不同的三元组是 [-1,0,1] 和 [-1,-1,2] 。
+&gt; 注意，输出的顺序和三元组的顺序并不重要。
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：nums = [0,1,1]
+&gt; 输出：[]
+&gt; 解释：唯一可能的三元组和不为 0 。
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ```
+&gt; 输入：nums = [0,0,0]
+&gt; 输出：[[0,0,0]]
+&gt; 解释：唯一可能的三元组和为 0 。
+&gt; ```
+&gt;
+&gt;
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `3 &lt;= nums.length &lt;= 3000`
+&gt; - `-105 &lt;= nums[i] &lt;= 105`
 
 - 在 C++ 中，`std::tuple` 是一个非常灵活的工具，它允许你将不同类型的值组合成单一对象。这在 C++11 及其之后的版本中得到了引入和支持。`tuple` 是标准库头文件 `<tuple>` 中定义的。
 
@@ -3762,7 +3762,7 @@ class Solution:
   #include <tuple>
   
   // 创建一个 tuple
-  std::tuple<int, std::string, float> my_tuple(42, "Hello", 3.14);
+  std::tuple<int, float="" std::string,=""> my_tuple(42, "Hello", 3.14);
   
   // 使用 std::make_tuple 来创建 tuple
   auto another_tuple = std::make_tuple(42, "Hello", 3.14);
@@ -3770,14 +3770,14 @@ class Solution:
 
   - 访问元素
 
-  使用 `std::get<>()` 来访问元素：
+  使用 `std::get&lt;&gt;()` 来访问元素：
 
   ```cpp
   // 获取第一个元素
-  int my_int = std::get<0>(my_tuple);
+  int my_int = std::get&lt;0&gt;(my_tuple);
   
   // 获取第二个元素
-  std::string my_string = std::get<1>(my_tuple);
+  std::string my_string = std::get&lt;1&gt;(my_tuple);
   ```
 
   - 解包（Unpacking）
@@ -3817,7 +3817,7 @@ class Solution:
   }
   ```
 
-  `std::tuple` 支持 `==`、`!=`、`<`、`<=`、`>` 和 `>=` 操作符。
+  `std::tuple` 支持 `==`、`!=`、`&lt;`、`&lt;=`、`&gt;` 和 `&gt;=` 操作符。
 
   - 使用 std::apply
 
@@ -3848,15 +3848,15 @@ class Solution:
 // hash去重 (很慢)
 class Solution {
 public:
-    vector<vector<int>> threeSum(vector<int>& nums) {
-        set<vector<int>> result_set;
+    vector<vector<int>&gt; threeSum(vector<int>&amp; nums) {
+        set<vector<int>&gt; result_set;
         sort(nums.begin(), nums.end());
-        for (int i = 0; i < nums.size() && nums[i] <= 0; i++) {
+        for (int i = 0; i &lt; nums.size() &amp;&amp; nums[i] &lt;= 0; i++) {
             int left = i + 1, right = nums.size() - 1;
-            while (left < right) {
-                if (nums[i] + nums[left] + nums[right] > 0) {
+            while (left &lt; right) {
+                if (nums[i] + nums[left] + nums[right] &gt; 0) {
                     right--;
-                } else if (nums[i] + nums[left] + nums[right] < 0) {
+                } else if (nums[i] + nums[left] + nums[right] &lt; 0) {
                     left++;
                 } else {
                     result_set.insert({nums[i], nums[left], nums[right]});
@@ -3865,35 +3865,35 @@ public:
                 }
             }
         }
-        vector<vector<int>> result(result_set.begin(), result_set.end());
+        vector<vector<int>&gt; result(result_set.begin(), result_set.end());
         return result;
     }
 };
 // 不使用hash去重 O(n^2)
 class Solution {
 public:
-    vector<vector<int>> threeSum(vector<int>& nums) {
-        vector<vector<int>> result;
+    vector<vector<int>&gt; threeSum(vector<int>&amp; nums) {
+        vector<vector<int>&gt; result;
         sort(nums.begin(), nums.end());
-        for (int i = 0; i < nums.size() && nums[i] <= 0; ++i) {
+        for (int i = 0; i &lt; nums.size() &amp;&amp; nums[i] &lt;= 0; ++i) {
             // 跳过重复的数
-            if (i > 0 && nums[i] == nums[i - 1]) {
+            if (i &gt; 0 &amp;&amp; nums[i] == nums[i - 1]) {
                 continue;
             }
             int left = i + 1, right = nums.size() - 1;
-            while (left < right) {
+            while (left &lt; right) {
                 const int sum = nums[i] + nums[left] + nums[right];
-                if (sum > 0) {
+                if (sum &gt; 0) {
                     --right;
-                } else if (sum < 0) {
+                } else if (sum &lt; 0) {
                     ++left;
                 } else {
                     result.push_back({nums[i], nums[left], nums[right]});
                     // 跳过所有相同的左值和右值
-                    while (left < right && nums[left] == nums[left + 1]) {
+                    while (left &lt; right &amp;&amp; nums[left] == nums[left + 1]) {
                         ++left;
                     }
-                    while (left < right && nums[right] == nums[right - 1]) {
+                    while (left &lt; right &amp;&amp; nums[right] == nums[right - 1]) {
                         --right;
                     }
                     ++left;
@@ -3929,9 +3929,9 @@ public:
     };
     
     namespace std {
-        template <>
-        struct hash<MyType> {
-            size_t operator()(const MyType& my_type) const {
+        template &lt;&gt;
+        struct hash<mytype> {
+            size_t operator()(const MyType&amp; my_type) const {
                 return std::hash<int>()(my_type.x) ^ std::hash<bool>()(my_type.y);
             }
         };
@@ -3968,17 +3968,17 @@ public:
 
 ```python
 class Solution:
-    def threeSum(self, nums: List[int]) -> List[List[int]]:
+    def threeSum(self, nums: List[int]) -&gt; List[List[int]]:
         nums.sort()
         ans = set()
         for i in range(len(nums)):
             left = i + 1
             right = len(nums) - 1
-            while left < right:
+            while left &lt; right:
                 sumNum = nums[i] + nums[left] + nums[right]
-                if sumNum > 0:
+                if sumNum &gt; 0:
                     right -= 1
-                elif sumNum < 0:
+                elif sumNum &lt; 0:
                     left += 1
                 else:
                     ans.add((nums[i], nums[left], nums[right]))
@@ -3989,37 +3989,37 @@ class Solution:
 
 #### [18. 四数之和](https://leetcode.cn/problems/4sum/)
 
-> 给你一个由 `n` 个整数组成的数组 `nums` ，和一个目标值 `target` 。请你找出并返回满足下述全部条件且**不重复**的四元组 `[nums[a], nums[b], nums[c], nums[d]]` （若两个四元组元素一一对应，则认为两个四元组重复）：
->
-> - `0 <= a, b, c, d < n`
-> - `a`、`b`、`c` 和 `d` **互不相同**
-> - `nums[a] + nums[b] + nums[c] + nums[d] == target`
->
-> 你可以按 **任意顺序** 返回答案 。
->
->  
->
-> **示例 1：**
->
-> ```
-> 输入：nums = [1,0,-1,0,-2,2], target = 0
-> 输出：[[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：nums = [2,2,2,2,2], target = 8
-> 输出：[[2,2,2,2]]
-> ```
->
->  
->
-> **提示：**
->
-> - `1 <= nums.length <= 200`
-> - `-109 <= nums[i] <= 109`
-> - `-109 <= target <= 109`
+&gt; 给你一个由 `n` 个整数组成的数组 `nums` ，和一个目标值 `target` 。请你找出并返回满足下述全部条件且**不重复**的四元组 `[nums[a], nums[b], nums[c], nums[d]]` （若两个四元组元素一一对应，则认为两个四元组重复）：
+&gt;
+&gt; - `0 &lt;= a, b, c, d &lt; n`
+&gt; - `a`、`b`、`c` 和 `d` **互不相同**
+&gt; - `nums[a] + nums[b] + nums[c] + nums[d] == target`
+&gt;
+&gt; 你可以按 **任意顺序** 返回答案 。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：nums = [1,0,-1,0,-2,2], target = 0
+&gt; 输出：[[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：nums = [2,2,2,2,2], target = 8
+&gt; 输出：[[2,2,2,2]]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `1 &lt;= nums.length &lt;= 200`
+&gt; - `-109 &lt;= nums[i] &lt;= 109`
+&gt; - `-109 &lt;= target &lt;= 109`
 
 ```c++
 
@@ -4064,7 +4064,7 @@ class Solution:
     - 其中n为文本串长度，m为模式串长度，因为在匹配的过程中，根据前缀表不断调整匹配的位置，可以看出匹配的过程是O(n)，之前还要单独生成next数组，时间复杂度是O(m)。所以整个KMP算法的时间复杂度是O(n+m)的。
   
   - 构造next数组(构造next数组其实就是计算模式串s，前缀表的过程)
-    - `void getNext(int* next, const string& s)`
+    - `void getNext(int* next, const string&amp; s)`
       - 初始化
       - 处理前后缀不相同的情况
       - 处理前后缀相同的情况
@@ -4078,39 +4078,39 @@ class Solution:
 
 #### [344. 反转字符串](https://leetcode.cn/problems/reverse-string/)
 
-> 编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 `s` 的形式给出。
->
->不要给另外的数组分配额外的空间，你必须**[原地](https://baike.baidu.com/item/原地算法)修改输入数组**、使用 O(1) 的额外空间解决这一问题。
->
->
->
->**示例 1：**
->
->```
->输入：s = ["h","e","l","l","o"]
->输出：["o","l","l","e","h"]
->```
->
->**示例 2：**
->
->```
->输入：s = ["H","a","n","n","a","h"]
->输出：["h","a","n","n","a","H"]
->```
->
->
->
->**提示：**
->
->- `1 <= s.length <= 105`
->- `s[i]` 都是 [ASCII](https://baike.baidu.com/item/ASCII) 码表中的可打印字符
+&gt; 编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 `s` 的形式给出。
+&gt;
+&gt;不要给另外的数组分配额外的空间，你必须**[原地](https://baike.baidu.com/item/原地算法)修改输入数组**、使用 O(1) 的额外空间解决这一问题。
+&gt;
+&gt;
+&gt;
+&gt;**示例 1：**
+&gt;
+&gt;```
+&gt;输入：s = ["h","e","l","l","o"]
+&gt;输出：["o","l","l","e","h"]
+&gt;```
+&gt;
+&gt;**示例 2：**
+&gt;
+&gt;```
+&gt;输入：s = ["H","a","n","n","a","h"]
+&gt;输出：["h","a","n","n","a","H"]
+&gt;```
+&gt;
+&gt;
+&gt;
+&gt;**提示：**
+&gt;
+&gt;- `1 &lt;= s.length &lt;= 105`
+&gt;- `s[i]` 都是 [ASCII](https://baike.baidu.com/item/ASCII) 码表中的可打印字符
 
 ```c++
 class Solution {
 public:
-    void reverseString(vector<char>& s) {
+    void reverseString(vector<char>&amp; s) {
         int i = 0, j = s.size() - 1;
-        while (i <= j) {
+        while (i &lt;= j) {
             char temp = s[j];
             s[j] = s[i];
             s[i] = temp;
@@ -4122,8 +4122,8 @@ public:
 // 简洁版
 class Solution {
 public:
-    void reverseString(vector<char>& s) {
-        for (int i = 0, j = s.size() - 1; i <= j; i++, j--) {
+    void reverseString(vector<char>&amp; s) {
+        for (int i = 0, j = s.size() - 1; i &lt;= j; i++, j--) {
             swap(s[i], s[j]);
         }
     }
@@ -4132,13 +4132,13 @@ public:
 
 ```python
 class Solution:
-    def reverseString(self, s: List[str]) -> None:
+    def reverseString(self, s: List[str]) -&gt; None:
         """
         Do not return anything, modify s in-place instead.
         """
         i = 0
         j = len(s) - 1
-        while i <= j:
+        while i &lt;= j:
             temp = s[i]
             s[i] = s[j]
             s[j] = temp
@@ -4166,40 +4166,40 @@ class Solution:
 
 #### [541. 反转字符串 II](https://leetcode.cn/problems/reverse-string-ii/)
 
-> 给定一个字符串 `s` 和一个整数 `k`，从字符串开头算起，每计数至 `2k` 个字符，就反转这 `2k` 字符中的前 `k` 个字符。
->
-> - 如果剩余字符少于 `k` 个，则将剩余字符全部反转。
-> - 如果剩余字符小于 `2k` 但大于或等于 `k` 个，则反转前 `k` 个字符，其余字符保持原样。
->
->  
->
-> **示例 1：**
->
-> ```
-> 输入：s = "abcdefg", k = 2
-> 输出："bacdfeg"
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：s = "abcd", k = 2
-> 输出："bacd"
-> ```
->
->  
->
-> **提示：**
->
-> - `1 <= s.length <= 104`
-> - `s` 仅由小写英文组成
-> - `1 <= k <= 104`
+&gt; 给定一个字符串 `s` 和一个整数 `k`，从字符串开头算起，每计数至 `2k` 个字符，就反转这 `2k` 字符中的前 `k` 个字符。
+&gt;
+&gt; - 如果剩余字符少于 `k` 个，则将剩余字符全部反转。
+&gt; - 如果剩余字符小于 `2k` 但大于或等于 `k` 个，则反转前 `k` 个字符，其余字符保持原样。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：s = "abcdefg", k = 2
+&gt; 输出："bacdfeg"
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：s = "abcd", k = 2
+&gt; 输出："bacd"
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `1 &lt;= s.length &lt;= 104`
+&gt; - `s` 仅由小写英文组成
+&gt; - `1 &lt;= k &lt;= 104`
 
 ```c++
 class Solution {
 private:
-    void reverse(string& s, int forward_ptr, int behind_ptr) {
-        while (forward_ptr < behind_ptr) {
+    void reverse(string&amp; s, int forward_ptr, int behind_ptr) {
+        while (forward_ptr &lt; behind_ptr) {
             char temp = s[forward_ptr];
             s[forward_ptr] = s[behind_ptr];
             s[behind_ptr] = temp;
@@ -4211,11 +4211,11 @@ private:
 public:
     string reverseStr(string s, int k) {
         int begin_ptr = 0;
-        while (begin_ptr < s.size()) {
-            if (s.size() - begin_ptr >= 2 * k) {
+        while (begin_ptr &lt; s.size()) {
+            if (s.size() - begin_ptr &gt;= 2 * k) {
                 reverse(s, begin_ptr, begin_ptr + k - 1);
 
-            } else if (s.size() - begin_ptr >= k) {
+            } else if (s.size() - begin_ptr &gt;= k) {
                 reverse(s, begin_ptr, begin_ptr + k - 1);
             } else {
                 reverse(s, begin_ptr, s.size() - 1);
@@ -4243,18 +4243,18 @@ public:
 
 ```python
 class Solution:
-    def reverse(self, s: str, startIndex: int, endIndex: int) -> str:
+    def reverse(self, s: str, startIndex: int, endIndex: int) -&gt; str:
         s_list = list(s)  # 将字符串转换为列表
-        while startIndex < endIndex:
+        while startIndex &lt; endIndex:
             s_list[startIndex], s_list[endIndex] = s_list[endIndex], s_list[startIndex]
             startIndex += 1
             endIndex -= 1
         return ''.join(s_list)  # 将列表转换回字符串
 
-    def reverseStr(self, s: str, k: int) -> str:
+    def reverseStr(self, s: str, k: int) -&gt; str:
         startIndex = 0
-        while startIndex < len(s):
-            if len(s) - startIndex >= k:
+        while startIndex &lt; len(s):
+            if len(s) - startIndex &gt;= k:
                 s = self.reverse(s, startIndex, startIndex + k - 1)
             else:
                 s = self.reverse(s, startIndex, len(s) - 1)
@@ -4265,36 +4265,36 @@ class Solution:
 
 #### [替换数字](https://kamacoder.com/problempage.php?pid=1064)
 
-> 时间限制：1.000S 空间限制：128MB
->
-> ###### 题目描述
->
-> 给定一个字符串 s，它包含小写字母和数字字符，请编写一个函数，将字符串中的字母字符保持不变，而将每个数字字符替换为number。 例如，对于输入字符串 "a1b2c3"，函数应该将其转换为 "anumberbnumbercnumber"。
->
-> ###### 输入描述
->
-> 输入一个字符串 s,s 仅包含小写字母和数字字符。
->
-> ###### 输出描述
->
-> 打印一个新的字符串，其中每个数字字符都被替换为了number
->
-> ###### 输入示例
->
-> ```
-> a1b2c3
-> ```
->
-> ###### 输出示例
->
-> ```
-> anumberbnumbercnumber
-> ```
->
-> ###### 提示信息
->
-> 数据范围：
-> 1 <= `s.length` < 10000。
+&gt; 时间限制：1.000S 空间限制：128MB
+&gt;
+&gt; ###### 题目描述
+&gt;
+&gt; 给定一个字符串 s，它包含小写字母和数字字符，请编写一个函数，将字符串中的字母字符保持不变，而将每个数字字符替换为number。 例如，对于输入字符串 "a1b2c3"，函数应该将其转换为 "anumberbnumbercnumber"。
+&gt;
+&gt; ###### 输入描述
+&gt;
+&gt; 输入一个字符串 s,s 仅包含小写字母和数字字符。
+&gt;
+&gt; ###### 输出描述
+&gt;
+&gt; 打印一个新的字符串，其中每个数字字符都被替换为了number
+&gt;
+&gt; ###### 输入示例
+&gt;
+&gt; ```
+&gt; a1b2c3
+&gt; ```
+&gt;
+&gt; ###### 输出示例
+&gt;
+&gt; ```
+&gt; anumberbnumbercnumber
+&gt; ```
+&gt;
+&gt; ###### 提示信息
+&gt;
+&gt; 数据范围：
+&gt; 1 &lt;= `s.length` &lt; 10000。
 
 ```c++
 #include <iostream>
@@ -4302,15 +4302,15 @@ class Solution:
 using namespace std;
 int main() {
   string temp, out;
-  cin >> temp;
+  cin &gt;&gt; temp;
   for (auto iter : temp) {
-    if (iter <= '9' && iter >= '0') {
+    if (iter &lt;= '9' &amp;&amp; iter &gt;= '0') {
       out = out + "number";
     } else {
       out = out + iter;
     }
   }
-  cout << out << endl;
+  cout &lt;&lt; out &lt;&lt; endl;
 }
 // 时间复杂度更小的算法
 
@@ -4318,11 +4318,11 @@ int main() {
 using namespace std;
 int main() {
     string s;
-    while (cin >> s) {
+    while (cin &gt;&gt; s) {
         int count = 0; // 统计数字的个数
         int sOldSize = s.size();
-        for (int i = 0; i < s.size(); i++) {
-            if (s[i] >= '0' && s[i] <= '9') {
+        for (int i = 0; i &lt; s.size(); i++) {
+            if (s[i] &gt;= '0' &amp;&amp; s[i] &lt;= '9') {
                 count++;
             }
         }
@@ -4330,8 +4330,8 @@ int main() {
         s.resize(s.size() + count * 5);
         int sNewSize = s.size();
         // 从后先前将空格替换为"number"
-        for (int i = sNewSize - 1, j = sOldSize - 1; j < i; i--, j--) {
-            if (s[j] > '9' || s[j] < '0') {
+        for (int i = sNewSize - 1, j = sOldSize - 1; j &lt; i; i--, j--) {
+            if (s[j] &gt; '9' || s[j] &lt; '0') {
                 s[i] = s[j];
             } else {
                 s[i] = 'r';
@@ -4343,7 +4343,7 @@ int main() {
                 i -= 5;
             }
         }
-        cout << s << endl;
+        cout &lt;&lt; s &lt;&lt; endl;
     }
 }
 
@@ -4363,50 +4363,50 @@ print(out)
 
 #### [151. 反转字符串中的单词](https://leetcode.cn/problems/reverse-words-in-a-string/)
 
->**综合考察字符串操作的好题。**
->
->给你一个字符串 `s` ，请你反转字符串中 **单词** 的顺序。
->
->**单词** 是由非空格字符组成的字符串。`s` 中使用至少一个空格将字符串中的 **单词** 分隔开。
->
->返回 **单词** 顺序颠倒且 **单词** 之间用单个空格连接的结果字符串。
->
->**注意：**输入字符串 `s`中可能会存在前导空格、尾随空格或者单词间的多个空格。返回的结果字符串中，单词间应当仅用单个空格分隔，且不包含任何额外的空格。
->
->
->
->**示例 1：**
->
->```
->输入：s = "the sky is blue"
->输出："blue is sky the"
->```
->
->**示例 2：**
->
->```
->输入：s = "  hello world  "
->输出："world hello"
->解释：反转后的字符串中不能存在前导空格和尾随空格。
->```
->
->**示例 3：**
->
->```
->输入：s = "a good   example"
->输出："example good a"
->解释：如果两个单词间有多余的空格，反转后的字符串需要将单词间的空格减少到仅有一个。
->```
->
->
->
->**提示：**
->
->- `1 <= s.length <= 104`
->- `s` 包含英文大小写字母、数字和空格 `' '`
->- `s` 中 **至少存在一个** 单词
->
->**进阶：**如果字符串在你使用的编程语言中是一种可变数据类型，请尝试使用 `O(1)` 额外空间复杂度的 **原地** 解法。
+&gt;**综合考察字符串操作的好题。**
+&gt;
+&gt;给你一个字符串 `s` ，请你反转字符串中 **单词** 的顺序。
+&gt;
+&gt;**单词** 是由非空格字符组成的字符串。`s` 中使用至少一个空格将字符串中的 **单词** 分隔开。
+&gt;
+&gt;返回 **单词** 顺序颠倒且 **单词** 之间用单个空格连接的结果字符串。
+&gt;
+&gt;**注意：**输入字符串 `s`中可能会存在前导空格、尾随空格或者单词间的多个空格。返回的结果字符串中，单词间应当仅用单个空格分隔，且不包含任何额外的空格。
+&gt;
+&gt;
+&gt;
+&gt;**示例 1：**
+&gt;
+&gt;```
+&gt;输入：s = "the sky is blue"
+&gt;输出："blue is sky the"
+&gt;```
+&gt;
+&gt;**示例 2：**
+&gt;
+&gt;```
+&gt;输入：s = "  hello world  "
+&gt;输出："world hello"
+&gt;解释：反转后的字符串中不能存在前导空格和尾随空格。
+&gt;```
+&gt;
+&gt;**示例 3：**
+&gt;
+&gt;```
+&gt;输入：s = "a good   example"
+&gt;输出："example good a"
+&gt;解释：如果两个单词间有多余的空格，反转后的字符串需要将单词间的空格减少到仅有一个。
+&gt;```
+&gt;
+&gt;
+&gt;
+&gt;**提示：**
+&gt;
+&gt;- `1 &lt;= s.length &lt;= 104`
+&gt;- `s` 包含英文大小写字母、数字和空格 `' '`
+&gt;- `s` 中 **至少存在一个** 单词
+&gt;
+&gt;**进阶：**如果字符串在你使用的编程语言中是一种可变数据类型，请尝试使用 `O(1)` 额外空间复杂度的 **原地** 解法。
 
 ```c++
 // 比较水的一种做法,没有体现所学的内容
@@ -4416,17 +4416,17 @@ public:
         istringstream is(s);
         vector<string> s_container;
         string temp;
-        while (is >> temp) {
+        while (is &gt;&gt; temp) {
             s_container.push_back(temp);
         }
         int forward = 0, behind = s_container.size() - 1;
-        while (forward < behind) {
+        while (forward &lt; behind) {
             swap(s_container[forward], s_container[behind]);
             forward++;
             behind--;
         }
         string ans;
-        for (int i = 0; i < s_container.size(); i++) {
+        for (int i = 0; i &lt; s_container.size(); i++) {
             if (i == 0) {
                 ans = s_container[i];
             } else {
@@ -4447,7 +4447,7 @@ public:
 
 ```python
 class Solution:
-    def reverseWords(self, s: str) -> str:
+    def reverseWords(self, s: str) -&gt; str:
         return " ".join(s.strip().split()[::-1])
 ```
 
@@ -4456,38 +4456,38 @@ class Solution:
 
 #### [右旋字符串](https://kamacoder.com/problempage.php?pid=1065)
 
-> ###### 题目描述
->
-> 字符串的右旋转操作是把字符串尾部的若干个字符转移到字符串的前面。给定一个字符串 s 和一个正整数 k，请编写一个函数，将字符串中的后面 k 个字符移到字符串的前面，实现字符串的右旋转操作。
->
-> 例如，对于输入字符串 "abcdefg" 和整数 2，函数应该将其转换为 "fgabcde"。
->
-> ###### 输入描述
->
-> 输入共包含两行，第一行为一个正整数 k，代表右旋转的位数。第二行为字符串 s，代表需要旋转的字符串。
->
-> ###### 输出描述
->
-> 输出共一行，为进行了右旋转操作后的字符串。
->
-> ###### 输入示例
->
-> ```
-> 2
-> abcdefg
-> ```
->
-> ###### 输出示例
->
-> ```
-> fgabcde
-> ```
->
-> ###### 提示信息
->
-> 数据范围：
-> 1 <= k < 10000,
-> 1 <= `s.length` < 10000;
+&gt; ###### 题目描述
+&gt;
+&gt; 字符串的右旋转操作是把字符串尾部的若干个字符转移到字符串的前面。给定一个字符串 s 和一个正整数 k，请编写一个函数，将字符串中的后面 k 个字符移到字符串的前面，实现字符串的右旋转操作。
+&gt;
+&gt; 例如，对于输入字符串 "abcdefg" 和整数 2，函数应该将其转换为 "fgabcde"。
+&gt;
+&gt; ###### 输入描述
+&gt;
+&gt; 输入共包含两行，第一行为一个正整数 k，代表右旋转的位数。第二行为字符串 s，代表需要旋转的字符串。
+&gt;
+&gt; ###### 输出描述
+&gt;
+&gt; 输出共一行，为进行了右旋转操作后的字符串。
+&gt;
+&gt; ###### 输入示例
+&gt;
+&gt; ```
+&gt; 2
+&gt; abcdefg
+&gt; ```
+&gt;
+&gt; ###### 输出示例
+&gt;
+&gt; ```
+&gt; fgabcde
+&gt; ```
+&gt;
+&gt; ###### 提示信息
+&gt;
+&gt; 数据范围：
+&gt; 1 &lt;= k &lt; 10000,
+&gt; 1 &lt;= `s.length` &lt; 10000;
 
 ```c++
 #include <iostream>
@@ -4496,13 +4496,13 @@ using namespace std;
 int main() {
   string temp;
   int k = 0;
-  cin >> k;
-  cin >> temp;
+  cin &gt;&gt; k;
+  cin &gt;&gt; temp;
   int startIndex = temp.size() - k;
   string targetS = temp.substr(startIndex, k);
   temp.erase(startIndex, k);
   string ans = targetS + temp;
-  cout << ans << endl;
+  cout &lt;&lt; ans &lt;&lt; endl;
   return 0;
 }
 ```
@@ -4517,33 +4517,33 @@ print(s)
 
 #### [28. 找出字符串中第一个匹配项的下标](https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/)
 
-> 给你两个字符串 `haystack` 和 `needle` ，请你在 `haystack` 字符串中找出 `needle` 字符串的第一个匹配项的下标（下标从 0 开始）。如果 `needle` 不是 `haystack` 的一部分，则返回 `-1` 。
->
->  
->
-> **示例 1：**
->
-> ```
-> 输入：haystack = "sadbutsad", needle = "sad"
-> 输出：0
-> 解释："sad" 在下标 0 和 6 处匹配。
-> 第一个匹配项的下标是 0 ，所以返回 0 。
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：haystack = "leetcode", needle = "leeto"
-> 输出：-1
-> 解释："leeto" 没有在 "leetcode" 中出现，所以返回 -1 。
-> ```
->
->  
->
-> **提示：**
->
-> - `1 <= haystack.length, needle.length <= 104`
-> - `haystack` 和 `needle` 仅由小写英文字符组成
+&gt; 给你两个字符串 `haystack` 和 `needle` ，请你在 `haystack` 字符串中找出 `needle` 字符串的第一个匹配项的下标（下标从 0 开始）。如果 `needle` 不是 `haystack` 的一部分，则返回 `-1` 。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：haystack = "sadbutsad", needle = "sad"
+&gt; 输出：0
+&gt; 解释："sad" 在下标 0 和 6 处匹配。
+&gt; 第一个匹配项的下标是 0 ，所以返回 0 。
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：haystack = "leetcode", needle = "leeto"
+&gt; 输出：-1
+&gt; 解释："leeto" 没有在 "leetcode" 中出现，所以返回 -1 。
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `1 &lt;= haystack.length, needle.length &lt;= 104`
+&gt; - `haystack` 和 `needle` 仅由小写英文字符组成
 
 ```c++
 ```
@@ -4553,41 +4553,41 @@ print(s)
 
 #### [459. 重复的子字符串](https://leetcode.cn/problems/repeated-substring-pattern/)
 
-> 给定一个非空的字符串 `s` ，检查是否可以通过由它的一个子串重复多次构成。
->
->  
->
-> **示例 1:**
->
-> ```
-> 输入: s = "abab"
-> 输出: true
-> 解释: 可由子串 "ab" 重复两次构成。
-> ```
->
-> **示例 2:**
->
-> ```
-> 输入: s = "aba"
-> 输出: false
-> ```
->
-> **示例 3:**
->
-> ```
-> 输入: s = "abcabcabcabc"
-> 输出: true
-> 解释: 可由子串 "abc" 重复四次构成。 (或子串 "abcabc" 重复两次构成。)
-> ```
->
->  
->
-> **提示：**
->
->
->
-> - `1 <= s.length <= 104`
-> - `s` 由小写英文字母组成
+&gt; 给定一个非空的字符串 `s` ，检查是否可以通过由它的一个子串重复多次构成。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1:**
+&gt;
+&gt; ```
+&gt; 输入: s = "abab"
+&gt; 输出: true
+&gt; 解释: 可由子串 "ab" 重复两次构成。
+&gt; ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ```
+&gt; 输入: s = "aba"
+&gt; 输出: false
+&gt; ```
+&gt;
+&gt; **示例 3:**
+&gt;
+&gt; ```
+&gt; 输入: s = "abcabcabcabc"
+&gt; 输出: true
+&gt; 解释: 可由子串 "abc" 重复四次构成。 (或子串 "abcabc" 重复两次构成。)
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt;
+&gt;
+&gt; - `1 &lt;= s.length &lt;= 104`
+&gt; - `s` 由小写英文字母组成
 
 ```c++
 
@@ -4602,56 +4602,56 @@ print(s)
 
 #### 容器和容器适配器
 
-> 在 C++ 标准库中，容器适配器是一种特殊的**类模板**，它提供了一种特定的接口和行为，这些接口和行为是通过封装一个底层容器类（如 `vector`, `deque`, 或 `list`）来实现的。简而言之，容器适配器是对现有容器类的封装，以提供不同的功能或接口。
->
-> 容器适配器和基础容器之间的主要关系可以总结如下：
->
-> ### 容器 (Container)
->
-> - 容器是数据结构的一种实现，它可以存储元素并提供对它们的访问。标准库中的容器包括序列容器（如 `vector`, `deque`, `list`）和关联容器（如 `set`, `map`, `unordered_set`, `unordered_map`）。
-> - 每个容器都提供了一套丰富的成员函数，用于插入、删除、遍历和访问元素。
-> - 它们的成员函数有相似性
->
-> ### 容器适配器 (Container Adapters)
->
-> - 容器适配器提供了一种不同的接口，使得基础容器的行为更符合特定的数据结构如栈（stack）、队列（queue）和优先队列（priority_queue）。
-> - 标准库中有三种容器适配器：`stack`, `queue`, `priority_queue`。
-> - 容器适配器通常限制了对其底层容器的直接访问，只提供了与其模拟的数据结构相匹配的一组操作。例如，`stack` 提供 `push`, `pop`, `top`, `size`, 和 `empty` 操作，但它不允许对底层容器的随机访问。
-> - 容器适配器在创建时可以指定一个底层容器类型（默认通常是 `deque`,即在不指定的时候），并且可以通过特定的成员函数来操作这个底层容器。
->
-> ### 关系
->
-> - 容器适配器并不直接实现数据存储和管理的逻辑本身，而是依赖于一个底层的容器来实现这些功能。
-> - 容器适配器通过其接口提供了对底层容器的封装，并限定了可以执行的操作集合。
-> - 开发者可以选择使用底层容器直接操作更丰富的接口，或者使用容器适配器来获得更简单、更特定的操作集。
-> - 不同的容器会使得容器适配器的性能有所不同
->
->   - 容器适配器的性能在很大程度上取决于它所封装的底层容器的性能特性。
->
->     每种容器都有其特定的性能权衡，例如：
->
->     - `vector` 在尾端添加或移除元素非常快，但在中间或开始位置插入或删除元素就比较慢。
->     - `deque` 支持高效地在两端添加或移除元素，但是在中间进行操作的效率较低。
->     - `list` 是一个双向链表，可以在任何位置快速插入和删除元素，但它不支持随机访问。
->
->     当一个容器适配器使用不同的底层容器时，其性能会受到以下因素的影响：
->
->## `stack`
->
->     - `stack` 默认使用 `deque` 作为其底层容器，也可以使用 `vector` 或 `list`。因为 `stack` 的操作主要是在一端添加或移除元素，所以 `deque` 和 `list` 都是不错的选择。如果选择了 `vector` 作为底层容器，尽管在尾端操作非常高效，但如果 `vector` 因容量不足而需要扩容，可能会导致较大的性能开销。
->
->## `queue`
->
->     - `queue` 也默认使用 `deque`，它在两端都进行操作，因此 `deque` 是一个合适的选择，因为它在两端操作都很高效。如果使用 `list` 作为底层容器，也能获得类似的性能，但不能使用 `vector`，因为 `vector` 在头部添加或移除元素的性能很差。
->
->## `priority_queue`
->
->     - `priority_queue` 默认使用 `vector` 作为底层容器，并在此基础上提供一个**二叉堆**(将在下一章介绍)的接口。`vector` 在这种情况下是一个很好的选择，因为二叉堆需要随机访问容器的元素，并且 `vector` 提供了最佳的随机访问性能。虽然 `deque` 也可以用作底层容器，但通常 `vector` 会更优。
->                                                                                                                                            
->     因此，根据不同的应用场景和性能要求，选择恰当的底层容器对于容器适配器的性能至关重要。这也是为什么在设计容器适配器时，标准库允许开发者指定底层容器类型的原因之一。
->
->
-> 总之，容器适配器的设计允许程序员依据具体需求选择更合适的数据结构，同时能够复用底层容器的实现，提高了代码的复用性和抽象层次。
+&gt; 在 C++ 标准库中，容器适配器是一种特殊的**类模板**，它提供了一种特定的接口和行为，这些接口和行为是通过封装一个底层容器类（如 `vector`, `deque`, 或 `list`）来实现的。简而言之，容器适配器是对现有容器类的封装，以提供不同的功能或接口。
+&gt;
+&gt; 容器适配器和基础容器之间的主要关系可以总结如下：
+&gt;
+&gt; ### 容器 (Container)
+&gt;
+&gt; - 容器是数据结构的一种实现，它可以存储元素并提供对它们的访问。标准库中的容器包括序列容器（如 `vector`, `deque`, `list`）和关联容器（如 `set`, `map`, `unordered_set`, `unordered_map`）。
+&gt; - 每个容器都提供了一套丰富的成员函数，用于插入、删除、遍历和访问元素。
+&gt; - 它们的成员函数有相似性
+&gt;
+&gt; ### 容器适配器 (Container Adapters)
+&gt;
+&gt; - 容器适配器提供了一种不同的接口，使得基础容器的行为更符合特定的数据结构如栈（stack）、队列（queue）和优先队列（priority_queue）。
+&gt; - 标准库中有三种容器适配器：`stack`, `queue`, `priority_queue`。
+&gt; - 容器适配器通常限制了对其底层容器的直接访问，只提供了与其模拟的数据结构相匹配的一组操作。例如，`stack` 提供 `push`, `pop`, `top`, `size`, 和 `empty` 操作，但它不允许对底层容器的随机访问。
+&gt; - 容器适配器在创建时可以指定一个底层容器类型（默认通常是 `deque`,即在不指定的时候），并且可以通过特定的成员函数来操作这个底层容器。
+&gt;
+&gt; ### 关系
+&gt;
+&gt; - 容器适配器并不直接实现数据存储和管理的逻辑本身，而是依赖于一个底层的容器来实现这些功能。
+&gt; - 容器适配器通过其接口提供了对底层容器的封装，并限定了可以执行的操作集合。
+&gt; - 开发者可以选择使用底层容器直接操作更丰富的接口，或者使用容器适配器来获得更简单、更特定的操作集。
+&gt; - 不同的容器会使得容器适配器的性能有所不同
+&gt;
+&gt;   - 容器适配器的性能在很大程度上取决于它所封装的底层容器的性能特性。
+&gt;
+&gt;     每种容器都有其特定的性能权衡，例如：
+&gt;
+&gt;     - `vector` 在尾端添加或移除元素非常快，但在中间或开始位置插入或删除元素就比较慢。
+&gt;     - `deque` 支持高效地在两端添加或移除元素，但是在中间进行操作的效率较低。
+&gt;     - `list` 是一个双向链表，可以在任何位置快速插入和删除元素，但它不支持随机访问。
+&gt;
+&gt;     当一个容器适配器使用不同的底层容器时，其性能会受到以下因素的影响：
+&gt;
+&gt;## `stack`
+&gt;
+&gt;     - `stack` 默认使用 `deque` 作为其底层容器，也可以使用 `vector` 或 `list`。因为 `stack` 的操作主要是在一端添加或移除元素，所以 `deque` 和 `list` 都是不错的选择。如果选择了 `vector` 作为底层容器，尽管在尾端操作非常高效，但如果 `vector` 因容量不足而需要扩容，可能会导致较大的性能开销。
+&gt;
+&gt;## `queue`
+&gt;
+&gt;     - `queue` 也默认使用 `deque`，它在两端都进行操作，因此 `deque` 是一个合适的选择，因为它在两端操作都很高效。如果使用 `list` 作为底层容器，也能获得类似的性能，但不能使用 `vector`，因为 `vector` 在头部添加或移除元素的性能很差。
+&gt;
+&gt;## `priority_queue`
+&gt;
+&gt;     - `priority_queue` 默认使用 `vector` 作为底层容器，并在此基础上提供一个**二叉堆**(将在下一章介绍)的接口。`vector` 在这种情况下是一个很好的选择，因为二叉堆需要随机访问容器的元素，并且 `vector` 提供了最佳的随机访问性能。虽然 `deque` 也可以用作底层容器，但通常 `vector` 会更优。
+&gt;                                                                                                                                            
+&gt;     因此，根据不同的应用场景和性能要求，选择恰当的底层容器对于容器适配器的性能至关重要。这也是为什么在设计容器适配器时，标准库允许开发者指定底层容器类型的原因之一。
+&gt;
+&gt;
+&gt; 总之，容器适配器的设计允许程序员依据具体需求选择更合适的数据结构，同时能够复用底层容器的实现，提高了代码的复用性和抽象层次。
 
 **栈是以底层容器完成其所有的工作，对外提供统一的接口，底层容器是可插拔的（也就是说我们可以控制使用哪种容器来实现栈的功能）。**
 
@@ -4696,8 +4696,8 @@ print(s)
 #### `std::stack`
 
 1. 构造函数：`std::stack` 可以通过不同的构造函数进行初始化：
-   - `std::stack<T>`：创建一个空的堆栈，其中 `T` 是堆栈中元素的类型。
-   - `std::stack<T, Container>`：使用指定的容器类型 `Container` 创建一个空的堆栈。
+   - `std::stack<t>`：创建一个空的堆栈，其中 `T` 是堆栈中元素的类型。
+   - `std::stack<t, container="">`：使用指定的容器类型 `Container` 创建一个空的堆栈。
 2. `push(element)`：将元素压入堆栈的顶部（即栈顶）。
 3. `pop()`：从堆栈顶部（栈顶）移除元素，没有返回值。
 4. `top()`：返回堆栈顶部（栈顶）的元素，但不从堆栈中移除它。
@@ -4707,8 +4707,8 @@ print(s)
 #### `std::queue`(注意这是一种容器)
 
 1. 构造函数：`std::queue` 可以通过不同的构造函数进行初始化：
-   - `std::queue<T>`：创建一个空的队列，其中 `T` 是队列中元素的类型。
-   - `std::queue<T, Container>`：使用指定的容器类型 `Container` 创建一个空的队列。
+   - `std::queue<t>`：创建一个空的队列，其中 `T` 是队列中元素的类型。
+   - `std::queue<t, container="">`：使用指定的容器类型 `Container` 创建一个空的队列。
 2. `push(element)`：将元素压入队列的尾部。
 3. `pop()`：从队列的头部移除元素，没有返回值。
 4. `front()`：返回队列的头部元素，但不从队列中移除它。
@@ -4719,9 +4719,9 @@ print(s)
 #### `std::deque`
 
 1. 构造函数：`std::deque` 可以通过不同的构造函数进行初始化：
-   - `std::deque<T>`：创建一个空的双端队列，其中 `T` 是队列中元素的类型。
-   - `std::deque<T>(size, value)`：创建一个包含 `size` 个复制的 `value` 的双端队列。
-   - `std::deque<T>(first, last)`：创建一个包含从迭代器 `first` 到 `last` 的元素的双端队列。
+   - `std::deque<t>`：创建一个空的双端队列，其中 `T` 是队列中元素的类型。
+   - `std::deque<t>(size, value)`：创建一个包含 `size` 个复制的 `value` 的双端队列。
+   - `std::deque<t>(first, last)`：创建一个包含从迭代器 `first` 到 `last` 的元素的双端队列。
 2. `push_back(element)`：将元素插入到双端队列的尾部。
 3. `push_front(element)`：将元素插入到双端队列的头部。
 4. `pop_back()`：从双端队列的尾部移除元素，没有返回值。
@@ -4735,9 +4735,9 @@ print(s)
 #### `std::priority_queue`
 
 1. 构造函数：`std::priority_queue` 可以通过不同的构造函数进行初始化：
-   - `std::priority_queue<T>`：创建一个空的优先级队列，其中 `T` 是队列中元素的类型。
-   - `std::priority_queue<T>(compare)`：创建一个空的优先级队列，并指定一个比较函数来定义元素的排序顺序。
-   - `std::priority_queue<T>(compare, container)`：创建一个优先级队列，并使用指定的比较函数和容器来初始化队列。
+   - `std::priority_queue<t>`：创建一个空的优先级队列，其中 `T` 是队列中元素的类型。
+   - `std::priority_queue<t>(compare)`：创建一个空的优先级队列，并指定一个比较函数来定义元素的排序顺序。
+   - `std::priority_queue<t>(compare, container)`：创建一个优先级队列，并使用指定的比较函数和容器来初始化队列。
 2. `push(element)`：将元素插入到优先级队列中。插入的元素会根据比较函数进行排序。
 3. `pop()`：从优先级队列中移除顶部（最大或最小）的元素。
 4. `top()`：返回优先级队列中顶部（最大或最小）的元素，但不从队列中移除它。
@@ -4750,53 +4750,53 @@ print(s)
 
 #### [232. 用栈实现队列](https://leetcode.cn/problems/implement-queue-using-stacks/)
 
-  > 请你仅使用两个栈实现先入先出队列。队列应当支持一般队列支持的所有操作（`push`、`pop`、`peek`、`empty`）：
-  >
-  > 实现 `MyQueue` 类：
-  >
-  > - `void push(int x)` 将元素 x 推到队列的末尾
-  > - `int pop()` 从队列的开头移除并返回元素
-  > - `int peek()` 返回队列开头的元素
-  > - `boolean empty()` 如果队列为空，返回 `true` ；否则，返回 `false`
-  >
-  > **说明：**
-  >
-  > - 你 **只能** 使用标准的栈操作 —— 也就是只有 `push to top`, `peek/pop from top`, `size`, 和 `is empty` 操作是合法的。
-  > - 你所使用的语言也许不支持栈。你可以使用 list 或者 deque（双端队列）来模拟一个栈，只要是标准的栈操作即可。
-  >
-  >  
-  >
-  > **示例 1：**
-  >
-  > ```
-  > 输入：
-  > ["MyQueue", "push", "push", "peek", "pop", "empty"]
-  > [[], [1], [2], [], [], []]
-  > 输出：
-  > [null, null, null, 1, 1, false]
-  > 
-  > 解释：
-  > MyQueue myQueue = new MyQueue();
-  > myQueue.push(1); // queue is: [1]
-  > myQueue.push(2); // queue is: [1, 2] (leftmost is front of the queue)
-  > myQueue.peek(); // return 1
-  > myQueue.pop(); // return 1, queue is [2]
-  > myQueue.empty(); // return false
-  > ```
-  >
-  >  
-  >
-  > **提示：**
-  >
-  > - `1 <= x <= 9`
-  > - 最多调用 `100` 次 `push`、`pop`、`peek` 和 `empty`
-  > - 假设所有操作都是有效的 （例如，一个空的队列不会调用 `pop` 或者 `peek` 操作）
-  >
-  >  
-  >
-  > **进阶：**
-  >
-  > - 你能否实现每个操作均摊时间复杂度为 `O(1)` 的队列？换句话说，执行 `n` 个操作的总时间复杂度为 `O(n)` ，即使其中一个操作可能花费较长时间。
+  &gt; 请你仅使用两个栈实现先入先出队列。队列应当支持一般队列支持的所有操作（`push`、`pop`、`peek`、`empty`）：
+  &gt;
+  &gt; 实现 `MyQueue` 类：
+  &gt;
+  &gt; - `void push(int x)` 将元素 x 推到队列的末尾
+  &gt; - `int pop()` 从队列的开头移除并返回元素
+  &gt; - `int peek()` 返回队列开头的元素
+  &gt; - `boolean empty()` 如果队列为空，返回 `true` ；否则，返回 `false`
+  &gt;
+  &gt; **说明：**
+  &gt;
+  &gt; - 你 **只能** 使用标准的栈操作 —— 也就是只有 `push to top`, `peek/pop from top`, `size`, 和 `is empty` 操作是合法的。
+  &gt; - 你所使用的语言也许不支持栈。你可以使用 list 或者 deque（双端队列）来模拟一个栈，只要是标准的栈操作即可。
+  &gt;
+  &gt;  
+  &gt;
+  &gt; **示例 1：**
+  &gt;
+  &gt; ```
+  &gt; 输入：
+  &gt; ["MyQueue", "push", "push", "peek", "pop", "empty"]
+  &gt; [[], [1], [2], [], [], []]
+  &gt; 输出：
+  &gt; [null, null, null, 1, 1, false]
+  &gt; 
+  &gt; 解释：
+  &gt; MyQueue myQueue = new MyQueue();
+  &gt; myQueue.push(1); // queue is: [1]
+  &gt; myQueue.push(2); // queue is: [1, 2] (leftmost is front of the queue)
+  &gt; myQueue.peek(); // return 1
+  &gt; myQueue.pop(); // return 1, queue is [2]
+  &gt; myQueue.empty(); // return false
+  &gt; ```
+  &gt;
+  &gt;  
+  &gt;
+  &gt; **提示：**
+  &gt;
+  &gt; - `1 &lt;= x &lt;= 9`
+  &gt; - 最多调用 `100` 次 `push`、`pop`、`peek` 和 `empty`
+  &gt; - 假设所有操作都是有效的 （例如，一个空的队列不会调用 `pop` 或者 `peek` 操作）
+  &gt;
+  &gt;  
+  &gt;
+  &gt; **进阶：**
+  &gt;
+  &gt; - 你能否实现每个操作均摊时间复杂度为 `O(1)` 的队列？换句话说，执行 `n` 个操作的总时间复杂度为 `O(n)` ，即使其中一个操作可能花费较长时间。
 
   ```c++
   class MyQueue {
@@ -4842,10 +4842,10 @@ print(s)
   /**
    * Your MyQueue object will be instantiated and called as such:
    * MyQueue* obj = new MyQueue();
-   * obj->push(x);
-   * int param_2 = obj->pop();
-   * int param_3 = obj->peek();
-   * bool param_4 = obj->empty();
+   * obj-&gt;push(x);
+   * int param_2 = obj-&gt;pop();
+   * int param_3 = obj-&gt;peek();
+   * bool param_4 = obj-&gt;empty();
    */
   ```
 
@@ -4885,21 +4885,21 @@ public:
     }
 
     int peek() {
-        int result = this->pop();
+        int result = this-&gt;pop();
         stack_out.push(result);
         return result;
     }
 
-    bool empty() { return stack_in.empty() && stack_out.empty(); }
+    bool empty() { return stack_in.empty() &amp;&amp; stack_out.empty(); }
 };
 
 /**
  * Your MyQueue object will be instantiated and called as such:
  * MyQueue* obj = new MyQueue();
- * obj->push(x);
- * int param_2 = obj->pop();
- * int param_3 = obj->peek();
- * bool param_4 = obj->empty();
+ * obj-&gt;push(x);
+ * int param_2 = obj-&gt;pop();
+ * int param_3 = obj-&gt;peek();
+ * bool param_4 = obj-&gt;empty();
  */
 ```
 
@@ -4910,16 +4910,16 @@ public:
       def __init__(self):
           self.stack = []
   
-      def push(self, x: int) -> None:
+      def push(self, x: int) -&gt; None:
           self.stack.append(x)
   
-      def pop(self) -> int:
+      def pop(self) -&gt; int:
           return self.stack.pop(0)
   
-      def peek(self) -> int:
+      def peek(self) -&gt; int:
           return self.stack[0]
   
-      def empty(self) -> bool:
+      def empty(self) -&gt; bool:
           return len(self.stack) == 0
   
   
@@ -4933,53 +4933,53 @@ public:
 
 #### [225. 用队列实现栈](https://leetcode.cn/problems/implement-stack-using-queues/)
 
-  > 请你仅使用两个队列实现一个后入先出（LIFO）的栈，并支持普通栈的全部四种操作（`push`、`top`、`pop` 和 `empty`）。
-  >
-  > 实现 `MyStack` 类：
-  >
-  > - `void push(int x)` 将元素 x 压入栈顶。
-  > - `int pop()` 移除并返回栈顶元素。
-  > - `int top()` 返回栈顶元素。
-  > - `boolean empty()` 如果栈是空的，返回 `true` ；否则，返回 `false` 。
-  >
-  >  
-  >
-  > **注意：**
-  >
-  > - 你只能使用队列的基本操作 —— 也就是 `push to back`、`peek/pop from front`、`size` 和 `is empty` 这些操作。
-  > - 你所使用的语言也许不支持队列。 你可以使用 list （列表）或者 deque（双端队列）来模拟一个队列 , 只要是标准的队列操作即可。
-  >
-  >  
-  >
-  > **示例：**
-  >
-  > ```
-  > 输入：
-  > ["MyStack", "push", "push", "top", "pop", "empty"]
-  > [[], [1], [2], [], [], []]
-  > 输出：
-  > [null, null, null, 2, 2, false]
-  > 
-  > 解释：
-  > MyStack myStack = new MyStack();
-  > myStack.push(1);
-  > myStack.push(2);
-  > myStack.top(); // 返回 2
-  > myStack.pop(); // 返回 2
-  > myStack.empty(); // 返回 False
-  > ```
-  >
-  >  
-  >
-  > **提示：**
-  >
-  > - `1 <= x <= 9`
-  > - 最多调用`100` 次 `push`、`pop`、`top` 和 `empty`
-  > - 每次调用 `pop` 和 `top` 都保证栈不为空
-  >
-  >  
-  >
-  > **进阶：**你能否仅用一个队列来实现栈。
+  &gt; 请你仅使用两个队列实现一个后入先出（LIFO）的栈，并支持普通栈的全部四种操作（`push`、`top`、`pop` 和 `empty`）。
+  &gt;
+  &gt; 实现 `MyStack` 类：
+  &gt;
+  &gt; - `void push(int x)` 将元素 x 压入栈顶。
+  &gt; - `int pop()` 移除并返回栈顶元素。
+  &gt; - `int top()` 返回栈顶元素。
+  &gt; - `boolean empty()` 如果栈是空的，返回 `true` ；否则，返回 `false` 。
+  &gt;
+  &gt;  
+  &gt;
+  &gt; **注意：**
+  &gt;
+  &gt; - 你只能使用队列的基本操作 —— 也就是 `push to back`、`peek/pop from front`、`size` 和 `is empty` 这些操作。
+  &gt; - 你所使用的语言也许不支持队列。 你可以使用 list （列表）或者 deque（双端队列）来模拟一个队列 , 只要是标准的队列操作即可。
+  &gt;
+  &gt;  
+  &gt;
+  &gt; **示例：**
+  &gt;
+  &gt; ```
+  &gt; 输入：
+  &gt; ["MyStack", "push", "push", "top", "pop", "empty"]
+  &gt; [[], [1], [2], [], [], []]
+  &gt; 输出：
+  &gt; [null, null, null, 2, 2, false]
+  &gt; 
+  &gt; 解释：
+  &gt; MyStack myStack = new MyStack();
+  &gt; myStack.push(1);
+  &gt; myStack.push(2);
+  &gt; myStack.top(); // 返回 2
+  &gt; myStack.pop(); // 返回 2
+  &gt; myStack.empty(); // 返回 False
+  &gt; ```
+  &gt;
+  &gt;  
+  &gt;
+  &gt; **提示：**
+  &gt;
+  &gt; - `1 &lt;= x &lt;= 9`
+  &gt; - 最多调用`100` 次 `push`、`pop`、`top` 和 `empty`
+  &gt; - 每次调用 `pop` 和 `top` 都保证栈不为空
+  &gt;
+  &gt;  
+  &gt;
+  &gt; **进阶：**你能否仅用一个队列来实现栈。
 
   ```c++
   class MyStack {
@@ -5014,10 +5014,10 @@ public:
   /**
    * Your MyStack object will be instantiated and called as such:
    * MyStack* obj = new MyStack();
-   * obj->push(x);
-   * int param_2 = obj->pop();
-   * int param_3 = obj->top();
-   * bool param_4 = obj->empty();
+   * obj-&gt;push(x);
+   * int param_2 = obj-&gt;pop();
+   * int param_3 = obj-&gt;top();
+   * bool param_4 = obj-&gt;empty();
    */
   ```
 
@@ -5026,16 +5026,16 @@ public:
       def __init__(self):
           self.stack = []
   
-      def push(self, x: int) -> None:
+      def push(self, x: int) -&gt; None:
           self.stack.append(x)
   
-      def pop(self) -> int:
+      def pop(self) -&gt; int:
           return self.stack.pop(-1)
   
-      def top(self) -> int:
+      def top(self) -&gt; int:
           return self.stack[-1]
   
-      def empty(self) -> bool:
+      def empty(self) -&gt; bool:
           return len(self.stack) == 0
   
   
@@ -5081,50 +5081,50 @@ public:
 
 #### [20. 有效的括号](https://leetcode.cn/problems/valid-parentheses/)
 
-> 给定一个只包括 `'('`，`')'`，`'{'`，`'}'`，`'['`，`']'` 的字符串 `s` ，判断字符串是否有效。
->
-> 有效字符串需满足：
->
-> 1. 左括号必须用相同类型的右括号闭合。
-> 2. 左括号必须以正确的顺序闭合。
-> 3. 每个右括号都有一个对应的相同类型的左括号。
->
->  
->
-> **示例 1：**
->
-> ```
-> 输入：s = "()"
-> 输出：true
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：s = "()[]{}"
-> 输出：true
-> ```
->
-> **示例 3：**
->
-> ```
-> 输入：s = "(]"
-> 输出：false
-> ```
->
->  
->
-> **提示：**
->
-> - `1 <= s.length <= 104`
-> - `s` 仅由括号 `'()[]{}'` 组成
+&gt; 给定一个只包括 `'('`，`')'`，`'{'`，`'}'`，`'['`，`']'` 的字符串 `s` ，判断字符串是否有效。
+&gt;
+&gt; 有效字符串需满足：
+&gt;
+&gt; 1. 左括号必须用相同类型的右括号闭合。
+&gt; 2. 左括号必须以正确的顺序闭合。
+&gt; 3. 每个右括号都有一个对应的相同类型的左括号。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：s = "()"
+&gt; 输出：true
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：s = "()[]{}"
+&gt; 输出：true
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ```
+&gt; 输入：s = "(]"
+&gt; 输出：false
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `1 &lt;= s.length &lt;= 104`
+&gt; - `s` 仅由括号 `'()[]{}'` 组成
 
 ```c++
 class Solution {
 private:
     bool isPair(char down, char up) {
-        return (down == '(' && up == ')') || (down == '[' && up == ']') ||
-               (down == '{' && up == '}');
+        return (down == '(' &amp;&amp; up == ')') || (down == '[' &amp;&amp; up == ']') ||
+               (down == '{' &amp;&amp; up == '}');
     }
 
 public:
@@ -5148,14 +5148,14 @@ public:
 
 ```python
 class Solution:
-    def isPair(self, down: str, up: str) -> bool:
+    def isPair(self, down: str, up: str) -&gt; bool:
         return (
             (down == "(" and up == ")")
             or (down == "[" and up == "]")
             or (down == "{" and up == "}")
         )
 
-    def isValid(self, s: str) -> bool:
+    def isValid(self, s: str) -&gt; bool:
         stack = []
         for item in s:
             if len(stack) != 0:
@@ -5171,29 +5171,29 @@ class Solution:
 
 #### [1047. 删除字符串中的所有相邻重复项](https://leetcode.cn/problems/remove-all-adjacent-duplicates-in-string/)
 
-> 给出由小写字母组成的字符串 `S`，**重复项删除操作**会选择两个相邻且相同的字母，并删除它们。
->
-> 在 S 上反复执行重复项删除操作，直到无法继续删除。
->
-> 在完成所有重复项删除操作后返回最终的字符串。答案保证唯一。
->
->  
->
-> **示例：**
->
-> ```
-> 输入："abbaca"
-> 输出："ca"
-> 解释：
-> 例如，在 "abbaca" 中，我们可以删除 "bb" 由于两字母相邻且相同，这是此时唯一可以执行删除操作的重复项。之后我们得到字符串 "aaca"，其中又只有 "aa" 可以执行重复项删除操作，所以最后的字符串为 "ca"。
-> ```
->
->  
->
-> **提示：**
->
-> 1. `1 <= S.length <= 20000`
-> 2. `S` 仅由小写英文字母组成。
+&gt; 给出由小写字母组成的字符串 `S`，**重复项删除操作**会选择两个相邻且相同的字母，并删除它们。
+&gt;
+&gt; 在 S 上反复执行重复项删除操作，直到无法继续删除。
+&gt;
+&gt; 在完成所有重复项删除操作后返回最终的字符串。答案保证唯一。
+&gt;
+&gt;  
+&gt;
+&gt; **示例：**
+&gt;
+&gt; ```
+&gt; 输入："abbaca"
+&gt; 输出："ca"
+&gt; 解释：
+&gt; 例如，在 "abbaca" 中，我们可以删除 "bb" 由于两字母相邻且相同，这是此时唯一可以执行删除操作的重复项。之后我们得到字符串 "aaca"，其中又只有 "aa" 可以执行重复项删除操作，所以最后的字符串为 "ca"。
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; 1. `1 &lt;= S.length &lt;= 20000`
+&gt; 2. `S` 仅由小写英文字母组成。
 
 ```c++
 class Solution {
@@ -5217,7 +5217,7 @@ public:
             temp.pop();
         }
         int left = 0, right = ans.size() - 1;
-        while (left < right) {
+        while (left &lt; right) {
             swap(ans[left], ans[right]);
             left++;
             right--;
@@ -5231,7 +5231,7 @@ public:
     string removeDuplicates(string s) {
         string result;
         for (char c : s) {
-            if (!result.empty() && result.back() == c) {
+            if (!result.empty() &amp;&amp; result.back() == c) {
                 // If the current character is the same as the last character
                 // in the result, remove the last character from the result.
                 result.pop_back();
@@ -5247,7 +5247,7 @@ public:
 
 ```python
 class Solution:
-    def removeDuplicates(self, s: str) -> str:
+    def removeDuplicates(self, s: str) -&gt; str:
         ans = []
         for item in s:
             if len(ans) != 0 and ans[-1] == item:
@@ -5260,72 +5260,72 @@ class Solution:
 
 #### [150. 逆波兰表达式求值](https://leetcode.cn/problems/evaluate-reverse-polish-notation/)
 
-> 给你一个字符串数组 `tokens` ，表示一个根据 [逆波兰表示法](https://baike.baidu.com/item/逆波兰式/128437) 表示的算术表达式。
->
-> 请你计算该表达式。返回一个表示表达式值的整数。
->
-> **注意：**
->
-> - 有效的算符为 `'+'`、`'-'`、`'*'` 和 `'/'` 。
-> - 每个操作数（运算对象）都可以是一个整数或者另一个表达式。
-> - 两个整数之间的除法总是 **向零截断** 。
-> - 表达式中不含除零运算。
-> - 输入是一个根据逆波兰表示法表示的算术表达式。
-> - 答案及所有中间计算结果可以用 **32 位** 整数表示。
->
->  
->
-> **示例 1：**
->
-> ```
-> 输入：tokens = ["2","1","+","3","*"]
-> 输出：9
-> 解释：该算式转化为常见的中缀算术表达式为：((2 + 1) * 3) = 9
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：tokens = ["4","13","5","/","+"]
-> 输出：6
-> 解释：该算式转化为常见的中缀算术表达式为：(4 + (13 / 5)) = 6
-> ```
->
-> **示例 3：**
->
-> ```
-> 输入：tokens = ["10","6","9","3","+","-11","*","/","*","17","+","5","+"]
-> 输出：22
-> 解释：该算式转化为常见的中缀算术表达式为：
->   ((10 * (6 / ((9 + 3) * -11))) + 17) + 5
-> = ((10 * (6 / (12 * -11))) + 17) + 5
-> = ((10 * (6 / -132)) + 17) + 5
-> = ((10 * 0) + 17) + 5
-> = (0 + 17) + 5
-> = 17 + 5
-> = 22
-> ```
->
->  
->
-> **提示：**
->
-> - `1 <= tokens.length <= 104`
-> - `tokens[i]` 是一个算符（`"+"`、`"-"`、`"*"` 或 `"/"`），或是在范围 `[-200, 200]` 内的一个整数
->
->  
->
-> **逆波兰表达式：**
->
-> 逆波兰表达式是一种后缀表达式，所谓后缀就是指算符写在后面。
->
-> - 平常使用的算式则是一种中缀表达式，如 `( 1 + 2 ) * ( 3 + 4 )` 。
-> - 该算式的逆波兰表达式写法为 `( ( 1 2 + ) ( 3 4 + ) * )` 。
->
-> 逆波兰表达式主要有以下两个优点：
->
-> - 去掉括号后表达式无歧义，上式即便写成 `1 2 + 3 4 + *`也可以依据次序计算出正确结果。
-> - 适合用栈操作运算：遇到数字则入栈；遇到算符则取出栈顶两个数字进行计算，并将结果压入栈中
+&gt; 给你一个字符串数组 `tokens` ，表示一个根据 [逆波兰表示法](https://baike.baidu.com/item/逆波兰式/128437) 表示的算术表达式。
+&gt;
+&gt; 请你计算该表达式。返回一个表示表达式值的整数。
+&gt;
+&gt; **注意：**
+&gt;
+&gt; - 有效的算符为 `'+'`、`'-'`、`'*'` 和 `'/'` 。
+&gt; - 每个操作数（运算对象）都可以是一个整数或者另一个表达式。
+&gt; - 两个整数之间的除法总是 **向零截断** 。
+&gt; - 表达式中不含除零运算。
+&gt; - 输入是一个根据逆波兰表示法表示的算术表达式。
+&gt; - 答案及所有中间计算结果可以用 **32 位** 整数表示。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：tokens = ["2","1","+","3","*"]
+&gt; 输出：9
+&gt; 解释：该算式转化为常见的中缀算术表达式为：((2 + 1) * 3) = 9
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：tokens = ["4","13","5","/","+"]
+&gt; 输出：6
+&gt; 解释：该算式转化为常见的中缀算术表达式为：(4 + (13 / 5)) = 6
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ```
+&gt; 输入：tokens = ["10","6","9","3","+","-11","*","/","*","17","+","5","+"]
+&gt; 输出：22
+&gt; 解释：该算式转化为常见的中缀算术表达式为：
+&gt;   ((10 * (6 / ((9 + 3) * -11))) + 17) + 5
+&gt; = ((10 * (6 / (12 * -11))) + 17) + 5
+&gt; = ((10 * (6 / -132)) + 17) + 5
+&gt; = ((10 * 0) + 17) + 5
+&gt; = (0 + 17) + 5
+&gt; = 17 + 5
+&gt; = 22
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `1 &lt;= tokens.length &lt;= 104`
+&gt; - `tokens[i]` 是一个算符（`"+"`、`"-"`、`"*"` 或 `"/"`），或是在范围 `[-200, 200]` 内的一个整数
+&gt;
+&gt;  
+&gt;
+&gt; **逆波兰表达式：**
+&gt;
+&gt; 逆波兰表达式是一种后缀表达式，所谓后缀就是指算符写在后面。
+&gt;
+&gt; - 平常使用的算式则是一种中缀表达式，如 `( 1 + 2 ) * ( 3 + 4 )` 。
+&gt; - 该算式的逆波兰表达式写法为 `( ( 1 2 + ) ( 3 4 + ) * )` 。
+&gt;
+&gt; 逆波兰表达式主要有以下两个优点：
+&gt;
+&gt; - 去掉括号后表达式无歧义，上式即便写成 `1 2 + 3 4 + *`也可以依据次序计算出正确结果。
+&gt; - 适合用栈操作运算：遇到数字则入栈；遇到算符则取出栈顶两个数字进行计算，并将结果压入栈中
 
 ```c++
 class Solution {
@@ -5345,10 +5345,10 @@ private:
     }
 
 public:
-    int evalRPN(vector<string>& tokens) {
+    int evalRPN(vector<string>&amp; tokens) {
         stack<int> temp;
         for (auto iter : tokens) {
-            if ((iter[0] >= '0' && iter[0] <= '9') || (iter.size() > 1)) {
+            if ((iter[0] &gt;= '0' &amp;&amp; iter[0] &lt;= '9') || (iter.size() &gt; 1)) {
                 temp.push(stoi(iter));
             } else {
                 int right = temp.top();
@@ -5365,7 +5365,7 @@ public:
 
 ```python
 class Solution:
-    def calu(self, left: int, right: int, symbol: str) -> int:
+    def calu(self, left: int, right: int, symbol: str) -&gt; int:
         if symbol == "+":
             return left + right
         elif symbol == "-":
@@ -5375,7 +5375,7 @@ class Solution:
         else:
             return int(left / right) # 实现整数除法,向0取整;如果是//,则向下取整,与c++中不符
 
-    def evalRPN(self, tokens: List[str]) -> int:
+    def evalRPN(self, tokens: List[str]) -&gt; int:
         temp = []
         flag = ["+", "-", "*", "/"]
         for item in tokens:
@@ -5392,53 +5392,53 @@ class Solution:
 
 #### [239. 滑动窗口最大值](https://leetcode.cn/problems/sliding-window-maximum/)
 
-> 给你一个整数数组 `nums`，有一个大小为 `k` 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 `k` 个数字。滑动窗口每次只向右移动一位。
->
-> 返回 *滑动窗口中的最大值* 。
->
->  
->
-> **示例 1：**
->
-> ```
-> 输入：nums = [1,3,-1,-3,5,3,6,7], k = 3
-> 输出：[3,3,5,5,6,7]
-> 解释：
-> 滑动窗口的位置                最大值
-> ---------------               -----
-> [1  3  -1] -3  5  3  6  7       3
->  1 [3  -1  -3] 5  3  6  7       3
->  1  3 [-1  -3  5] 3  6  7       5
->  1  3  -1 [-3  5  3] 6  7       5
->  1  3  -1  -3 [5  3  6] 7       6
->  1  3  -1  -3  5 [3  6  7]      7
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：nums = [1], k = 1
-> 输出：[1]
-> ```
->
->  
->
-> **提示：**
->
-> - `1 <= nums.length <= 105`
-> - `-104 <= nums[i] <= 104`
-> - `1 <= k <= nums.length`
+&gt; 给你一个整数数组 `nums`，有一个大小为 `k` 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 `k` 个数字。滑动窗口每次只向右移动一位。
+&gt;
+&gt; 返回 *滑动窗口中的最大值* 。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：nums = [1,3,-1,-3,5,3,6,7], k = 3
+&gt; 输出：[3,3,5,5,6,7]
+&gt; 解释：
+&gt; 滑动窗口的位置                最大值
+&gt; ---------------               -----
+&gt; [1  3  -1] -3  5  3  6  7       3
+&gt;  1 [3  -1  -3] 5  3  6  7       3
+&gt;  1  3 [-1  -3  5] 3  6  7       5
+&gt;  1  3  -1 [-3  5  3] 6  7       5
+&gt;  1  3  -1  -3 [5  3  6] 7       6
+&gt;  1  3  -1  -3  5 [3  6  7]      7
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：nums = [1], k = 1
+&gt; 输出：[1]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `1 &lt;= nums.length &lt;= 105`
+&gt; - `-104 &lt;= nums[i] &lt;= 104`
+&gt; - `1 &lt;= k &lt;= nums.length`
 
 ```c++
 // 超时做法(直观暴力做法)
 class Solution {
 public:
-    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+    vector<int> maxSlidingWindow(vector<int>&amp; nums, int k) {
         int head = 0, tail = k - 1;
         vector<int> window_max;
-        while (tail < nums.size()) {
+        while (tail &lt; nums.size()) {
             int temp = INT_MIN;
-            for (int i = head; i <= tail; i++) {
+            for (int i = head; i &lt;= tail; i++) {
                 temp = max(temp, nums[i]);
             }
             window_max.push_back(temp);
@@ -5459,12 +5459,12 @@ private:
 
     public:
         void pop(int value) {
-            if (!que.empty() && value == que.front()) {
+            if (!que.empty() &amp;&amp; value == que.front()) {
                 que.pop_front();
             }
         }
         void push(int value) {
-            while (!que.empty() && value > que.back()) {
+            while (!que.empty() &amp;&amp; value &gt; que.back()) {
                 que.pop_back();
             }
             que.push_back(value);
@@ -5473,14 +5473,14 @@ private:
     };
 
 public:
-    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+    vector<int> maxSlidingWindow(vector<int>&amp; nums, int k) {
         MyQueue que;
         vector<int> ans;
-        for (int i = 0; i < k; i++) {
+        for (int i = 0; i &lt; k; i++) {
             que.push(nums[i]);
         }
         ans.push_back(que.front());
-        for (int i = k; i < nums.size(); i++) {
+        for (int i = k; i &lt; nums.size(); i++) {
             que.pop(nums[i - k]);
             que.push(nums[i]);
             ans.push_back(que.front());
@@ -5500,16 +5500,16 @@ class MyQueue:
             self.que.pop(0)
 
     def push(self, value: int):
-        while len(self.que) > 0 and value > self.que[-1]:
+        while len(self.que) &gt; 0 and value &gt; self.que[-1]:
             self.que.pop(-1)
         self.que.append(value)
 
-    def front(self) -> int:
+    def front(self) -&gt; int:
         return self.que[0]
 
 
 class Solution:
-    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+    def maxSlidingWindow(self, nums: List[int], k: int) -&gt; List[int]:
         ans = []
         que = MyQueue()
         for i in range(k):
@@ -5525,58 +5525,58 @@ class Solution:
 
 #### [347. 前 K 个高频元素](https://leetcode.cn/problems/top-k-frequent-elements/)
 
-> 给你一个整数数组 `nums` 和一个整数 `k` ，请你返回其中出现频率前 `k` 高的元素。你可以按 **任意顺序** 返回答案。
->
->  
->
-> **示例 1:**
->
-> ```
-> 输入: nums = [1,1,1,2,2,3], k = 2
-> 输出: [1,2]
-> ```
->
-> **示例 2:**
->
-> ```
-> 输入: nums = [1], k = 1
-> 输出: [1]
-> ```
->
->  
->
-> **提示：**
->
-> - `1 <= nums.length <= 105`
-> - `k` 的取值范围是 `[1, 数组中不相同的元素的个数]`
-> - 题目数据保证答案唯一，换句话说，数组中前 `k` 个高频元素的集合是唯一的
->
->  
->
-> **进阶：**你所设计算法的时间复杂度 **必须** 优于 `O(n log n)` ，其中 `n` 是数组大小。
+&gt; 给你一个整数数组 `nums` 和一个整数 `k` ，请你返回其中出现频率前 `k` 高的元素。你可以按 **任意顺序** 返回答案。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1:**
+&gt;
+&gt; ```
+&gt; 输入: nums = [1,1,1,2,2,3], k = 2
+&gt; 输出: [1,2]
+&gt; ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ```
+&gt; 输入: nums = [1], k = 1
+&gt; 输出: [1]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `1 &lt;= nums.length &lt;= 105`
+&gt; - `k` 的取值范围是 `[1, 数组中不相同的元素的个数]`
+&gt; - 题目数据保证答案唯一，换句话说，数组中前 `k` 个高频元素的集合是唯一的
+&gt;
+&gt;  
+&gt;
+&gt; **进阶：**你所设计算法的时间复杂度 **必须** 优于 `O(n log n)` ，其中 `n` 是数组大小。
 
 ```c++
 class Solution {
 private:
-    static bool cmp(pair<int, int> a, pair<int, int> b) { return a.second > b.second; }
+    static bool cmp(pair<int, int=""> a, pair<int, int=""> b) { return a.second &gt; b.second; }
 /*
 静态成员函数的一个重要特点是它们不依赖于特定的对象实例，因此它们可以直接通过类名访问(Solution::cmp)。这使得静态成员函数成为类的全局函数，可以在没有对象实例的情况下使用。
 */
 public:
-    vector<int> topKFrequent(vector<int>& nums, int k) {
-        unordered_map<int, int> pq_map;
+    vector<int> topKFrequent(vector<int>&amp; nums, int k) {
+        unordered_map<int, int=""> pq_map;
         for (auto iter : nums) {
             pq_map[iter]++;
         }
         // 建立映射关系
-        vector<pair<int, int>> ans;
+        vector<pair<int, int="">&gt; ans;
         for (auto iter : pq_map) {
             ans.push_back(iter);
         }
         // 将pair元素放在vector中,便于排序
-        sort(ans.begin(), ans.end(), this->cmp);
+        sort(ans.begin(), ans.end(), this-&gt;cmp);
         vector<int> res;
-        for (int i = 0; i < k; i++) {
+        for (int i = 0; i &lt; k; i++) {
             res.push_back(ans[i].first);
         }
         return res;
@@ -5593,7 +5593,7 @@ public:
 
 ```python
 class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+    def topKFrequent(self, nums: List[int], k: int) -&gt; List[int]:
         pq_dict = dict()
         for item in nums:
             pq_dict[item] = pq_dict.get(item, 0) + 1
@@ -5623,32 +5623,32 @@ public:
     // 小顶堆
     class mycomparison {
     public:
-        bool operator()(const pair<int, int>& lhs, const pair<int, int>& rhs) {
-            return lhs.second > rhs.second;
+        bool operator()(const pair<int, int="">&amp; lhs, const pair<int, int="">&amp; rhs) {
+            return lhs.second &gt; rhs.second;
         }
     };
-    vector<int> topKFrequent(vector<int>& nums, int k) {
+    vector<int> topKFrequent(vector<int>&amp; nums, int k) {
         // 要统计元素出现频率
-        unordered_map<int, int> map; // map<nums[i],对应出现的次数>
-        for (int i = 0; i < nums.size(); i++) {
+        unordered_map<int, int=""> map; // map<nums[i],对应出现的次数>
+        for (int i = 0; i &lt; nums.size(); i++) {
             map[nums[i]]++;
         }
 
         // 对频率排序
         // 定义一个小顶堆，大小为k
-        priority_queue<pair<int, int>, vector<pair<int, int>>, mycomparison> pri_que;
+        priority_queue<pair<int, int="">, vector<pair<int, int="">&gt;, mycomparison&gt; pri_que;
 
         // 用固定大小为k的小顶堆，扫面所有频率的数值
-        for (unordered_map<int, int>::iterator it = map.begin(); it != map.end(); it++) {
+        for (unordered_map<int, int="">::iterator it = map.begin(); it != map.end(); it++) {
             pri_que.push(*it);
-            if (pri_que.size() > k) { // 如果堆的大小大于了K，则队列弹出，保证堆的大小一直为k
+            if (pri_que.size() &gt; k) { // 如果堆的大小大于了K，则队列弹出，保证堆的大小一直为k
                 pri_que.pop();
             }
         }
 
         // 找出前K个高频元素，因为小顶堆先弹出的是最小的，所以倒序来输出到数组
         vector<int> result(k);
-        for (int i = k - 1; i >= 0; i--) {
+        for (int i = k - 1; i &gt;= 0; i--) {
             result[i] = pri_que.top().first;
             pri_que.pop();
         }
@@ -5659,56 +5659,56 @@ public:
 // 来自Carl的解法
 ```
 
-> 这里有一段来自GPT4.0的解析(关于重载运算符)
->
-> 在 C++ 中，通过重载运算符，我们可以给特定的类或结构体赋予自定义的运算能力。在这个例子中，重载的是小于运算符 `operator<`，以便它可以用在 `priority_queue` 的上下文中，这样 `priority_queue` 就会使用这个运算符来决定两个元素的顺序。
->
-> 这里是一个简单的解释：
->
-> ### 1. 重载运算符的类定义 (`mycomparison`)
->
-> ```cpp
-> class mycomparison {
-> public:
->     bool operator()(const pair<int, int>& lhs, const pair<int, int>& rhs) {
->         return lhs.second > rhs.second;
->     }
-> };
-> ```
->
-> - `class mycomparison` 定义了一个可调用的对象，它的作用是比较两个 `pair<int, int>` 类型的对象。
-> - `operator()` 是一个函数调用运算符，可以让对象像函数一样被调用。
-> - 在这个重载的 `operator()` 中，比较的是 `pair` 中的 `second` 值，它代表元素频率。
-> - 返回值为 `true` 表示第一个参数 `lhs`（左手边的元素）应该位于第二个参数 `rhs`（右手边的元素）之后，即 `lhs` 在优先级队列中的优先级比 `rhs` 低。
-> - 因为 `priority_queue` 默认是大顶堆（最大元素总是在顶部），对于 `pair`，默认比较的是 `first` 值，并且使用 `less` 运算符，这意味着较大的 `first` 会被放在前面。但在这个例子中，我们希望基于 `second` 的值创建一个小顶堆，并且希望频率较小的元素在堆的顶部，所以我们需要重载小于运算符来反转比较的逻辑。
->
-> ### 2. 如何在 `priority_queue` 中使用
->
-> ```cpp
-> priority_queue<pair<int, int>, vector<pair<int, int>>, mycomparison> pri_que;
-> ```
->
-> - 这行代码创建了一个 `priority_queue`，它使用了 `mycomparison` 对象来决定元素的顺序。
-> - 这意味着 `priority_queue` 会使用 `mycomparison` 类的 `operator()` 方法来决定两个元素的顺序。
-> - 因为我们定义了 `operator()` 让它返回 `lhs.second > rhs.second`，`priority_queue` 就会把频率较小的元素放在顶部，实现小顶堆的效果。
->
-> ### 3. 实际应用
->
-> 在 `topKFrequent` 方法的循环中：
->
-> ```cpp
-> for (unordered_map<int, int>::iterator it = map.begin(); it != map.end(); it++) {
->     pri_que.push(*it);
->     if (pri_que.size() > k) {
->         pri_que.pop();
->     }
-> }
-> ```
->
-> - 每当一个新的元素（一个 `pair`）被插入到 `priority_queue` 中时，`priority_queue` 将使用 `mycomparison` 类的 `operator()` 方法来保持元素的正确顺序。
-> - 如果队列的大小超过了 `k`，它将弹出顶部的元素（即频率最小的元素），因为我们希望保留频率最高的 `k` 个元素。
->
-> 通过这种方式，当完成所有插入后，`priority_queue` 中将保留有 `k` 个频率最高的元素，而且由于是小顶堆的性质，顶部的元素将是这 `k` 个元素中频率最小的。最后，可以将这些元素弹出堆并存储到结果 `vector` 中，它们将按照频率从高到低的顺序排列。
+&gt; 这里有一段来自GPT4.0的解析(关于重载运算符)
+&gt;
+&gt; 在 C++ 中，通过重载运算符，我们可以给特定的类或结构体赋予自定义的运算能力。在这个例子中，重载的是小于运算符 `operator&lt;`，以便它可以用在 `priority_queue` 的上下文中，这样 `priority_queue` 就会使用这个运算符来决定两个元素的顺序。
+&gt;
+&gt; 这里是一个简单的解释：
+&gt;
+&gt; ### 1. 重载运算符的类定义 (`mycomparison`)
+&gt;
+&gt; ```cpp
+&gt; class mycomparison {
+&gt; public:
+&gt;     bool operator()(const pair<int, int="">&amp; lhs, const pair<int, int="">&amp; rhs) {
+&gt;         return lhs.second &gt; rhs.second;
+&gt;     }
+&gt; };
+&gt; ```
+&gt;
+&gt; - `class mycomparison` 定义了一个可调用的对象，它的作用是比较两个 `pair<int, int="">` 类型的对象。
+&gt; - `operator()` 是一个函数调用运算符，可以让对象像函数一样被调用。
+&gt; - 在这个重载的 `operator()` 中，比较的是 `pair` 中的 `second` 值，它代表元素频率。
+&gt; - 返回值为 `true` 表示第一个参数 `lhs`（左手边的元素）应该位于第二个参数 `rhs`（右手边的元素）之后，即 `lhs` 在优先级队列中的优先级比 `rhs` 低。
+&gt; - 因为 `priority_queue` 默认是大顶堆（最大元素总是在顶部），对于 `pair`，默认比较的是 `first` 值，并且使用 `less` 运算符，这意味着较大的 `first` 会被放在前面。但在这个例子中，我们希望基于 `second` 的值创建一个小顶堆，并且希望频率较小的元素在堆的顶部，所以我们需要重载小于运算符来反转比较的逻辑。
+&gt;
+&gt; ### 2. 如何在 `priority_queue` 中使用
+&gt;
+&gt; ```cpp
+&gt; priority_queue<pair<int, int="">, vector<pair<int, int="">&gt;, mycomparison&gt; pri_que;
+&gt; ```
+&gt;
+&gt; - 这行代码创建了一个 `priority_queue`，它使用了 `mycomparison` 对象来决定元素的顺序。
+&gt; - 这意味着 `priority_queue` 会使用 `mycomparison` 类的 `operator()` 方法来决定两个元素的顺序。
+&gt; - 因为我们定义了 `operator()` 让它返回 `lhs.second &gt; rhs.second`，`priority_queue` 就会把频率较小的元素放在顶部，实现小顶堆的效果。
+&gt;
+&gt; ### 3. 实际应用
+&gt;
+&gt; 在 `topKFrequent` 方法的循环中：
+&gt;
+&gt; ```cpp
+&gt; for (unordered_map<int, int="">::iterator it = map.begin(); it != map.end(); it++) {
+&gt;     pri_que.push(*it);
+&gt;     if (pri_que.size() &gt; k) {
+&gt;         pri_que.pop();
+&gt;     }
+&gt; }
+&gt; ```
+&gt;
+&gt; - 每当一个新的元素（一个 `pair`）被插入到 `priority_queue` 中时，`priority_queue` 将使用 `mycomparison` 类的 `operator()` 方法来保持元素的正确顺序。
+&gt; - 如果队列的大小超过了 `k`，它将弹出顶部的元素（即频率最小的元素），因为我们希望保留频率最高的 `k` 个元素。
+&gt;
+&gt; 通过这种方式，当完成所有插入后，`priority_queue` 中将保留有 `k` 个频率最高的元素，而且由于是小顶堆的性质，顶部的元素将是这 `k` 个元素中频率最小的。最后，可以将这些元素弹出堆并存储到结果 `vector` 中，它们将按照频率从高到低的顺序排列。
 
 ## 第六章 二叉树
 
@@ -5725,40 +5725,40 @@ public:
 - 完全二叉树:在完全二叉树中，除了**最底层节点可能没填满外**，其余每层节点数都达到最大值，并且**最下面一层的节点都集中在该层最左边的若干位置**。若最底层为第 h 层（h从1开始），则该层包含 1~ 2^(h-1) 个节点。
   - ![img](./codeNote.assets/20200920221638903.png)
 
-> 二叉树是一种树形数据结构，其中每个节点最多有两个子节点，通常称为左子节点和右子节点。下面是二叉树的一些基本概念和性质：
->
-> 1. **节点（Node）**：
->    - **根节点（Root）**：没有父节点的节点是根节点，它是二叉树的起始节点。
->    - **叶节点（Leaf）**：度为 0 的节点，即没有子节点的节点称为叶节点。
->    - **内部节点（Internal node）**：至少有一个子节点的节点称为内部节点。
->
-> 2. **子节点（Children）**：一个节点的直接后继者称为它的子节点。
->
-> 3. **父节点（Parent）**：一个节点的直接前驱者称为它的父节点。
->
-> 4. **兄弟节点（Siblings）**：具有相同父节点的节点称为兄弟节点。
->
-> 5. **祖先节点（Ancestors）**：从根到该节点的路径上的所有节点都是该节点的祖先。
->
-> 6. **后代节点（Descendants）**：该节点下的所有子树中的节点都是它的后代。
->
-> 7. **深度（Depth）**：从根节点到一个节点的唯一路径上的边的数量。
->
-> 8. **高度（Height）**：从一个节点到其任何叶子的最长路径上的边的数量。一个节点的高度也可以看作是它的所有子树的最大高度加一。叶节点的高度为 0。
->
-> 二叉树可以特化为多种形式：
->
-> - **完全二叉树（Complete Binary Tree）**：除了最后一层外，每一层都被完全填满，并且所有节点都尽可能地靠左排列。
->
-> - **满二叉树（Full Binary Tree）**：每个节点都有 0 或 2 个子节点的二叉树。
->
-> - **完美二叉树（Perfect Binary Tree）**：所有内部节点都有两个子节点，并且所有叶子都在同一层级上的二叉树。
->
-> - **平衡二叉树（Balanced Binary Tree）**：任意两个叶子的深度差不会超过一定的阈值（例如 AVL 树）。
->
-> - **二叉搜索树（Binary Search Tree, BST）**：对于树中的每个节点，其左子树中的所有值都小于该节点的值，其右子树中的所有值都大于该节点的值。
->
-> 二叉树在计算机科学中应用广泛，主要用于数据的组织和管理，如搜索、排序和索引等操作。由于二叉树的结构特性，它的许多操作可以在对数时间内完成，这使得二叉树成为高效算法的基础。
+&gt; 二叉树是一种树形数据结构，其中每个节点最多有两个子节点，通常称为左子节点和右子节点。下面是二叉树的一些基本概念和性质：
+&gt;
+&gt; 1. **节点（Node）**：
+&gt;    - **根节点（Root）**：没有父节点的节点是根节点，它是二叉树的起始节点。
+&gt;    - **叶节点（Leaf）**：度为 0 的节点，即没有子节点的节点称为叶节点。
+&gt;    - **内部节点（Internal node）**：至少有一个子节点的节点称为内部节点。
+&gt;
+&gt; 2. **子节点（Children）**：一个节点的直接后继者称为它的子节点。
+&gt;
+&gt; 3. **父节点（Parent）**：一个节点的直接前驱者称为它的父节点。
+&gt;
+&gt; 4. **兄弟节点（Siblings）**：具有相同父节点的节点称为兄弟节点。
+&gt;
+&gt; 5. **祖先节点（Ancestors）**：从根到该节点的路径上的所有节点都是该节点的祖先。
+&gt;
+&gt; 6. **后代节点（Descendants）**：该节点下的所有子树中的节点都是它的后代。
+&gt;
+&gt; 7. **深度（Depth）**：从根节点到一个节点的唯一路径上的边的数量。
+&gt;
+&gt; 8. **高度（Height）**：从一个节点到其任何叶子的最长路径上的边的数量。一个节点的高度也可以看作是它的所有子树的最大高度加一。叶节点的高度为 0。
+&gt;
+&gt; 二叉树可以特化为多种形式：
+&gt;
+&gt; - **完全二叉树（Complete Binary Tree）**：除了最后一层外，每一层都被完全填满，并且所有节点都尽可能地靠左排列。
+&gt;
+&gt; - **满二叉树（Full Binary Tree）**：每个节点都有 0 或 2 个子节点的二叉树。
+&gt;
+&gt; - **完美二叉树（Perfect Binary Tree）**：所有内部节点都有两个子节点，并且所有叶子都在同一层级上的二叉树。
+&gt;
+&gt; - **平衡二叉树（Balanced Binary Tree）**：任意两个叶子的深度差不会超过一定的阈值（例如 AVL 树）。
+&gt;
+&gt; - **二叉搜索树（Binary Search Tree, BST）**：对于树中的每个节点，其左子树中的所有值都小于该节点的值，其右子树中的所有值都大于该节点的值。
+&gt;
+&gt; 二叉树在计算机科学中应用广泛，主要用于数据的组织和管理，如搜索、排序和索引等操作。由于二叉树的结构特性，它的许多操作可以在对数时间内完成，这使得二叉树成为高效算法的基础。
 
 - **二叉搜索树**(类似于二分查找的记录表)
 
@@ -5894,7 +5894,7 @@ class TreeNode:
         self.right = right
 ```
 
-### 知识点&&典型例题
+### 知识点&amp;&amp;典型例题
 
 #### 二叉树的递归遍历
 
@@ -5910,7 +5910,7 @@ class TreeNode:
   1. **确定递归函数的参数和返回值**：因为要打印出前序遍历节点的数值，所以参数里需要传入vector来放节点的数值，除了这一点就不需要再处理什么数据了也不需要有返回值，所以递归函数返回类型就是void，代码如下：
 
 	```cpp
-	void traversal(TreeNode* cur, vector<int>& vec)
+	void traversal(TreeNode* cur, vector<int>&amp; vec)
 	// 均使用地址传递,可以修改vec的值
 	```
 	
@@ -5923,9 +5923,9 @@ class TreeNode:
 	3. **确定单层递归的逻辑**：前序遍历是中左右的循序，所以在单层递归的逻辑，是要先取中节点的数值，代码如下：
 	
 	```cpp
-	vec.push_back(cur->val);    // 中
-	traversal(cur->left, vec);  // 左
-	traversal(cur->right, vec); // 右
+	vec.push_back(cur-&gt;val);    // 中
+	traversal(cur-&gt;left, vec);  // 左
+	traversal(cur-&gt;right, vec); // 右
 	// 结果保存时也会按照这个逻辑
 	```
 
@@ -5936,11 +5936,11 @@ class TreeNode:
 	```cpp
 	class Solution {
 	public:
-	    void traversal(TreeNode* cur, vector<int>& vec) {
+	    void traversal(TreeNode* cur, vector<int>&amp; vec) {
 	        if (cur == NULL) return;
-	        vec.push_back(cur->val);    // 中
-	        traversal(cur->left, vec);  // 左
-	        traversal(cur->right, vec); // 右
+	        vec.push_back(cur-&gt;val);    // 中
+	        traversal(cur-&gt;left, vec);  // 左
+	        traversal(cur-&gt;right, vec); // 右
 	    }
 	    vector<int> preorderTraversal(TreeNode* root) {
 	        vector<int> result;
@@ -5955,94 +5955,94 @@ class TreeNode:
 	​	中序遍历：
 	
 	```cpp
-	void traversal(TreeNode* cur, vector<int>& vec) {
+	void traversal(TreeNode* cur, vector<int>&amp; vec) {
 	    if (cur == NULL) return;
-	    traversal(cur->left, vec);  // 左
-	    vec.push_back(cur->val);    // 中
-	    traversal(cur->right, vec); // 右
+	    traversal(cur-&gt;left, vec);  // 左
+	    vec.push_back(cur-&gt;val);    // 中
+	    traversal(cur-&gt;right, vec); // 右
 	}
 	```
 
 	​	后序遍历：
 	
 	```cpp
-	void traversal(TreeNode* cur, vector<int>& vec) {
+	void traversal(TreeNode* cur, vector<int>&amp; vec) {
 	    if (cur == NULL) return;
-	    traversal(cur->left, vec);  // 左
-	    traversal(cur->right, vec); // 右
-	    vec.push_back(cur->val);    // 中
+	    traversal(cur-&gt;left, vec);  // 左
+	    traversal(cur-&gt;right, vec); // 右
+	    vec.push_back(cur-&gt;val);    // 中
 	}
 	```
 
 ##### [144. 二叉树的前序遍历](https://leetcode.cn/problems/binary-tree-preorder-traversal/)
 
-> 给你二叉树的根节点 `root` ，返回它节点值的 **前序** 遍历。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/inorder_1.jpg)
->
-> ```
-> 输入：root = [1,null,2,3]
-> 输出：[1,2,3]
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：root = []
-> 输出：[]
-> ```
->
-> **示例 3：**
->
-> ```
-> 输入：root = [1]
-> 输出：[1]
-> ```
->
-> **示例 4：**
->
-> ![img](./codeNote.assets/inorder_5.jpg)
->
-> ```
-> 输入：root = [1,2]
-> 输出：[1,2]
-> ```
->
-> **示例 5：**
->
-> ![img](./codeNote.assets/inorder_4.jpg)
->
-> ```
-> 输入：root = [1,null,2]
-> 输出：[1,2]
-> ```
->
->  
->
-> **提示：**
->
-> - 树中节点数目在范围 `[0, 100]` 内
-> - `-100 <= Node.val <= 100`
->
->  
->
-> **进阶：**递归算法很简单，你可以通过迭代算法完成吗？
+&gt; 给你二叉树的根节点 `root` ，返回它节点值的 **前序** 遍历。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/inorder_1.jpg)
+&gt;
+&gt; ```
+&gt; 输入：root = [1,null,2,3]
+&gt; 输出：[1,2,3]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：root = []
+&gt; 输出：[]
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ```
+&gt; 输入：root = [1]
+&gt; 输出：[1]
+&gt; ```
+&gt;
+&gt; **示例 4：**
+&gt;
+&gt; ![img](./codeNote.assets/inorder_5.jpg)
+&gt;
+&gt; ```
+&gt; 输入：root = [1,2]
+&gt; 输出：[1,2]
+&gt; ```
+&gt;
+&gt; **示例 5：**
+&gt;
+&gt; ![img](./codeNote.assets/inorder_4.jpg)
+&gt;
+&gt; ```
+&gt; 输入：root = [1,null,2]
+&gt; 输出：[1,2]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 树中节点数目在范围 `[0, 100]` 内
+&gt; - `-100 &lt;= Node.val &lt;= 100`
+&gt;
+&gt;  
+&gt;
+&gt; **进阶：**递归算法很简单，你可以通过迭代算法完成吗？
 
 ```c++
 
 class Solution {
 private:
-    void traversal(TreeNode* cur, vector<int>& vec) {
+    void traversal(TreeNode* cur, vector<int>&amp; vec) {
         if (cur == nullptr) {
             return;
         }
-        vec.push_back(cur->val);
-        traversal(cur->left, vec);
-        traversal(cur->right, vec);
+        vec.push_back(cur-&gt;val);
+        traversal(cur-&gt;left, vec);
+        traversal(cur-&gt;right, vec);
     }
 
 public:
@@ -6055,7 +6055,7 @@ public:
 ```
 
 ```python
-def traversal(cur: Optional[TreeNode], vec: List) -> None:
+def traversal(cur: Optional[TreeNode], vec: List) -&gt; None:
     if cur == None:
         return
     vec.append(cur.val)
@@ -6063,7 +6063,7 @@ def traversal(cur: Optional[TreeNode], vec: List) -> None:
     traversal(cur.right, vec)
 
 class Solution:
-    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def preorderTraversal(self, root: Optional[TreeNode]) -&gt; List[int]:
         ans = []
         traversal(root, ans)
         return ans
@@ -6073,54 +6073,54 @@ class Solution:
 
 ##### [145. 二叉树的后序遍历](https://leetcode.cn/problems/binary-tree-postorder-traversal/)
 
-> 给你一棵二叉树的根节点 `root` ，返回其节点值的 **后序遍历** 。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/pre1.jpg)
->
-> ```
-> 输入：root = [1,null,2,3]
-> 输出：[3,2,1]
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：root = []
-> 输出：[]
-> ```
->
-> **示例 3：**
->
-> ```
-> 输入：root = [1]
-> 输出：[1]
-> ```
->
->  
->
-> **提示：**
->
-> - 树中节点的数目在范围 `[0, 100]` 内
-> - `-100 <= Node.val <= 100`
->
->  
->
-> **进阶：**递归算法很简单，你可以通过迭代算法完成吗？
+&gt; 给你一棵二叉树的根节点 `root` ，返回其节点值的 **后序遍历** 。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/pre1.jpg)
+&gt;
+&gt; ```
+&gt; 输入：root = [1,null,2,3]
+&gt; 输出：[3,2,1]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：root = []
+&gt; 输出：[]
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ```
+&gt; 输入：root = [1]
+&gt; 输出：[1]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 树中节点的数目在范围 `[0, 100]` 内
+&gt; - `-100 &lt;= Node.val &lt;= 100`
+&gt;
+&gt;  
+&gt;
+&gt; **进阶：**递归算法很简单，你可以通过迭代算法完成吗？
 
 ```c++
 class Solution {
 private:
-    void traversal(TreeNode* cur, vector<int>& vec) {
+    void traversal(TreeNode* cur, vector<int>&amp; vec) {
         if (cur == nullptr) {
             return;
         } 
-        traversal(cur->left, vec);
-        traversal(cur->right, vec);
-        vec.push_back(cur->val);
+        traversal(cur-&gt;left, vec);
+        traversal(cur-&gt;right, vec);
+        vec.push_back(cur-&gt;val);
     }
 
 public:
@@ -6133,7 +6133,7 @@ public:
 ```
 
 ```python
-def traversal(cur: Optional[TreeNode], vec: List) -> None:
+def traversal(cur: Optional[TreeNode], vec: List) -&gt; None:
     if cur == None:
         return
     traversal(cur.left, vec)
@@ -6142,7 +6142,7 @@ def traversal(cur: Optional[TreeNode], vec: List) -> None:
 
 
 class Solution:
-    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def postorderTraversal(self, root: Optional[TreeNode]) -&gt; List[int]:
         ans = []
         traversal(root, ans)
         return ans
@@ -6153,54 +6153,54 @@ class Solution:
 
 ##### [94.二叉树的中序遍历](https://leetcode.cn/problems/binary-tree-inorder-traversal/)
 
->给定一个二叉树的根节点 `root` ，返回 *它的 **中序** 遍历* 。
->
-> 
->
->**示例 1：**
->
->![img](./codeNote.assets/inorder_1-1707709908198-9.jpg)
->
->```
->输入：root = [1,null,2,3]
->输出：[1,3,2]
->```
->
->**示例 2：**
->
->```
->输入：root = []
->输出：[]
->```
->
->**示例 3：**
->
->```
->输入：root = [1]
->输出：[1]
->```
->
-> 
->
->**提示：**
->
->- 树中节点数目在范围 `[0, 100]` 内
->- `-100 <= Node.val <= 100`
->
-> 
->
->**进阶:** 递归算法很简单，你可以通过迭代算法完成吗？
+&gt;给定一个二叉树的根节点 `root` ，返回 *它的 **中序** 遍历* 。
+&gt;
+&gt; 
+&gt;
+&gt;**示例 1：**
+&gt;
+&gt;![img](./codeNote.assets/inorder_1-1707709908198-9.jpg)
+&gt;
+&gt;```
+&gt;输入：root = [1,null,2,3]
+&gt;输出：[1,3,2]
+&gt;```
+&gt;
+&gt;**示例 2：**
+&gt;
+&gt;```
+&gt;输入：root = []
+&gt;输出：[]
+&gt;```
+&gt;
+&gt;**示例 3：**
+&gt;
+&gt;```
+&gt;输入：root = [1]
+&gt;输出：[1]
+&gt;```
+&gt;
+&gt; 
+&gt;
+&gt;**提示：**
+&gt;
+&gt;- 树中节点数目在范围 `[0, 100]` 内
+&gt;- `-100 &lt;= Node.val &lt;= 100`
+&gt;
+&gt; 
+&gt;
+&gt;**进阶:** 递归算法很简单，你可以通过迭代算法完成吗？
 
 ```c++
 class Solution {
 private:
-    void traversal(TreeNode* cur, vector<int>& vec) {
+    void traversal(TreeNode* cur, vector<int>&amp; vec) {
         if (cur == nullptr) {
             return;
         } 
-        traversal(cur->left, vec);
-        vec.push_back(cur->val);
-        traversal(cur->right, vec);
+        traversal(cur-&gt;left, vec);
+        vec.push_back(cur-&gt;val);
+        traversal(cur-&gt;right, vec);
     }
 
 public:
@@ -6213,7 +6213,7 @@ public:
 ```
 
 ```python
-def traversal(cur: Optional[TreeNode], vec: List) -> None:
+def traversal(cur: Optional[TreeNode], vec: List) -&gt; None:
     if cur == None:
         return
 
@@ -6222,7 +6222,7 @@ def traversal(cur: Optional[TreeNode], vec: List) -> None:
     traversal(cur.right, vec)
 
 class Solution:
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def inorderTraversal(self, root: Optional[TreeNode]) -&gt; List[int]:
         ans = []
         traversal(root, ans)
         return ans
@@ -6230,7 +6230,7 @@ class Solution:
 
 #### 二叉树的迭代遍历
 
-> 遍历还可以用非递归的方式!!!(递归的底层实现依靠栈)
+&gt; 遍历还可以用非递归的方式!!!(递归的底层实现依靠栈)
 
 ##### 前序遍历和后序遍历（迭代法）
 
@@ -6257,7 +6257,7 @@ class Solution:
 class Solution {
 public:
     vector<int> preorderTraversal(TreeNode* root) {
-        stack<TreeNode*> tree_stack;
+        stack<treenode*> tree_stack;
         vector<int> ans;
         if (root == nullptr) {
             return ans;
@@ -6266,13 +6266,13 @@ public:
         TreeNode* cur = tree_stack.top();
         while (!tree_stack.empty()) {
             cur = tree_stack.top();
-            ans.push_back(cur->val); // 中
+            ans.push_back(cur-&gt;val); // 中
             tree_stack.pop();
-            if (cur->right) {
-                tree_stack.push(cur->right); // 压入右
+            if (cur-&gt;right) {
+                tree_stack.push(cur-&gt;right); // 压入右
             }
-            if (cur->left) {
-                tree_stack.push(cur->left); // 压入左
+            if (cur-&gt;left) {
+                tree_stack.push(cur-&gt;left); // 压入左
             }
         }
         return ans;
@@ -6282,7 +6282,7 @@ public:
 
 ```python
 class Solution:
-    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def preorderTraversal(self, root: Optional[TreeNode]) -&gt; List[int]:
         node_stack = []
         ans = []
         if root == None:
@@ -6299,21 +6299,21 @@ class Solution:
         return ans
 ```
 
-> 解析:
->
-> 在你提供的代码中，`cur` 是一个变量，它在每次循环中被赋值为 `node_stack` 列表中的最后一个元素。当执行 `node_stack.pop(-1)` 时，确实会从 `node_stack` 中删除最后一个元素，但是重要的是要理解 `cur` 此时已经持有了那个元素的引用。
->
-> 在 Python 中，删除列表中的元素并不会删除对象本身，只是删除了该列表对该对象的引用。只要还有其他变量引用该对象，该对象就不会被垃圾回收机制回收。在这段代码中，`cur` 仍然引用了 `pop` 出来的 `TreeNode` 对象，因此可以安全地访问其成员变量 `val`、`left` 和 `right`。
->
-> Python 的变量更像是指向对象的指针，而不是对象本身。当你从列表中移除一个对象时，你只是移除了列表中的一个“指针”，而不是对象本身。**只有当一个对象不再被任何变量引用时，Python 的垃圾回收机制才可能会销毁这个对象。**
->
-> 因此，在上述代码中，尽管 `node_stack` 的最后一个元素被 `pop` 了，但由于我们有一个名为 `cur` 的变量仍然引用着该元素，该对象就不会被销毁，我们仍然可以访问 `cur.val`、`cur.left` 和 `cur.right`。
+&gt; 解析:
+&gt;
+&gt; 在你提供的代码中，`cur` 是一个变量，它在每次循环中被赋值为 `node_stack` 列表中的最后一个元素。当执行 `node_stack.pop(-1)` 时，确实会从 `node_stack` 中删除最后一个元素，但是重要的是要理解 `cur` 此时已经持有了那个元素的引用。
+&gt;
+&gt; 在 Python 中，删除列表中的元素并不会删除对象本身，只是删除了该列表对该对象的引用。只要还有其他变量引用该对象，该对象就不会被垃圾回收机制回收。在这段代码中，`cur` 仍然引用了 `pop` 出来的 `TreeNode` 对象，因此可以安全地访问其成员变量 `val`、`left` 和 `right`。
+&gt;
+&gt; Python 的变量更像是指向对象的指针，而不是对象本身。当你从列表中移除一个对象时，你只是移除了列表中的一个“指针”，而不是对象本身。**只有当一个对象不再被任何变量引用时，Python 的垃圾回收机制才可能会销毁这个对象。**
+&gt;
+&gt; 因此，在上述代码中，尽管 `node_stack` 的最后一个元素被 `pop` 了，但由于我们有一个名为 `cur` 的变量仍然引用着该元素，该对象就不会被销毁，我们仍然可以访问 `cur.val`、`cur.left` 和 `cur.right`。
 
 ```c++
 class Solution {
 public:
     vector<int> postorderTraversal(TreeNode* root) {
-        stack<TreeNode*> tree_stack;
+        stack<treenode*> tree_stack;
         vector<int> ans;
         if (root == nullptr) {
             return ans;
@@ -6322,13 +6322,13 @@ public:
         TreeNode* cur = tree_stack.top();
         while (!tree_stack.empty()) {
             cur = tree_stack.top();
-            ans.push_back(cur->val); // 中
+            ans.push_back(cur-&gt;val); // 中
             tree_stack.pop();
-            if (cur->left) {
-                tree_stack.push(cur->left); // 压入左
+            if (cur-&gt;left) {
+                tree_stack.push(cur-&gt;left); // 压入左
             }
-            if (cur->right) {
-                tree_stack.push(cur->right); // 压入右
+            if (cur-&gt;right) {
+                tree_stack.push(cur-&gt;right); // 压入右
             }
         }
         return vector<int>(ans.rbegin(), ans.rend());
@@ -6338,7 +6338,7 @@ public:
 
 ```python
 class Solution:
-    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def postorderTraversal(self, root: Optional[TreeNode]) -&gt; List[int]:
         node_stack = []
         ans = []
         if root == None:
@@ -6369,7 +6369,7 @@ class Solution:
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
-        stack<TreeNode*> node_stack;
+        stack<treenode*> node_stack;
         vector<int> ans;
         if (root == nullptr) {
             return ans;
@@ -6378,12 +6378,12 @@ public:
         while (!node_stack.empty() || cur != nullptr) {
             if (cur != nullptr) {
                 node_stack.push(cur);
-                cur = cur->left;
+                cur = cur-&gt;left;
             } else {
                 cur = node_stack.top();
                 node_stack.pop();
-                ans.push_back(cur->val);
-                cur = cur->right;
+                ans.push_back(cur-&gt;val);
+                cur = cur-&gt;right;
             }
         }
         return ans;
@@ -6393,7 +6393,7 @@ public:
 
 ```python
 class Solution:
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def inorderTraversal(self, root: Optional[TreeNode]) -&gt; List[int]:
         node_stack = []
         ans = []
         cur = root
@@ -6413,13 +6413,13 @@ class Solution:
 
 ![中序遍历](./codeNote.assets/e2gxfxwqcz.gif)
 
-> 怎么感觉使用代码更容易记住?
+&gt; 怎么感觉使用代码更容易记住?
 
 
 
 #### 二叉树的统一迭代遍历
 
-> 虽然我觉得复杂,但是统一写法确实很整齐
+&gt; 虽然我觉得复杂,但是统一写法确实很整齐
 
 我们以中序遍历为例，使用栈的话，**无法同时解决访问节点（遍历节点）和处理节点（将元素放进结果集）不一致的情况**。
 
@@ -6436,23 +6436,23 @@ class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int> result;
-        stack<TreeNode*> st;
+        stack<treenode*> st;
         if (root != NULL) st.push(root);
         while (!st.empty()) {
             TreeNode* node = st.top();
             if (node != NULL) {
                 st.pop(); // 将该节点弹出，避免重复操作，下面再将右中左节点添加到栈中
-                if (node->right) st.push(node->right);  // 添加右节点（空节点不入栈）
+                if (node-&gt;right) st.push(node-&gt;right);  // 添加右节点（空节点不入栈）
 
                 st.push(node);                          // 添加中节点
                 st.push(NULL); // 中节点访问过，但是还没有处理，加入空节点做为标记。
 
-                if (node->left) st.push(node->left);    // 添加左节点（空节点不入栈）
+                if (node-&gt;left) st.push(node-&gt;left);    // 添加左节点（空节点不入栈）
             } else { // 只有遇到空节点的时候，才将下一个节点放进结果集
                 st.pop();           // 将空节点弹出
                 node = st.top();    // 重新取出栈中元素
                 st.pop();
-                result.push_back(node->val); // 加入到结果集
+                result.push_back(node-&gt;val); // 加入到结果集
             }
         }
         return result;
@@ -6470,7 +6470,7 @@ public:
 
 ```python
 class Solution:
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def inorderTraversal(self, root: Optional[TreeNode]) -&gt; List[int]:
         node_stack = []
         ans = []
         if root != None:
@@ -6504,21 +6504,21 @@ class Solution {
 public:
     vector<int> preorderTraversal(TreeNode* root) {
         vector<int> result;
-        stack<TreeNode*> st;
+        stack<treenode*> st;
         if (root != NULL) st.push(root);
         while (!st.empty()) {
             TreeNode* node = st.top();
             if (node != NULL) {
                 st.pop();
-                if (node->right) st.push(node->right);  // 右
-                if (node->left) st.push(node->left);    // 左
+                if (node-&gt;right) st.push(node-&gt;right);  // 右
+                if (node-&gt;left) st.push(node-&gt;left);    // 左
                 st.push(node);                          // 中
                 st.push(NULL);
             } else {
                 st.pop();
                 node = st.top();
                 st.pop();
-                result.push_back(node->val);
+                result.push_back(node-&gt;val);
             }
         }
         return result;
@@ -6528,7 +6528,7 @@ public:
 
 ```python
 class Solution:
-    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def preorderTraversal(self, root: Optional[TreeNode]) -&gt; List[int]:
         node_stack = []
         ans = []
         if root != None:
@@ -6562,7 +6562,7 @@ class Solution {
 public:
     vector<int> postorderTraversal(TreeNode* root) {
         vector<int> result;
-        stack<TreeNode*> st;
+        stack<treenode*> st;
         if (root != NULL) st.push(root);
         while (!st.empty()) {
             TreeNode* node = st.top();
@@ -6571,14 +6571,14 @@ public:
                 st.push(node);                          // 中
                 st.push(NULL);
 
-                if (node->right) st.push(node->right);  // 右
-                if (node->left) st.push(node->left);    // 左
+                if (node-&gt;right) st.push(node-&gt;right);  // 右
+                if (node-&gt;left) st.push(node-&gt;left);    // 左
 
             } else {
                 st.pop();
                 node = st.top();
                 st.pop();
-                result.push_back(node->val);
+                result.push_back(node-&gt;val);
             }
         }
         return result;
@@ -6588,7 +6588,7 @@ public:
 
 ```python
 class Solution:
-    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def postorderTraversal(self, root: Optional[TreeNode]) -&gt; List[int]:
         node_stack = []
         ans = []
         if root != None:
@@ -6613,7 +6613,7 @@ class Solution:
 
 #### 二叉树的层序遍历
 
-> 广度优先搜索(BFS)登场!
+&gt; 广度优先搜索(BFS)登场!
 
 层序遍历一个二叉树。就是从左到右一层一层的去遍历二叉树。这种遍历的方式和我们之前讲过的都不太一样。
 
@@ -6629,46 +6629,46 @@ class Solution:
 
 ##### [102. 二叉树的层序遍历](https://leetcode.cn/problems/binary-tree-level-order-traversal/)
 
-> 给你二叉树的根节点 `root` ，返回其节点值的 **层序遍历** 。 （即逐层地，从左到右访问所有节点）。
->
->  
->
-> **示例 1：**
->
-> <img src="C:\Users\exqin\Desktop\Blog\codeNote.assets\tree1.jpg" alt="img" style="zoom:33%;" />
->
-> ```
-> 输入：root = [3,9,20,null,null,15,7]
-> 输出：[[3],[9,20],[15,7]]
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：root = [1]
-> 输出：[[1]]
-> ```
->
-> **示例 3：**
->
-> ```
-> 输入：root = []
-> 输出：[]
-> ```
->
->  
->
-> **提示：**
->
-> - 树中节点数目在范围 `[0, 2000]` 内
-> - `-1000 <= Node.val <= 1000`
+&gt; 给你二叉树的根节点 `root` ，返回其节点值的 **层序遍历** 。 （即逐层地，从左到右访问所有节点）。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](C:\Users\exqin\Desktop\Blog\codeNote.assets\tree1.jpg)
+&gt;
+&gt; ```
+&gt; 输入：root = [3,9,20,null,null,15,7]
+&gt; 输出：[[3],[9,20],[15,7]]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：root = [1]
+&gt; 输出：[[1]]
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ```
+&gt; 输入：root = []
+&gt; 输出：[]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 树中节点数目在范围 `[0, 2000]` 内
+&gt; - `-1000 &lt;= Node.val &lt;= 1000`
 
 ```c++
 class Solution {
 public:
-    vector<vector<int>> levelOrder(TreeNode* root) {
-        queue<TreeNode*> node_queue;
-        vector<vector<int>> ans;
+    vector<vector<int>&gt; levelOrder(TreeNode* root) {
+        queue<treenode*> node_queue;
+        vector<vector<int>&gt; ans;
 
         if (root == nullptr) {
             return ans;
@@ -6679,13 +6679,13 @@ public:
         while (!node_queue.empty()) {
             TreeNode* node = node_queue.front();
             node_queue.pop();
-            path.push_back(node->val);
+            path.push_back(node-&gt;val);
             size--;
-            if (node->left) {
-                node_queue.push(node->left);
+            if (node-&gt;left) {
+                node_queue.push(node-&gt;left);
             }
-            if (node->right) {
-                node_queue.push(node->right);
+            if (node-&gt;right) {
+                node_queue.push(node-&gt;right);
             }
             if (size == 0) {
                 ans.push_back(path);
@@ -6701,24 +6701,24 @@ public:
 // 简便方法
 class Solution {
 public:
-    vector<vector<int>> levelOrder(TreeNode* root) {
-        queue<TreeNode*> que;
+    vector<vector<int>&gt; levelOrder(TreeNode* root) {
+        queue<treenode*> que;
         if (root != nullptr) {
             que.push(root);
         }
-        vector<vector<int>> result;
+        vector<vector<int>&gt; result;
         while (!que.empty()) {
             int size = que.size();
             vector<int> vec;
             // 这里一定要使用固定大小size，不要使用que.size()，因为que.size是不断变化的
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 TreeNode* node = que.front();
                 que.pop();
-                vec.push_back(node->val);
-                if (node->left)
-                    que.push(node->left);
-                if (node->right)
-                    que.push(node->right);
+                vec.push_back(node-&gt;val);
+                if (node-&gt;left)
+                    que.push(node-&gt;left);
+                if (node-&gt;right)
+                    que.push(node-&gt;right);
             }
             result.push_back(vec);
         }
@@ -6729,7 +6729,7 @@ public:
 
 ```python
 class Solution:
-    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+    def levelOrder(self, root: Optional[TreeNode]) -&gt; List[List[int]]:
         ans = []
         node_queue = []
         if root == None:
@@ -6756,19 +6756,19 @@ class Solution:
 ```c++
 class Solution {
 public:
-    void bfs(TreeNode* cur, int depth, vector<vector<int>>& ans) {
+    void bfs(TreeNode* cur, int depth, vector<vector<int>&gt;&amp; ans) {
         if (cur == nullptr) {
             return;
         }
         if (ans.size() == depth) { //如果当前层不为空,则会增加一层来使用(depth从0开始,当depth和ans.size()相等的时候,说明层数少一,应当加一层)
             ans.push_back(vector<int>());
         }
-        ans[depth].push_back(cur->val);
-        bfs(cur->left, depth + 1, ans);
-        bfs(cur->right, depth + 1, ans);
+        ans[depth].push_back(cur-&gt;val);
+        bfs(cur-&gt;left, depth + 1, ans);
+        bfs(cur-&gt;right, depth + 1, ans);
     }
-    vector<vector<int>> levelOrder(TreeNode* root) {
-        vector<vector<int>> ans;
+    vector<vector<int>&gt; levelOrder(TreeNode* root) {
+        vector<vector<int>&gt; ans;
         bfs(root, 0, ans);
         return ans;
     }
@@ -6777,7 +6777,7 @@ public:
 
 ```python
 class Solution:
-    def bfs(self, cur: Optional[TreeNode], depth: int, ans: List[List[int]]) -> None:
+    def bfs(self, cur: Optional[TreeNode], depth: int, ans: List[List[int]]) -&gt; None:
         if cur == None:
             return
         if len(ans) == depth:
@@ -6786,7 +6786,7 @@ class Solution:
         self.bfs(cur.left, depth + 1, ans)
         self.bfs(cur.right, depth + 1, ans)
 
-    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+    def levelOrder(self, root: Optional[TreeNode]) -&gt; List[List[int]]:
         ans = []
         self.bfs(root, 0, ans)
         return ans
@@ -6794,46 +6794,46 @@ class Solution:
 
 ##### [107. 二叉树的层序遍历 II](https://leetcode.cn/problems/binary-tree-level-order-traversal-ii/)
 
-> 给你二叉树的根节点 `root` ，返回其节点值 **自底向上的层序遍历** 。 （即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/tree1-1707752897746-80.jpg)
->
-> ```
-> 输入：root = [3,9,20,null,null,15,7]
-> 输出：[[15,7],[9,20],[3]]
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：root = [1]
-> 输出：[[1]]
-> ```
->
-> **示例 3：**
->
-> ```
-> 输入：root = []
-> 输出：[]
-> ```
->
->  
->
-> **提示：**
->
-> - 树中节点数目在范围 `[0, 2000]` 内
-> - `-1000 <= Node.val <= 1000`
+&gt; 给你二叉树的根节点 `root` ，返回其节点值 **自底向上的层序遍历** 。 （即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/tree1-1707752897746-80.jpg)
+&gt;
+&gt; ```
+&gt; 输入：root = [3,9,20,null,null,15,7]
+&gt; 输出：[[15,7],[9,20],[3]]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：root = [1]
+&gt; 输出：[[1]]
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ```
+&gt; 输入：root = []
+&gt; 输出：[]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 树中节点数目在范围 `[0, 2000]` 内
+&gt; - `-1000 &lt;= Node.val &lt;= 1000`
 
 ```c++
 class Solution {
 public:
-    vector<vector<int>> levelOrderBottom(TreeNode* root) {
-        queue<TreeNode*> node_queue;
-        vector<vector<int>> ans;
+    vector<vector<int>&gt; levelOrderBottom(TreeNode* root) {
+        queue<treenode*> node_queue;
+        vector<vector<int>&gt; ans;
         if (root == nullptr) {
             return ans;
         }
@@ -6841,27 +6841,27 @@ public:
         while (!node_queue.empty()) {
             int size = node_queue.size();
             vector<int> path;
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 TreeNode* cur = node_queue.front();
-                path.push_back(cur->val);
+                path.push_back(cur-&gt;val);
                 node_queue.pop();
-                if (cur->left) {
-                    node_queue.push(cur->left);
+                if (cur-&gt;left) {
+                    node_queue.push(cur-&gt;left);
                 }
-                if (cur->right) {
-                    node_queue.push(cur->right);
+                if (cur-&gt;right) {
+                    node_queue.push(cur-&gt;right);
                 }
             }
             ans.push_back(path);
         }
-        return vector<vector<int>>(ans.rbegin(), ans.rend());
+        return vector<vector<int>&gt;(ans.rbegin(), ans.rend());
     }
 };
 ```
 
 ```python
 class Solution:
-    def levelOrderBottom(self, root: Optional[TreeNode]) -> List[List[int]]:
+    def levelOrderBottom(self, root: Optional[TreeNode]) -&gt; List[List[int]]:
         node_queue = []
         ans = []
         if root == None:
@@ -6886,28 +6886,28 @@ class Solution:
 // 递归法
 class Solution {
 public:
-    void bfs(vector<vector<int>>& ans, int depth, TreeNode* cur) {
+    void bfs(vector<vector<int>&gt;&amp; ans, int depth, TreeNode* cur) {
         if (cur == nullptr) {
             return;
         }
         if (depth == ans.size()) {
             ans.push_back(vector<int>());
         }
-        ans[depth].push_back(cur->val);
-        bfs(ans, depth + 1, cur->left);
-        bfs(ans, depth + 1, cur->right);
+        ans[depth].push_back(cur-&gt;val);
+        bfs(ans, depth + 1, cur-&gt;left);
+        bfs(ans, depth + 1, cur-&gt;right);
     }
-    vector<vector<int>> levelOrderBottom(TreeNode* root) {
-        vector<vector<int>> ans;
+    vector<vector<int>&gt; levelOrderBottom(TreeNode* root) {
+        vector<vector<int>&gt; ans;
         bfs(ans, 0, root);
-        return vector<vector<int>>(ans.rbegin(), ans.rend());
+        return vector<vector<int>&gt;(ans.rbegin(), ans.rend());
     }
 };
 ```
 
 ```python
 class Solution:
-    def bfs(self, cur: Optional[TreeNode], depth: int, ans: List[List[int]]) -> None:
+    def bfs(self, cur: Optional[TreeNode], depth: int, ans: List[List[int]]) -&gt; None:
         if cur == None:
             return
         if len(ans) == depth:
@@ -6916,7 +6916,7 @@ class Solution:
         self.bfs(cur.left, depth + 1, ans)
         self.bfs(cur.right, depth + 1, ans)
 
-    def levelOrderBottom(self, root: Optional[TreeNode]) -> List[List[int]]:
+    def levelOrderBottom(self, root: Optional[TreeNode]) -&gt; List[List[int]]:
         ans = []
         self.bfs(root, 0, ans)
         return ans[::-1]
@@ -6924,63 +6924,63 @@ class Solution:
 
 ##### [199. 二叉树的右视图](https://leetcode.cn/problems/binary-tree-right-side-view/)
 
-> 给定一个二叉树的 **根节点** `root`，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。
->
->  
->
-> **示例 1:**
->
-> ![img](./codeNote.assets/tree.jpg)
->
-> ```
-> 输入: [1,2,3,null,5,null,4]
-> 输出: [1,3,4]
-> ```
->
-> **示例 2:**
->
-> ```
-> 输入: [1,null,3]
-> 输出: [1,3]
-> ```
->
-> **示例 3:**
->
-> ```
-> 输入: []
-> 输出: []
-> ```
->
->  
->
-> **提示:**
->
-> - 二叉树的节点个数的范围是 `[0,100]`
-> - `-100 <= Node.val <= 100` 
+&gt; 给定一个二叉树的 **根节点** `root`，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1:**
+&gt;
+&gt; ![img](./codeNote.assets/tree.jpg)
+&gt;
+&gt; ```
+&gt; 输入: [1,2,3,null,5,null,4]
+&gt; 输出: [1,3,4]
+&gt; ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ```
+&gt; 输入: [1,null,3]
+&gt; 输出: [1,3]
+&gt; ```
+&gt;
+&gt; **示例 3:**
+&gt;
+&gt; ```
+&gt; 输入: []
+&gt; 输出: []
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示:**
+&gt;
+&gt; - 二叉树的节点个数的范围是 `[0,100]`
+&gt; - `-100 &lt;= Node.val &lt;= 100` 
 
 ```c++
 class Solution {
 public:
     vector<int> rightSideView(TreeNode* root) {
         vector<int> ans;
-        queue<TreeNode*> node_queue;
+        queue<treenode*> node_queue;
         if (root == nullptr) {
             return ans;
         }
         node_queue.push(root);
         while (!node_queue.empty()) {
             int size = node_queue.size();
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 TreeNode* cur = node_queue.front();
                 if (i == size - 1) {
-                    ans.push_back(cur->val);
+                    ans.push_back(cur-&gt;val);
                 }
                 node_queue.pop();
-                if (cur->left) {
-                    node_queue.push(cur->left);
+                if (cur-&gt;left) {
+                    node_queue.push(cur-&gt;left);
                 }
-                if (cur->right) {
-                    node_queue.push(cur->right);
+                if (cur-&gt;right) {
+                    node_queue.push(cur-&gt;right);
                 }
             }
         }
@@ -6992,7 +6992,7 @@ public:
 ```python
 # 使用了递归法,迭代法没有难度
 class Solution:
-    def bfs(self, cur: Optional[TreeNode], depth: int, ans: List[List[int]]) -> None:
+    def bfs(self, cur: Optional[TreeNode], depth: int, ans: List[List[int]]) -&gt; None:
         if cur == None:
             return
         if len(ans) == depth:
@@ -7001,7 +7001,7 @@ class Solution:
         self.bfs(cur.left, depth + 1, ans)
         self.bfs(cur.right, depth + 1, ans)
 
-    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+    def rightSideView(self, root: Optional[TreeNode]) -&gt; List[int]:
         ans = []
         self.bfs(root, 0, ans)
         out = []
@@ -7013,44 +7013,44 @@ class Solution:
 
 ##### [637. 二叉树的层平均值](https://leetcode.cn/problems/average-of-levels-in-binary-tree/)
 
-> 给定一个非空二叉树的根节点 `root` , 以数组的形式返回每一层节点的平均值。与实际答案相差 `10-5` 以内的答案可以被接受。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/avg1-tree.jpg)
->
-> ```
-> 输入：root = [3,9,20,null,null,15,7]
-> 输出：[3.00000,14.50000,11.00000]
-> 解释：第 0 层的平均值为 3,第 1 层的平均值为 14.5,第 2 层的平均值为 11 。
-> 因此返回 [3, 14.5, 11] 。
-> ```
->
-> **示例 2:**
->
-> ![img](./codeNote.assets/avg2-tree.jpg)
->
-> ```
-> 输入：root = [3,9,20,15,7]
-> 输出：[3.00000,14.50000,11.00000]
-> ```
->
->  
->
-> **提示：**
->
-> 
->
-> - 树中节点数量在 `[1, 104]` 范围内
-> - `-231 <= Node.val <= 231 - 1`
+&gt; 给定一个非空二叉树的根节点 `root` , 以数组的形式返回每一层节点的平均值。与实际答案相差 `10-5` 以内的答案可以被接受。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/avg1-tree.jpg)
+&gt;
+&gt; ```
+&gt; 输入：root = [3,9,20,null,null,15,7]
+&gt; 输出：[3.00000,14.50000,11.00000]
+&gt; 解释：第 0 层的平均值为 3,第 1 层的平均值为 14.5,第 2 层的平均值为 11 。
+&gt; 因此返回 [3, 14.5, 11] 。
+&gt; ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ![img](./codeNote.assets/avg2-tree.jpg)
+&gt;
+&gt; ```
+&gt; 输入：root = [3,9,20,15,7]
+&gt; 输出：[3.00000,14.50000,11.00000]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; 
+&gt;
+&gt; - 树中节点数量在 `[1, 104]` 范围内
+&gt; - `-231 &lt;= Node.val &lt;= 231 - 1`
 
 ```c++
 class Solution {
 public:
     vector<double> averageOfLevels(TreeNode* root) {
-        queue<TreeNode*> node_queue;
+        queue<treenode*> node_queue;
         vector<double> ans;
         if (root == nullptr) {
             return ans;
@@ -7060,15 +7060,15 @@ public:
             TreeNode* cur;
             double sum = 0;
             int size = node_queue.size();
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 cur = node_queue.front();
-                sum += cur->val;
+                sum += cur-&gt;val;
                 node_queue.pop();
-                if (cur->left) {
-                    node_queue.push(cur->left);
+                if (cur-&gt;left) {
+                    node_queue.push(cur-&gt;left);
                 }
-                if (cur->right) {
-                    node_queue.push(cur->right);
+                if (cur-&gt;right) {
+                    node_queue.push(cur-&gt;right);
                 }
             }
             ans.push_back(sum / size);
@@ -7080,7 +7080,7 @@ public:
 
 ```python
 class Solution:
-    def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
+    def averageOfLevels(self, root: Optional[TreeNode]) -&gt; List[float]:
         ans = []
         node_queue = []
         if root == None:
@@ -7104,36 +7104,36 @@ class Solution:
 
 ##### [429. N 叉树的层序遍历](https://leetcode.cn/problems/n-ary-tree-level-order-traversal/)
 
-> 给定一个 N 叉树，返回其节点值的*层序遍历*。（即从左到右，逐层遍历）。
->
-> 树的序列化输入是用层序遍历，每组子节点都由 null 值分隔（参见示例）。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/narytreeexample.png)
->
-> ```
-> 输入：root = [1,null,3,2,4,null,5,6]
-> 输出：[[1],[3,2,4],[5,6]]
-> ```
->
-> **示例 2：**
->
-> ![img](./codeNote.assets/sample_4_964.png)
->
-> ```
-> 输入：root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]
-> 输出：[[1],[2,3,4,5],[6,7,8,9,10],[11,12,13],[14]]
-> ```
->
->  
->
-> **提示：**
->
-> - 树的高度不会超过 `1000`
-> - 树的节点总数在 `[0, 10^4]` 之间
+&gt; 给定一个 N 叉树，返回其节点值的*层序遍历*。（即从左到右，逐层遍历）。
+&gt;
+&gt; 树的序列化输入是用层序遍历，每组子节点都由 null 值分隔（参见示例）。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/narytreeexample.png)
+&gt;
+&gt; ```
+&gt; 输入：root = [1,null,3,2,4,null,5,6]
+&gt; 输出：[[1],[3,2,4],[5,6]]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ![img](./codeNote.assets/sample_4_964.png)
+&gt;
+&gt; ```
+&gt; 输入：root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]
+&gt; 输出：[[1],[2,3,4,5],[6,7,8,9,10],[11,12,13],[14]]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 树的高度不会超过 `1000`
+&gt; - 树的节点总数在 `[0, 10^4]` 之间
 
 ```c++
 /*
@@ -7141,7 +7141,7 @@ class Solution:
 class Node {
 public:
     int val;
-    vector<Node*> children;
+    vector<node*> children;
 
     Node() {}
 
@@ -7149,7 +7149,7 @@ public:
         val = _val;
     }
 
-    Node(int _val, vector<Node*> _children) {
+    Node(int _val, vector<node*> _children) {
         val = _val;
         children = _children;
     }
@@ -7158,9 +7158,9 @@ public:
 
 class Solution {
 public:
-    vector<vector<int>> levelOrder(Node* root) {
-        queue<Node*> node_queue;
-        vector<vector<int>> ans;
+    vector<vector<int>&gt; levelOrder(Node* root) {
+        queue<node*> node_queue;
+        vector<vector<int>&gt; ans;
         if (root == nullptr) {
             return ans;
         }
@@ -7169,11 +7169,11 @@ public:
             Node* cur;
             int size = node_queue.size();
             vector<int> path;
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 cur = node_queue.front();
-                path.push_back(cur->val);
+                path.push_back(cur-&gt;val);
                 node_queue.pop();
-                for (auto iter : cur->children) {
+                for (auto iter : cur-&gt;children) {
                     node_queue.push(iter);
                 }
             }
@@ -7195,7 +7195,7 @@ class Node:
 
 
 class Solution:
-    def levelOrder(self, root: "Node") -> List[List[int]]:
+    def levelOrder(self, root: "Node") -&gt; List[List[int]]:
         ans = []
         node_queue = []
         if root == None:
@@ -7214,87 +7214,87 @@ class Solution:
         return ans
 ```
 
-> 对于**递归法**,只需要修改以下代码
->
-> ```python
-> def bfs(self, cur: Optional[TreeNode], depth: int, ans: List[List[int]]) -> None:
->         if cur == None:
->             return
->         if len(ans) == depth:
->             ans.append([])
->         ans[depth].append(cur.val)
->         self.bfs(cur.left, depth + 1, ans)
->         self.bfs(cur.right, depth + 1, ans)
-> ```
->
-> 其中的7,8行修改
->
-> ```python
-> def bfs(self, cur: Optional[TreeNode], depth: int, ans: List[List[int]]) -> None:
->         if cur == None:
->             return
->         if len(ans) == depth:
->             ans.append([])
->         ans[depth].append(cur.val)
->         for item in node.children:
->             self.bfs(item, depth + 1, ans)
-> ```
->
-> C++的修改类似,在这里不在赘述
->
-> Python的具体递归解法为:
->
-> ```python
-> class Solution:
->     def bfs(self, cur: "Node", depth: int, ans: List[List[int]]) -> None:
->         if cur == None:
->             return
->         if len(ans) == depth:
->             ans.append([])
->         ans[depth].append(cur.val)
->         for item in cur.children:
->             self.bfs(item, depth + 1, ans)
-> 
->     def levelOrder(self, root: "Node") -> List[List[int]]:
->         ans = []
->         self.bfs(root, 0, ans)
->         return ans
-> ```
+&gt; 对于**递归法**,只需要修改以下代码
+&gt;
+&gt; ```python
+&gt; def bfs(self, cur: Optional[TreeNode], depth: int, ans: List[List[int]]) -&gt; None:
+&gt;         if cur == None:
+&gt;             return
+&gt;         if len(ans) == depth:
+&gt;             ans.append([])
+&gt;         ans[depth].append(cur.val)
+&gt;         self.bfs(cur.left, depth + 1, ans)
+&gt;         self.bfs(cur.right, depth + 1, ans)
+&gt; ```
+&gt;
+&gt; 其中的7,8行修改
+&gt;
+&gt; ```python
+&gt; def bfs(self, cur: Optional[TreeNode], depth: int, ans: List[List[int]]) -&gt; None:
+&gt;         if cur == None:
+&gt;             return
+&gt;         if len(ans) == depth:
+&gt;             ans.append([])
+&gt;         ans[depth].append(cur.val)
+&gt;         for item in node.children:
+&gt;             self.bfs(item, depth + 1, ans)
+&gt; ```
+&gt;
+&gt; C++的修改类似,在这里不在赘述
+&gt;
+&gt; Python的具体递归解法为:
+&gt;
+&gt; ```python
+&gt; class Solution:
+&gt;     def bfs(self, cur: "Node", depth: int, ans: List[List[int]]) -&gt; None:
+&gt;         if cur == None:
+&gt;             return
+&gt;         if len(ans) == depth:
+&gt;             ans.append([])
+&gt;         ans[depth].append(cur.val)
+&gt;         for item in cur.children:
+&gt;             self.bfs(item, depth + 1, ans)
+&gt; 
+&gt;     def levelOrder(self, root: "Node") -&gt; List[List[int]]:
+&gt;         ans = []
+&gt;         self.bfs(root, 0, ans)
+&gt;         return ans
+&gt; ```
 
 ##### [515. 在每个树行中找最大值](https://leetcode.cn/problems/find-largest-value-in-each-tree-row/)
 
-> 给定一棵二叉树的根节点 `root` ，请找出该二叉树中每一层的最大值。
->
->  
->
-> **示例1：**
->
-> ![img](./codeNote.assets/largest_e1.jpg)
->
-> ```
-> 输入: root = [1,3,2,5,3,null,9]
-> 输出: [1,3,9]
-> ```
->
-> **示例2：**
->
-> ```
-> 输入: root = [1,2,3]
-> 输出: [1,3]
-> ```
->
->  
->
-> **提示：**
->
-> - 二叉树的节点个数的范围是 `[0,104]`
-> - `-2^31 <= Node.val <= 2^31 - 1`
+&gt; 给定一棵二叉树的根节点 `root` ，请找出该二叉树中每一层的最大值。
+&gt;
+&gt;  
+&gt;
+&gt; **示例1：**
+&gt;
+&gt; ![img](./codeNote.assets/largest_e1.jpg)
+&gt;
+&gt; ```
+&gt; 输入: root = [1,3,2,5,3,null,9]
+&gt; 输出: [1,3,9]
+&gt; ```
+&gt;
+&gt; **示例2：**
+&gt;
+&gt; ```
+&gt; 输入: root = [1,2,3]
+&gt; 输出: [1,3]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 二叉树的节点个数的范围是 `[0,104]`
+&gt; - `-2^31 &lt;= Node.val &lt;= 2^31 - 1`
 
 ```c++
 class Solution {
 public:
     vector<int> largestValues(TreeNode* root) {
-        queue<TreeNode*> node_queue;
+        queue<treenode*> node_queue;
         vector<int> ans;
         if (root == nullptr) {
             return ans;
@@ -7304,15 +7304,15 @@ public:
             TreeNode* cur;
             int maxNum = INT_MIN;
             int size = node_queue.size();
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 cur = node_queue.front();
-                maxNum = max(cur->val, maxNum);
+                maxNum = max(cur-&gt;val, maxNum);
                 node_queue.pop();
-                if (cur->left) {
-                    node_queue.push(cur->left);
+                if (cur-&gt;left) {
+                    node_queue.push(cur-&gt;left);
                 }
-                if (cur->right) {
-                    node_queue.push(cur->right);
+                if (cur-&gt;right) {
+                    node_queue.push(cur-&gt;right);
                 }
             }
             ans.push_back(maxNum);
@@ -7324,7 +7324,7 @@ public:
 
 ```python
 class Solution:
-    def largestValues(self, root: Optional[TreeNode]) -> List[int]:
+    def largestValues(self, root: Optional[TreeNode]) -&gt; List[int]:
         node_queue = []
         ans = []
         if root == None:
@@ -7348,55 +7348,55 @@ class Solution:
 
 ##### [116. 填充每个节点的下一个右侧节点指针](https://leetcode.cn/problems/populating-next-right-pointers-in-each-node/)
 
-> 给定一个 **完美二叉树** ，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：
->
-> ```
-> struct Node {
->   int val;
->   Node *left;
->   Node *right;
->   Node *next;
-> }
-> ```
->
-> 填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 `NULL`。
->
-> 初始状态下，所有 next 指针都被设置为 `NULL`。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/116_sample.png)
->
-> ```
-> 输入：root = [1,2,3,4,5,6,7]
-> 输出：[1,#,2,3,#,4,5,6,7,#]
-> 解释：给定二叉树如图 A 所示，你的函数应该填充它的每个 next 指针，以指向其下一个右侧节点，如图 B 所示。序列化的输出按层序遍历排列，同一层节点由 next 指针连接，'#' 标志着每一层的结束。
-> ```
->
-> 
->
-> **示例 2:**
->
-> ```
-> 输入：root = []
-> 输出：[]
-> ```
->
->  
->
-> **提示：**
->
-> - 树中节点的数量在 `[0, 212 - 1]` 范围内
-> - `-1000 <= node.val <= 1000`
->
->  
->
-> **进阶：**
->
-> - 你只能使用常量级额外空间。
-> - 使用递归解题也符合要求，本题中递归程序占用的栈空间不算做额外的空间复杂度。
+&gt; 给定一个 **完美二叉树** ，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：
+&gt;
+&gt; ```
+&gt; struct Node {
+&gt;   int val;
+&gt;   Node *left;
+&gt;   Node *right;
+&gt;   Node *next;
+&gt; }
+&gt; ```
+&gt;
+&gt; 填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 `NULL`。
+&gt;
+&gt; 初始状态下，所有 next 指针都被设置为 `NULL`。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/116_sample.png)
+&gt;
+&gt; ```
+&gt; 输入：root = [1,2,3,4,5,6,7]
+&gt; 输出：[1,#,2,3,#,4,5,6,7,#]
+&gt; 解释：给定二叉树如图 A 所示，你的函数应该填充它的每个 next 指针，以指向其下一个右侧节点，如图 B 所示。序列化的输出按层序遍历排列，同一层节点由 next 指针连接，'#' 标志着每一层的结束。
+&gt; ```
+&gt;
+&gt; 
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ```
+&gt; 输入：root = []
+&gt; 输出：[]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 树中节点的数量在 `[0, 212 - 1]` 范围内
+&gt; - `-1000 &lt;= node.val &lt;= 1000`
+&gt;
+&gt;  
+&gt;
+&gt; **进阶：**
+&gt;
+&gt; - 你只能使用常量级额外空间。
+&gt; - 使用递归解题也符合要求，本题中递归程序占用的栈空间不算做额外的空间复杂度。
 
 ```c++
 /*
@@ -7420,7 +7420,7 @@ public:
 class Solution {
 public:
     Node* connect(Node* root) {
-        queue<Node*> node_queue;
+        queue<node*> node_queue;
         if (root == nullptr) {
             return root;
         }
@@ -7428,17 +7428,17 @@ public:
         while (!node_queue.empty()) {
             Node* cur;
             int size = node_queue.size();
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 cur = node_queue.front();
                 node_queue.pop();
                 if (i != size - 1) {
-                    cur->next = node_queue.front();
+                    cur-&gt;next = node_queue.front();
                 }
-                if (cur->left) {
-                    node_queue.push(cur->left);
+                if (cur-&gt;left) {
+                    node_queue.push(cur-&gt;left);
                 }
-                if (cur->right) {
-                    node_queue.push(cur->right);
+                if (cur-&gt;right) {
+                    node_queue.push(cur-&gt;right);
                 }
             }
         }
@@ -7460,7 +7460,7 @@ class Node:
 
 
 class Solution:
-    def connect(self, root: "Optional[Node]") -> "Optional[Node]":
+    def connect(self, root: "Optional[Node]") -&gt; "Optional[Node]":
         node_queue = []
         if root == None:
             return root
@@ -7482,92 +7482,92 @@ class Solution:
 
 ##### [117. 填充每个节点的下一个右侧节点指针 II](https://leetcode.cn/problems/populating-next-right-pointers-in-each-node-ii/)
 
-> 给定一个二叉树：
->
-> ```
-> struct Node {
->   int val;
->   Node *left;
->   Node *right;
->   Node *next;
-> }
-> ```
->
-> 填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 `NULL` 。
->
-> 初始状态下，所有 next 指针都被设置为 `NULL` 。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/117_sample.png)
->
-> ```
-> 输入：root = [1,2,3,4,5,null,7]
-> 输出：[1,#,2,3,#,4,5,7,#]
-> 解释：给定二叉树如图 A 所示，你的函数应该填充它的每个 next 指针，以指向其下一个右侧节点，如图 B 所示。序列化输出按层序遍历顺序（由 next 指针连接），'#' 表示每层的末尾。
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：root = []
-> 输出：[]
-> ```
->
->  
->
-> **提示：**
->
-> - 树中的节点数在范围 `[0, 6000]` 内
-> - `-100 <= Node.val <= 100`
->
-> **进阶：**
->
-> - 你只能使用常量级额外空间。
-> - 使用递归解题也符合要求，本题中递归程序的隐式栈空间不计入额外空间复杂度。
+&gt; 给定一个二叉树：
+&gt;
+&gt; ```
+&gt; struct Node {
+&gt;   int val;
+&gt;   Node *left;
+&gt;   Node *right;
+&gt;   Node *next;
+&gt; }
+&gt; ```
+&gt;
+&gt; 填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 `NULL` 。
+&gt;
+&gt; 初始状态下，所有 next 指针都被设置为 `NULL` 。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/117_sample.png)
+&gt;
+&gt; ```
+&gt; 输入：root = [1,2,3,4,5,null,7]
+&gt; 输出：[1,#,2,3,#,4,5,7,#]
+&gt; 解释：给定二叉树如图 A 所示，你的函数应该填充它的每个 next 指针，以指向其下一个右侧节点，如图 B 所示。序列化输出按层序遍历顺序（由 next 指针连接），'#' 表示每层的末尾。
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：root = []
+&gt; 输出：[]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 树中的节点数在范围 `[0, 6000]` 内
+&gt; - `-100 &lt;= Node.val &lt;= 100`
+&gt;
+&gt; **进阶：**
+&gt;
+&gt; - 你只能使用常量级额外空间。
+&gt; - 使用递归解题也符合要求，本题中递归程序的隐式栈空间不计入额外空间复杂度。
 
 **竟然和上一道题的答案一模一样,不在赘述**
 
 ##### [104. 二叉树的最大深度](https://leetcode.cn/problems/maximum-depth-of-binary-tree/)
 
-> 给定一个二叉树 `root` ，返回其最大深度。
->
-> 二叉树的 **最大深度** 是指从根节点到最远叶子节点的最长路径上的节点数。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/tmp-tree.jpg)
->
->  
->
-> ```
-> 输入：root = [3,9,20,null,null,15,7]
-> 输出：3
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：root = [1,null,2]
-> 输出：2
-> ```
->
->  
->
-> **提示：**
->
-> - 树中节点的数量在 `[0, 104]` 区间内。
-> - `-100 <= Node.val <= 100`
+&gt; 给定一个二叉树 `root` ，返回其最大深度。
+&gt;
+&gt; 二叉树的 **最大深度** 是指从根节点到最远叶子节点的最长路径上的节点数。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/tmp-tree.jpg)
+&gt;
+&gt;  
+&gt;
+&gt; ```
+&gt; 输入：root = [3,9,20,null,null,15,7]
+&gt; 输出：3
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：root = [1,null,2]
+&gt; 输出：2
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 树中节点的数量在 `[0, 104]` 区间内。
+&gt; - `-100 &lt;= Node.val &lt;= 100`
 
 ```c++
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
-        queue<TreeNode*> node_queue;
+        queue<treenode*> node_queue;
         int depth = 0;
         if (root == nullptr) {
             return depth;
@@ -7576,14 +7576,14 @@ public:
         while (!node_queue.empty()) {
             TreeNode* cur;
             int size = node_queue.size();
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 cur = node_queue.front();
                 node_queue.pop();
-                if (cur->left) {
-                    node_queue.push(cur->left);
+                if (cur-&gt;left) {
+                    node_queue.push(cur-&gt;left);
                 }
-                if (cur->right) {
-                    node_queue.push(cur->right);
+                if (cur-&gt;right) {
+                    node_queue.push(cur-&gt;right);
                 }
             }
             depth++;
@@ -7595,7 +7595,7 @@ public:
 
 ```python
 class Solution:
-    def maxDepth(self, root: Optional[TreeNode]) -> int:
+    def maxDepth(self, root: Optional[TreeNode]) -&gt; int:
         node_queue = []
         depth = 0
         if root == None:
@@ -7617,36 +7617,36 @@ class Solution:
 
 ##### [111. 二叉树的最小深度](https://leetcode.cn/problems/minimum-depth-of-binary-tree/)
 
-> 给定一个二叉树，找出其最小深度。
->
-> 最小深度是从根节点到最近叶子节点的最短路径上的节点数量。
->
-> **说明：**叶子节点是指没有子节点的节点。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/ex_depth.jpg)
->
-> ```
-> 输入：root = [3,9,20,null,null,15,7]
-> 输出：2
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：root = [2,null,3,null,4,null,5,null,6]
-> 输出：5
-> ```
->
->  
->
-> **提示：**
->
-> - 树中节点数的范围在 `[0, 105]` 内
-> - `-1000 <= Node.val <= 1000`
+&gt; 给定一个二叉树，找出其最小深度。
+&gt;
+&gt; 最小深度是从根节点到最近叶子节点的最短路径上的节点数量。
+&gt;
+&gt; **说明：**叶子节点是指没有子节点的节点。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/ex_depth.jpg)
+&gt;
+&gt; ```
+&gt; 输入：root = [3,9,20,null,null,15,7]
+&gt; 输出：2
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：root = [2,null,3,null,4,null,5,null,6]
+&gt; 输出：5
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 树中节点数的范围在 `[0, 105]` 内
+&gt; - `-1000 &lt;= Node.val &lt;= 1000`
 
 ```c++
 class Solution {
@@ -7656,22 +7656,22 @@ public:
         if (root == nullptr) {
             return depth;
         }
-        queue<TreeNode*> node_queue;
+        queue<treenode*> node_queue;
         node_queue.push(root);
         while (!node_queue.empty()) {
             TreeNode* cur;
             int size = node_queue.size();
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 cur = node_queue.front();
                 node_queue.pop();
-                if (!cur->left && !cur->right) {
+                if (!cur-&gt;left &amp;&amp; !cur-&gt;right) {
                     return ++depth;
                 } else {
-                    if (cur->left) {
-                        node_queue.push(cur->left);
+                    if (cur-&gt;left) {
+                        node_queue.push(cur-&gt;left);
                     }
-                    if (cur->right) {
-                        node_queue.push(cur->right);
+                    if (cur-&gt;right) {
+                        node_queue.push(cur-&gt;right);
                     }
                 }
             }
@@ -7684,7 +7684,7 @@ public:
 
 ```python
 class Solution:
-    def minDepth(self, root: Optional[TreeNode]) -> int:
+    def minDepth(self, root: Optional[TreeNode]) -&gt; int:
         node_queue = []
         depth = 0
         if root == None:
@@ -7708,41 +7708,41 @@ class Solution:
 
 #### [226. 翻转二叉树](https://leetcode.cn/problems/invert-binary-tree/)
 
-> 给你一棵二叉树的根节点 `root` ，翻转这棵二叉树，并返回其根节点。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/invert1-tree.jpg)
->
-> ```
-> 输入：root = [4,2,7,1,3,6,9]
-> 输出：[4,7,2,9,6,3,1]
-> ```
->
-> **示例 2：**
->
-> ![img](./codeNote.assets/invert2-tree.jpg)
->
-> ```
-> 输入：root = [2,1,3]
-> 输出：[2,3,1]
-> ```
->
-> **示例 3：**
->
-> ```
-> 输入：root = []
-> 输出：[]
-> ```
->
->  
->
-> **提示：**
->
-> - 树中节点数目范围在 `[0, 100]` 内
-> - `-100 <= Node.val <= 100`
+&gt; 给你一棵二叉树的根节点 `root` ，翻转这棵二叉树，并返回其根节点。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/invert1-tree.jpg)
+&gt;
+&gt; ```
+&gt; 输入：root = [4,2,7,1,3,6,9]
+&gt; 输出：[4,7,2,9,6,3,1]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ![img](./codeNote.assets/invert2-tree.jpg)
+&gt;
+&gt; ```
+&gt; 输入：root = [2,1,3]
+&gt; 输出：[2,3,1]
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ```
+&gt; 输入：root = []
+&gt; 输出：[]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 树中节点数目范围在 `[0, 100]` 内
+&gt; - `-100 &lt;= Node.val &lt;= 100`
 
 ```c++
 class Solution {
@@ -7751,11 +7751,11 @@ public:
         if (cur == nullptr) {
             return;
         }
-        TreeNode* temp = cur->right;
-        cur->right = cur->left;
-        cur->left = temp;
-        reverse(cur->left);
-        reverse(cur->right);
+        TreeNode* temp = cur-&gt;right;
+        cur-&gt;right = cur-&gt;left;
+        cur-&gt;left = temp;
+        reverse(cur-&gt;left);
+        reverse(cur-&gt;right);
     }
     TreeNode* invertTree(TreeNode* root) {
         reverse(root);
@@ -7773,17 +7773,17 @@ public:
         if (root == nullptr) {
             return root;
         }
-        stack<TreeNode*> node_stack;
+        stack<treenode*> node_stack;
         node_stack.push(root);
         while (!node_stack.empty()) {
             TreeNode* cur = node_stack.top();
             node_stack.pop();
-            swap(cur->left, cur->right);
-            if (cur->right) {
-                node_stack.push(cur->right);
+            swap(cur-&gt;left, cur-&gt;right);
+            if (cur-&gt;right) {
+                node_stack.push(cur-&gt;right);
             }
-            if (cur->left) {
-                node_stack.push(cur->left);
+            if (cur-&gt;left) {
+                node_stack.push(cur-&gt;left);
             }
         }
         return root;
@@ -7800,19 +7800,19 @@ public:
         if (root == nullptr) {
             return root;
         }
-        stack<TreeNode*> node_stack;
+        stack<treenode*> node_stack;
         node_stack.push(root);
         TreeNode* cur = root;
         while (!node_stack.empty()) {
             cur = node_stack.top();
             if (cur != nullptr) {
                 node_stack.pop(); // 先把节点拿出来
-                swap(cur->left, cur->right);
-                if (cur->left) {
-                    node_stack.push(cur->left);
+                swap(cur-&gt;left, cur-&gt;right);
+                if (cur-&gt;left) {
+                    node_stack.push(cur-&gt;left);
                 }
-                if (cur->right) {
-                    node_stack.push(cur->right);
+                if (cur-&gt;right) {
+                    node_stack.push(cur-&gt;right);
                 }
                 node_stack.push(cur);
                 node_stack.push(nullptr);
@@ -7829,61 +7829,61 @@ public:
 ```python
 # 只用回溯法写,其他方法不再赘述
 class Solution:
-    def reverse(self, cur: Optional[TreeNode]) -> None:
+    def reverse(self, cur: Optional[TreeNode]) -&gt; None:
         if cur == None:
             return
         cur.left, cur.right = cur.right, cur.left
         self.reverse(cur.left)
         self.reverse(cur.right)
 
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+    def invertTree(self, root: Optional[TreeNode]) -&gt; Optional[TreeNode]:
         self.reverse(root)
         return root
 ```
 
 #### [589. N 叉树的前序遍历](https://leetcode.cn/problems/n-ary-tree-preorder-traversal/)
 
-> 给定一个 n 叉树的根节点 `root` ，返回 *其节点值的 **前序遍历*** 。
->
-> n 叉树 在输入中按层序遍历进行序列化表示，每组子节点由空值 `null` 分隔（请参见示例）。
->
-> 
-> **示例 1：**
->
-> ![img](./codeNote.assets/narytreeexample-1707807420886-5.png)
->
-> ```
-> 输入：root = [1,null,3,2,4,null,5,6]
-> 输出：[1,3,5,6,2,4]
-> ```
->
-> **示例 2：**
->
-> ![img](./codeNote.assets/sample_4_964-1707807420886-7.png)
->
-> ```
-> 输入：root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]
-> 输出：[1,2,3,6,7,11,14,4,8,12,5,9,13,10]
-> ```
->
->  
->
-> **提示：**
->
-> - 节点总数在范围 `[0, 104]`内
-> - `0 <= Node.val <= 104`
-> - n 叉树的高度小于或等于 `1000`
->
->  
->
-> **进阶：**递归法很简单，你可以使用迭代法完成此题吗?
+&gt; 给定一个 n 叉树的根节点 `root` ，返回 *其节点值的 **前序遍历*** 。
+&gt;
+&gt; n 叉树 在输入中按层序遍历进行序列化表示，每组子节点由空值 `null` 分隔（请参见示例）。
+&gt;
+&gt; 
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/narytreeexample-1707807420886-5.png)
+&gt;
+&gt; ```
+&gt; 输入：root = [1,null,3,2,4,null,5,6]
+&gt; 输出：[1,3,5,6,2,4]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ![img](./codeNote.assets/sample_4_964-1707807420886-7.png)
+&gt;
+&gt; ```
+&gt; 输入：root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]
+&gt; 输出：[1,2,3,6,7,11,14,4,8,12,5,9,13,10]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 节点总数在范围 `[0, 104]`内
+&gt; - `0 &lt;= Node.val &lt;= 104`
+&gt; - n 叉树的高度小于或等于 `1000`
+&gt;
+&gt;  
+&gt;
+&gt; **进阶：**递归法很简单，你可以使用迭代法完成此题吗?
 
 ```c++
 class Solution {
 public:
     // 使用一波统一迭代法(递归和普通迭代没有难度)
     vector<int> preorder(Node* root) {
-        stack<Node*> node_stack;
+        stack<node*> node_stack;
         vector<int> ans_vector;
         if (root == nullptr) {
             return ans_vector;
@@ -7893,8 +7893,8 @@ public:
             Node* cur = node_stack.top();
             if (cur != nullptr) {
                 node_stack.pop();
-                for (auto iter : vector<Node*>(cur->children.rbegin(),
-                                               cur->children.rend())) {
+                for (auto iter : vector<node*>(cur-&gt;children.rbegin(),
+                                               cur-&gt;children.rend())) {
                     node_stack.push(iter);
                 }
                 node_stack.push(cur);
@@ -7902,7 +7902,7 @@ public:
             } else {
                 node_stack.pop();
                 cur = node_stack.top();
-                ans_vector.push_back(cur->val);
+                ans_vector.push_back(cur-&gt;val);
                 node_stack.pop();
             }
         }
@@ -7913,14 +7913,14 @@ public:
 
 ```python
 class Solution:
-    def order(self, cur: "Node", ans_list: List[int]) -> None:
+    def order(self, cur: "Node", ans_list: List[int]) -&gt; None:
         if cur == None:
             return
         ans_list.append(cur.val)
         for item in cur.children:
             self.order(item, ans_list)
 
-    def preorder(self, root: "Node") -> List[int]:
+    def preorder(self, root: "Node") -&gt; List[int]:
         ans_list = []
         self.order(root, ans_list)
         return ans_list
@@ -7929,41 +7929,41 @@ class Solution:
 
 #### [590. N 叉树的后序遍历](https://leetcode.cn/problems/n-ary-tree-postorder-traversal/)
 
-> 给定一个 n 叉树的根节点 `root` ，返回 *其节点值的 **后序遍历*** 。
->
-> n 叉树 在输入中按层序遍历进行序列化表示，每组子节点由空值 `null` 分隔（请参见示例）。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/narytreeexample-1707807492794-11.png)
->
-> ```
-> 输入：root = [1,null,3,2,4,null,5,6]
-> 输出：[5,6,3,2,4,1]
-> ```
->
-> **示例 2：**
->
-> ![img](./codeNote.assets/sample_4_964-1707807492795-13.png)
->
-> ```
-> 输入：root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]
-> 输出：[2,6,14,11,7,3,12,8,4,13,9,10,5,1]
-> ```
->
->  
->
-> **提示：**
->
-> - 节点总数在范围 `[0, 104]` 内
-> - `0 <= Node.val <= 104`
-> - n 叉树的高度小于或等于 `1000`
->
->  
->
-> **进阶：**递归法很简单，你可以使用迭代法完成此题吗?
+&gt; 给定一个 n 叉树的根节点 `root` ，返回 *其节点值的 **后序遍历*** 。
+&gt;
+&gt; n 叉树 在输入中按层序遍历进行序列化表示，每组子节点由空值 `null` 分隔（请参见示例）。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/narytreeexample-1707807492794-11.png)
+&gt;
+&gt; ```
+&gt; 输入：root = [1,null,3,2,4,null,5,6]
+&gt; 输出：[5,6,3,2,4,1]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ![img](./codeNote.assets/sample_4_964-1707807492795-13.png)
+&gt;
+&gt; ```
+&gt; 输入：root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]
+&gt; 输出：[2,6,14,11,7,3,12,8,4,13,9,10,5,1]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 节点总数在范围 `[0, 104]` 内
+&gt; - `0 &lt;= Node.val &lt;= 104`
+&gt; - n 叉树的高度小于或等于 `1000`
+&gt;
+&gt;  
+&gt;
+&gt; **进阶：**递归法很简单，你可以使用迭代法完成此题吗?
 
 ```c++
 class Solution {
@@ -7974,13 +7974,13 @@ public:
         if (root == nullptr) {
             return ans_vector;
         }
-        stack<Node*> node_stack;
+        stack<node*> node_stack;
         node_stack.push(root);
         while (!node_stack.empty()) {
             Node* cur = node_stack.top();
             node_stack.pop();
-            ans_vector.push_back(cur->val);
-            for (auto iter : cur->children) {
+            ans_vector.push_back(cur-&gt;val);
+            for (auto iter : cur-&gt;children) {
                 node_stack.push(iter);
             }
         }
@@ -7991,7 +7991,7 @@ public:
 
 ```python
 class Solution:
-    def order(self, cur: "Node", ans_list: List[int]) -> None:
+    def order(self, cur: "Node", ans_list: List[int]) -&gt; None:
         if cur == None:
             return
         ans_list.append(cur.val)
@@ -7999,7 +7999,7 @@ class Solution:
             self.order(item, ans_list)
         
 
-    def postorder(self, root: "Node") -> List[int]:
+    def postorder(self, root: "Node") -&gt; List[int]:
         ans_list = []
         self.order(root, ans_list)
         return ans_list[::-1]
@@ -8007,45 +8007,45 @@ class Solution:
 
 #### [101. 对称二叉树](https://leetcode.cn/problems/symmetric-tree/)
 
-> 给你一个二叉树的根节点 `root` ， 检查它是否轴对称。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/1698026966-JDYPDU-image.png)
->
-> ```
-> 输入：root = [1,2,2,3,4,4,3]
-> 输出：true
-> ```
->
-> **示例 2：**
->
-> ![img](./codeNote.assets/1698027008-nPFLbM-image.png)
->
-> ```
-> 输入：root = [1,2,2,null,3,null,3]
-> 输出：false
-> ```
->
->  
->
-> **提示：**
->
-> - 树中节点数目在范围 `[1, 1000]` 内
-> - `-100 <= Node.val <= 100`
->
->  
->
-> **进阶：**你可以运用递归和迭代两种方法解决这个问题吗？
+&gt; 给你一个二叉树的根节点 `root` ， 检查它是否轴对称。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/1698026966-JDYPDU-image.png)
+&gt;
+&gt; ```
+&gt; 输入：root = [1,2,2,3,4,4,3]
+&gt; 输出：true
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ![img](./codeNote.assets/1698027008-nPFLbM-image.png)
+&gt;
+&gt; ```
+&gt; 输入：root = [1,2,2,null,3,null,3]
+&gt; 输出：false
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 树中节点数目在范围 `[1, 1000]` 内
+&gt; - `-100 &lt;= Node.val &lt;= 100`
+&gt;
+&gt;  
+&gt;
+&gt; **进阶：**你可以运用递归和迭代两种方法解决这个问题吗？
 
 ```c++
 class Solution {
 public:
     // 思路:层序遍历,检查每层是否对称(迭代)
     bool isSymmetric(TreeNode* root) {
-        queue<TreeNode*> node_queue;
+        queue<treenode*> node_queue;
         if (root == nullptr) {
             return true;
         }
@@ -8054,20 +8054,20 @@ public:
             int size = node_queue.size();
             vector<int> path_vector;
             TreeNode* cur;
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 cur = node_queue.front();
                 node_queue.pop();
                 if (cur == nullptr) {
                     path_vector.push_back(INT_MAX);
                     continue;
                 }
-                path_vector.push_back(cur->val);
+                path_vector.push_back(cur-&gt;val);
                 // 自认为比较妙的一步(使用占位的nullptr,补充空节点)而且并不会陷入死循环,空节点只会补充一次左右节点,作为中间节点的时候不会填充空节点
-                node_queue.push(cur->left);
-                node_queue.push(cur->right);
+                node_queue.push(cur-&gt;left);
+                node_queue.push(cur-&gt;right);
             }
             int left = 0, right = path_vector.size() - 1;
-            while (left < right) {
+            while (left &lt; right) {
                 if (path_vector[left] != path_vector[right]) {
                     return false;
                 }
@@ -8083,7 +8083,7 @@ public:
 ```python
 class Solution:
     # 递归
-    def check(self, left: Optional[TreeNode], right: Optional[TreeNode]) -> bool:
+    def check(self, left: Optional[TreeNode], right: Optional[TreeNode]) -&gt; bool:
         if left and right:
             if left.val != right.val:
                 return False
@@ -8096,72 +8096,72 @@ class Solution:
         else:
             return False
 
-    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+    def isSymmetric(self, root: Optional[TreeNode]) -&gt; bool:
         if root == None:
             return True
         else:
             return self.check(root.left, root.right)
 ```
 
-> 当然也可以使用队列,但是要注意压入顺序
->
-> 通过队列来判断根节点的左子树和右子树的内侧和外侧是否相等，如动画所示：
->
-> ![101.对称二叉树](./codeNote.assets/101.对称二叉树.gif)
+&gt; 当然也可以使用队列,但是要注意压入顺序
+&gt;
+&gt; 通过队列来判断根节点的左子树和右子树的内侧和外侧是否相等，如动画所示：
+&gt;
+&gt; ![101.对称二叉树](./codeNote.assets/101.对称二叉树.gif)
 
 
 
 #### [100. 相同的树](https://leetcode.cn/problems/same-tree/)
 
-> 给你两棵二叉树的根节点 `p` 和 `q` ，编写一个函数来检验这两棵树是否相同。
->
-> 如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/ex1.jpg)
->
-> ```
-> 输入：p = [1,2,3], q = [1,2,3]
-> 输出：true
-> ```
->
-> **示例 2：**
->
-> ![img](C:\Users\exqin\Desktop\Blog\codeNote.assets\ex2.jpg)
->
-> ```
-> 输入：p = [1,2], q = [1,null,2]
-> 输出：false
-> ```
->
-> **示例 3：**
->
-> ![img](./codeNote.assets/ex3.jpg)
->
-> ```
-> 输入：p = [1,2,1], q = [1,1,2]
-> 输出：false
-> ```
->
->  
->
-> **提示：**
->
-> - 两棵树上的节点数目都在范围 `[0, 100]` 内
-> - `-104 <= Node.val <= 104`
+&gt; 给你两棵二叉树的根节点 `p` 和 `q` ，编写一个函数来检验这两棵树是否相同。
+&gt;
+&gt; 如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/ex1.jpg)
+&gt;
+&gt; ```
+&gt; 输入：p = [1,2,3], q = [1,2,3]
+&gt; 输出：true
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ![img](C:\Users\exqin\Desktop\Blog\codeNote.assets\ex2.jpg)
+&gt;
+&gt; ```
+&gt; 输入：p = [1,2], q = [1,null,2]
+&gt; 输出：false
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ![img](./codeNote.assets/ex3.jpg)
+&gt;
+&gt; ```
+&gt; 输入：p = [1,2,1], q = [1,1,2]
+&gt; 输出：false
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 两棵树上的节点数目都在范围 `[0, 100]` 内
+&gt; - `-104 &lt;= Node.val &lt;= 104`
 
 ```c++
 // 准备使用栈来解决(匹配问题)
 class Solution {
 public:
     bool isSameTree(TreeNode* p, TreeNode* q) {
-        stack<TreeNode*> node_stack;
-        if (p == nullptr && q == nullptr) {
+        stack<treenode*> node_stack;
+        if (p == nullptr &amp;&amp; q == nullptr) {
             return true;
-        } else if (p && q) {
+        } else if (p &amp;&amp; q) {
             node_stack.push(p);
             node_stack.push(q);
             while (!node_stack.empty()) {
@@ -8169,19 +8169,19 @@ public:
                 node_stack.pop();
                 TreeNode* right = node_stack.top();
                 node_stack.pop();
-                if (left == nullptr && right == nullptr) {
+                if (left == nullptr &amp;&amp; right == nullptr) {
                     continue;
                 }
-                if ((left || right) && (!(left && right))) {
+                if ((left || right) &amp;&amp; (!(left &amp;&amp; right))) {
                     return false;
                 }
-                if (left->val != right->val) {
+                if (left-&gt;val != right-&gt;val) {
                     return false;
                 }
-                node_stack.push(left->left);
-                node_stack.push(right->left);
-                node_stack.push(left->right);
-                node_stack.push(right->right);
+                node_stack.push(left-&gt;left);
+                node_stack.push(right-&gt;left);
+                node_stack.push(left-&gt;right);
+                node_stack.push(right-&gt;right);
             }
         } else {
             return false;
@@ -8194,7 +8194,7 @@ public:
 ```python
 # 递归
 class Solution:
-    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -&gt; bool:
         if not (p or q):
             return True
         if (p or q) and (not (p and q)):
@@ -8206,53 +8206,53 @@ class Solution:
 
 #### [572. 另一棵树的子树](https://leetcode.cn/problems/subtree-of-another-tree/)
 
-> 给你两棵二叉树 `root` 和 `subRoot` 。检验 `root` 中是否包含和 `subRoot` 具有相同结构和节点值的子树。如果存在，返回 `true` ；否则，返回 `false` 。
->
-> 二叉树 `tree` 的一棵子树包括 `tree` 的某个节点和这个节点的所有后代节点。`tree` 也可以看做它自身的一棵子树。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/subtree1-tree.jpg)
->
-> ```
-> 输入：root = [3,4,5,1,2], subRoot = [4,1,2]
-> 输出：true
-> ```
->
-> **示例 2：**
->
-> ![img](./codeNote.assets/subtree2-tree.jpg)
->
-> ```
-> 输入：root = [3,4,5,1,2,null,null,null,null,0], subRoot = [4,1,2]
-> 输出：false
-> ```
->
->  
->
-> **提示：**
->
-> - `root` 树上的节点数量范围是 `[1, 2000]`
-> - `subRoot` 树上的节点数量范围是 `[1, 1000]`
-> - `-104 <= root.val <= 104`
-> - `-104 <= subRoot.val <= 104`
+&gt; 给你两棵二叉树 `root` 和 `subRoot` 。检验 `root` 中是否包含和 `subRoot` 具有相同结构和节点值的子树。如果存在，返回 `true` ；否则，返回 `false` 。
+&gt;
+&gt; 二叉树 `tree` 的一棵子树包括 `tree` 的某个节点和这个节点的所有后代节点。`tree` 也可以看做它自身的一棵子树。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/subtree1-tree.jpg)
+&gt;
+&gt; ```
+&gt; 输入：root = [3,4,5,1,2], subRoot = [4,1,2]
+&gt; 输出：true
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ![img](./codeNote.assets/subtree2-tree.jpg)
+&gt;
+&gt; ```
+&gt; 输入：root = [3,4,5,1,2,null,null,null,null,0], subRoot = [4,1,2]
+&gt; 输出：false
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `root` 树上的节点数量范围是 `[1, 2000]`
+&gt; - `subRoot` 树上的节点数量范围是 `[1, 1000]`
+&gt; - `-104 &lt;= root.val &lt;= 104`
+&gt; - `-104 &lt;= subRoot.val &lt;= 104`
 
 ```c++
 class Solution {
 private:
     bool samecheck(TreeNode* first, TreeNode* second) {
-        if ((first || second) && !(first && second)) {
+        if ((first || second) &amp;&amp; !(first &amp;&amp; second)) {
             return false;
         } else if (!(first || second)) {
             return true;
         } else {
-            if (first->val != second->val) {
+            if (first-&gt;val != second-&gt;val) {
                 return false;
             } else {
-                return samecheck(first->left, second->left) &&
-                       samecheck(first->right, second->right);
+                return samecheck(first-&gt;left, second-&gt;left) &amp;&amp;
+                       samecheck(first-&gt;right, second-&gt;right);
             }
         }
     }
@@ -8265,15 +8265,15 @@ public:
         if (samecheck(root, subRoot)) {
             return true;
         }
-        return isSubtree(root->left, subRoot) ||
-               isSubtree(root->right, subRoot);
+        return isSubtree(root-&gt;left, subRoot) ||
+               isSubtree(root-&gt;right, subRoot);
     }
 };
 ```
 
 ```python
 class Solution:
-    def samecheck(self, first: Optional[TreeNode], second: Optional[TreeNode]) -> bool:
+    def samecheck(self, first: Optional[TreeNode], second: Optional[TreeNode]) -&gt; bool:
         if first == None and second == None:
             return True
         elif not (first and second) and (first or second):
@@ -8301,7 +8301,7 @@ class Solution:
                     node_stack.append(right.left)
         return True
 
-    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
+    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -&gt; bool:
         if root == None:
             return False
         else:
@@ -8314,42 +8314,42 @@ class Solution:
 
 #### [104. 二叉树的最大深度](https://leetcode.cn/problems/maximum-depth-of-binary-tree/)
 
-> 给定一个二叉树 `root` ，返回其最大深度。
->
-> 二叉树的 **最大深度** 是指从根节点到最远叶子节点的最长路径上的节点数。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/tmp-tree-1708246144773-1.jpg)
->
->  
->
-> ```
-> 输入：root = [3,9,20,null,null,15,7]
-> 输出：3
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：root = [1,null,2]
-> 输出：2
-> ```
->
->  
->
-> **提示：**
->
-> - 树中节点的数量在 `[0, 104]` 区间内。
-> - `-100 <= Node.val <= 100`
+&gt; 给定一个二叉树 `root` ，返回其最大深度。
+&gt;
+&gt; 二叉树的 **最大深度** 是指从根节点到最远叶子节点的最长路径上的节点数。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/tmp-tree-1708246144773-1.jpg)
+&gt;
+&gt;  
+&gt;
+&gt; ```
+&gt; 输入：root = [3,9,20,null,null,15,7]
+&gt; 输出：3
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：root = [1,null,2]
+&gt; 输出：2
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 树中节点的数量在 `[0, 104]` 区间内。
+&gt; - `-100 &lt;= Node.val &lt;= 100`
 
 ```c++
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
-        queue<TreeNode*> node_queue;
+        queue<treenode*> node_queue;
         int depth = 0;
         if (root == nullptr) {
             return depth;
@@ -8359,14 +8359,14 @@ public:
         while (!node_queue.empty()) {
             TreeNode* cur;
             int size = node_queue.size();
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 cur = node_queue.front();
                 node_queue.pop();
-                if (cur->left) {
-                    node_queue.push(cur->left);
+                if (cur-&gt;left) {
+                    node_queue.push(cur-&gt;left);
                 }
-                if (cur->right) {
-                    node_queue.push(cur->right);
+                if (cur-&gt;right) {
+                    node_queue.push(cur-&gt;right);
                 }
             }
             depth++;
@@ -8380,18 +8380,18 @@ class Solution {
 private:
     int result = 0;
     void getmaxdepth(TreeNode* cur, int depth) {
-        result = depth > result ? depth : result;
-        if (cur->left == nullptr && cur->right == nullptr) {
+        result = depth &gt; result ? depth : result;
+        if (cur-&gt;left == nullptr &amp;&amp; cur-&gt;right == nullptr) {
             return;
         }
-        if (cur->left) {
+        if (cur-&gt;left) {
             depth++;
-            getmaxdepth(cur->left, depth);  // 这里可以直接把数据变化放在形参depth的位置上
+            getmaxdepth(cur-&gt;left, depth);  // 这里可以直接把数据变化放在形参depth的位置上
             depth--;
         }
-        if (cur->right) {
+        if (cur-&gt;right) {
             depth++;
-            getmaxdepth(cur->right, depth);
+            getmaxdepth(cur-&gt;right, depth);
             depth--;
         }
         return;
@@ -8412,7 +8412,7 @@ public:
     int maxDepth(TreeNode* root) {
         int result = 0;
         int depth = 0;
-        stack<TreeNode*> node_stack;
+        stack<treenode*> node_stack;
         if (root == nullptr) {
             return result;
         }
@@ -8423,11 +8423,11 @@ public:
                 node_stack.pop();
                 node_stack.push(cur);
                 node_stack.push(nullptr);
-                if (cur->right) {
-                    node_stack.push(cur->right);
+                if (cur-&gt;right) {
+                    node_stack.push(cur-&gt;right);
                 }
-                if (cur->left) {
-                    node_stack.push(cur->left);
+                if (cur-&gt;left) {
+                    node_stack.push(cur-&gt;left);
                 }
                 depth++;
             } else {
@@ -8444,7 +8444,7 @@ public:
 
 ```python
 class Solution:
-    def maxDepth(self, root: Optional[TreeNode]) -> int:
+    def maxDepth(self, root: Optional[TreeNode]) -&gt; int:
         node_queue = []
         depth = 0
         if root == None:
@@ -8465,38 +8465,38 @@ class Solution:
 
 #### [559. N 叉树的最大深度](https://leetcode.cn/problems/maximum-depth-of-n-ary-tree/)
 
-> 给定一个 N 叉树，找到其最大深度。
->
-> 最大深度是指从根节点到最远叶子节点的最长路径上的节点总数。
->
-> N 叉树输入按层序遍历序列化表示，每组子节点由空值分隔（请参见示例）。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/narytreeexample-1708246485795-4.png)
->
-> ```
-> 输入：root = [1,null,3,2,4,null,5,6]
-> 输出：3
-> ```
->
-> **示例 2：**
->
-> ![img](./codeNote.assets/sample_4_964-1708246485795-6.png)
->
-> ```
-> 输入：root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]
-> 输出：5
-> ```
->
->  
->
-> **提示：**
->
-> - 树的深度不会超过 `1000` 。
-> - 树的节点数目位于 `[0, 104]` 之间。
+&gt; 给定一个 N 叉树，找到其最大深度。
+&gt;
+&gt; 最大深度是指从根节点到最远叶子节点的最长路径上的节点总数。
+&gt;
+&gt; N 叉树输入按层序遍历序列化表示，每组子节点由空值分隔（请参见示例）。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/narytreeexample-1708246485795-4.png)
+&gt;
+&gt; ```
+&gt; 输入：root = [1,null,3,2,4,null,5,6]
+&gt; 输出：3
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ![img](./codeNote.assets/sample_4_964-1708246485795-6.png)
+&gt;
+&gt; ```
+&gt; 输入：root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]
+&gt; 输出：5
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 树的深度不会超过 `1000` 。
+&gt; - 树的节点数目位于 `[0, 104]` 之间。
 
 ```c++
 // 迭代法
@@ -8507,15 +8507,15 @@ public:
         if (root == nullptr) {
             return depth;
         }
-        queue<Node*> node_queue;
+        queue<node*> node_queue;
         node_queue.push(root);
         depth++;
         while (!node_queue.empty()) {
             int size = node_queue.size();
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 Node* cur = node_queue.front();
                 node_queue.pop();
-                for (auto iter : cur->children) {
+                for (auto iter : cur-&gt;children) {
                     if (iter) {
                         node_queue.push(iter);
                     }
@@ -8532,7 +8532,7 @@ public:
 # 递归法
 class Solution:
     # 后序遍历(得到左右子树的高度最大值+1,即左右中)
-    def getdepth(self, cur: "Node") -> int:
+    def getdepth(self, cur: "Node") -&gt; int:
         if cur == None:
             return 0
         maxdp = 0
@@ -8540,42 +8540,42 @@ class Solution:
             maxdp = max(maxdp, self.getdepth(item))
         return maxdp + 1
 
-    def maxDepth(self, root: "Node") -> int:
+    def maxDepth(self, root: "Node") -&gt; int:
         return self.getdepth(root)
 ```
 
 #### [111. 二叉树的最小深度](https://leetcode.cn/problems/minimum-depth-of-binary-tree/)
 
-> 给定一个二叉树，找出其最小深度。
->
-> 最小深度是从根节点到最近叶子节点的最短路径上的节点数量。
->
-> **说明：**叶子节点是指没有子节点的节点。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/ex_depth-1708252330150-10.jpg)
->
-> ```
-> 输入：root = [3,9,20,null,null,15,7]
-> 输出：2
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：root = [2,null,3,null,4,null,5,null,6]
-> 输出：5
-> ```
->
->  
->
-> **提示：**
->
-> - 树中节点数的范围在 `[0, 105]` 内
-> - `-1000 <= Node.val <= 1000`
+&gt; 给定一个二叉树，找出其最小深度。
+&gt;
+&gt; 最小深度是从根节点到最近叶子节点的最短路径上的节点数量。
+&gt;
+&gt; **说明：**叶子节点是指没有子节点的节点。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/ex_depth-1708252330150-10.jpg)
+&gt;
+&gt; ```
+&gt; 输入：root = [3,9,20,null,null,15,7]
+&gt; 输出：2
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：root = [2,null,3,null,4,null,5,null,6]
+&gt; 输出：5
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 树中节点数的范围在 `[0, 105]` 内
+&gt; - `-1000 &lt;= Node.val &lt;= 1000`
 
 - 我认为这道题可以使用**层序遍历**,**前序遍历**,**后续遍历**,不适合使用**后序遍历**
   - 其中层序边遍历可以将空节点放入queue中
@@ -8591,11 +8591,11 @@ public:
             return 0;
         }
 
-        int leftDepth = minDepth(root->left);
-        int rightDepth = minDepth(root->right);
+        int leftDepth = minDepth(root-&gt;left);
+        int rightDepth = minDepth(root-&gt;right);
 
         // 当左子树或右子树有一个为空时，返回非空子树的最小深度加一
-        if (root->left == nullptr || root->right == nullptr) {
+        if (root-&gt;left == nullptr || root-&gt;right == nullptr) {
             return max(leftDepth, rightDepth) + 1;
         }
 
@@ -8607,7 +8607,7 @@ public:
 
 ```python
 class Solution:
-    def minDepth(self, root: Optional[TreeNode]) -> int:
+    def minDepth(self, root: Optional[TreeNode]) -&gt; int:
         # 尝试使用层序遍历
         node_queue = []
         depth = 0
@@ -8632,46 +8632,46 @@ class Solution:
 
 #### [222. 完全二叉树的节点个数](https://leetcode.cn/problems/count-complete-tree-nodes/)
 
-> 给你一棵 **完全二叉树** 的根节点 `root` ，求出该树的节点个数。
->
-> [完全二叉树](https://baike.baidu.com/item/完全二叉树/7773232?fr=aladdin) 的定义如下：在完全二叉树中，除了最底层节点可能没填满外，其余每层节点数都达到最大值，并且最下面一层的节点都集中在该层最左边的若干位置。若最底层为第 `h` 层，则该层包含 `1~ 2h` 个节点。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/complete.jpg)
->
-> ```
-> 输入：root = [1,2,3,4,5,6]
-> 输出：6
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：root = []
-> 输出：0
-> ```
->
-> **示例 3：**
->
-> ```
-> 输入：root = [1]
-> 输出：1
-> ```
->
->  
->
-> **提示：**
->
-> - 树中节点的数目范围是`[0, 5 * 104]`
-> - `0 <= Node.val <= 5 * 104`
-> - 题目数据保证输入的树是 **完全二叉树**
->
->  
->
-> **进阶：**遍历树来统计节点是一种时间复杂度为 `O(n)` 的简单解决方案。你可以设计一个更快的算法吗？
+&gt; 给你一棵 **完全二叉树** 的根节点 `root` ，求出该树的节点个数。
+&gt;
+&gt; [完全二叉树](https://baike.baidu.com/item/完全二叉树/7773232?fr=aladdin) 的定义如下：在完全二叉树中，除了最底层节点可能没填满外，其余每层节点数都达到最大值，并且最下面一层的节点都集中在该层最左边的若干位置。若最底层为第 `h` 层，则该层包含 `1~ 2h` 个节点。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/complete.jpg)
+&gt;
+&gt; ```
+&gt; 输入：root = [1,2,3,4,5,6]
+&gt; 输出：6
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：root = []
+&gt; 输出：0
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ```
+&gt; 输入：root = [1]
+&gt; 输出：1
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 树中节点的数目范围是`[0, 5 * 104]`
+&gt; - `0 &lt;= Node.val &lt;= 5 * 104`
+&gt; - 题目数据保证输入的树是 **完全二叉树**
+&gt;
+&gt;  
+&gt;
+&gt; **进阶：**遍历树来统计节点是一种时间复杂度为 `O(n)` 的简单解决方案。你可以设计一个更快的算法吗？
 
 - 如果直接考虑遍历所有节点的话直观解决就可以了,但是如果利用**完全二叉树**的特性的话,这个题目可以有更好的解决办法
   - ![222.完全二叉树的节点个数](./codeNote.assets/20201124092543662.png)
@@ -8686,27 +8686,27 @@ public:
             return 0;
         }
         int left_depth = 0, right_depth = 0;
-        TreeNode* left_ptr = root->left;
-        TreeNode* right_ptr = root->right;
+        TreeNode* left_ptr = root-&gt;left;
+        TreeNode* right_ptr = root-&gt;right;
         while (left_ptr != nullptr) {
-            left_ptr = left_ptr->left;
+            left_ptr = left_ptr-&gt;left;
             left_depth++;
         }
         while (right_ptr != nullptr) {
-            right_ptr = right_ptr->right;
+            right_ptr = right_ptr-&gt;right;
             right_depth++;
         }
         if (left_depth == right_depth) {
-            return (2 << left_depth) - 1;
+            return (2 &lt;&lt; left_depth) - 1;
         } // 这里要深入理解为什么会向下递归
-        return countNodes(root->left) + countNodes(root->right) + 1;
+        return countNodes(root-&gt;left) + countNodes(root-&gt;right) + 1;
     }
 };
 ```
 
 ```python
 class Solution:
-    def countNodes(self, root: Optional[TreeNode]) -> int:
+    def countNodes(self, root: Optional[TreeNode]) -&gt; int:
         if root == None:
             return 0
         left_depth = 0
@@ -8720,53 +8720,53 @@ class Solution:
             right_ptr = right_ptr.right
             right_depth += 1
         if left_depth == right_depth:
-            return (2 << left_depth) - 1
+            return (2 &lt;&lt; left_depth) - 1
         return self.countNodes(root.left) + self.countNodes(root.right) + 1
 ```
 
-> 递归是一种重要思想,`return`是一种特别的终止方法
+&gt; 递归是一种重要思想,`return`是一种特别的终止方法
 
 #### [110. 平衡二叉树](https://leetcode.cn/problems/balanced-binary-tree/)
 
-> 给定一个二叉树，判断它是否是高度平衡的二叉树。
->
-> 本题中，一棵高度平衡二叉树定义为：
->
-> > 一个二叉树*每个节点* 的左右两个子树的高度差的绝对值不超过 1 。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/balance_1.jpg)
->
-> ```
-> 输入：root = [3,9,20,null,null,15,7]
-> 输出：true
-> ```
->
-> **示例 2：**
->
-> ![img](./codeNote.assets/balance_2.jpg)
->
-> ```
-> 输入：root = [1,2,2,3,3,null,null,4,4]
-> 输出：false
-> ```
->
-> **示例 3：**
->
-> ```
-> 输入：root = []
-> 输出：true
-> ```
->
->  
->
-> **提示：**
->
-> - 树中的节点数在范围 `[0, 5000]` 内
-> - `-104 <= Node.val <= 104`
+&gt; 给定一个二叉树，判断它是否是高度平衡的二叉树。
+&gt;
+&gt; 本题中，一棵高度平衡二叉树定义为：
+&gt;
+&gt; &gt; 一个二叉树*每个节点* 的左右两个子树的高度差的绝对值不超过 1 。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/balance_1.jpg)
+&gt;
+&gt; ```
+&gt; 输入：root = [3,9,20,null,null,15,7]
+&gt; 输出：true
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ![img](./codeNote.assets/balance_2.jpg)
+&gt;
+&gt; ```
+&gt; 输入：root = [1,2,2,3,3,null,null,4,4]
+&gt; 输出：false
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ```
+&gt; 输入：root = []
+&gt; 输出：true
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 树中的节点数在范围 `[0, 5000]` 内
+&gt; - `-104 &lt;= Node.val &lt;= 104`
 
 ```c++
 class Solution {
@@ -8775,7 +8775,7 @@ private:
         if (cur == nullptr) { //终止条件
             return 0;
         }
-        return max(getHeight(cur->left), getHeight(cur->right)) + 1; // 递归逻辑
+        return max(getHeight(cur-&gt;left), getHeight(cur-&gt;right)) + 1; // 递归逻辑
     }
 
 public:
@@ -8784,23 +8784,23 @@ public:
         if (root == nullptr) {
             return true;
         }
-        return (abs(getHeight(root->left) - getHeight(root->right)) < 2) &&
-               isBalanced(root->left) && isBalanced(root->right);
+        return (abs(getHeight(root-&gt;left) - getHeight(root-&gt;right)) &lt; 2) &amp;&amp;
+               isBalanced(root-&gt;left) &amp;&amp; isBalanced(root-&gt;right);
     }
 };
 // 这种方法对于同一个节点可能存在访问的情况,可以考虑使用记忆化操作优化
 class Solution {
 private:
-    unordered_map<TreeNode*, int> height_map; // 记忆化操作
+    unordered_map<treenode*, int=""> height_map; // 记忆化操作
     int getHeight(TreeNode* cur) {
         auto it = height_map.find(cur); // 如果存在该键,则迭代器指向对应的键值对,可以用name.second访问值,不存在该键则指向height_map的尾迭代器
         if (it != height_map.end()) {
-            return it->second;
+            return it-&gt;second;
         }
         if (cur == nullptr) { //终止条件
             return 0;
         }
-        int height = max(getHeight(cur->left), getHeight(cur->right)) + 1;
+        int height = max(getHeight(cur-&gt;left), getHeight(cur-&gt;right)) + 1;
         return height_map[cur] = height; // 可以之间使用下标操作符[]来访问和修改对应的值
         // 递归逻辑
     }
@@ -8811,8 +8811,8 @@ public:
         if (root == nullptr) {
             return true;
         }
-        return (abs(getHeight(root->left) - getHeight(root->right)) < 2) &&
-               isBalanced(root->left) && isBalanced(root->right);
+        return (abs(getHeight(root-&gt;left) - getHeight(root-&gt;right)) &lt; 2) &amp;&amp;
+               isBalanced(root-&gt;left) &amp;&amp; isBalanced(root-&gt;right);
     }
 };
 ```
@@ -8822,7 +8822,7 @@ class Solution:
     def __init__(self): # 初始化函数在不需要类外参数的时候形式参数只有self
         self.height_dict = {}
 
-    def getHeight(self, cur: Optional[TreeNode]) -> int:
+    def getHeight(self, cur: Optional[TreeNode]) -&gt; int:
         if cur == None:
             return 0
         if self.height_dict.get(cur, 0) != 0: # get方法得到的值为键值对中的值,并且设置了默认的返回值0
@@ -8831,11 +8831,11 @@ class Solution:
         self.height_dict[cur] = height
         return height
 
-    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+    def isBalanced(self, root: Optional[TreeNode]) -&gt; bool:
         if root == None:
             return True
         return (
-            -2 < self.getHeight(root.left) - self.getHeight(root.right) < 2
+            -2 &lt; self.getHeight(root.left) - self.getHeight(root.right) &lt; 2
             and self.isBalanced(root.left)
             and self.isBalanced(root.right)
         )
@@ -8843,34 +8843,34 @@ class Solution:
 
 #### [257. 二叉树的所有路径](https://leetcode.cn/problems/binary-tree-paths/)
 
-> 给你一个二叉树的根节点 `root` ，按 **任意顺序** ，返回所有从根节点到叶子节点的路径。
->
-> **叶子节点** 是指没有子节点的节点。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/paths-tree.jpg)
->
-> ```
-> 输入：root = [1,2,3,null,5]
-> 输出：["1->2->5","1->3"]
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：root = [1]
-> 输出：["1"]
-> ```
->
->  
->
-> **提示：**
->
-> - 树中节点的数目在范围 `[1, 100]` 内
-> - `-100 <= Node.val <= 100!`
+&gt; 给你一个二叉树的根节点 `root` ，按 **任意顺序** ，返回所有从根节点到叶子节点的路径。
+&gt;
+&gt; **叶子节点** 是指没有子节点的节点。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/paths-tree.jpg)
+&gt;
+&gt; ```
+&gt; 输入：root = [1,2,3,null,5]
+&gt; 输出：["1-&gt;2-&gt;5","1-&gt;3"]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：root = [1]
+&gt; 输出：["1"]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 树中节点的数目在范围 `[1, 100]` 内
+&gt; - `-100 &lt;= Node.val &lt;= 100!`
 
 ![257.二叉树的所有路径](./codeNote.assets/20210204151702443.png)
 
@@ -8880,18 +8880,18 @@ private:
     vector<string> ans;
     // 注意string对于+运算符的特殊支持(简化代码)
     void backtracing(TreeNode* cur, string path) {
-        if (cur->left == nullptr && cur->right == nullptr) {
-            path += to_string(cur->val); // 将当前节点值添加到路径字符串中
+        if (cur-&gt;left == nullptr &amp;&amp; cur-&gt;right == nullptr) {
+            path += to_string(cur-&gt;val); // 将当前节点值添加到路径字符串中
             ans.push_back(path);
             return;
         }
-        if (cur->left) {
-            backtracing(cur->left, path + to_string(cur->val) +
-                                       "->"); // 在递归调用前更新路径
+        if (cur-&gt;left) {
+            backtracing(cur-&gt;left, path + to_string(cur-&gt;val) +
+                                       "-&gt;"); // 在递归调用前更新路径
         }
-        if (cur->right) {
-            backtracing(cur->right, path + to_string(cur->val) +
-                                        "->"); // 在递归调用前更新路径
+        if (cur-&gt;right) {
+            backtracing(cur-&gt;right, path + to_string(cur-&gt;val) +
+                                        "-&gt;"); // 在递归调用前更新路径
         }
     }
 
@@ -8912,16 +8912,16 @@ class Solution:
     def __init__(self):
         self.ans = []
 
-    def findway(self, cur: Optional[TreeNode], path: str) -> None:
+    def findway(self, cur: Optional[TreeNode], path: str) -&gt; None:
         if cur.left == None and cur.right == None:
             self.ans.append(path + str(cur.val))
             return
         if cur.left:
-            self.findway(cur.left, path + str(cur.val) + "->")
+            self.findway(cur.left, path + str(cur.val) + "-&gt;")
         if cur.right:
-            self.findway(cur.right, path + str(cur.val) + "->")
+            self.findway(cur.right, path + str(cur.val) + "-&gt;")
 
-    def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
+    def binaryTreePaths(self, root: Optional[TreeNode]) -&gt; List[str]:
         if root == None:
             return ans
         path = ""
@@ -8940,33 +8940,33 @@ class Solution:
 
 #### [404. 左叶子之和](https://leetcode.cn/problems/sum-of-left-leaves/)
 
-> 给定二叉树的根节点 `root` ，返回所有左叶子之和。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/leftsum-tree.jpg)
->
-> ```
-> 输入: root = [3,9,20,null,null,15,7] 
-> 输出: 24 
-> 解释: 在这个二叉树中，有两个左叶子，分别是 9 和 15，所以返回 24
-> ```
->
-> **示例 2:**
->
-> ```
-> 输入: root = [1]
-> 输出: 0
-> ```
->
->  
->
-> **提示:**
->
-> - 节点数在 `[1, 1000]` 范围内
-> - `-1000 <= Node.val <= 1000`
+&gt; 给定二叉树的根节点 `root` ，返回所有左叶子之和。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/leftsum-tree.jpg)
+&gt;
+&gt; ```
+&gt; 输入: root = [3,9,20,null,null,15,7] 
+&gt; 输出: 24 
+&gt; 解释: 在这个二叉树中，有两个左叶子，分别是 9 和 15，所以返回 24
+&gt; ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ```
+&gt; 输入: root = [1]
+&gt; 输出: 0
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示:**
+&gt;
+&gt; - 节点数在 `[1, 1000]` 范围内
+&gt; - `-1000 &lt;= Node.val &lt;= 1000`
 
 ```c++
 // 注意是叶子节点
@@ -8974,17 +8974,17 @@ class Solution {
 private:
     int ans = 0;
     void visit(TreeNode* cur) {
-        if (cur->left == nullptr && cur->right == nullptr) {
+        if (cur-&gt;left == nullptr &amp;&amp; cur-&gt;right == nullptr) {
             return;
         }
-        if (cur->left) {
-            if (cur->left->left == nullptr && cur->left->right == nullptr) {
-                ans += cur->left->val;
+        if (cur-&gt;left) {
+            if (cur-&gt;left-&gt;left == nullptr &amp;&amp; cur-&gt;left-&gt;right == nullptr) {
+                ans += cur-&gt;left-&gt;val;
             }
-            visit(cur->left);
+            visit(cur-&gt;left);
         }
-        if (cur->right) {
-            visit(cur->right);
+        if (cur-&gt;right) {
+            visit(cur-&gt;right);
         }
     }
 
@@ -9005,7 +9005,7 @@ class Solution:
     def __init__(self):
         self.ans = 0
 
-    def visit(self, cur: Optional[TreeNode]) -> None:
+    def visit(self, cur: Optional[TreeNode]) -&gt; None:
         if cur.left == None and cur.right == None:
             return
         if cur.left:
@@ -9016,7 +9016,7 @@ class Solution:
         if cur.right:
             self.visit(cur.right)
 
-    def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
+    def sumOfLeftLeaves(self, root: Optional[TreeNode]) -&gt; int:
         if root == None:
             return self.ans
         self.visit(root)
@@ -9025,57 +9025,57 @@ class Solution:
 
 #### [513. 找树左下角的值](https://leetcode.cn/problems/find-bottom-left-tree-value/)
 
-> 给定一个二叉树的 **根节点** `root`，请找出该二叉树的 **最底层 最左边** 节点的值。
->
-> 假设二叉树中至少有一个节点。
->
->  
->
-> **示例 1:**
->
-> ![img](./codeNote.assets/tree1-1708419922156-17.jpg)
->
-> ```
-> 输入: root = [2,1,3]
-> 输出: 1
-> ```
->
-> **示例 2:**
->
-> ![img](./codeNote.assets/tree2.jpg)
->
-> ```
-> 输入: [1,2,3,4,null,5,6,null,null,7]
-> 输出: 7
-> ```
->
->  
->
-> **提示:**
->
-> - 二叉树的节点个数的范围是 `[1,104]`
-> - `-231 <= Node.val <= 231 - 1` 
+&gt; 给定一个二叉树的 **根节点** `root`，请找出该二叉树的 **最底层 最左边** 节点的值。
+&gt;
+&gt; 假设二叉树中至少有一个节点。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1:**
+&gt;
+&gt; ![img](./codeNote.assets/tree1-1708419922156-17.jpg)
+&gt;
+&gt; ```
+&gt; 输入: root = [2,1,3]
+&gt; 输出: 1
+&gt; ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ![img](./codeNote.assets/tree2.jpg)
+&gt;
+&gt; ```
+&gt; 输入: [1,2,3,4,null,5,6,null,null,7]
+&gt; 输出: 7
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示:**
+&gt;
+&gt; - 二叉树的节点个数的范围是 `[1,104]`
+&gt; - `-231 &lt;= Node.val &lt;= 231 - 1` 
 
 ```c++
 class Solution {
 public:
     int findBottomLeftValue(TreeNode* root) {
         // 使用层序遍历,最下层的第一个
-        queue<TreeNode*> node_queue;
-        vector<vector<int>> ans;
+        queue<treenode*> node_queue;
+        vector<vector<int>&gt; ans;
         node_queue.push(root);
         while (!node_queue.empty()) {
             vector<int> path;
             int size = node_queue.size();
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 TreeNode* cur = node_queue.front();
-                path.push_back(cur->val);
+                path.push_back(cur-&gt;val);
                 node_queue.pop();
-                if (cur->left) {
-                    node_queue.push(cur->left);
+                if (cur-&gt;left) {
+                    node_queue.push(cur-&gt;left);
                 }
-                if (cur->right) {
-                    node_queue.push(cur->right);
+                if (cur-&gt;right) {
+                    node_queue.push(cur-&gt;right);
                 }
             }
             ans.push_back(path);
@@ -9091,9 +9091,9 @@ class Solution:
         self.result = 0
         self.depth = 0
 
-    def findvalue(self, cur: Optional[TreeNode], depth: int) -> None:
+    def findvalue(self, cur: Optional[TreeNode], depth: int) -&gt; None:
         if not (cur.left or cur.right):
-            if self.depth < depth:
+            if self.depth &lt; depth:
                 self.depth = depth
                 self.result = cur.val
             return
@@ -9102,7 +9102,7 @@ class Solution:
         if cur.right:
             self.findvalue(cur.right, depth + 1)
 
-    def findBottomLeftValue(self, root: Optional[TreeNode]) -> int:
+    def findBottomLeftValue(self, root: Optional[TreeNode]) -&gt; int:
         # 考虑使用递归方法
         self.result = root.val
         self.findvalue(root, 0)
@@ -9111,50 +9111,50 @@ class Solution:
 
 #### [112. 路径总和](https://leetcode.cn/problems/path-sum/)
 
-> 给你二叉树的根节点 `root` 和一个表示目标和的整数 `targetSum` 。判断该树中是否存在 **根节点到叶子节点** 的路径，这条路径上所有节点值相加等于目标和 `targetSum` 。如果存在，返回 `true` ；否则，返回 `false` 。
->
-> **叶子节点** 是指没有子节点的节点。
->
->  
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/pathsum1.jpg)
->
-> ```
-> 输入：root = [5,4,8,11,null,13,4,7,2,null,null,null,1], targetSum = 22
-> 输出：true
-> 解释：等于目标和的根节点到叶节点路径如上图所示。
-> ```
->
-> **示例 2：**
->
-> ![img](./codeNote.assets/pathsum2.jpg)
->
-> ```
-> 输入：root = [1,2,3], targetSum = 5
-> 输出：false
-> 解释：树中存在两条根节点到叶子节点的路径：
-> (1 --> 2): 和为 3
-> (1 --> 3): 和为 4
-> 不存在 sum = 5 的根节点到叶子节点的路径。
-> ```
->
-> **示例 3：**
->
-> ```
-> 输入：root = [], targetSum = 0
-> 输出：false
-> 解释：由于树是空的，所以不存在根节点到叶子节点的路径。
-> ```
->
->  
->
-> **提示：**
->
-> - 树中节点的数目在范围 `[0, 5000]` 内
-> - `-1000 <= Node.val <= 1000`
-> - `-1000 <= targetSum <= 1000`
+&gt; 给你二叉树的根节点 `root` 和一个表示目标和的整数 `targetSum` 。判断该树中是否存在 **根节点到叶子节点** 的路径，这条路径上所有节点值相加等于目标和 `targetSum` 。如果存在，返回 `true` ；否则，返回 `false` 。
+&gt;
+&gt; **叶子节点** 是指没有子节点的节点。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/pathsum1.jpg)
+&gt;
+&gt; ```
+&gt; 输入：root = [5,4,8,11,null,13,4,7,2,null,null,null,1], targetSum = 22
+&gt; 输出：true
+&gt; 解释：等于目标和的根节点到叶节点路径如上图所示。
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ![img](./codeNote.assets/pathsum2.jpg)
+&gt;
+&gt; ```
+&gt; 输入：root = [1,2,3], targetSum = 5
+&gt; 输出：false
+&gt; 解释：树中存在两条根节点到叶子节点的路径：
+&gt; (1 --&gt; 2): 和为 3
+&gt; (1 --&gt; 3): 和为 4
+&gt; 不存在 sum = 5 的根节点到叶子节点的路径。
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ```
+&gt; 输入：root = [], targetSum = 0
+&gt; 输出：false
+&gt; 解释：由于树是空的，所以不存在根节点到叶子节点的路径。
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 树中节点的数目在范围 `[0, 5000]` 内
+&gt; - `-1000 &lt;= Node.val &lt;= 1000`
+&gt; - `-1000 &lt;= targetSum &lt;= 1000`
 
 ```c++
 class Solution {
@@ -9162,18 +9162,18 @@ private:
     int target;
     bool flag = false;
     void backtracing(TreeNode* cur, int current_sum) {
-        current_sum += cur->val;
-        if (cur->left == nullptr && cur->right == nullptr) {
+        current_sum += cur-&gt;val;
+        if (cur-&gt;left == nullptr &amp;&amp; cur-&gt;right == nullptr) {
             if (current_sum == target) {
                 flag = true;
             }
             return;
         }
-        if (cur->left) {
-            backtracing(cur->left, current_sum);
+        if (cur-&gt;left) {
+            backtracing(cur-&gt;left, current_sum);
         }
-        if (cur->right) {
-            backtracing(cur->right, current_sum);
+        if (cur-&gt;right) {
+            backtracing(cur-&gt;right, current_sum);
         }
     }
 
@@ -9192,7 +9192,7 @@ public:
 
 ```python
 class Solution:
-    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -&gt; bool:
         node_stack = []
         # 别忘了前序遍历
         if root == None:
@@ -9212,82 +9212,82 @@ class Solution:
 
 #### [113. 路径总和 II](https://leetcode.cn/problems/path-sum-ii/)
 
-> 给你二叉树的根节点 `root` 和一个整数目标和 `targetSum` ，找出所有 **从根节点到叶子节点** 路径总和等于给定目标和的路径。
->
-> **叶子节点** 是指没有子节点的节点。
->
-> 
->
-> **示例 1：**
->
-> ![img](./codeNote.assets/pathsumii1.jpg)
->
-> ```
-> 输入：root = [5,4,8,11,null,13,4,7,2,null,null,5,1], targetSum = 22
-> 输出：[[5,4,11,2],[5,8,4,5]]
-> ```
->
-> **示例 2：**
->
-> ![img](./codeNote.assets/pathsum2-1708427766269-27.jpg)
->
-> ```
-> 输入：root = [1,2,3], targetSum = 5
-> 输出：[]
-> ```
->
-> **示例 3：**
->
-> ```
-> 输入：root = [1,2], targetSum = 0
-> 输出：[]
-> ```
->
-> 
->
-> **提示：**
->
-> - 树中节点总数在范围 `[0, 5000]` 内
-> - `-1000 <= Node.val <= 1000`
-> - `-1000 <= targetSum <= 1000`
+&gt; 给你二叉树的根节点 `root` 和一个整数目标和 `targetSum` ，找出所有 **从根节点到叶子节点** 路径总和等于给定目标和的路径。
+&gt;
+&gt; **叶子节点** 是指没有子节点的节点。
+&gt;
+&gt; 
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ![img](./codeNote.assets/pathsumii1.jpg)
+&gt;
+&gt; ```
+&gt; 输入：root = [5,4,8,11,null,13,4,7,2,null,null,5,1], targetSum = 22
+&gt; 输出：[[5,4,11,2],[5,8,4,5]]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ![img](./codeNote.assets/pathsum2-1708427766269-27.jpg)
+&gt;
+&gt; ```
+&gt; 输入：root = [1,2,3], targetSum = 5
+&gt; 输出：[]
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ```
+&gt; 输入：root = [1,2], targetSum = 0
+&gt; 输出：[]
+&gt; ```
+&gt;
+&gt; 
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - 树中节点总数在范围 `[0, 5000]` 内
+&gt; - `-1000 &lt;= Node.val &lt;= 1000`
+&gt; - `-1000 &lt;= targetSum &lt;= 1000`
 
 ![113.路径总和ii](./codeNote.assets/20210203160922745.png)
 
 ```c++
 class Solution {
 private:
-    vector<vector<int>> ans;
+    vector<vector<int>&gt; ans;
     void backtracing(TreeNode* cur, vector<int> path, int current_num,
                      int targetSum) {
 
-        if (!cur->left && !cur->right) {
+        if (!cur-&gt;left &amp;&amp; !cur-&gt;right) {
             if (current_num == targetSum) {
                 ans.push_back(path);
             }
             return;
         }
-        if (cur->left) {
-            path.push_back(cur->left->val);
-            backtracing(cur->left, path, current_num + cur->left->val,
+        if (cur-&gt;left) {
+            path.push_back(cur-&gt;left-&gt;val);
+            backtracing(cur-&gt;left, path, current_num + cur-&gt;left-&gt;val,
                         targetSum);
             path.pop_back();
         }
-        if (cur->right) {
-            path.push_back(cur->right->val);
-            backtracing(cur->right, path, current_num + cur->right->val,
+        if (cur-&gt;right) {
+            path.push_back(cur-&gt;right-&gt;val);
+            backtracing(cur-&gt;right, path, current_num + cur-&gt;right-&gt;val,
                         targetSum);
             path.pop_back();
         }
     }
 
 public:
-    vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
+    vector<vector<int>&gt; pathSum(TreeNode* root, int targetSum) {
         if (root == nullptr) {
             return ans;
         }
         vector<int> path;
-        path.push_back(root->val);
-        backtracing(root, path, root->val, targetSum);
+        path.push_back(root-&gt;val);
+        backtracing(root, path, root-&gt;val, targetSum);
         return ans;
     }
 };
@@ -9298,41 +9298,41 @@ public:
 // carl的写法
 class solution {
 private:
-    vector<vector<int>> result;
+    vector<vector<int>&gt; result;
     vector<int> path;
     // 递归函数不需要返回值，因为我们要遍历整个树
     void traversal(TreeNode* cur, int count) {
-        if (!cur->left && !cur->right && count == 0) { // 遇到了叶子节点且找到了和为sum的路径
+        if (!cur-&gt;left &amp;&amp; !cur-&gt;right &amp;&amp; count == 0) { // 遇到了叶子节点且找到了和为sum的路径
             result.push_back(path);
             return;
         }
 
-        if (!cur->left && !cur->right) return ; // 遇到叶子节点而没有找到合适的边，直接返回
+        if (!cur-&gt;left &amp;&amp; !cur-&gt;right) return ; // 遇到叶子节点而没有找到合适的边，直接返回
 
-        if (cur->left) { // 左 （空节点不遍历）
-            path.push_back(cur->left->val);
-            count -= cur->left->val;
-            traversal(cur->left, count);    // 递归
-            count += cur->left->val;        // 回溯
+        if (cur-&gt;left) { // 左 （空节点不遍历）
+            path.push_back(cur-&gt;left-&gt;val);
+            count -= cur-&gt;left-&gt;val;
+            traversal(cur-&gt;left, count);    // 递归
+            count += cur-&gt;left-&gt;val;        // 回溯
             path.pop_back();                // 回溯
         }
-        if (cur->right) { // 右 （空节点不遍历）
-            path.push_back(cur->right->val);
-            count -= cur->right->val;
-            traversal(cur->right, count);   // 递归
-            count += cur->right->val;       // 回溯
+        if (cur-&gt;right) { // 右 （空节点不遍历）
+            path.push_back(cur-&gt;right-&gt;val);
+            count -= cur-&gt;right-&gt;val;
+            traversal(cur-&gt;right, count);   // 递归
+            count += cur-&gt;right-&gt;val;       // 回溯
             path.pop_back();                // 回溯
         }
         return ;
     }
 
 public:
-    vector<vector<int>> pathSum(TreeNode* root, int sum) {
+    vector<vector<int>&gt; pathSum(TreeNode* root, int sum) {
         result.clear();
         path.clear();
         if (root == NULL) return result;
-        path.push_back(root->val); // 把根节点放进路径
-        traversal(root, sum - root->val);
+        path.push_back(root-&gt;val); // 把根节点放进路径
+        traversal(root, sum - root-&gt;val);
         return result;
     }
 };
@@ -9340,7 +9340,7 @@ public:
 
 ```python
 class Solution:
-    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -&gt; List[List[int]]:
         ans = []
         if root == None:
             return ans
@@ -9358,37 +9358,37 @@ class Solution:
 
 #### [106. 从中序与后序遍历序列构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/)
 
-> 给定两个整数数组 `inorder` 和 `postorder` ，其中 `inorder` 是二叉树的中序遍历， `postorder` 是同一棵树的后序遍历，请你构造并返回这颗 *二叉树* 。
->
-> 
->
-> **示例 1:**
->
-> ![img](./codeNote.assets/tree-1708653879157-3.jpg)
->
-> ```
-> 输入：inorder = [9,3,15,20,7], postorder = [9,15,7,20,3]
-> 输出：[3,9,20,null,null,15,7]
-> ```
->
-> **示例 2:**
->
-> ```
-> 输入：inorder = [-1], postorder = [-1]
-> 输出：[-1]
-> ```
->
-> 
->
-> **提示:**
->
-> - `1 <= inorder.length <= 3000`
-> - `postorder.length == inorder.length`
-> - `-3000 <= inorder[i], postorder[i] <= 3000`
-> - `inorder` 和 `postorder` 都由 **不同** 的值组成
-> - `postorder` 中每一个值都在 `inorder` 中
-> - `inorder` **保证**是树的中序遍历
-> - `postorder` **保证**是树的后序遍历
+&gt; 给定两个整数数组 `inorder` 和 `postorder` ，其中 `inorder` 是二叉树的中序遍历， `postorder` 是同一棵树的后序遍历，请你构造并返回这颗 *二叉树* 。
+&gt;
+&gt; 
+&gt;
+&gt; **示例 1:**
+&gt;
+&gt; ![img](./codeNote.assets/tree-1708653879157-3.jpg)
+&gt;
+&gt; ```
+&gt; 输入：inorder = [9,3,15,20,7], postorder = [9,15,7,20,3]
+&gt; 输出：[3,9,20,null,null,15,7]
+&gt; ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ```
+&gt; 输入：inorder = [-1], postorder = [-1]
+&gt; 输出：[-1]
+&gt; ```
+&gt;
+&gt; 
+&gt;
+&gt; **提示:**
+&gt;
+&gt; - `1 &lt;= inorder.length &lt;= 3000`
+&gt; - `postorder.length == inorder.length`
+&gt; - `-3000 &lt;= inorder[i], postorder[i] &lt;= 3000`
+&gt; - `inorder` 和 `postorder` 都由 **不同** 的值组成
+&gt; - `postorder` 中每一个值都在 `inorder` 中
+&gt; - `inorder` **保证**是树的中序遍历
+&gt; - `postorder` **保证**是树的后序遍历
 
 - 个人认为这道题相当有挑战性,既考虑了二叉树的多种遍历方式的特征,又考验了数组的操作
   1. 当后续数组为空时,没有节点
@@ -9401,7 +9401,7 @@ class Solution:
 ```c++
 class Solution {
 public:
-    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+    TreeNode* buildTree(vector<int>&amp; inorder, vector<int>&amp; postorder) {
         if (postorder.empty()) {
             return nullptr;
         }
@@ -9410,7 +9410,7 @@ public:
                       1]; // 后序遍历数组的最后一个元素是当前的中间节点
         TreeNode* root = new TreeNode(rootvalue);
         int spiltIndex = 0;
-        for (; spiltIndex < inorder.size(); spiltIndex++) {
+        for (; spiltIndex &lt; inorder.size(); spiltIndex++) {
             if (inorder[spiltIndex] == rootvalue) {
                 break;
             }
@@ -9425,8 +9425,8 @@ public:
                                   postorder.begin() + inorderLeft.size());
         vector<int> postorderRight(postorder.begin() + inorderLeft.size(),
                                    postorder.end());
-        root->left = buildTree(inorderLeft, postorderLeft);
-        root->right = buildTree(inorderRight, postorderRight);
+        root-&gt;left = buildTree(inorderLeft, postorderLeft);
+        root-&gt;right = buildTree(inorderRight, postorderRight);
         return root;
     }
 };
@@ -9434,12 +9434,12 @@ public:
 
 ```python
 class Solution:
-    def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
+    def buildTree(self, inorder: List[int], postorder: List[int]) -&gt; Optional[TreeNode]:
         if len(postorder) == 0:
             return None
         root = TreeNode(postorder[-1])
         spiltIndex = 0
-        while spiltIndex < len(inorder):
+        while spiltIndex &lt; len(inorder):
             if inorder[spiltIndex] == root.val:
                 break
             spiltIndex += 1
@@ -9522,37 +9522,37 @@ print(deep)      # [1, 2, [3, 4]] - 内嵌列表没有改变，因为它是一�
 
 在选择使用浅拷贝还是深拷贝时，需要考虑应用场景和性能开销。深拷贝会递归复制对象，可能会消耗更多的时间和内存，特别是当对象结构复杂或对象层次很深时。因此，你应该根据需要来选择最合适的复制类型。
 
-> **可变对象和不可变对象**
->
-> 在Python中，对象可以被分类为不可变（immutable）和可变（mutable），这一分类决定了对象是否可以被直接修改。**理解这一点对于预测对象在多个引用之间的行为至关重要。**下面分别解释这两种情况：
->
-> - **对于不可变对象的“修改”**
->
-> **不可变对象包括整数、浮点数、字符串、元组等。**==当你对不可变对象进行修改时，实际上是在创建一个新的对象，并改变了变量的引用。==原始对象本身并未改变，因为它是不可变的。
->
-> ```python
-> a = 3
-> b = a
-> a = a + 2  # 这里不是修改了3，而是创建了一个新的整数5，并让a引用它
-> print(b)  # b仍然是3
-> ```
->
-> 在上面的例子中，`b`的值不会改变，因为`3`这个对象是不可变的，`a = a + 2`语句创建了一个新的整数对象`5`，然后将`a`的引用从`3`改变到了`5`。
->
-> - **对于可变对象的修改**
->
-> **可变对象包括列表、字典、集合等。**==它们可以被直接修改，而不需要创建一个新的对象。如果你有多个引用指向同一个可变对象，对该对象的任何修改都会反映在所有引用上。==
->
-> ```python
-> a = [1, 2, 3]
-> b = a
-> a.append(4)  # 直接修改了对象 [1, 2, 3]
-> print(b)  # b现在是 [1, 2, 3, 4]
-> ```
->
-> 在这个例子中，`a`和`b`都指向同一个列表对象。通过`a`对列表进行修改（添加了`4`），`b`也反映了这一改变，因为它们是指向同一个对象的引用。
->
-> 因此，对于不可变对象，通常所说的“修改”实际上是创建了新的对象并改变了引用；而对于可变对象，真正的内容修改是会影响到所有指向这个对象的引用的。
+&gt; **可变对象和不可变对象**
+&gt;
+&gt; 在Python中，对象可以被分类为不可变（immutable）和可变（mutable），这一分类决定了对象是否可以被直接修改。**理解这一点对于预测对象在多个引用之间的行为至关重要。**下面分别解释这两种情况：
+&gt;
+&gt; - **对于不可变对象的“修改”**
+&gt;
+&gt; **不可变对象包括整数、浮点数、字符串、元组等。**==当你对不可变对象进行修改时，实际上是在创建一个新的对象，并改变了变量的引用。==原始对象本身并未改变，因为它是不可变的。
+&gt;
+&gt; ```python
+&gt; a = 3
+&gt; b = a
+&gt; a = a + 2  # 这里不是修改了3，而是创建了一个新的整数5，并让a引用它
+&gt; print(b)  # b仍然是3
+&gt; ```
+&gt;
+&gt; 在上面的例子中，`b`的值不会改变，因为`3`这个对象是不可变的，`a = a + 2`语句创建了一个新的整数对象`5`，然后将`a`的引用从`3`改变到了`5`。
+&gt;
+&gt; - **对于可变对象的修改**
+&gt;
+&gt; **可变对象包括列表、字典、集合等。**==它们可以被直接修改，而不需要创建一个新的对象。如果你有多个引用指向同一个可变对象，对该对象的任何修改都会反映在所有引用上。==
+&gt;
+&gt; ```python
+&gt; a = [1, 2, 3]
+&gt; b = a
+&gt; a.append(4)  # 直接修改了对象 [1, 2, 3]
+&gt; print(b)  # b现在是 [1, 2, 3, 4]
+&gt; ```
+&gt;
+&gt; 在这个例子中，`a`和`b`都指向同一个列表对象。通过`a`对列表进行修改（添加了`4`），`b`也反映了这一改变，因为它们是指向同一个对象的引用。
+&gt;
+&gt; 因此，对于不可变对象，通常所说的“修改”实际上是创建了新的对象并改变了引用；而对于可变对象，真正的内容修改是会影响到所有指向这个对象的引用的。
 
 #### 解决问题的类型
 
@@ -9570,52 +9570,52 @@ print(deep)      # [1, 2, [3, 4]] - 内嵌列表没有改变，因为它是一�
 
 #### [77. 组合](https://leetcode.cn/problems/combinations/)
 
-> 给定两个整数 `n` 和 `k`，返回范围 `[1, n]` 中所有可能的 `k` 个数的组合。
->
-> 你可以按 **任何顺序** 返回答案。
->
->  
->
-> **示例 1：**
->
-> ```
-> 输入：n = 4, k = 2
-> 输出：
-> [
->   [2,4],
->   [3,4],
->   [2,3],
->   [1,2],
->   [1,3],
->   [1,4],
-> ]
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：n = 1, k = 1
-> 输出：[[1]]
-> ```
->
->  
->
-> **提示：**
->
-> - `1 <= n <= 20`
-> - `1 <= k <= n`
+&gt; 给定两个整数 `n` 和 `k`，返回范围 `[1, n]` 中所有可能的 `k` 个数的组合。
+&gt;
+&gt; 你可以按 **任何顺序** 返回答案。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：n = 4, k = 2
+&gt; 输出：
+&gt; [
+&gt;   [2,4],
+&gt;   [3,4],
+&gt;   [2,3],
+&gt;   [1,2],
+&gt;   [1,3],
+&gt;   [1,4],
+&gt; ]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：n = 1, k = 1
+&gt; 输出：[[1]]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `1 &lt;= n &lt;= 20`
+&gt; - `1 &lt;= k &lt;= n`
 
 ```c++
 class Solution {
 private:
     vector<int> path;
-    vector<vector<int>> ans;
+    vector<vector<int>&gt; ans;
     void backtracing(int n, int k, int start_index) {
         if (k == 0) {
             ans.push_back(path);
             return;
         }
-        for (int i = start_index; i <= n; i++) {
+        for (int i = start_index; i &lt;= n; i++) {
             path.push_back(i);
             backtracing(n, k - 1, i + 1);
             path.pop_back();
@@ -9624,8 +9624,8 @@ private:
     }
     
 public:
-    vector<vector<int>> combine(int n, int k) {
-        if (n < k) {
+    vector<vector<int>&gt; combine(int n, int k) {
+        if (n &lt; k) {
             return ans;
         }
         backtracing(n, k, 1);
@@ -9640,40 +9640,40 @@ class Solution:
         self.ans = []
         self.path = []
 
-    def backtracing(self, n: int, k: int, start_index: int) -> None:
+    def backtracing(self, n: int, k: int, start_index: int) -&gt; None:
         if k == 0:
             self.ans.append(self.path[::])
             return
         i = start_index
-        while i <= n:
+        while i &lt;= n:
             self.path.append(i)
             self.backtracing(n, k - 1, i + 1)
             self.path.pop()
             i += 1
         return
 
-    def combine(self, n: int, k: int) -> List[List[int]]:
-        if n < k:
+    def combine(self, n: int, k: int) -&gt; List[List[int]]:
+        if n &lt; k:
             return self.ans
         self.backtracing(n, k, 1)
         return self.ans
 
 ```
 
->
-> 在Python中，列表是可变的数据结构，如果你直接将列表对象本身添加进另一个列表，实际上添加的是对原列表的引用，而非其值的拷贝。这意味着，如果你后续修改了原列表，那么这个引用所对应的内容也会跟着变化。
->
-> 在这段代码中，self.path记录了当前递归路径中的组合。当找到一个长度为k的组合时，通过self.path[:]这种方式实际上创建了self.path的一个浅拷贝，它复制了列表中的所有元素。这样，即使后续self.path被修改（例如通过pop操作），self.ans中已经存储的组合不会受到影响。
->
-> 如果你只使用self.path，就只是在self.ans中添加了一个对当前路径的引用。当self.path在递归过程中被改变时，self.ans中的所有引用都会指向最后的self.path状态，这显然是不对的。
->
-> 简单来说，path[:]确保了每次向`self.ans`添加的是当前路径的一个独立副本，这样每个组合才是互相独立的，递归回溯时各个路径的变化不会互相影响。
+&gt;
+&gt; 在Python中，列表是可变的数据结构，如果你直接将列表对象本身添加进另一个列表，实际上添加的是对原列表的引用，而非其值的拷贝。这意味着，如果你后续修改了原列表，那么这个引用所对应的内容也会跟着变化。
+&gt;
+&gt; 在这段代码中，self.path记录了当前递归路径中的组合。当找到一个长度为k的组合时，通过self.path[:]这种方式实际上创建了self.path的一个浅拷贝，它复制了列表中的所有元素。这样，即使后续self.path被修改（例如通过pop操作），self.ans中已经存储的组合不会受到影响。
+&gt;
+&gt; 如果你只使用self.path，就只是在self.ans中添加了一个对当前路径的引用。当self.path在递归过程中被改变时，self.ans中的所有引用都会指向最后的self.path状态，这显然是不对的。
+&gt;
+&gt; 简单来说，path[:]确保了每次向`self.ans`添加的是当前路径的一个独立副本，这样每个组合才是互相独立的，递归回溯时各个路径的变化不会互相影响。
 
 **记住什么时候使用的是引用什么时候使用的是拷贝的副本**
 
 #### 关于上一题的优化
 
-> 对于树状遍历的优化,一般来说是剪枝
+&gt; 对于树状遍历的优化,一般来说是剪枝
 
 ![77.组合4](./codeNote.assets/20210130194335207.png)
 
@@ -9683,17 +9683,17 @@ class Solution:
 class Solution {
 private:
     vector<int> path;
-    vector<vector<int>> ans;
+    vector<vector<int>&gt; ans;
     void backtracing(int n, int k, int start_index) {
         // 在剩余元素不足的直接返回
-        if (n - start_index + 1 < k) {
+        if (n - start_index + 1 &lt; k) {
             return;
         }
         if (k == 0) {
             ans.push_back(path);
             return;
         }
-        for (int i = start_index; i <= n; i++) {
+        for (int i = start_index; i &lt;= n; i++) {
             path.push_back(i);
             backtracing(n, k - 1, i + 1);
             path.pop_back();
@@ -9702,8 +9702,8 @@ private:
     }
 
 public:
-    vector<vector<int>> combine(int n, int k) {
-        if (n < k) {
+    vector<vector<int>&gt; combine(int n, int k) {
+        if (n &lt; k) {
             return ans;
         }
         backtracing(n, k, 1);
@@ -9718,22 +9718,22 @@ class Solution:
         self.ans = []
         self.path = []
 
-    def backtracing(self, n: int, k: int, start_index: int) -> None:
-        if n - start_index + 1 < k:
+    def backtracing(self, n: int, k: int, start_index: int) -&gt; None:
+        if n - start_index + 1 &lt; k:
             return 
         if k == 0:
             self.ans.append(self.path[::])
             return
         i = start_index
-        while i <= n:
+        while i &lt;= n:
             self.path.append(i)
             self.backtracing(n, k - 1, i + 1)
             self.path.pop()
             i += 1
         return
 
-    def combine(self, n: int, k: int) -> List[List[int]]:
-        if n < k:
+    def combine(self, n: int, k: int) -&gt; List[List[int]]:
+        if n &lt; k:
             return self.ans
         self.backtracing(n, k, 1)
         return self.ans
@@ -9742,66 +9742,66 @@ class Solution:
 
 #### [216. 组合总和 III](https://leetcode.cn/problems/combination-sum-iii/)
 
-> 找出所有相加之和为 `n` 的 `k` 个数的组合，且满足下列条件：
->
-> - 只使用数字1到9
-> - 每个数字 **最多使用一次** 
->
-> 返回 *所有可能的有效组合的列表* 。该列表不能包含相同的组合两次，组合可以以任何顺序返回。
->
-> 
->
-> **示例 1:**
->
-> ```
-> 输入: k = 3, n = 7
-> 输出: [[1,2,4]]
-> 解释:
-> 1 + 2 + 4 = 7
-> 没有其他符合的组合了。
-> ```
->
-> **示例 2:**
->
-> ```
-> 输入: k = 3, n = 9
-> 输出: [[1,2,6], [1,3,5], [2,3,4]]
-> 解释:
-> 1 + 2 + 6 = 9
-> 1 + 3 + 5 = 9
-> 2 + 3 + 4 = 9
-> 没有其他符合的组合了。
-> ```
->
-> **示例 3:**
->
-> ```
-> 输入: k = 4, n = 1
-> 输出: []
-> 解释: 不存在有效的组合。
-> 在[1,9]范围内使用4个不同的数字，我们可以得到的最小和是1+2+3+4 = 10，因为10 > 1，没有有效的组合。
-> ```
->
-> 
->
-> **提示:**
->
-> - `2 <= k <= 9`
-> - `1 <= n <= 60`
-> - ![216.组合总和III1](./codeNote.assets/2020112319580476.png)
+&gt; 找出所有相加之和为 `n` 的 `k` 个数的组合，且满足下列条件：
+&gt;
+&gt; - 只使用数字1到9
+&gt; - 每个数字 **最多使用一次** 
+&gt;
+&gt; 返回 *所有可能的有效组合的列表* 。该列表不能包含相同的组合两次，组合可以以任何顺序返回。
+&gt;
+&gt; 
+&gt;
+&gt; **示例 1:**
+&gt;
+&gt; ```
+&gt; 输入: k = 3, n = 7
+&gt; 输出: [[1,2,4]]
+&gt; 解释:
+&gt; 1 + 2 + 4 = 7
+&gt; 没有其他符合的组合了。
+&gt; ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ```
+&gt; 输入: k = 3, n = 9
+&gt; 输出: [[1,2,6], [1,3,5], [2,3,4]]
+&gt; 解释:
+&gt; 1 + 2 + 6 = 9
+&gt; 1 + 3 + 5 = 9
+&gt; 2 + 3 + 4 = 9
+&gt; 没有其他符合的组合了。
+&gt; ```
+&gt;
+&gt; **示例 3:**
+&gt;
+&gt; ```
+&gt; 输入: k = 4, n = 1
+&gt; 输出: []
+&gt; 解释: 不存在有效的组合。
+&gt; 在[1,9]范围内使用4个不同的数字，我们可以得到的最小和是1+2+3+4 = 10，因为10 &gt; 1，没有有效的组合。
+&gt; ```
+&gt;
+&gt; 
+&gt;
+&gt; **提示:**
+&gt;
+&gt; - `2 &lt;= k &lt;= 9`
+&gt; - `1 &lt;= n &lt;= 60`
+&gt; - ![216.组合总和III1](./codeNote.assets/2020112319580476.png)
 
 ```c++
 class Solution {
 private:
     vector<int> path;
-    vector<vector<int>> ans;
-    void backtracing(vector<int>& visit, int start_index, int k, int n) {
-        if (k == 0 && n == 0) {
+    vector<vector<int>&gt; ans;
+    void backtracing(vector<int>&amp; visit, int start_index, int k, int n) {
+        if (k == 0 &amp;&amp; n == 0) {
             ans.push_back(path);
             return;
         }
-        for (int i = start_index; i <= 9; i++) {
-            if (n >= i && !visit[i]) { // 剪枝
+        for (int i = start_index; i &lt;= 9; i++) {
+            if (n &gt;= i &amp;&amp; !visit[i]) { // 剪枝
                 path.push_back(i);
                 visit[i] = 1;
                 backtracing(visit, i + 1, k - 1, n - i);
@@ -9815,7 +9815,7 @@ private:
     }
 
 public:
-    vector<vector<int>> combinationSum3(int k, int n) {
+    vector<vector<int>&gt; combinationSum3(int k, int n) {
         vector<int> visit(n + 1, 0);
         backtracing(visit, 1, k, n);
         return ans;
@@ -9827,14 +9827,14 @@ public:
 class Solution {
 private:
     vector<int> path;
-    vector<vector<int>> ans;
+    vector<vector<int>&gt; ans;
     void backtracing(int start_index, int k, int n) {
-        if (k == 0 && n == 0) {
+        if (k == 0 &amp;&amp; n == 0) {
             ans.push_back(path);
             return;
         }
-        for (int i = start_index; i <= 9; i++) {
-            if (n >= i) {
+        for (int i = start_index; i &lt;= 9; i++) {
+            if (n &gt;= i) {
                 path.push_back(i);
                 backtracing(i + 1, k - 1, n - i);
                 path.pop_back();
@@ -9846,7 +9846,7 @@ private:
     }
 
 public:
-    vector<vector<int>> combinationSum3(int k, int n) {
+    vector<vector<int>&gt; combinationSum3(int k, int n) {
         backtracing(1, k, n);
         return ans;
     }
@@ -9859,18 +9859,18 @@ class Solution:
         self.path = []
         self.ans = []
 
-    def backtracing(self, start_index: int, n: int, k: int) -> None:
+    def backtracing(self, start_index: int, n: int, k: int) -&gt; None:
         if k == 0 and n == 0:
             self.ans.append(self.path[::])
             return
         for i in range(start_index, 10):
-            if n >= i:
+            if n &gt;= i:
                 self.path.append(i)
                 self.backtracing(i + 1, n - i, k - 1)
                 self.path.pop()
         return
 
-    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+    def combinationSum3(self, k: int, n: int) -&gt; List[List[int]]:
         self.backtracing(1, n, k)
         return self.ans
 
@@ -9878,41 +9878,41 @@ class Solution:
 
 #### [17. 电话号码的字母组合](https://leetcode.cn/problems/letter-combinations-of-a-phone-number/)
 
-> 给定一个仅包含数字 `2-9` 的字符串，返回所有它能表示的字母组合。答案可以按 **任意顺序** 返回。
->
-> 给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。
->
-> ![img](./codeNote.assets/200px-telephone-keypad2svg.png)
->
-> 
->
-> **示例 1：**
->
-> ```
-> 输入：digits = "23"
-> 输出：["ad","ae","af","bd","be","bf","cd","ce","cf"]
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：digits = ""
-> 输出：[]
-> ```
->
-> **示例 3：**
->
-> ```
-> 输入：digits = "2"
-> 输出：["a","b","c"]
-> ```
->
-> 
->
-> **提示：**
->
-> - `0 <= digits.length <= 4`
-> - `digits[i]` 是范围 `['2', '9']` 的一个数字。
+&gt; 给定一个仅包含数字 `2-9` 的字符串，返回所有它能表示的字母组合。答案可以按 **任意顺序** 返回。
+&gt;
+&gt; 给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。
+&gt;
+&gt; ![img](./codeNote.assets/200px-telephone-keypad2svg.png)
+&gt;
+&gt; 
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：digits = "23"
+&gt; 输出：["ad","ae","af","bd","be","bf","cd","ce","cf"]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：digits = ""
+&gt; 输出：[]
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ```
+&gt; 输入：digits = "2"
+&gt; 输出：["a","b","c"]
+&gt; ```
+&gt;
+&gt; 
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `0 &lt;= digits.length &lt;= 4`
+&gt; - `digits[i]` 是范围 `['2', '9']` 的一个数字。
 
 ```c++
 class Solution {
@@ -9921,14 +9921,14 @@ private:
     string path;
     vector<string> function = {"",    "",    "abc",  "def", "ghi",
                                "jkl", "mno", "pqrs", "tuv", "wxyz"};
-    void backtracing(const string& digits, int index) {
+    void backtracing(const string&amp; digits, int index) {
         if (index == digits.size()) {
             if (!path.empty()) {
                 ans.push_back(path);
             }
             return;
         }
-        for (int i = 0; i < function[digits[index] - '0'].size(); i++) {
+        for (int i = 0; i &lt; function[digits[index] - '0'].size(); i++) {
             path.push_back(function[digits[index] - '0'][i]);
             backtracing(digits, index + 1);
             path.pop_back();
@@ -9953,7 +9953,7 @@ class Solution:
         self.ans = []
         self.path = []
 
-    def backtracing(self, index: int, digits: str) -> None:
+    def backtracing(self, index: int, digits: str) -&gt; None:
         if index == len(digits):
             if len(self.path) != 0:
                 self.ans.append("".join(self.path[::]))
@@ -9964,7 +9964,7 @@ class Solution:
             self.path.pop()
         return
 
-    def letterCombinations(self, digits: str) -> List[str]:
+    def letterCombinations(self, digits: str) -&gt; List[str]:
         self.backtracing(0, digits)
         return self.ans
 
@@ -9972,61 +9972,61 @@ class Solution:
 
 #### [39. 组合总和](https://leetcode.cn/problems/combination-sum/)
 
-> 给你一个 **无重复元素** 的整数数组 `candidates` 和一个目标整数 `target` ，找出 `candidates` 中可以使数字和为目标数 `target` 的 所有 **不同组合** ，并以列表形式返回。你可以按 **任意顺序** 返回这些组合。
->
-> `candidates` 中的 **同一个** 数字可以 **无限制重复被选取** 。如果至少一个数字的被选数量不同，则两种组合是不同的。 
->
-> 对于给定的输入，保证和为 `target` 的不同组合数少于 `150` 个。
->
->  
->
-> **示例 1：**
->
-> ```
-> 输入：candidates = [2,3,6,7], target = 7
-> 输出：[[2,2,3],[7]]
-> 解释：
-> 2 和 3 可以形成一组候选，2 + 2 + 3 = 7 。注意 2 可以使用多次。
-> 7 也是一个候选， 7 = 7 。
-> 仅有这两种组合。
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入: candidates = [2,3,5], target = 8
-> 输出: [[2,2,2,2],[2,3,3],[3,5]]
-> ```
->
-> **示例 3：**
->
-> ```
-> 输入: candidates = [2], target = 1
-> 输出: []
-> ```
->
->  
->
-> **提示：**
->
-> - `1 <= candidates.length <= 30`
-> - `2 <= candidates[i] <= 40`
-> - `candidates` 的所有元素 **互不相同**
-> - `1 <= target <= 40`
+&gt; 给你一个 **无重复元素** 的整数数组 `candidates` 和一个目标整数 `target` ，找出 `candidates` 中可以使数字和为目标数 `target` 的 所有 **不同组合** ，并以列表形式返回。你可以按 **任意顺序** 返回这些组合。
+&gt;
+&gt; `candidates` 中的 **同一个** 数字可以 **无限制重复被选取** 。如果至少一个数字的被选数量不同，则两种组合是不同的。 
+&gt;
+&gt; 对于给定的输入，保证和为 `target` 的不同组合数少于 `150` 个。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：candidates = [2,3,6,7], target = 7
+&gt; 输出：[[2,2,3],[7]]
+&gt; 解释：
+&gt; 2 和 3 可以形成一组候选，2 + 2 + 3 = 7 。注意 2 可以使用多次。
+&gt; 7 也是一个候选， 7 = 7 。
+&gt; 仅有这两种组合。
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入: candidates = [2,3,5], target = 8
+&gt; 输出: [[2,2,2,2],[2,3,3],[3,5]]
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ```
+&gt; 输入: candidates = [2], target = 1
+&gt; 输出: []
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `1 &lt;= candidates.length &lt;= 30`
+&gt; - `2 &lt;= candidates[i] &lt;= 40`
+&gt; - `candidates` 的所有元素 **互不相同**
+&gt; - `1 &lt;= target &lt;= 40`
 
 ```c++
 class Solution {
 private:
-    vector<vector<int>> ans;
+    vector<vector<int>&gt; ans;
     vector<int> path;
-    void backtracing(const vector<int>& candidates, int target,
+    void backtracing(const vector<int>&amp; candidates, int target,
                      int start_index) {
         if (target == 0) {
             ans.push_back(path);
             return;
         }
-        for (int i = start_index; i < candidates.size(); i++) {
-            if (target >= candidates[i]) {
+        for (int i = start_index; i &lt; candidates.size(); i++) {
+            if (target &gt;= candidates[i]) {
                 path.push_back(candidates[i]);
                 backtracing(candidates, target - candidates[i],
                             i); // 控制它不用跳转的这么快,跟随i的变化而变化
@@ -10037,7 +10037,7 @@ private:
     }
 
 public:
-    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+    vector<vector<int>&gt; combinationSum(vector<int>&amp; candidates, int target) {
         backtracing(candidates, target, 0);
         return ans;
     }
@@ -10050,79 +10050,79 @@ class Solution:
         self.ans = []
         self.path = []
 
-    def backtracing(self, candidates: List[int], start_index: int, target: int) -> None:
+    def backtracing(self, candidates: List[int], start_index: int, target: int) -&gt; None:
         if target == 0:
             self.ans.append(self.path[::])
             return
         for i in range(start_index, len(candidates)):
-            if target >= candidates[i]:
+            if target &gt;= candidates[i]:
                 self.path.append(candidates[i])
                 self.backtracing(candidates, i, target - candidates[i])
                 self.path.pop()
 
-    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+    def combinationSum(self, candidates: List[int], target: int) -&gt; List[List[int]]:
         self.backtracing(candidates, 0, target)
         return self.ans
 ```
 
 #### [40. 组合总和 II](https://leetcode.cn/problems/combination-sum-ii/)
 
-> 给定一个候选人编号的集合 `candidates` 和一个目标数 `target` ，找出 `candidates` 中所有可以使数字和为 `target` 的组合。
->
-> `candidates` 中的每个数字在每个组合中只能使用 **一次** 。
->
-> **注意：**解集不能包含重复的组合。 
->
->  
->
-> **示例 1:**
->
-> ```
-> 输入: candidates = [10,1,2,7,6,1,5], target = 8,
-> 输出:
-> [
-> [1,1,6],
-> [1,2,5],
-> [1,7],
-> [2,6]
-> ]
-> ```
->
-> **示例 2:**
->
-> ```
-> 输入: candidates = [2,5,2,1,2], target = 5,
-> 输出:
-> [
-> [1,2,2],
-> [5]
-> ]
-> ```
->
->  
->
-> **提示:**
->
-> - `1 <= candidates.length <= 100`
-> - `1 <= candidates[i] <= 50`
-> - `1 <= target <= 30`
-> - ![40.组合总和II](./codeNote.assets/20230310000918.png)
+&gt; 给定一个候选人编号的集合 `candidates` 和一个目标数 `target` ，找出 `candidates` 中所有可以使数字和为 `target` 的组合。
+&gt;
+&gt; `candidates` 中的每个数字在每个组合中只能使用 **一次** 。
+&gt;
+&gt; **注意：**解集不能包含重复的组合。 
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1:**
+&gt;
+&gt; ```
+&gt; 输入: candidates = [10,1,2,7,6,1,5], target = 8,
+&gt; 输出:
+&gt; [
+&gt; [1,1,6],
+&gt; [1,2,5],
+&gt; [1,7],
+&gt; [2,6]
+&gt; ]
+&gt; ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ```
+&gt; 输入: candidates = [2,5,2,1,2], target = 5,
+&gt; 输出:
+&gt; [
+&gt; [1,2,2],
+&gt; [5]
+&gt; ]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示:**
+&gt;
+&gt; - `1 &lt;= candidates.length &lt;= 100`
+&gt; - `1 &lt;= candidates[i] &lt;= 50`
+&gt; - `1 &lt;= target &lt;= 30`
+&gt; - ![40.组合总和II](./codeNote.assets/20230310000918.png)
 
 ```c++
 class Solution {
 private:
-    vector<vector<int>> ans;
+    vector<vector<int>&gt; ans;
     vector<int> path;
-    void backtracing(vector<int> visited, const vector<int>& candidates,
+    void backtracing(vector<int> visited, const vector<int>&amp; candidates,
                      int target, int start_index) {
         if (target == 0) {
             ans.push_back(path);
             return;
         }
-        for (int i = start_index; i < candidates.size(); i++) {
-            if (target >= candidates[i]) {
+        for (int i = start_index; i &lt; candidates.size(); i++) {
+            if (target &gt;= candidates[i]) {
                 // 注意这一步的逻辑是前一个元素没选,且上一个元素与该元素相同(要求数组排序过)
-                if (i > 0 && candidates[i] == candidates[i - 1] &&
+                if (i &gt; 0 &amp;&amp; candidates[i] == candidates[i - 1] &amp;&amp;
                     !visited[i - 1]) {
                     continue;
                 }
@@ -10137,7 +10137,7 @@ private:
     }
 
 public:
-    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+    vector<vector<int>&gt; combinationSum2(vector<int>&amp; candidates, int target) {
         sort(candidates.begin(), candidates.end());
         vector<int> visited(candidates.size(), 0);
         backtracing(visited, candidates, target, 0);
@@ -10154,14 +10154,14 @@ class Solution:
 
     def backtracing(
         self, candidates: List[int], visited: List[int], start_index: int, target: int
-    ) -> None:
+    ) -&gt; None:
         if target == 0:
             self.ans.append(self.path[::])
             return
         for i in range(start_index, len(candidates)):
 
-            if target >= candidates[i]:
-                if i > 0 and candidates[i] == candidates[i - 1] and visited[i - 1] == 0:
+            if target &gt;= candidates[i]:
+                if i &gt; 0 and candidates[i] == candidates[i - 1] and visited[i - 1] == 0:
                     continue
                 visited[i] = 1
                 self.path.append(candidates[i])
@@ -10169,7 +10169,7 @@ class Solution:
                 visited[i] = 0
                 self.path.pop()
 
-    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+    def combinationSum2(self, candidates: List[int], target: int) -&gt; List[List[int]]:
         candidates.sort()
         visited = [0 for _ in range(len(candidates))]
         self.backtracing(candidates, visited, 0, target)
@@ -10178,35 +10178,35 @@ class Solution:
 
 #### [131. 分割回文串](https://leetcode.cn/problems/palindrome-partitioning/)
 
-> 给你一个字符串 `s`，请你将 `s` 分割成一些子串，使每个子串都是 **回文串**。返回 `s` 所有可能的分割方案。
->
-> **示例 1：**
->
-> ```
-> 输入：s = "aab"
-> 输出：[["a","a","b"],["aa","b"]]
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：s = "a"
-> 输出：[["a"]] 
-> ```
->
-> **提示：**
->
-> - `1 <= s.length <= 16`
-> - `s` 仅由小写英文字母组成
+&gt; 给你一个字符串 `s`，请你将 `s` 分割成一些子串，使每个子串都是 **回文串**。返回 `s` 所有可能的分割方案。
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：s = "aab"
+&gt; 输出：[["a","a","b"],["aa","b"]]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：s = "a"
+&gt; 输出：[["a"]] 
+&gt; ```
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `1 &lt;= s.length &lt;= 16`
+&gt; - `s` 仅由小写英文字母组成
 
 ```c++
 class Solution {
 private:
-    vector<vector<string>> ans;
+    vector<vector<string>&gt; ans;
     vector<string> way;
     bool isPalindrome(string s) {
         int left = 0, right = s.size() - 1;
-        while (left < right) {
+        while (left &lt; right) {
             if (s[left] != s[right]) {
                 return false;
             }
@@ -10215,12 +10215,12 @@ private:
         }
         return true;
     }
-    void backtracing(const string& mother, int start_index) {
+    void backtracing(const string&amp; mother, int start_index) {
         if (start_index == mother.size()) {
             ans.push_back(way);
             return;
         }
-        for (int end_index = start_index; end_index < mother.size();
+        for (int end_index = start_index; end_index &lt; mother.size();
              end_index++) {
             string temp =
                 mother.substr(start_index, end_index - start_index + 1);
@@ -10234,7 +10234,7 @@ private:
     }
 
 public:
-    vector<vector<string>> partition(string s) {
+    vector<vector<string>&gt; partition(string s) {
         backtracing(s, 0);
         return ans;
     }
@@ -10247,17 +10247,17 @@ class Solution:
         self.ans = []
         self.path = []
 
-    def isValid(self, s: str) -> bool:
+    def isValid(self, s: str) -&gt; bool:
         left = 0
         right = len(s) - 1
-        while left < right:
+        while left &lt; right:
             if s[left] != s[right]:
                 return False
             left += 1
             right -= 1
         return True
 
-    def backtracing(self, s: str, start_index: int) -> None:
+    def backtracing(self, s: str, start_index: int) -&gt; None:
         if start_index == len(s):
             self.ans.append(self.path[::])
             return
@@ -10269,99 +10269,99 @@ class Solution:
                 self.path.pop()
         return
 
-    def partition(self, s: str) -> List[List[str]]:
+    def partition(self, s: str) -&gt; List[List[str]]:
         self.backtracing(s, 0)
         return self.ans
 ```
 
-> 这道题可以使用动态规划来加速回文串的计算的速度
->
-> ```c++
-> class Solution {
-> private:
->     vector<vector<string>> result;
->     vector<string> path; // 放已经回文的子串
->     vector<vector<bool>> isPalindrome; // 放事先计算好的是否回文子串的结果
->     void backtracking (const string& s, int startIndex) {
->         // 如果起始位置已经大于s的大小，说明已经找到了一组分割方案了
->         if (startIndex >= s.size()) {
->             result.push_back(path);
->             return;
->         }
->         for (int i = startIndex; i < s.size(); i++) {
->             if (isPalindrome[startIndex][i]) {   // 是回文子串
->                 // 获取[startIndex,i]在s中的子串
->                 string str = s.substr(startIndex, i - startIndex + 1);
->                 path.push_back(str);
->             } else {                                // 不是回文，跳过
->                 continue;
->             }
->             backtracking(s, i + 1); // 寻找i+1为起始位置的子串
->             path.pop_back(); // 回溯过程，弹出本次已经添加的子串
->         }
->     }
->     void computePalindrome(const string& s) {
->         // isPalindrome[i][j] 代表 s[i:j](双边包括)是否是回文字串 
->         isPalindrome.resize(s.size(), vector<bool>(s.size(), false)); // 根据字符串s, 刷新布尔矩阵的大小
->         for (int i = s.size() - 1; i >= 0; i--) { 
->             // 需要倒序计算, 保证在i行时, i+1行已经计算好了
->             for (int j = i; j < s.size(); j++) {
->                 if (j == i) {isPalindrome[i][j] = true;}
->                 else if (j - i == 1) {isPalindrome[i][j] = (s[i] == s[j]);}
->                 else {isPalindrome[i][j] = (s[i] == s[j] && isPalindrome[i+1][j-1]);}
->             }
->         }
->     }
-> public:
->     vector<vector<string>> partition(string s) {
->         result.clear();
->         path.clear();
->         computePalindrome(s);
->         backtracking(s, 0);
->         return result;
->     }
-> };
-> ```
->
-> 标记一下,到时候到动态规划的时候做一下
+&gt; 这道题可以使用动态规划来加速回文串的计算的速度
+&gt;
+&gt; ```c++
+&gt; class Solution {
+&gt; private:
+&gt;     vector<vector<string>&gt; result;
+&gt;     vector<string> path; // 放已经回文的子串
+&gt;     vector<vector<bool>&gt; isPalindrome; // 放事先计算好的是否回文子串的结果
+&gt;     void backtracking (const string&amp; s, int startIndex) {
+&gt;         // 如果起始位置已经大于s的大小，说明已经找到了一组分割方案了
+&gt;         if (startIndex &gt;= s.size()) {
+&gt;             result.push_back(path);
+&gt;             return;
+&gt;         }
+&gt;         for (int i = startIndex; i &lt; s.size(); i++) {
+&gt;             if (isPalindrome[startIndex][i]) {   // 是回文子串
+&gt;                 // 获取[startIndex,i]在s中的子串
+&gt;                 string str = s.substr(startIndex, i - startIndex + 1);
+&gt;                 path.push_back(str);
+&gt;             } else {                                // 不是回文，跳过
+&gt;                 continue;
+&gt;             }
+&gt;             backtracking(s, i + 1); // 寻找i+1为起始位置的子串
+&gt;             path.pop_back(); // 回溯过程，弹出本次已经添加的子串
+&gt;         }
+&gt;     }
+&gt;     void computePalindrome(const string&amp; s) {
+&gt;         // isPalindrome[i][j] 代表 s[i:j](双边包括)是否是回文字串 
+&gt;         isPalindrome.resize(s.size(), vector<bool>(s.size(), false)); // 根据字符串s, 刷新布尔矩阵的大小
+&gt;         for (int i = s.size() - 1; i &gt;= 0; i--) { 
+&gt;             // 需要倒序计算, 保证在i行时, i+1行已经计算好了
+&gt;             for (int j = i; j &lt; s.size(); j++) {
+&gt;                 if (j == i) {isPalindrome[i][j] = true;}
+&gt;                 else if (j - i == 1) {isPalindrome[i][j] = (s[i] == s[j]);}
+&gt;                 else {isPalindrome[i][j] = (s[i] == s[j] &amp;&amp; isPalindrome[i+1][j-1]);}
+&gt;             }
+&gt;         }
+&gt;     }
+&gt; public:
+&gt;     vector<vector<string>&gt; partition(string s) {
+&gt;         result.clear();
+&gt;         path.clear();
+&gt;         computePalindrome(s);
+&gt;         backtracking(s, 0);
+&gt;         return result;
+&gt;     }
+&gt; };
+&gt; ```
+&gt;
+&gt; 标记一下,到时候到动态规划的时候做一下
 
 #### [93. 复原 IP 地址](https://leetcode.cn/problems/restore-ip-addresses/)
 
-> **有效 IP 地址** 正好由四个整数（每个整数位于 `0` 到 `255` 之间组成，且不能含有前导 `0`），整数之间用 `'.'` 分隔。
->
-> - 例如：`"0.1.2.201"` 和` "192.168.1.1"` 是 **有效** IP 地址，但是 `"0.011.255.245"`、`"192.168.1.312"` 和 `"192.168@1.1"` 是 **无效** IP 地址。
->
-> 给定一个只包含数字的字符串 `s` ，用以表示一个 IP 地址，返回所有可能的**有效 IP 地址**，这些地址可以通过在 `s` 中插入 `'.'` 来形成。你 **不能** 重新排序或删除 `s` 中的任何数字。你可以按 **任何** 顺序返回答案。
->
->  
->
-> **示例 1：**
->
-> ```
-> 输入：s = "25525511135"
-> 输出：["255.255.11.135","255.255.111.35"]
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：s = "0000"
-> 输出：["0.0.0.0"]
-> ```
->
-> **示例 3：**
->
-> ```
-> 输入：s = "101023"
-> 输出：["1.0.10.23","1.0.102.3","10.1.0.23","10.10.2.3","101.0.2.3"]
-> ```
->
->  
->
-> **提示：**
->
-> - `1 <= s.length <= 20`
-> - `s` 仅由数字组成
+&gt; **有效 IP 地址** 正好由四个整数（每个整数位于 `0` 到 `255` 之间组成，且不能含有前导 `0`），整数之间用 `'.'` 分隔。
+&gt;
+&gt; - 例如：`"0.1.2.201"` 和` "192.168.1.1"` 是 **有效** IP 地址，但是 `"0.011.255.245"`、`"192.168.1.312"` 和 `"192.168@1.1"` 是 **无效** IP 地址。
+&gt;
+&gt; 给定一个只包含数字的字符串 `s` ，用以表示一个 IP 地址，返回所有可能的**有效 IP 地址**，这些地址可以通过在 `s` 中插入 `'.'` 来形成。你 **不能** 重新排序或删除 `s` 中的任何数字。你可以按 **任何** 顺序返回答案。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：s = "25525511135"
+&gt; 输出：["255.255.11.135","255.255.111.35"]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：s = "0000"
+&gt; 输出：["0.0.0.0"]
+&gt; ```
+&gt;
+&gt; **示例 3：**
+&gt;
+&gt; ```
+&gt; 输入：s = "101023"
+&gt; 输出：["1.0.10.23","1.0.102.3","10.1.0.23","10.10.2.3","101.0.2.3"]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `1 &lt;= s.length &lt;= 20`
+&gt; - `s` 仅由数字组成
 
 ```c++
 class Solution {
@@ -10369,13 +10369,13 @@ private:
     vector<string> ans;
     string path;
     bool isvalid(string temp) {
-        if (temp.size() <= 1) {
+        if (temp.size() &lt;= 1) {
             return true;
-        } else if (temp.size() <= 3) {
+        } else if (temp.size() &lt;= 3) {
             if (temp[0] == '0') {
                 return false;
             }
-            if (stoi(temp) > 255) {
+            if (stoi(temp) &gt; 255) {
                 return false;
             }
             return true;
@@ -10383,16 +10383,16 @@ private:
             return false;
         }
     }
-    void backtracing(const string& s, int start_index, int k) {
-        if (start_index == s.size() && k == 0) {
+    void backtracing(const string&amp; s, int start_index, int k) {
+        if (start_index == s.size() &amp;&amp; k == 0) {
             ans.push_back(path);
             return;
         }
         if (start_index == s.size() || k == 0) {
             return;
         }
-        for (int end_index = start_index; end_index < s.size(); end_index++) {
-            if (end_index - start_index + 1 > 3) {
+        for (int end_index = start_index; end_index &lt; s.size(); end_index++) {
+            if (end_index - start_index + 1 &gt; 3) {
                 break;
             }
             string temp = s.substr(start_index, end_index - start_index + 1);
@@ -10424,18 +10424,18 @@ class Solution:
         self.path = ""
         self.ans = []
 
-    def isValid(self, s: str) -> bool:
-        if len(s) <= 1:
+    def isValid(self, s: str) -&gt; bool:
+        if len(s) &lt;= 1:
             return True
-        elif len(s) <= 3:
-            if s[0] == "0" or int(s) > 255:
+        elif len(s) &lt;= 3:
+            if s[0] == "0" or int(s) &gt; 255:
                 return False
             else:
                 return True
         else:
             return False
 
-    def backtracing(self, s: str, start_index: int, n: int) -> None:
+    def backtracing(self, s: str, start_index: int, n: int) -&gt; None:
         if start_index == len(s) and n == 0:
             self.ans.append(self.path[::])
             return
@@ -10453,46 +10453,46 @@ class Solution:
                 self.path = save
         return
 
-    def restoreIpAddresses(self, s: str) -> List[str]:
+    def restoreIpAddresses(self, s: str) -&gt; List[str]:
         self.backtracing(s, 0, 4)
         return self.ans
 ```
 
 #### [78. 子集](https://leetcode.cn/problems/subsets/)
 
-> 给你一个整数数组 `nums` ，数组中的元素 **互不相同** 。返回该数组所有可能的
->
-> 子集
->
-> （幂集）。
->
-> 
->
-> 解集 **不能** 包含重复的子集。你可以按 **任意顺序** 返回解集。
->
->  
->
-> **示例 1：**
->
-> ```
-> 输入：nums = [1,2,3]
-> 输出：[[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：nums = [0]
-> 输出：[[],[0]]
-> ```
->
->  
->
-> **提示：**
->
-> - `1 <= nums.length <= 10`
-> - `-10 <= nums[i] <= 10`
-> - `nums` 中的所有元素 **互不相同**
+&gt; 给你一个整数数组 `nums` ，数组中的元素 **互不相同** 。返回该数组所有可能的
+&gt;
+&gt; 子集
+&gt;
+&gt; （幂集）。
+&gt;
+&gt; 
+&gt;
+&gt; 解集 **不能** 包含重复的子集。你可以按 **任意顺序** 返回解集。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：nums = [1,2,3]
+&gt; 输出：[[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：nums = [0]
+&gt; 输出：[[],[0]]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `1 &lt;= nums.length &lt;= 10`
+&gt; - `-10 &lt;= nums[i] &lt;= 10`
+&gt; - `nums` 中的所有元素 **互不相同**
 
 ```C++
 ```
@@ -10503,32 +10503,32 @@ class Solution:
 
 #### [90. 子集 II](https://leetcode.cn/problems/subsets-ii/)
 
-> 给你一个整数数组 `nums` ，其中可能包含重复元素，请你返回该数组所有可能的<span data-keyword="subset">子集</span>（幂集）。
->
-> 解集 **不能** 包含重复的子集。返回的解集中，子集可以按 **任意顺序** 排列。
->
->  
->
-> **示例 1：**
->
-> ```
-> 输入：nums = [1,2,2]
-> 输出：[[],[1],[1,2],[1,2,2],[2],[2,2]]
-> ```
->
-> **示例 2：**
->
-> ```
-> 输入：nums = [0]
-> 输出：[[],[0]]
-> ```
->
->  
->
-> **提示：**
->
-> - `1 <= nums.length <= 10`
-> - `-10 <= nums[i] <= 10`
+&gt; 给你一个整数数组 `nums` ，其中可能包含重复元素，请你返回该数组所有可能的<span data-keyword="subset">子集</span>（幂集）。
+&gt;
+&gt; 解集 **不能** 包含重复的子集。返回的解集中，子集可以按 **任意顺序** 排列。
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1：**
+&gt;
+&gt; ```
+&gt; 输入：nums = [1,2,2]
+&gt; 输出：[[],[1],[1,2],[1,2,2],[2],[2,2]]
+&gt; ```
+&gt;
+&gt; **示例 2：**
+&gt;
+&gt; ```
+&gt; 输入：nums = [0]
+&gt; 输出：[[],[0]]
+&gt; ```
+&gt;
+&gt;  
+&gt;
+&gt; **提示：**
+&gt;
+&gt; - `1 &lt;= nums.length &lt;= 10`
+&gt; - `-10 &lt;= nums[i] &lt;= 10`
 
 ```c++
 ```
@@ -10546,3 +10546,4 @@ class Solution:
 ## 第十章 单调栈
 
 ## 第十一章 图论
+</string></string></vector<string></bool></vector<bool></string></vector<string></vector<string></string></vector<string></int></int></vector<int></int></int></int></vector<int></int></vector<int></int></int></vector<int></string></string></string></vector<int></vector<int></int></int></vector<int></int></vector<int></int></vector<int></vector<int></int></vector<int></vector<int></int></int></int></int></int></int></int></vector<int></int></vector<int></int></vector<int></int></vector<int></int></vector<int></treenode*></string></string></treenode*,></node*></treenode*></treenode*></treenode*></int></treenode*></int></node*></int></int></node*></int></node*></int></treenode*></treenode*></treenode*></treenode*></node*></int></treenode*></int></int></vector<int></node*></vector<int></node*></node*></double></treenode*></double></treenode*></int></int></vector<int></vector<int></vector<int></int></vector<int></vector<int></int></vector<int></treenode*></vector<int></vector<int></vector<int></int></vector<int></int></vector<int></treenode*></vector<int></int></vector<int></treenode*></vector<int></treenode*></int></int></treenode*></int></int></treenode*></int></int></int></treenode*></int></int></int></treenode*></int></int></treenode*></int></int></int></int></int></int></int></int></int></int></int></int></int></int></int></int></int,></pair<int,></pair<int,></int,></int,></int,></int></int,></pair<int,></pair<int,></nums[i],对应出现的次数></int,></int></int></int,></int,></int></pair<int,></int,></int></int></int,></int,></int></int></int></int></int></int></int></int></string></char></char></int></int></int></int></int></int></int></int></t></t></t></t></t></t></t,></t></t,></t></string></iostream></string></iostream></string></iostream></char></char></bool></int></mytype></vector<int></int></vector<int></vector<int></vector<int></int></vector<int></decltype(my_tuple)></int,></tuple></tuple></int,></int></int></int></int></int,></int></int></int></int></int></int></int></int></int,></int></int,></t1,></t1,></utility></int,></int,></int></int></int></int></int></int></int></int></int></int></int></char></int></int></int></vector></iostream></int></vector<int></int></int></vector<int></int></vector<int></vector<int></int></vector<int></vector<int></unsigned></int></unsigned></int></int></int></int></int></int></int></char></int></int></int></int></int></int></int></int></int></int></int></int></int></int></int>

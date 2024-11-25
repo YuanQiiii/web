@@ -1,6 +1,6 @@
 # gdb
 
-> [GDB使用详解 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/297925056)
+&gt; [GDB使用详解 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/297925056)
 
 ## 1. 概述
 
@@ -74,7 +74,7 @@ GDB调试主要有三种方式：
 [root@localhost src]# gdb ./redis-server
 GNU gdb (GDB) 8.0
 Copyright (C) 2017 Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+License GPLv3+: GNU GPL version 3 or later <http: gnu.org="" gpl.html="" licenses="">
 This is free software: you are free to change and redistribute it.
 ...此处省略很多行...
 Type "apropos word" to search for commands related to "word"...
@@ -242,7 +242,7 @@ Continuing.
 
 ```text
 [root@localhost ~]# redis-cli
-127.0.0.1:6379> hset maptest key1 value1
+127.0.0.1:6379&gt; hset maptest key1 value1
 (integer) 1
 (3.54s)
 ```
@@ -324,10 +324,10 @@ Thread 1 "redis-server" hit Breakpoint 4, hsetCommand (c=0x7ffff7b0d0c0) at t_ha
 #3  0x000000000043e7af in processInputBuffer (c=0x7ffff7b0d0c0) at networking.c:1446
 #4  0x00000000004288d3 in aeProcessEvents (eventLoop=0x7ffff7a300a0, flags=11) at ae.c:443
 #5  0x0000000000428bfb in aeMain (eventLoop=0x7ffff7a300a0) at ae.c:501
-#6  0x0000000000430d9e in main (argc=<optimized out>, argv=0x7fffffffe648) at server.c:4197
+#6  0x0000000000430d9e in main (argc=<optimized out="">, argv=0x7fffffffe648) at server.c:4197
 (gdb) f 1
 #1  0x000000000042d320 in call (c=0x7ffff7b0d0c0, flags=15) at server.c:2437
-2437        c->cmd->proc(c);
+2437        c-&gt;cmd-&gt;proc(c);
 (gdb) f 2
 #2  0x000000000043168d in processCommand (c=0x7ffff7b0d0c0) at server.c:2729
 2729            call(c,CMD_CALL_FULL);
@@ -336,12 +336,12 @@ Thread 1 "redis-server" hit Breakpoint 4, hsetCommand (c=0x7ffff7b0d0c0) at t_ha
 1446                if (processCommand(c) == C_OK) {
 (gdb) f 4
 #4  0x00000000004288d3 in aeProcessEvents (eventLoop=0x7ffff7a300a0, flags=11) at ae.c:443
-443                 fe->rfileProc(eventLoop,fd,fe->clientData,mask);
+443                 fe-&gt;rfileProc(eventLoop,fd,fe-&gt;clientData,mask);
 (gdb) f 5
 #5  0x0000000000428bfb in aeMain (eventLoop=0x7ffff7a300a0) at ae.c:501
 501         aeProcessEvents(eventLoop, AE_ALL_EVENTS|AE_CALL_AFTER_SLEEP);
 (gdb) f 6
-#6  0x0000000000430d9e in main (argc=<optimized out>, argv=0x7fffffffe648) at server.c:4197
+#6  0x0000000000430d9e in main (argc=<optimized out="">, argv=0x7fffffffe648) at server.c:4197
 4197        aeMain(server.el);
 (gdb) c
 Continuing.
@@ -466,10 +466,10 @@ Thread 1 "redis-server" received signal SIGINT, Interrupt.
   4    Thread 0x7fffec768700 (LWP 14142) "redis-server" 0x000000382160b68c in pthread_cond_wait@@GLIBC_2.3.2 () from /lib64/libpthread.so.0
 (gdb) bt
 #0  0x00000038212e9243 in epoll_wait () from /lib64/libc.so.6
-#1  0x000000000042875e in aeApiPoll (tvp=<optimized out>, eventLoop=0x7ffff7a300a0) at ae_epoll.c:112
+#1  0x000000000042875e in aeApiPoll (tvp=<optimized out="">, eventLoop=0x7ffff7a300a0) at ae_epoll.c:112
 #2  aeProcessEvents (eventLoop=0x7ffff7a300a0, flags=11) at ae.c:411
 #3  0x0000000000428bfb in aeMain (eventLoop=0x7ffff7a300a0) at ae.c:501
-#4  0x0000000000430d9e in main (argc=<optimized out>, argv=0x7fffffffe648) at server.c:4197
+#4  0x0000000000430d9e in main (argc=<optimized out="">, argv=0x7fffffffe648) at server.c:4197
 (gdb) thread 2
 [Switching to thread 2 (Thread 0x7ffff176a700 (LWP 14140))]
 #0  0x000000382160b68c in pthread_cond_wait@@GLIBC_2.3.2 () from /lib64/libpthread.so.0
@@ -500,7 +500,7 @@ Continuing.
 
  以下是GDB对 **until** 命令的解释：
 
-> (gdb) help until Execute until the program reaches a source line greater than the current or a specified location (same args as break command) within the current frame.
+&gt; (gdb) help until Execute until the program reaches a source line greater than the current or a specified location (same args as break command) within the current frame.
 
  该命令使得程序执行到指定位置停下来，命令参数和 **break** 命令一样。
 
@@ -525,13 +525,13 @@ using std::endl;
 
 int main() {
     int a = 0;
-    cout << "aaa" << endl;
+    cout &lt;&lt; "aaa" &lt;&lt; endl;
     if (a == 0)
-        cout << "hello" << endl;
+        cout &lt;&lt; "hello" &lt;&lt; endl;
     else
-        cout << "world" << endl;    
+        cout &lt;&lt; "world" &lt;&lt; endl;    
 
-    cout << "bbb" << endl;
+    cout &lt;&lt; "bbb" &lt;&lt; endl;
     return 0;
 }
 ```
@@ -601,7 +601,7 @@ Argument list to give program being debugged when it is started is ""-p" "6378""
 Starting program: /data/redis-5.0.3/src/redis-cli "-p" "6378"
 [Thread debugging using libthread_db enabled]
 Using host libthread_db library "/lib64/libthread_db.so.1".
-127.0.0.1:6378>
+127.0.0.1:6378&gt;
 ```
 
 ### 5.16 tbreak命令
@@ -686,7 +686,7 @@ Continuing.
 
 Hardware watchpoint 4: q
 
-Old value = (int *) 0x400580 <_start>
+Old value = (int *) 0x400580 &lt;_start&gt;
 New value = (int *) 0x7fffffffe680
 main () at aaa.cpp:17
 17      c[0] = 1;
@@ -765,7 +765,7 @@ which its expression is valid.
 
  当 **watch** 的变量或内存因超出作用域失效时，GDB 会有如下提示信息：
 
-> Watchpoint 4 deleted because the program has left the block in which its expression is valid.
+&gt; Watchpoint 4 deleted because the program has left the block in which its expression is valid.
 
  通过 **info watch** 命令可以查看当前所有监视的变量，通过 **delete watch编号** 可以删除对某个变量的监视。
 
@@ -802,11 +802,11 @@ which its expression is valid.
 - **replay mode**，回放模式；
 - **scheduler-locking** ，调度锁；
 
-> (gdb) help set scheduler-locking Set mode for locking scheduler during execution. off == no locking (threads may preempt at any time) on == full locking (no thread except the current thread may run) This applies to both normal execution and replay mode. step == scheduler locked during stepping commands (step, next, stepi, nexti). In this mode, other threads may run during other commands. This applies to both normal execution and replay mode. replay == scheduler locked in replay mode and unlocked during normal execution.
+&gt; (gdb) help set scheduler-locking Set mode for locking scheduler during execution. off == no locking (threads may preempt at any time) on == full locking (no thread except the current thread may run) This applies to both normal execution and replay mode. step == scheduler locked during stepping commands (step, next, stepi, nexti). In this mode, other threads may run during other commands. This applies to both normal execution and replay mode. replay == scheduler locked in replay mode and unlocked during normal execution.
 
 - **schedule-multiple**，多进程调度；
 
-> (gdb) help set schedule-multiple Set mode for resuming threads of all processes. When on, execution commands (such as 'continue' or 'next') resume all threads of all processes. When off (which is the default), execution commands only resume the threads of the current process. The set of threads that are resumed is further refined by the scheduler-locking mode (see help set scheduler-locking).
+&gt; (gdb) help set schedule-multiple Set mode for resuming threads of all processes. When on, execution commands (such as 'continue' or 'next') resume all threads of all processes. When off (which is the default), execution commands only resume the threads of the current process. The set of threads that are resumed is further refined by the scheduler-locking mode (see help set scheduler-locking).
 
 ### 6.4 设置线程锁
 
@@ -818,3 +818,4 @@ which its expression is valid.
 - **set scheduler-locking off**，不锁定线程，会有线程切换；
 - **set scheduler-locking step**，当单步执行某一线程时，其他线程不会执行，同时保证在调试过程中当前线程不会发生改变。但如果在该模式下执行 **continue、until、finish** 命令，则其他线程也会执行；
 - **show scheduler-locking**，查看线程锁定状态；
+</iostream></iostream></optimized></optimized></server+428></server+364></optimized></optimized></server+576></http:>

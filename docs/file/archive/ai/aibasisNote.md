@@ -1,4 +1,4 @@
-## Q&A
+## Q&amp;A
 
 ### 虚拟环境是什么?
 
@@ -96,25 +96,25 @@ conda install xxx
 pip install xxx
 ```
 
-> - 更换`conda`和`pip`的镜像源(解决安装慢的问题)
->
-> 善用搜索引擎即可解决
->
-> - 开发环境：`conda` VS `pip`
->   - **`conda`：**
->     -  环境管理器，高于Python 
->     - 可安装python包、其他库
->     - 包的版本和依赖严谨，会考虑底层库依赖
->     - Python包的数量是`pypi`的子集
->     -  `Pytorch`、`PaddlePaddle`、`numpy`、`scipy`、`qt`等库优先使用`conda`安装
->   - **`pip`：**
->     - Python的一个库
->     - 只能安装python库
->     - 包只有版本号，不会考虑底层库依赖
->     - 所有Python包
->     - `TensorFlow`、`opencvpython`推荐使用`pip`安装
+&gt; - 更换`conda`和`pip`的镜像源(解决安装慢的问题)
+&gt;
+&gt; 善用搜索引擎即可解决
+&gt;
+&gt; - 开发环境：`conda` VS `pip`
+&gt;   - **`conda`：**
+&gt;     -  环境管理器，高于Python 
+&gt;     - 可安装python包、其他库
+&gt;     - 包的版本和依赖严谨，会考虑底层库依赖
+&gt;     - Python包的数量是`pypi`的子集
+&gt;     -  `Pytorch`、`PaddlePaddle`、`numpy`、`scipy`、`qt`等库优先使用`conda`安装
+&gt;   - **`pip`：**
+&gt;     - Python的一个库
+&gt;     - 只能安装python库
+&gt;     - 包只有版本号，不会考虑底层库依赖
+&gt;     - 所有Python包
+&gt;     - `TensorFlow`、`opencvpython`推荐使用`pip`安装
 
-## `NumPy`&`Pytorch`
+## `NumPy`&amp;`Pytorch`
 
 - NumPy是Python中用于科学计算的核心库之一，旨在提供一个
   强大的数组处理工具，以便更轻松地进行数值计算和数据分析。
@@ -760,7 +760,7 @@ plt.show()
 
 - 对于$(A^{T}A)\hat{\beta} = A^{T}Y$
   - 如果$A^{T}A$可逆,有$\hat{\beta}=(A^{T}A)^{-1}A^{T}Y$,即$\hat{f}_n^{L}=X\hat{\beta}$,此时有闭合解
-  - 当**样本数量<特征维度**的时候,($n<p$),此时无闭合解
+  - 当**样本数量&lt;特征维度**的时候,($n&lt;p$),此时无闭合解
 - Ridge Regression
   - 与高斯分布相关,对应$L_2$范数,特点是**减小参数的取值**
 - Lasso regression

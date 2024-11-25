@@ -61,9 +61,9 @@
 
     - mode,medium,mean,add,minus,multiply,division
 
-> three data structures 
->
-> research methods  
+&gt; three data structures 
+&gt;
+&gt; research methods  
 
 ## 2 Frequency Distributions
 
@@ -71,8 +71,8 @@
   - 频数 （f）
   - 频率proportion （p = f/N）
   - 百分位数percentage (频率的百分比)
-  - all of the individual categories -> regular frequency distribution
-  - groups of scores (class intervals) -> grouped frequency distribution
+  - all of the individual categories -&gt; regular frequency distribution
+  - groups of scores (class intervals) -&gt; grouped frequency distribution
 
 - 分组grouped频率分布
   - 组距class interval的概念和选择
@@ -80,7 +80,7 @@
   - Each interval begins with a value that is a multiple of the interval width. (每个分组区间的下限值是组距的倍数)
   - The interval width is selected so that the table will have approximately **10** intervals
 
-> Suppose a class interval of 40–49 contains scores from X = 40 to X = 49. 
+&gt; Suppose a class interval of 40–49 contains scores from X = 40 to X = 49. 
 
 - 表面界限apparent limits
   - The **apparent limits** of the interval are the values that appear to form the upper and lower boundaries for the class interval (40 and 49 in this case). 
@@ -131,10 +131,10 @@
   - ![image-20241008165426061](psychology_statistics.assets/image-20241008165426061.png)
   - 对称symmetrical
   - 正偏态positively skewed
-    - 图形峰值左偏，众数<中位数<平均数
+    - 图形峰值左偏，众数&lt;中位数&lt;平均数
     - In a **positively skewed** distribution, the scores tend to pile up on the left side of the distribution with the tail tapering off to the right. a.k.a. right skewed
   - 负偏态negatively skewed
-    - 图形峰值右偏，平均数<中位数<众数
+    - 图形峰值右偏，平均数&lt;中位数&lt;众数
     - In a **negatively skewed** distribution, the scores tend to pile up on the right side and the tail points to the left. a.k.a. left skewed
 
 ## 3 Central tendency
@@ -318,14 +318,14 @@
     - $P(A|B) = {P(B|A)*P(A)\over P(B)}$
 
 
->  | 事实\预测 | Positive | Negative |
->  | --------- | -------- | :------: |
->  | True      | TP       |    FN    |
->  | False     | FP       |    TN    |
->
-> 特异性Specificity = TN / (TN + FP)
->
-> 敏感性(召回率) Sensitivity = TP / (TP + FN)
+&gt;  | 事实\预测 | Positive | Negative |
+&gt;  | --------- | -------- | :------: |
+&gt;  | True      | TP       |    FN    |
+&gt;  | False     | FP       |    TN    |
+&gt;
+&gt; 特异性Specificity = TN / (TN + FP)
+&gt;
+&gt; 敏感性(召回率) Sensitivity = TP / (TP + FN)
 
 - 离散型discrete随机变量 (DRV)
 
@@ -387,7 +387,7 @@
 - 累计分布函数CDF
   - The Cumulative Distribution Function (CDF,累计分布函数,*F(a)*) of the random variable X evaluated at the point *a* is defined as the probability that X will take on values ≤ *a.* It is represented by the area under the PDF to the left of *a.* 
   - 可以用于DRV
-  - $F(a) = Pr(X<=a) = \int_{-\infin}^{a}f(x)dx$
+  - $F(a) = Pr(X&lt;=a) = \int_{-\infin}^{a}f(x)dx$
 
 ## 7 Normal Distribution 
 
@@ -421,15 +421,11 @@
 
     - From the text book, the rule of thumb:
 
-       np>10 and nq>10
+       np&gt;10 and nq&gt;10
 
-  - **If X~ Binomial(n,p), then** Pr(a=<X=<b) is approximated by the area under an N(np,npq) curve from(a-0.5) to (b+0.5). 
-
-  - **连续变量一定要使用精确上下限**
-
-  - > Example: A company produces smoke filters and knows that, on  average, 10% are defective and will not pass inspection.  What is the probability that at least 15% of a random  sample of 100 filters are defective? (**注意这里虽然是15，但是正态分布连续，使用14.5**) Let X = # defective filters in a random sample of 100.  If on average 10% of filters are defective and each filter is selected independently, then X can be assumed to follow Binomial distribution with n=100, p=0.10.
-    >
-    > ![image-20241016162617935](psychology_statistics.assets/image-20241016162617935.png)
+  - **If X~ Binomial(n,p), then** Pr(a=<x=<b) (b+0.5).="" **连续变量一定要使用精确上下限**="" -="" an="" approximated="" area="" by="" curve="" from(a-0.5)="" is="" n(np,npq)="" the="" to="" under=""> Example: A company produces smoke filters and knows that, on  average, 10% are defective and will not pass inspection.  What is the probability that at least 15% of a random  sample of 100 filters are defective? (**注意这里虽然是15，但是正态分布连续，使用14.5**) Let X = # defective filters in a random sample of 100.  If on average 10% of filters are defective and each filter is selected independently, then X can be assumed to follow Binomial distribution with n=100, p=0.10.
+    &gt;
+    &gt; ![image-20241016162617935](psychology_statistics.assets/image-20241016162617935.png)
 
 - 样本均值分布distribution of sample means
 
@@ -518,11 +514,11 @@ log()
 exp()
 log10()
 log2()
-<
->
+&lt;
+&gt;
 ==
-<=
->=
+&lt;=
+&gt;=
 !=
 range()
 max()
@@ -555,4 +551,4 @@ print()
 
 绘图（不直接考察）：直方图hist，茎叶图stem，饼图pie，概率密度PDF，概率质量PMF，累计分布CDF
 
-概率和分布：二项（dbinom和pbinom），正态(dnorm, pnorm和qnorm）,t（dt，pt和qt）
+概率和分布：二项（dbinom和pbinom），正态(dnorm, pnorm和qnorm）,t（dt，pt和qt）</x=<b)>

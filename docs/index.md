@@ -106,7 +106,7 @@ console.log('Hello, VitePress!')
 
 此外,可以使用 `// [!code focus:<lines>]` 定义要聚焦的行数.
 
-</lines>```js
+```js
 export default {
   data () {
     return {

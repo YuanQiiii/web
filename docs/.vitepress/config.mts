@@ -13,7 +13,7 @@ export default defineConfig({
     }
   },
   base: '/web/',
-  title: "HomePage",
+  title: "Page",
   description: "a long story",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config

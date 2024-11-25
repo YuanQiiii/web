@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: "HomePage"
-  text: "Eric's HomePage"
+  name: "Page"
+  text: "a living man"
   actions:
     - theme: brand
       text: 普心

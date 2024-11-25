@@ -11,5 +11,6 @@ git commit -m "auto push" || echo No changes to commit.
 REM Push to remote repository
 git push
 
-echo git push done.
+REM Complete the task
+echo git push done
 pause

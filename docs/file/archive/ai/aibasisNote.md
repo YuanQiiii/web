@@ -45,7 +45,7 @@ from mypackage.submodule1 import my_function
 
 Python还有一个内置的包管理系统 `pip`，可以让你轻松地安装、升级、和移除第三方包。这些第三方包可以大大扩展Python的功能，它们通常都是按照上面描述的包结构组织的。
 
-## `Anaconda` 
+## `Anaconda`
 
 ### 环境准备
 
@@ -102,7 +102,7 @@ pip install xxx
 &gt;
 &gt; - 开发环境：`conda` VS `pip`
 &gt;   - **`conda`：**
-&gt;     -  环境管理器，高于Python 
+&gt;     -  环境管理器，高于Python
 &gt;     - 可安装python包、其他库
 &gt;     - 包的版本和依赖严谨，会考虑底层库依赖
 &gt;     - Python包的数量是`pypi`的子集
@@ -150,7 +150,6 @@ pip install xxx
   6. **支持GPU加速**：
      - PyTorch 提供了对 GPU 的支持，可以利用 GPU 进行张量计算，加速模型训练和推理过程。
      - 通过简单的代码更改，可以将张量移动到 GPU 上进行计算。
-
 
 ### 具体操作
 
@@ -237,6 +236,7 @@ original_list[0] = 0
 original_list[1][0] = 0
 print(deepcopied_list)  #  [0, [0, 3]]
 ```
+
 ```python
 import numpy as np
 
@@ -337,6 +337,7 @@ with open('data.json', 'r') as file:
 
 print(loaded_data)
 ```
+
 ```python
 import torch
 t = torch.randn(2,2)
@@ -716,37 +717,35 @@ plt.legend()
 plt.show()
 ```
 
-
-
 ## 要点
 
 ### Q
 
 - 什么是机器学习，包含哪三个基本元素？
-- 机器学习可以分为哪几类？ 
+- 机器学习可以分为哪几类？
 - 什么是线性模型？
 - 什么是线性回归？
-- 线性回归在什么情况下有Closed form的解？什么情况下没有？ 
--  什么是Ridge regression？什么是Lasso regression？他们的解有什么特点？
--  什么是广义的线性模型?
+- 线性回归在什么情况下有Closed form的解？什么情况下没有？
+- 什么是Ridge regression？什么是Lasso regression？他们的解有什么特点？
+- 什么是广义的线性模型?
 
 ### A
 
-- **机器学习**指算法的设计与分析使得我们能够基于经验提升模型在某些任务上的表现 
+- **机器学习**指算法的设计与分析使得我们能够基于经验提升模型在某些任务上的表现
 
 - **三要素**：任务、经验、表现
 
 - 机器学习可以分为
 
-  - 有监督学习 
-    - 分类问题、回归问题… 
+  - 有监督学习
+    - 分类问题、回归问题…
 
-  - 无监督学习 
-    - 聚类、密度估计、降维… 
+  - 无监督学习
+    - 聚类、密度估计、降维…
 
-  - 半监督学习 
+  - 半监督学习
 
-  - 弱监督学习 
+  - 弱监督学习
 
   - 强化学习
 
@@ -754,7 +753,7 @@ plt.show()
 
 - **线性回归**:给定数据 ,用一个**线性模型**估计最接近真实$y_i$(ground truth )的连续标量Y
 
-  -  ${f}(x_i) = {w}^{T}x_i +b$, such that$ {f}(x_i) \approx{y_i}$
+  - ${f}(x_i) = {w}^{T}x_i +b$, such that$ {f}(x_i) \approx{y_i}$
 
   - $w,b$ 是要学习的模型参数
 

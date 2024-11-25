@@ -78,10 +78,6 @@ export default [
             "text": "language",
             "items": [
               {
-                "text": "cplusplusNote",
-                "link": "/file/archive/language/cplusplusNote"
-              },
-              {
                 "text": "latexNote",
                 "link": "/file/archive/language/latexNote"
               },

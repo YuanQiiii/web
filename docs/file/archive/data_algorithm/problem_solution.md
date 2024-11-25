@@ -65,7 +65,7 @@ int main() {
 &gt;
 &gt; 有一根长度为n的木材（n为不大于100的正整数），要将其切割为m（0 &lt; m &lt; n) 段出售，每段均为正整数长度。不同长度的木材具有不同的售价p（0 &lt; p &lt; 100)。求一个最优的切割方案，以尽可能卖出更多的钱。
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; 输入
 &gt;
@@ -170,7 +170,7 @@ public:
 
 &gt; 给你一个只包含 `'('` 和 `')'` 的字符串，找出最长有效（格式正确且连续）括号
 &gt;
-&gt; 子串的长度。 
+&gt; 子串的长度。
 &gt;
 &gt; **示例 1：**
 &gt;
@@ -195,7 +195,7 @@ public:
 &gt; 输出：0
 &gt; ```
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; **提示：**
 &gt;
@@ -968,8 +968,6 @@ int main() {
 }
 ```
 
-
-
 ## [Luogu 1507 NASA的食物计划](https://www.luogu.org/problemnew/show/P1507)
 
 &gt; ## 题目背景
@@ -1198,17 +1196,17 @@ int main() {
 
 ## [OpenJudge - 2806:公共子序列](http://bailian.openjudge.cn/practice/2806)
 
-&gt; - 总时间限制: 
+&gt; - 总时间限制:
 &gt;
 &gt;   1000ms
 &gt;
-&gt; - 内存限制: 
+&gt; - 内存限制:
 &gt;
 &gt;   65536kB
 &gt;
 &gt; - 描述
 &gt;
-&gt;   我们称序列Z = &lt; z1, z2, ..., zk &gt;是序列X = &lt; x1, x2, ..., xm &gt;的子序列当且仅当存在 **严格上升** 的序列&lt; i1, i2, ..., ik &gt;，使得对j = 1, 2, ... ,k, 有xij = zj。比如Z = &lt; a, b, f, c &gt; 是X = &lt; a, b, c, f, b, c &gt;的子序列。  现在给出两个序列X和Y，你的任务是找到X和Y的最大公共子序列，也就是说要找到一个最长的序列Z，使得Z既是X的子序列也是Y的子序列。 
+&gt;   我们称序列Z = &lt; z1, z2, ..., zk &gt;是序列X = &lt; x1, x2, ..., xm &gt;的子序列当且仅当存在 **严格上升** 的序列&lt; i1, i2, ..., ik &gt;，使得对j = 1, 2, ... ,k, 有xij = zj。比如Z = &lt; a, b, f, c &gt; 是X = &lt; a, b, c, f, b, c &gt;的子序列。  现在给出两个序列X和Y，你的任务是找到X和Y的最大公共子序列，也就是说要找到一个最长的序列Z，使得Z既是X的子序列也是Y的子序列。
 &gt;
 &gt; - 输入
 &gt;
@@ -1222,13 +1220,13 @@ int main() {
 &gt;
 &gt;   `abcfbc         abfcab`
 &gt;
-&gt;   ` programming    contest` 
+&gt;   `programming    contest`
 &gt;
-&gt;    `abcd           mnp `
+&gt;    `abcd           mnp`
 &gt;
 &gt; - 样例输出
 &gt;
-&gt;   `4 2 0 `
+&gt;   `4 2 0`
 &gt;
 &gt; - 来源
 &gt;
@@ -1293,7 +1291,7 @@ int main() {
 &gt; 解释: 2 不存在 nums 中因此返回 -1
 &gt; ```
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; **提示：**
 &gt;
@@ -1376,7 +1374,7 @@ class Solution:
 &gt;
 &gt; 请必须使用时间复杂度为 `O(log n)` 的算法。
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; **示例 1:**
 &gt;
@@ -1399,7 +1397,7 @@ class Solution:
 &gt; 输出: 4
 &gt; ```
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; **提示:**
 &gt;
@@ -1678,7 +1676,7 @@ class Solution:
 &gt;
 &gt; 元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; **说明:**
 &gt;
@@ -1691,7 +1689,7 @@ class Solution:
 &gt; ```
 &gt; // nums 是以“引用”方式传递的。也就是说，不对实参作任何拷贝
 &gt; int len = removeElement(nums, val);
-&gt; 
+&gt;
 &gt; // 在函数里修改输入数组对于调用者是可见的。
 &gt; // 根据你的函数返回的长度, 它会打印出数组中 该长度范围内 的所有元素。
 &gt; for (int i = 0; i &lt; len; i++) {
@@ -1699,7 +1697,7 @@ class Solution:
 &gt; }
 &gt; ```
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; **示例 1：**
 &gt;
@@ -1717,7 +1715,7 @@ class Solution:
 &gt; 解释：函数应该返回新的长度 5, 并且 nums 中的前五个元素为 0, 1, 3, 0, 4。注意这五个元素可为任意顺序。你不需要考虑数组中超出新长度后面的元素。
 &gt; ```
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; **提示：**
 &gt;
@@ -1873,9 +1871,9 @@ class Solution:
 &gt; ```
 &gt; int[] nums = [...]; // 输入数组
 &gt; int[] expectedNums = [...]; // 长度正确的期望答案
-&gt; 
+&gt;
 &gt; int k = removeDuplicates(nums); // 调用
-&gt; 
+&gt;
 &gt; assert k == expectedNums.length;
 &gt; for (int i = 0; i &lt; k; i++) {
 &gt;     assert nums[i] == expectedNums[i];
@@ -1884,7 +1882,7 @@ class Solution:
 &gt;
 &gt; 如果所有断言都通过，那么您的题解将被 **通过**。
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; **示例 1：**
 &gt;
@@ -1946,7 +1944,7 @@ class Solution:
 &gt;
 &gt; **请注意** ，必须在不复制数组的情况下原地对数组进行操作。
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; **示例 1:**
 &gt;
@@ -1962,14 +1960,14 @@ class Solution:
 &gt; 输出: [0]
 &gt; ```
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; **提示**:
 &gt;
 &gt; - `1 &lt;= nums.length &lt;= 104`
 &gt; - `-231 &lt;= nums[i] &lt;= 231 - 1`
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; **进阶：**你能尽量减少完成的操作次数吗？
 
@@ -2015,7 +2013,7 @@ class Solution:
 &gt;
 &gt; **注意：**如果对空文本输入退格字符，文本继续为空。
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; **示例 1：**
 &gt;
@@ -2041,7 +2039,7 @@ class Solution:
 &gt; 解释：s 会变成 "c"，但 t 仍然是 "b"。
 &gt; ```
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; **提示：**
 &gt;
@@ -2369,7 +2367,7 @@ class Solution:
 &gt;
 &gt; 找出该数组中满足其总和大于等于 `target` 的长度最小的 **连续子数组** `[numsl, numsl+1, ..., numsr-1, numsr]` ，并返回其长度**。**如果不存在符合条件的子数组，返回 `0` 。
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; **示例 1：**
 &gt;
@@ -2393,7 +2391,7 @@ class Solution:
 &gt; 输出：0
 &gt; ```
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; **提示：**
 &gt;
@@ -2584,14 +2582,14 @@ class Solution:
 
 &gt; 给你一个字符串 `s` 、一个字符串 `t` 。返回 `s` 中涵盖 `t` 所有字符的最小子串。如果 `s` 中不存在涵盖 `t` 所有字符的子串，则返回空字符串 `""` 。
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; **注意：**
 &gt;
 &gt; - 对于 `t` 中重复字符，我们寻找的子字符串中该字符数量必须不少于 `t` 中该字符数量。
 &gt; - 如果 `s` 中存在这样的子串，我们保证它是唯一的答案。
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; **示例 1：**
 &gt;
@@ -2618,7 +2616,7 @@ class Solution:
 &gt; 因此没有符合条件的子字符串，返回空字符串。
 &gt; ```
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; **提示：**
 &gt;
@@ -2627,7 +2625,7 @@ class Solution:
 &gt; - `1 &lt;= m, n &lt;= 105`
 &gt; - `s` 和 `t` 由英文字母组成
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; **进阶：**你能设计一个在 `o(m+n)` 时间内解决此问题的算法吗？
 
@@ -2639,7 +2637,7 @@ class Solution:
 
 &gt; 给你一个正整数 `n` ，生成一个包含 `1` 到 `n2` 所有元素，且元素按顺时针顺序螺旋排列的 `n x n` 正方形矩阵 `matrix` 。
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; **示例 1：**
 &gt;
@@ -2657,7 +2655,7 @@ class Solution:
 &gt; 输出：[[1]]
 &gt; ```
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; **提示：**
 &gt;
@@ -2819,7 +2817,7 @@ class Solution:
 
 &gt; 给你一个 `m` 行 `n` 列的矩阵 `matrix` ，请按照 **顺时针螺旋顺序** ，返回矩阵中的所有元素。
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; **示例 1：**
 &gt;
@@ -2839,7 +2837,7 @@ class Solution:
 &gt; 输出：[1,2,3,4,8,12,11,10,9,5,6,7]
 &gt; ```
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; **提示：**
 &gt;
@@ -2905,20 +2903,18 @@ class Solution:
 
 - 注意不要混淆**C++/C**和**Python**的**数组**表示方式和**逻辑连接词**
 
-
-
 ## B:文件结构“图”
 
-&gt; - 总时间限制: 
+&gt; - 总时间限制:
 &gt; - 1000ms
 &gt;
-&gt; - 内存限制: 
+&gt; - 内存限制:
 &gt;
 &gt;   65536kB
 &gt;
 &gt; - 描述
 &gt;
-&gt;   在计算机上看到文件系统的结构通常很有用。Microsoft Windows上面的"explorer"程序就是这样的一个例子。但是在有图形界面之前，没有图形化的表示方法的，那时候最好的方式是把目录和文件的结构显示成一个"图"的样子，而且使用缩排的形式来表示目录的结构。比如： 
+&gt;   在计算机上看到文件系统的结构通常很有用。Microsoft Windows上面的"explorer"程序就是这样的一个例子。但是在有图形界面之前，没有图形化的表示方法的，那时候最好的方式是把目录和文件的结构显示成一个"图"的样子，而且使用缩排的形式来表示目录的结构。比如：
 &gt;
 &gt;   ```
 &gt;   ROOT
@@ -2931,9 +2927,9 @@ class Solution:
 &gt;   |     file1
 &gt;   file1
 &gt;   file2
-&gt;   ```
+&gt; ```
 &gt;
-&gt;    这个图说明：ROOT目录包括三个子目录和两个文件。第一个子目录包含3个文件，第二个子目录是空的，第三个子目录包含一个文件。 
+&gt;    这个图说明：ROOT目录包括三个子目录和两个文件。第一个子目录包含3个文件，第二个子目录是空的，第三个子目录包含一个文件。
 &gt;
 &gt; - 输入
 &gt;
@@ -2963,9 +2959,9 @@ class Solution:
 &gt;   file1
 &gt;   *
 &gt;   #
-&gt;   ```
+&gt; ```
 &gt;
-&gt;   
+&gt;
 &gt;
 &gt; - 样例输出
 &gt;
@@ -2981,14 +2977,14 @@ class Solution:
 &gt;   file2
 &gt;   file3
 &gt;   file4
-&gt;                   
+&gt;
 &gt;   DATA SET 2:
 &gt;   ROOT
 &gt;   file1
 &gt;   file2
-&gt;   ```
+&gt; ```
 &gt;
-&gt;   
+&gt;
 &gt;
 &gt; - 提示
 &gt;
@@ -3081,17 +3077,17 @@ int main() {
 
 ## B:最佳加法表达式
 
-&gt; - 总时间限制: 
+&gt; - 总时间限制:
 &gt;
 &gt;   1000ms
 &gt;
-&gt; - 内存限制: 
+&gt; - 内存限制:
 &gt;
 &gt;   65536kB
 &gt;
 &gt; - 描述
 &gt;
-&gt;   给定n个1到9的数字，要求在数字之间摆放m个加号(加号两边必须有数字），使得所得到的加法表达式的值最小，并输出该值。例如，在1234中摆放1个加号，最好的摆法就是12+34,和为36 
+&gt;   给定n个1到9的数字，要求在数字之间摆放m个加号(加号两边必须有数字），使得所得到的加法表达式的值最小，并输出该值。例如，在1234中摆放1个加号，最好的摆法就是12+34,和为36
 &gt;
 &gt; - 输入
 &gt;
@@ -3103,7 +3099,7 @@ int main() {
 &gt;
 &gt; - 样例输入
 &gt;
-&gt;   `2 123456 `
+&gt;   `2 123456`
 &gt;
 &gt;   `1 123456`
 &gt;
@@ -3113,9 +3109,9 @@ int main() {
 &gt;
 &gt;   `102`
 &gt;
-&gt;   ` 579 ` 
+&gt;   ` 579 `
 &gt;
-&gt;    `15 `
+&gt;    `15`
 &gt;
 &gt; - 提示
 &gt;
@@ -3124,8 +3120,6 @@ int main() {
 &gt; - 来源
 &gt;
 &gt;   Guo Wei
-
-
 
 ```c++
 #include <iostream>
@@ -3217,13 +3211,13 @@ int main() {
 
 ```
 
-## [ OpenJudge - A:迷宫问题](http://cxsjsx.openjudge.cn/hw202416/A/)
+## [OpenJudge - A:迷宫问题](http://cxsjsx.openjudge.cn/hw202416/A/)
 
-&gt;- 总时间限制: 
+&gt;- 总时间限制:
 &gt;
 &gt;  1000ms
 &gt;
-&gt;- 内存限制: 
+&gt;- 内存限制:
 &gt;
 &gt;  65536kB
 &gt;
@@ -3245,9 +3239,9 @@ int main() {
 &gt;  0, 0, 0, 1, 0,
 &gt;  
 &gt;  };
-&gt;  ```
+&gt; ```
 &gt;
-&gt;  它表示一个迷宫，其中的1表示墙壁，0表示可以走的路，只能横着走或竖着走，不能斜着走，要求编程序找出从左上角到右下角的最短路线。 
+&gt;  它表示一个迷宫，其中的1表示墙壁，0表示可以走的路，只能横着走或竖着走，不能斜着走，要求编程序找出从左上角到右下角的最短路线。
 &gt;
 &gt;- 输入
 &gt;
@@ -3265,7 +3259,7 @@ int main() {
 &gt;  0 0 0 0 0
 &gt;  0 1 1 1 0
 &gt;  0 0 0 1 0
-&gt;  ```
+&gt; ```
 &gt;
 &gt;  
 &gt;
@@ -3281,7 +3275,7 @@ int main() {
 &gt;  (2, 4)
 &gt;  (3, 4)
 &gt;  (4, 4)
-&gt;  ```
+&gt; ```
 
 ```c++
 #include <iostream>
@@ -3358,11 +3352,11 @@ int main() {
 
 ## [OpenJudge - B:棋盘问题](http://cxsjsx.openjudge.cn/hw202416/B/)
 
-&gt;- 总时间限制: 
+&gt;- 总时间限制:
 &gt;
 &gt;  1000ms
 &gt;
-&gt;- 内存限制: 
+&gt;- 内存限制:
 &gt;
 &gt;  65536kB
 &gt;
@@ -3372,7 +3366,7 @@ int main() {
 &gt;
 &gt;- 输入
 &gt;
-&gt;  输入含有多组测试数据。 每组数据的第一行是两个正整数，n k，用一个空格隔开，表示了将在一个n*n的矩阵内描述棋盘，以及摆放棋子的数目。 n &lt;= 8 , k &lt;= n 当为-1 -1时表示输入结束。 随后的n行描述了棋盘的形状：每行有n个字符，其中 # 表示棋盘区域， . 表示空白区域（数据保证不出现多余的空白行或者空白列）。 
+&gt;  输入含有多组测试数据。 每组数据的第一行是两个正整数，n k，用一个空格隔开，表示了将在一个n*n的矩阵内描述棋盘，以及摆放棋子的数目。 n &lt;= 8 , k &lt;= n 当为-1 -1时表示输入结束。 随后的n行描述了棋盘的形状：每行有n个字符，其中 # 表示棋盘区域， . 表示空白区域（数据保证不出现多余的空白行或者空白列）。
 &gt;
 &gt;- 输出
 &gt;
@@ -3390,7 +3384,7 @@ int main() {
 &gt;  .#..
 &gt;  #...
 &gt;  -1 -1
-&gt;  ```
+&gt; ```
 &gt;
 &gt;  
 &gt;
@@ -3399,7 +3393,7 @@ int main() {
 &gt;  ```
 &gt;  2
 &gt;  1
-&gt;  ```
+&gt; ```
 &gt;
 &gt;  
 &gt;
@@ -3457,11 +3451,11 @@ int main() {
 
 ## [OpenJudge - C:海贼王之伟大航路](http://cxsjsx.openjudge.cn/hw202416/C/)
 
-&gt; - 总时间限制: 
+&gt; - 总时间限制:
 &gt;
 &gt;   1000ms
 &gt;
-&gt; - 内存限制: 
+&gt; - 内存限制:
 &gt;
 &gt;   65536kB
 &gt;
@@ -3486,45 +3480,45 @@ int main() {
 &gt;   5 0 90 30
 &gt;   99 50 0 10
 &gt;   999 1 2 0
-&gt;                 
+&gt;
 &gt;   样例输入2：
 &gt;   5
 &gt;   0 18 13 98 8
-&gt;   89 0 45 78 43 
+&gt;   89 0 45 78 43
 &gt;   22 38 0 96 12
 &gt;   68 19 29 0 52
 &gt;   95 83 21 24 0
-&gt;   ```
+&gt; ```
 &gt;
-&gt;   
+&gt;
 &gt;
 &gt; - 样例输出
 &gt;
 &gt;   ```
 &gt;   样例输出1：
 &gt;   100
-&gt;                 
+&gt;
 &gt;   样例输出2：
 &gt;   137
-&gt;   ```
+&gt; ```
 &gt;
-&gt;   
+&gt;
 &gt;
 &gt; - 提示
 &gt;
 &gt;   提示： 对于样例输入1：路飞选择从起点岛屿1出发，依次经过岛屿3，岛屿2，最后到达终点岛屿4。花费时间为20+50+30=100。 对于样例输入2：可能的路径及总时间为：
 &gt;
-&gt;    1,2,3,4,5: 18+45+96+52=211 
+&gt;    1,2,3,4,5: 18+45+96+52=211
 &gt;
-&gt;   1,2,4,3,5: 18+78+29+12=137 
+&gt;   1,2,4,3,5: 18+78+29+12=137
 &gt;
-&gt;   1,3,2,4,5: 13+38+78+52=181 
+&gt;   1,3,2,4,5: 13+38+78+52=181
 &gt;
-&gt;   1,3,4,2,5: 13+96+19+43=171 
+&gt;   1,3,4,2,5: 13+96+19+43=171
 &gt;
-&gt;   1,4,2,3,5: 98+19+45+12=174 
+&gt;   1,4,2,3,5: 98+19+45+12=174
 &gt;
-&gt;   1,4,3,2,5: 98+29+38+43=208 
+&gt;   1,4,3,2,5: 98+29+38+43=208
 &gt;
 &gt;   所以最短的时间花费为137 单纯的枚举在N=16时需要14!次运算，一定会超时。
 
@@ -3585,25 +3579,25 @@ int main() {
 
 ## [OpenJudge - 1:二叉树的操作](http://forhuwei.openjudge.cn/fourthhomework/1/)
 
-&gt; - 总时间限制: 
+&gt; - 总时间限制:
 &gt;
 &gt;   1000ms
 &gt;
-&gt; - 内存限制: 
+&gt; - 内存限制:
 &gt;
 &gt;   65535kB
 &gt;
 &gt; - 描述
 &gt;
-&gt;   给定一棵二叉树，在二叉树上执行两个操作： 
+&gt;   给定一棵二叉树，在二叉树上执行两个操作：
 &gt;
-&gt;   1. 节点交换 把二叉树的两个节点交换。 ![img](./problem_solution.assets/1368411159.jpg) 
+&gt;   1. 节点交换 把二叉树的两个节点交换。 ![img](./problem_solution.assets/1368411159.jpg)
 &gt;
-&gt;   
+&gt;
 &gt;
 &gt;   2. 前驱询问 询问二叉树的一个节点对应的子树最左边的节点。
 &gt;
-&gt;      
+&gt;
 &gt;
 &gt;       ![img](./problem_solution.assets/1368411165.jpg)
 &gt;
@@ -3636,7 +3630,7 @@ int main() {
 &gt;   2 -1 -1
 &gt;   1 1 2
 &gt;   2 0
-&gt;   ```
+&gt; ```
 &gt;
 &gt; - 样例输出
 &gt;
@@ -3645,7 +3639,7 @@ int main() {
 &gt;   3
 &gt;   4
 &gt;   2
-&gt;   ```
+&gt; ```
 
 ```c++
 #include <iostream>
@@ -3719,11 +3713,11 @@ int main() {
 
 ## [OpenJudge - A:Saving Tang Monk](http://cxsjsx.openjudge.cn/hw202417/A/)
 
-&gt; - 总时间限制: 
+&gt; - 总时间限制:
 &gt;
 &gt;   1000ms
 &gt;
-&gt; - 内存限制: 
+&gt; - 内存限制:
 &gt;
 &gt;   65536kB
 &gt;
@@ -3733,7 +3727,7 @@ int main() {
 &gt;
 &gt; - 输入
 &gt;
-&gt;   There are several test cases.  For each case, the first line includes two integers N and M(0 &lt; N &lt;= 100, 0 &lt;= M &lt;= 9), meaning that the palace is a N * N matrix and Sun Wukong needed M kinds of keys(kind 1, kind 2, ... kind M).  Then the N*N matrix follows.  The input ends with N = 0 and M = 0.
+&gt;   There are several test cases.  For each case, the first line includes two integers N and M(0 &lt; N &lt;= 100, 0 &lt;= M &lt;= 9), meaning that the palace is a N *N matrix and Sun Wukong needed M kinds of keys(kind 1, kind 2, ... kind M).  Then the N*N matrix follows.  The input ends with N = 0 and M = 0.
 &gt;
 &gt; - 输出
 &gt;
@@ -3755,7 +3749,7 @@ int main() {
 &gt;   .S.
 &gt;   21.
 &gt;   0 0
-&gt;   ```
+&gt; ```
 &gt;
 &gt; - 样例输出
 &gt;
@@ -3763,7 +3757,7 @@ int main() {
 &gt;   5
 &gt;   impossible
 &gt;   8
-&gt;   ```
+&gt; ```
 
 ```c++
 #include <iostream>
@@ -3892,15 +3886,13 @@ int main() {
 &gt;
 &gt; 注意搜索途中对环境的改变
 
-
-
 ## [OpenJudge - B:Pots](http://cxsjsx.openjudge.cn/hw202417/B/)
 
-&gt; - 总时间限制: 
+&gt; - 总时间限制:
 &gt;
 &gt;   1000ms
 &gt;
-&gt; - 内存限制: 
+&gt; - 内存限制:
 &gt;
 &gt;   65536kB
 &gt;
@@ -3920,9 +3912,9 @@ int main() {
 &gt;
 &gt;   ```
 &gt;   3 5 4
-&gt;   ```
+&gt; ```
 &gt;
-&gt;   
+&gt;
 &gt;
 &gt; - 样例输出
 &gt;
@@ -3934,7 +3926,7 @@ int main() {
 &gt;   POUR(2,1)
 &gt;   FILL(2)
 &gt;   POUR(2,1)
-&gt;   ```
+&gt; ```
 
 ```c++
 #include <climits>
@@ -4103,17 +4095,17 @@ int main() {
 
 ## [OpenJudge - C:Charm Bracelet](http://cxsjsx.openjudge.cn/hw202418/C/)
 
-&gt; - 总时间限制: 
+&gt; - 总时间限制:
 &gt;
 &gt;   1000ms
 &gt;
-&gt; - 内存限制: 
+&gt; - 内存限制:
 &gt;
 &gt;   65536kB
 &gt;
 &gt; - 描述
 &gt;
-&gt;   Bessie has gone to the mall's jewelry store and spies a charm bracelet. Of course, she'd like to fill it with the best charms possible from the *N*(1 ≤ *N*≤ 3,402) available charms. Each charm *i*in the supplied list has a weight *Wi*(1 ≤ *Wi*≤ 400), a 'desirability' factor *Di*(1 ≤ *Di*≤ 100), and can be used at most once. Bessie can only support a charm bracelet whose weight is no more than *M*(1 ≤ *M*≤ 12,880).Given that weight limit as a constraint and a list of the charms with their weights and desirability rating, deduce the maximum possible sum of ratings. 
+&gt;   Bessie has gone to the mall's jewelry store and spies a charm bracelet. Of course, she'd like to fill it with the best charms possible from the *N*(1 ≤ *N*≤ 3,402) available charms. Each charm *i*in the supplied list has a weight *Wi*(1 ≤ *Wi*≤ 400), a 'desirability' factor *Di*(1 ≤ *Di*≤ 100), and can be used at most once. Bessie can only support a charm bracelet whose weight is no more than *M*(1 ≤ *M*≤ 12,880).Given that weight limit as a constraint and a list of the charms with their weights and desirability rating, deduce the maximum possible sum of ratings.
 &gt;
 &gt; - 输入
 &gt;
@@ -4171,8 +4163,6 @@ int main() {
 }
 ```
 
-
-
 ```c++
 #include <iostream>
 #include <vector>
@@ -4200,11 +4190,11 @@ int main() {
 
 ## [OpenJudge - D:课程大作业](http://cxsjsx.openjudge.cn/hw202418/D/)
 
-&gt; - 总时间限制: 
+&gt; - 总时间限制:
 &gt;
 &gt;   1000ms
 &gt;
-&gt; - 内存限制: 
+&gt; - 内存限制:
 &gt;
 &gt;   65536kB
 &gt;
@@ -4223,29 +4213,29 @@ int main() {
 &gt; - 样例输入
 &gt;
 &gt;   ```
-&gt;   2 
-&gt;   3 
-&gt;   Computer 3 3 
-&gt;   English 20 1 
-&gt;   Math 3 2 
+&gt;   2
 &gt;   3
-&gt;   Computer 3 3 
-&gt;   English 6 3 
+&gt;   Computer 3 3
+&gt;   English 20 1
+&gt;   Math 3 2
+&gt;   3
+&gt;   Computer 3 3
+&gt;   English 6 3
 &gt;   Math 6 3
-&gt;   ```
+&gt; ```
 &gt;
 &gt; - 样例输出
 &gt;
 &gt;   ```
-&gt;   2 
-&gt;   Computer 
-&gt;   Math 
-&gt;   English 
-&gt;   3 
-&gt;   Computer 
-&gt;   English 
+&gt;   2
+&gt;   Computer
 &gt;   Math
-&gt;   ```
+&gt;   English
+&gt;   3
+&gt;   Computer
+&gt;   English
+&gt;   Math
+&gt; ```
 &gt;
 &gt; - 提示
 &gt;
@@ -4354,11 +4344,11 @@ int main() {
 
 ## [OpenJudge - B:硬币](http://cxsjsx.openjudge.cn/hw202418/B/)
 
-&gt; - 总时间限制: 
+&gt; - 总时间限制:
 &gt;
 &gt;   1000ms
 &gt;
-&gt; - 内存限制: 
+&gt; - 内存限制:
 &gt;
 &gt;   262144kB
 &gt;
@@ -4378,11 +4368,11 @@ int main() {
 &gt;
 &gt;   `5 18`
 &gt;
-&gt;   ` 1 2 3 5 10`
+&gt;   `1 2 3 5 10`
 &gt;
 &gt; - 样例输出
 &gt;
-&gt;   `2 `
+&gt;   `2`
 &gt;
 &gt;   `5 10`
 &gt;
@@ -4448,17 +4438,17 @@ int main() {
 
 ## [OpenJudge - A:UNIMODAL PALINDROMIC DECOMPOSITIONS](http://cxsjsx.openjudge.cn/hw202418/A/)
 
-&gt; - 总时间限制: 
+&gt; - 总时间限制:
 &gt;
 &gt;   1000ms
 &gt;
-&gt; - 内存限制: 
+&gt; - 内存限制:
 &gt;
 &gt;   65536kB
 &gt;
 &gt; - 描述
 &gt;
-&gt;   A sequence of positive integers is Palindromic if it reads the same forward and backward. For example: 23 11 15 1 37 37 1 15 11 23 1 1 2 3 4 7 7 10 7 7 4 3 2 1 1 A Palindromic sequence is Unimodal Palindromic if the values do not decrease up to the middle value and then (since the sequence is palindromic) do not increase from the middle to the end For example, the first example sequence above is NOT Unimodal Palindromic while the second example is. A Unimodal Palindromic sequence is a Unimodal Palindromic Decomposition of an integer N, if the sum of the integers in the sequence is N. For example, all of the Unimodal Palindromic Decompositions of the first few integers are given below: 1: (1) 2: (2), (1 1) 3: (3), (1 1 1) 4: (4), (1 2 1), (2 2), (1 1 1 1) 5: (5), (1 3 1), (1 1 1 1 1) 6: (6), (1 4 1), (2 2 2), (1 1 2 1 1), (3 3), (1 2 2 1), ( 1 1 1 1 1 1) 7: (7), (1 5 1), (2 3 2), (1 1 3 1 1), (1 1 1 1 1 1 1) 8: (8), (1 6 1), (2 4 2), (1 1 4 1 1), (1 2 2 2 1), (1 1 1 2 1 1 1), ( 4 4), (1 3 3 1), (2 2 2 2), (1 1 2 2 1 1), (1 1 1 1 1 1 1 1)  Write a program, which computes the number of Unimodal Palindromic Decompositions of an integer. 
+&gt;   A sequence of positive integers is Palindromic if it reads the same forward and backward. For example: 23 11 15 1 37 37 1 15 11 23 1 1 2 3 4 7 7 10 7 7 4 3 2 1 1 A Palindromic sequence is Unimodal Palindromic if the values do not decrease up to the middle value and then (since the sequence is palindromic) do not increase from the middle to the end For example, the first example sequence above is NOT Unimodal Palindromic while the second example is. A Unimodal Palindromic sequence is a Unimodal Palindromic Decomposition of an integer N, if the sum of the integers in the sequence is N. For example, all of the Unimodal Palindromic Decompositions of the first few integers are given below: 1: (1) 2: (2), (1 1) 3: (3), (1 1 1) 4: (4), (1 2 1), (2 2), (1 1 1 1) 5: (5), (1 3 1), (1 1 1 1 1) 6: (6), (1 4 1), (2 2 2), (1 1 2 1 1), (3 3), (1 2 2 1), ( 1 1 1 1 1 1) 7: (7), (1 5 1), (2 3 2), (1 1 3 1 1), (1 1 1 1 1 1 1) 8: (8), (1 6 1), (2 4 2), (1 1 4 1 1), (1 2 2 2 1), (1 1 1 2 1 1 1), ( 4 4), (1 3 3 1), (2 2 2 2), (1 1 2 2 1 1), (1 1 1 1 1 1 1 1)  Write a program, which computes the number of Unimodal Palindromic Decompositions of an integer.
 &gt;
 &gt; - 输入
 &gt;

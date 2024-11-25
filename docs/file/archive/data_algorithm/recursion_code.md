@@ -41,18 +41,18 @@
 &gt;      /__\    /__\
 &gt;     /\  /\  /\  /\
 &gt;    /__\/__\/__\/__\
-&gt;    
+&gt;
 &gt;       /\
 &gt;      /__\
 &gt;     /\  /\
 &gt;    /__\/__\
-&gt;    
-&gt;    
+&gt;
+&gt;
 &gt;     /\
 &gt;    /__\
-&gt;    ```
+&gt; ```
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; 提示
 &gt;
@@ -103,7 +103,5 @@ int main() {
   return 0;
 }
 ```
-
-
 
  </iostream></cstring>

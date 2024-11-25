@@ -20,7 +20,7 @@
 - 变量(variable)
   - 离散型discrete
     - A **discrete variable** consists of separate, indivisible categories. No values can exist between two neighboring categories.
-       e.g. number of people, academic major (psychology, biology, math, etc.) 
+       e.g. number of people, academic major (psychology, biology, math, etc.)
   - 连续型continuous
     - For a **continuous variable**, there are an infinite number of possible values that fall between any two observed values. A continuous variable is divisible into an infinite number of fractional parts.
        e.g. time, space, height, weight, blood pressure
@@ -61,7 +61,7 @@
 
     - mode,medium,mean,add,minus,multiply,division
 
-&gt; three data structures 
+&gt; three data structures
 &gt;
 &gt; research methods  
 
@@ -76,14 +76,14 @@
 
 - 分组grouped频率分布
   - 组距class interval的概念和选择
-  - **These intervals all have the same width**, usually a simple number such as 2, 5, 10, and so on. 
+  - **These intervals all have the same width**, usually a simple number such as 2, 5, 10, and so on.
   - Each interval begins with a value that is a multiple of the interval width. (每个分组区间的下限值是组距的倍数)
   - The interval width is selected so that the table will have approximately **10** intervals
 
-&gt; Suppose a class interval of 40–49 contains scores from X = 40 to X = 49. 
+&gt; Suppose a class interval of 40–49 contains scores from X = 40 to X = 49.
 
 - 表面界限apparent limits
-  - The **apparent limits** of the interval are the values that appear to form the upper and lower boundaries for the class interval (40 and 49 in this case). 
+  - The **apparent limits** of the interval are the values that appear to form the upper and lower boundaries for the class interval (40 and 49 in this case).
 - 精确上下限real limits
   - **The real limits** of the class interval are thus 39.5 (lower real limit) and 49.5 (upper real limit). The distance between these two real limits (10 points) is the width of the interval.
 
@@ -91,7 +91,7 @@
 
   - continuous
 
-    - When the score categories consist of numerical scores from an **interval** or **ratio** scale, the graph should be either a **histogram** or a **polygon**. 
+    - When the score categories consist of numerical scores from an **interval** or **ratio** scale, the graph should be either a **histogram** or a **polygon**.
 
     - 直方图histogram（bar之间无间距）
 
@@ -107,7 +107,7 @@
 
   - discrete
 
-    - When the score categories (X values) are measurements from a **nominal** or an **ordinal** scale, the graph should be a **bar** graph. 
+    - When the score categories (X values) are measurements from a **nominal** or an **ordinal** scale, the graph should be a **bar** graph.
 
     - 棒图bar graph（bar之间有间距）
 
@@ -123,9 +123,9 @@
 
 - 平滑曲线smooth curve
 
-  - If the scores in the **population** are measured on an interval or ratio scale, it is customary to present the distribution as a **smooth curve** rather than a jagged histogram or polygon. 
+  - If the scores in the **population** are measured on an interval or ratio scale, it is customary to present the distribution as a **smooth curve** rather than a jagged histogram or polygon.
 
-    The smooth curve emphasizes the fact that the distribution is not showing the exact frequency for each category. Rather, we say xx% of scores is between xx and xx. 
+    The smooth curve emphasizes the fact that the distribution is not showing the exact frequency for each category. Rather, we say xx% of scores is between xx and xx.
 
 - 分布
   - ![image-20241008165426061](psychology_statistics.assets/image-20241008165426061.png)
@@ -140,33 +140,33 @@
 ## 3 Central tendency
 
 - 集中趋势central tendency：关注定义definition、性质propertied、适用范围
-  - In general terms, **central tendency** is a statistical measure that determines **a single value** that accurately describes **the center of the distribution and represents the entire distribution of scores. **
+  - In general terms, **central tendency** is a statistical measure that determines **a single value** that accurately describes **the center of the distribution and represents the entire distribution of scores.**
   - The goal of central tendency is to identify the single value that is **the best representative for the entire set of data.**
-  - By identifying the “average score”, central tendency allows researchers to **summarize** or condense a large set of data into a single value. 
-  - In addition, it is **possible** **to** **compare** two (or more) sets of data by simply comparing the average score (central tendency) for one set versus the average score for another set. 
+  - By identifying the “average score”, central tendency allows researchers to **summarize** or condense a large set of data into a single value.
+  - In addition, it is **possible** **to** **compare** two (or more) sets of data by simply comparing the average score (central tendency) for one set versus the average score for another set.
 
 - 均值mean：加权weighted平均值，线性性质(add multiple)
-  - Requires scores that are **numerical** values measured on an **interval **or **ratio** scale. 
+  - Requires scores that are **numerical** values measured on an **interval**or **ratio** scale.
   - The mean is the balance point of the distribution because the sum of the distances below the mean is exactly equal to the sum of the distances above the mean.
   - The Mean is Influenced by **Every Score** **in the Distribution**
   - $E(ax+b)=aE(x)+b$
-  - When a distribution contains a few **extreme** scores (or is very **skewed**), the mean will be pulled toward the extremes (displaced toward the tail). In this case, the mean will not provide a "central" value. 
-  - With data from a **nominal** scale it is impossible to compute a mean, and when data are measured on an **ordinal** scale (ranks), it is usually inappropriate to compute a mean. 
+  - When a distribution contains a few **extreme** scores (or is very **skewed**), the mean will be pulled toward the extremes (displaced toward the tail). In this case, the mean will not provide a "central" value.
+  - With data from a **nominal** scale it is impossible to compute a mean, and when data are measured on an **ordinal** scale (ranks), it is usually inappropriate to compute a mean.
 - 中位数median
-  - Computation of the median requires scores that can be placed in rank order (smallest to largest) and are measured on an **ordinal, interval, or ratio scale.** 
+  - Computation of the median requires scores that can be placed in rank order (smallest to largest) and are measured on an **ordinal, interval, or ratio scale.**
   - With an odd number of scores, list the values in order, and the median is the middle score in the list.
   - With an even number of scores, list the values in order, and the median is **half-way between the middle two scores**.
   - 精确precise中位数（**continuous**）
-    - If the scores are measurements of a continuous variable, it is possible to find the median by first placing the scores in a frequency distribution histogram with each score represented by a box in the graph. 
+    - If the scores are measurements of a continuous variable, it is possible to find the median by first placing the scores in a frequency distribution histogram with each score represented by a box in the graph.
     - Then, draw a vertical line through the distribution so that exactly half the boxes are on each side of the line (面积平分). The median is defined by the location of the line.
     - 使用比例劈分具体的数
       - ![image-20241008171845805](psychology_statistics.assets/image-20241008171845805.png)
-    - One advantage of the median is that it is relatively unaffected by extreme scores. 
+    - One advantage of the median is that it is relatively unaffected by extreme scores.
     - Thus, the median tends to stay in the "center" of the distribution even when there are a few extreme scores or when the distribution is very skewed. In these situations, the median serves as a good alternative to the mean.
 - 众数mode
-  - In a frequency distribution graph, the mode is the category or score corresponding to **the peak or high point** of the distribution. 
+  - In a frequency distribution graph, the mode is the category or score corresponding to **the peak or high point** of the distribution.
   - The mode can be determined for data measured on any scale of measurement: **nominal, ordinal, interval, or ratio**.
-  - •The primary value of the mode is that it is the only measure of central tendency that can be used for data measured on a **nominal** scale. In addition, the mode often is used as **a supplemental measure** of central tendency that is reported along with the mean or the median. 
+  - •The primary value of the mode is that it is the only measure of central tendency that can be used for data measured on a **nominal** scale. In addition, the mode often is used as **a supplemental measure** of central tendency that is reported along with the mean or the median.
   - 双峰bimodal分布
     - It is possible for a distribution to have more than one mode. Such a distribution is called **bimodal**. (Note that a distribution can have only one mean and only one median.) （两个峰值并不一定等高）
     - In addition, the term "mode" is often used to describe a peak in a distribution that is not really the highest point. Thus, a distribution may have a *major mode* at the highest peak and a *minor mode* at a secondary peak in a different location.（主要模式和次要模式）
@@ -186,26 +186,24 @@
     - Discrete Variables
     - Describing Shape
 
-
-
 ## 4 Variability
 
 - 变异性variability：关注定义definition、性质propertied、适用范围
 
-  - **Variability** provides a quantitative measure of the differences between scores in a distribution and describes the degree to which the scores are spread out or clustered together. 
+  - **Variability** provides a quantitative measure of the differences between scores in a distribution and describes the degree to which the scores are spread out or clustered together.
 
-  - Variability can be measured with 
+  - Variability can be measured with
 
     –the range
 
     –the interquartile range
 
-    –the standard deviation/variance. 
+    –the standard deviation/variance.
 
     In each case, variability is determined by measuring **distance**.
 
 - 全距range
-  - The **range** is the total distance covered by the distribution, from the highest score to the lowest score (**using the upper and lower real limits of the range**). 
+  - The **range** is the total distance covered by the distribution, from the highest score to the lowest score (**using the upper and lower real limits of the range**).
   - $range = X_{max}-X_{min}$ （discrete）
   - $range = URL \space for \space X_{max}-LRL \space for \space X_{min}$（continuous）
   - $range = X_{max}-X_{min} +1 $（int，continuous）
@@ -223,7 +221,7 @@
     var() # 无偏估计
     ```
 
-  - **Standard deviation** is the square root of the variance and provides a measure of the standard, or average distance from the mean. 
+  - **Standard deviation** is the square root of the variance and provides a measure of the standard, or average distance from the mean.
 
   - ```r
     sd() # 无偏估计
@@ -269,7 +267,7 @@
 - 相对总体和相对样本z分数z-score的计算
   - The process of changing an X value into a z-score involves creating a signed number, called a **z-score**, such that
     - a. The **sign** of the z-score (+ or –) identifies  whether the X value is located above the  mean (positive) or below the mean (negative).
-    -  b. The **numerical** value of the z-score  corresponds to the number of standard deviations （$\sigma$）between X and the mean of the  distribution.
+    - b. The **numerical** value of the z-score  corresponds to the number of standard deviations （$\sigma$）between X and the mean of the  distribution.
   - If the raw score is transformed into a z-score, the value of the z-score tells exactly where the score is located relative to all the other scores in the distribution.
   - Computing *z*-Scores for a Population
     - $z = \frac{X-\mu}{\sigma},\space X = \mu + z\sigma$
@@ -283,7 +281,7 @@
     - The distribution of z-scores will have exactly **the same shape** as the original distribution of scores. The transformation does not change the location of any individual score relative to others in the distribution.（只改变量纲，形状完全不变）
     - ![image-20241009152457781](psychology_statistics.assets/image-20241009152457781.png)
   - 均值mean
-    - The z-score distribution will always have a mean of zero. 
+    - The z-score distribution will always have a mean of zero.
   - 标准差standard deviation
     - The distribution of z-scores will always have a standard deviation of 1.
   - 作为一个转换的工具
@@ -293,11 +291,11 @@
 
 - 包括z分数在内的标准化分布standardized distribution能提供哪些和location有关的信息
 
-  - •The fact that z-scores identify exact locations within a distribution means that z-scores can be used as descriptive statistics and as inferential statistics. 
+  - •The fact that z-scores identify exact locations within a distribution means that z-scores can be used as descriptive statistics and as inferential statistics.
 
-    –As descriptive statistics, z-scores describe exactly where each individual is located. 
+    –As descriptive statistics, z-scores describe exactly where each individual is located.
 
-    –As inferential statistics, z-scores determine whether a specific sample is representative of its population, or is extreme and unrepresentative. 
+    –As inferential statistics, z-scores determine whether a specific sample is representative of its population, or is extreme and unrepresentative.
 
   - ![image-20241009154520458](psychology_statistics.assets/image-20241009154520458.png)
 
@@ -316,7 +314,6 @@
   - 贝叶斯公式bayes theorem
 
     - $P(A|B) = {P(B|A)*P(A)\over P(B)}$
-
 
 &gt;  | 事实\预测 | Positive | Negative |
 &gt;  | --------- | -------- | :------: |
@@ -355,7 +352,7 @@
 - 概率质量函数PMF
 
   - 针对于离散随机变量
-  -  A **Probability Mass Function** (PMF) is a mathematical relationship which assigns a probability to each possible value, *x*, of the discrete random variable *X.*
+  - A **Probability Mass Function** (PMF) is a mathematical relationship which assigns a probability to each possible value, *x*, of the discrete random variable *X.*
 
 - 分布列
 
@@ -374,7 +371,6 @@
 
   - $\sigma = \sqrt{\int_{-\infin}^{\infin}(x-\mu)^2f(x)dx}$
 
-
 - 正态分布normal（参数mu，sigma的影响和形状shape）
   - $\mu$描述对称轴
   - $\sigma $描述高矮胖瘦
@@ -383,22 +379,22 @@
 - 概率密度函数PDF
   - The Probability Density Function (PDF,概率密度函数) of the random variable X is the curve such that the area under the curve between any two points *a* and *b* is equal to the probability that the random variable, *X,* falls between *a* and *b.*
   - It is used extensively in methods of estimation and hypothesis testing (actually almost everything…).
-  -  $p(x) = \frac{1}{\sigma \sqrt{2\pi}}e^{-(x-\mu)^2\over 2\sigma^2}$ 正态分布
+  - $p(x) = \frac{1}{\sigma \sqrt{2\pi}}e^{-(x-\mu)^2\over 2\sigma^2}$ 正态分布
 - 累计分布函数CDF
-  - The Cumulative Distribution Function (CDF,累计分布函数,*F(a)*) of the random variable X evaluated at the point *a* is defined as the probability that X will take on values ≤ *a.* It is represented by the area under the PDF to the left of *a.* 
+  - The Cumulative Distribution Function (CDF,累计分布函数,*F(a)*) of the random variable X evaluated at the point *a* is defined as the probability that X will take on values ≤ *a.* It is represented by the area under the PDF to the left of *a.*
   - 可以用于DRV
   - $F(a) = Pr(X&lt;=a) = \int_{-\infin}^{a}f(x)dx$
 
-## 7 Normal Distribution 
+## 7 Normal Distribution
 
 - 标准正态分布
-  - nN(0,1) is referred to as the standard normal distribution (标准正态分布，or unit normal, or **z distribution**). 
-  - Any normal distribution can be transformed into N(0, 1). 
+  - nN(0,1) is referred to as the standard normal distribution (标准正态分布，or unit normal, or **z distribution**).
+  - Any normal distribution can be transformed into N(0, 1).
     - $if \space X\sim N(\mu,\sigma ^2),we \space have \space Y = \frac{X-\mu}{\sigma} \sim N(0,1)$ 一般正态分布: 和标准正态分布的关系
   - 累计分布函数CDF和百分位数percentile
-    - The relative location of individual scores within a distribution can be described by percentiles and percentile ranks. 
-    - The **percentile rank** for a specific X value is the percentage of individuals with scores at or below that value. 
-    -  When a score is referred to by its rank, the score is called a **percentile**. The percentile rank for a score in a normal distribution is simply the proportion to the left of the score. 
+    - The relative location of individual scores within a distribution can be described by percentiles and percentile ranks.
+    - The **percentile rank** for a specific X value is the percentage of individuals with scores at or below that value.
+    - When a score is referred to by its rank, the score is called a **percentile**. The percentile rank for a score in a normal distribution is simply the proportion to the left of the score.
     - 常用的值
       - $\Phi(1.96) = 0.975 = z_.975$   97.5%
       - $\Phi(1.645) = 0.95=z_.95$  95%
@@ -430,7 +426,7 @@
 - 样本均值分布distribution of sample means
 
   - The **distribution of sample means** is defined as the set of means from *all the possible random samples of a specific size* (*n*) selected from a specific population.
-  - The sample means should pile up around the population mean. 
+  - The sample means should pile up around the population mean.
   - The pile of sample means should tend to form a normal-shaped distribution. See the **Central Limit Theorem**.
   - In general, the larger the sample size *n*, the closer the sample means should be to the population mean, *μ*. See the **Law of Large Numbers**.
   - The mean of the distribution of sample means is called the **Expected Value of** **M**, and is equal to the population mean *μ*.
@@ -453,7 +449,7 @@
 
   - The distribution of sample means is perfectly or almost perfectly normal when either of the following two conditions is satisfied:
 
-    1. The population from which the samples are selected is a normal distribution. 
+    1. The population from which the samples are selected is a normal distribution.
 
     2. The number of scores (*n*) in each sample is relatively large, around 30 or more.
 
@@ -532,12 +528,6 @@ quantile()
 cat()
 print()
 ```
-
-
-
-
-
-
 
 使用library函数调用安装的包
 

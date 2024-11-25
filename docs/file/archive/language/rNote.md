@@ -51,12 +51,12 @@
 &gt; - **使用双引号**：
 &gt;   ```r
 &gt;   str1 &lt;- "Hello, World!"
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **使用单引号**：
 &gt;   ```r
 &gt;   str2 &lt;- 'Hello, World!'
-&gt;   ```
+&gt;```
 &gt;
 &gt; ### 注意事项
 &gt;
@@ -64,17 +64,17 @@
 &gt;    - 如果你的字符串中包含了双引号，使用单引号可以避免转义。例如：
 &gt;      ```r
 &gt;      str3 &lt;- 'He said, "Hello, World!"'
-&gt;      ```
+&gt;```
 &gt;    - 同样，若字符串中含有单引号，则可以使用双引号：
 &gt;      ```r
 &gt;      str4 &lt;- "It's a nice day."
-&gt;      ```
+&gt;```
 &gt;
 &gt; 2. **转义字符**：
 &gt;    - 当使用相同类型的引号时，需要使用转义字符来包括引号。例如：
 &gt;      ```r
 &gt;      str5 &lt;- "He said, \"Hello, World!\""
-&gt;      ```
+&gt;```
 &gt;
 &gt; 3. **一致性**：
 &gt;    - 在代码中使用一致的引号风格可以提高可读性。例如，如果在一个字符串中使用双引号定义字符串，应该保持一致使用双引号或单引号。
@@ -127,12 +127,12 @@
 &gt;   ```r
 &gt;   vec &lt;- c(10, 20, 30, 40, 50)
 &gt;   slice &lt;- vec[2:4]  # 结果是 c(20, 30, 40)
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **按逻辑条件切片**：选择符合条件的元素。
 &gt;   ```r
 &gt;   slice &lt;- vec[vec &gt; 25]  # 结果是 c(30, 40, 50)
-&gt;   ```
+&gt;```
 &gt;
 &gt; ### 矩阵（Matrix）
 &gt;
@@ -142,17 +142,17 @@
 &gt;   ```r
 &gt;   mat &lt;- matrix(1:9, nrow=3, ncol=3)
 &gt;   row_slice &lt;- mat[1:2, ]  # 选择第1和第2行，结果是一个2x3矩阵
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **按列切片**：选择特定列或列范围。
 &gt;   ```r
 &gt;   col_slice &lt;- mat[, 2:3]  # 选择第2和第3列，结果是一个3x2矩阵
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **按行列切片**：选择特定行和列。
 &gt;   ```r
 &gt;   slice &lt;- mat[1:2, 2:3]  # 选择第1到第2行和第2到第3列，结果是一个2x2矩阵
-&gt;   ```
+&gt;```
 &gt;
 &gt; ### 列表（List）
 &gt;
@@ -162,13 +162,13 @@
 &gt;   ```r
 &gt;   lst &lt;- list(a=1, b=2, c=3, d=4)
 &gt;   slice &lt;- lst[2:3]  # 返回一个包含第2和第3个元素的子列表
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **按名称切片**：选择特定名称的元素。
 &gt;   ```r
 &gt;   lst &lt;- list(name="John", age=25, scores=c(90, 80, 85))
 &gt;   slice &lt;- lst[c("name", "scores")]  # 返回一个包含"name"和"scores"的子列表
-&gt;   ```
+&gt;```
 &gt;
 &gt; ### 数据框（Data Frame）
 &gt;
@@ -178,17 +178,17 @@
 &gt;   ```r
 &gt;   df &lt;- data.frame(name=c("John", "Jane"), age=c(28, 30), score=c(85, 90))
 &gt;   row_slice &lt;- df[1:2, ]  # 选择第1和第2行，结果是一个数据框
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **按列切片**：选择特定列或列范围。
 &gt;   ```r
 &gt;   col_slice &lt;- df[, 1:2]  # 选择第1和第2列，结果是一个数据框
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **按条件切片**：根据条件选择行。
 &gt;   ```r
 &gt;   age_slice &lt;- df[df$age &gt; 28, ]  # 选择age大于28的所有行
-&gt;   ```
+&gt;```
 &gt;
 &gt; ### 使用示例
 &gt;
@@ -196,20 +196,20 @@
 &gt;   ```r
 &gt;   vec &lt;- c(1, 2, 3, 4, 5)
 &gt;   print(vec[2:4])  # 输出 2, 3, 4
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **矩阵切片**：
 &gt;   ```r
 &gt;   mat &lt;- matrix(1:9, nrow=3, ncol=3)
 &gt;   print(mat[1:2, ])  # 输出前两行的所有列
 &gt;   print(mat[, 2:3])  # 输出所有行的第2和第3列
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **列表切片**：
 &gt;   ```r
 &gt;   lst &lt;- list(a=1, b=2, c=3, d=4)
 &gt;   print(lst[2:3])  # 输出包含第2和第3个元素的子列表
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **数据框切片**：
 &gt;   ```r
@@ -217,7 +217,7 @@
 &gt;   print(df[1:1, ])  # 输出第一行
 &gt;   print(df[, 2:3])  # 输出第2和第3列
 &gt;   print(df[df$age &gt; 28, ])  # 输出age大于28的所有行
-&gt;   ```
+&gt;```
 &gt;
 &gt; ### 总结
 &gt;
@@ -237,7 +237,7 @@
 &gt; vec &lt;- c(10, 20, 30, 40, 50, 60, 70)
 &gt; indices &lt;- seq(1, length(vec), by=2)  # 生成步长为2的索引
 &gt; slice &lt;- vec[indices]  # 结果是 c(10, 30, 50, 70)
-&gt; ```
+&gt;```
 &gt;
 &gt; ### 2. 使用逻辑索引
 &gt;
@@ -249,7 +249,7 @@
 &gt; vec &lt;- c(10, 20, 30, 40, 50, 60, 70)
 &gt; logical_indices &lt;- rep(c(TRUE, FALSE), length.out=length(vec))  # 每隔一个元素为TRUE
 &gt; slice &lt;- vec[logical_indices]  # 结果是 c(10, 30, 50, 70)
-&gt; ```
+&gt;```
 &gt;
 &gt; ### 3. 使用 `subset` 和 `seq` 函数结合
 &gt;
@@ -262,7 +262,7 @@
 &gt;                  age=c(28, 30, 25, 35, 40))
 &gt; indices &lt;- seq(1, nrow(df), by=2)  # 生成步长为2的索引
 &gt; slice_df &lt;- df[indices, ]  # 结果是包含第1, 3, 5行的数据框
-&gt; ```
+&gt;```
 &gt;
 &gt; ### 总结
 &gt;
@@ -293,12 +293,12 @@
 &gt; a &lt;- FALSE
 &gt; b &lt;- 1/0  # 这将产生一个错误，因为除以零
 &gt; result_and = a &amp;&amp; b  # 结果是 FALSE，且 b 不会被计算
-&gt; 
+&gt;
 &gt; # 使用 &amp;，即使第一个条件为 FALSE，也会计算第二个条件
 &gt; a &lt;- FALSE
 &gt; b &lt;- 2
 &gt; result_and_vec = a &amp; b  # 结果是 FALSE，但 b 会被计算
-&gt; ```
+&gt;```
 &gt;
 &gt; 在实际编程中，选择使用 `&amp;&amp;` 还是 `&amp;` 取决于你的具体需求，特别是是否需要避免在某些条件下执行不必要的计算。
 &gt;
@@ -308,15 +308,13 @@
 &gt; # 创建两个向量
 &gt; vector1 &lt;- c(TRUE, FALSE, TRUE, NA, FALSE)
 &gt; vector2 &lt;- c(TRUE, TRUE, FALSE, TRUE, NA)
-&gt; 
+&gt;
 &gt; # 使用 &amp; 进行向量化的逻辑与操作
 &gt; result_vector &lt;- vector1 &amp; vector2
-&gt; 
+&gt;
 &gt; # 输出结果
 &gt; print(result_vector)
-&gt; ```
-
-
+&gt;```
 
 ### 关于复数
 
@@ -326,8 +324,8 @@
 &gt; 在R中，复数由实部和虚部组成，虚部用 `i` 或 `1i` 表示。例如：
 &gt; ```R
 &gt; z &lt;- 3 + 4i  # 复数 z = 3 + 4i
-&gt; 
-&gt; ```
+&gt;
+&gt;```
 &gt; 这里，`3` 是实部，`4i` 是虚部。
 &gt;
 &gt; ### 2. 复数的基本运算
@@ -335,42 +333,42 @@
 &gt; ```R
 &gt; z1 &lt;- 3 + 4i
 &gt; z2 &lt;- 1 + 2i
-&gt; 
+&gt;
 &gt; # 加法
 &gt; z1 + z2  # 结果为 4 + 6i
-&gt; 
+&gt;
 &gt; # 减法
 &gt; z1 - z2  # 结果为 2 + 2i
-&gt; 
+&gt;
 &gt; # 乘法
 &gt; z1 * z2  # 结果为 -5 + 10i
-&gt; 
+&gt;
 &gt; # 除法
 &gt; z1 / z2  # 结果为 2.2 - 0.4i
-&gt; ```
+&gt;```
 &gt;
 &gt; ### 3. 获取复数的实部和虚部
 &gt; 使用 `Re()` 和 `Im()` 函数可以分别获取复数的实部和虚部：
 &gt; ```R
 &gt; Re(z1)  # 返回3，实部
 &gt; Im(z1)  # 返回4，虚部
-&gt; ```
+&gt;```
 &gt;
 &gt; ### 4. 复数的共轭
 &gt; 复数的共轭（即实部不变，虚部取相反数）可以使用 `Conj()` 函数计算：
 &gt; ```R
 &gt; Conj(z1)  # 返回 3 - 4i
-&gt; ```
+&gt;```
 &gt;
 &gt; ### 5. 复数的模与辐角
 &gt; - **模**（即复数的绝对值）可以使用 `Mod()` 函数计算：
 &gt;   ```R
 &gt;   Mod(z1)  # 返回5，即 sqrt(3^2 + 4^2)
-&gt;   ```
+&gt;```
 &gt; - **辐角**（即复数的相位角）可以使用 `Arg()` 函数计算：
 &gt;   ```R
 &gt;   Arg(z1)  # 返回辐角，以弧度表示
-&gt;   ```
+&gt;```
 &gt;
 &gt; ### 6. 复数的极坐标表示
 &gt; R中可以将复数转换为极坐标表示，其中模为半径，辐角为角度：
@@ -379,13 +377,13 @@
 &gt; r &lt;- Mod(z1)  # 模
 &gt; theta &lt;- Arg(z1)  # 辐角
 &gt; z_polar &lt;- r * exp(1i * theta)  # 极坐标形式
-&gt; ```
+&gt;```
 &gt;
 &gt; ### 7. 复数序列
 &gt; 可以通过复数生成序列，例如使用 `seq()` 函数：
 &gt; ```R
 &gt; seq(1 + 1i, 10 + 10i, by = 1 + 1i)
-&gt; ```
+&gt;```
 &gt; 这将生成从 `1 + 1i` 到 `10 + 10i` 的复数序列，每一步递增 `1 + 1i`。
 &gt;
 &gt; ### 8. 复数函数
@@ -398,7 +396,7 @@
 &gt; ### 示例：计算复数的平方根
 &gt; ```R
 &gt; sqrt(z1)  # 返回复数的平方根
-&gt; ```
+&gt;```
 &gt;
 &gt; 通过这些功能，R可以轻松处理复数运算，并支持复数的各种数学操作。在数据分析和科学计算中，这些功能非常实用。
 &gt;
@@ -410,14 +408,14 @@
 &gt;    ```R
 &gt;    z1 &lt;- 3 + 4i  # 创建复数 z1 = 3 + 4i
 &gt;    z2 &lt;- 5i  # 创建纯虚数 z2 = 0 + 5i
-&gt;    ```
+&gt;```
 &gt;
 &gt; 2. **使用 `complex()` 函数创建复数**：
 &gt;    `complex()` 函数允许通过指定实部和虚部来创建复数。
 &gt;    ```R
 &gt;    z3 &lt;- complex(real = 2, imaginary = 3)  # 创建复数 z3 = 2 + 3i
 &gt;    z4 &lt;- complex(modulus = 5, argument = pi/4)  # 使用模和辐角创建复数
-&gt;    ```
+&gt;```
 &gt;    在第二种方式中，`modulus` 参数表示复数的模，`argument` 参数表示复数的辐角（以弧度为单位）。
 &gt;
 &gt; ### 复数作为条件判断时的转换结果
@@ -432,7 +430,7 @@
 &gt; } else {
 &gt;   print("条件为FALSE")
 &gt; }
-&gt; ```
+&gt;```
 &gt; 在这个例子中，实部为3，所以条件为 `TRUE`，输出结果为 `"条件为TRUE"`。
 &gt;
 
@@ -448,11 +446,11 @@
 &gt; if (TRUE) {
 &gt;   print("条件为TRUE")  # 将被执行
 &gt; }
-&gt; 
+&gt;
 &gt; if (FALSE) {
 &gt;   print("条件为FALSE")  # 不会被执行
 &gt; }
-&gt; ```
+&gt;```
 &gt;
 &gt; ### 2. 数值（`numeric` 类型）
 &gt; - **0**: 在条件判断中为 `FALSE`。
@@ -462,11 +460,11 @@
 &gt; if (0) {
 &gt;   print("条件为TRUE")  # 不会被执行
 &gt; }
-&gt; 
+&gt;
 &gt; if (1) {
 &gt;   print("条件为TRUE")  # 将被执行
 &gt; }
-&gt; ```
+&gt;```
 &gt;
 &gt; ### 3. 字符串（`character` 类型）
 &gt; - **空字符串 (`""`)**: 在条件判断中为 `FALSE`。
@@ -476,11 +474,11 @@
 &gt; if ("") {
 &gt;   print("条件为TRUE")  # 不会被执行
 &gt; }
-&gt; 
+&gt;
 &gt; if ("Hello") {
 &gt;   print("条件为TRUE")  # 将被执行
 &gt; }
-&gt; ```
+&gt;```
 &gt;
 &gt; ### 4. 空对象（`NULL`）
 &gt; - **`NULL`**: 在条件判断中为 `FALSE`。
@@ -489,7 +487,7 @@
 &gt; if (NULL) {
 &gt;   print("条件为TRUE")  # 不会被执行
 &gt; }
-&gt; ```
+&gt;```
 &gt;
 &gt; ### 5. 空向量（`logical(0)`、`numeric(0)`、`character(0)` 等）
 &gt; - **长度为0的向量**: 在条件判断中为 `FALSE`。空向量的判断通常不会触发任何输出或执行条件语句。
@@ -498,7 +496,7 @@
 &gt; if (logical(0)) {
 &gt;   print("条件为TRUE")  # 不会被执行
 &gt; }
-&gt; ```
+&gt;```
 &gt;
 &gt; ### 6. NA值（`NA`）
 &gt; - **`NA`**: 在条件判断中会被视为未定义，R会发出警告并返回 `NA` 结果，通常需要通过函数 `is.na()` 进行显式检查。
@@ -507,7 +505,7 @@
 &gt; if (NA) {
 &gt;   print("条件为TRUE")  # 不会被执行，且R会发出警告
 &gt; }
-&gt; ```
+&gt;```
 &gt;
 &gt; ### 7. 数据框或列表
 &gt; - **非空数据框或列表**: 在条件判断中为 `TRUE`。
@@ -518,12 +516,12 @@
 &gt; if (df) {
 &gt;   print("条件为TRUE")  # 将被执行
 &gt; }
-&gt; 
+&gt;
 &gt; df &lt;- data.frame()
 &gt; if (df) {
 &gt;   print("条件为TRUE")  # 不会被执行
 &gt; }
-&gt; ```
+&gt;```
 &gt;
 &gt; ### 总结
 &gt; R语言中的条件判断基于逻辑值转换，但需要注意不同数据类型的行为。通过这些规则，你可以更好地控制条件语句的执行，避免意外结果。
@@ -549,7 +547,7 @@
 &gt; ```R
 &gt; data &lt;- read.csv("data.csv", stringsAsFactors = TRUE)
 &gt; str(data)  # 检查数据结构，字符串列会被转换为因子
-&gt; ```
+&gt;```
 &gt;
 &gt; - **`stringsAsFactors = FALSE`：**
 &gt;   - 字符串列保持为 `character` 类型。
@@ -558,7 +556,7 @@
 &gt; ```R
 &gt; data &lt;- read.csv("data.csv", stringsAsFactors = FALSE)
 &gt; str(data)  # 字符串列保持为字符类型
-&gt; ```
+&gt;```
 &gt;
 &gt; ### 为什么需要关注 `stringsAsFactors` 参数？
 &gt;
@@ -590,12 +588,12 @@
 &gt; &gt;   ```R
 &gt; &gt;   gender &lt;- factor(c("Male", "Female", "Female", "Male"))
 &gt; &gt;   print(gender)
-&gt; &gt;   ```
+&gt; &gt;```
 &gt; &gt;   输出：
 &gt; &gt;   ```
 &gt; &gt;   [1] Male   Female Female Male  
 &gt; &gt;   Levels: Female Male
-&gt; &gt;   ```
+&gt; &gt; ```
 &gt; &gt;
 &gt; &gt; - **独热码（One-Hot Encoding）**：
 &gt; &gt;   - 独热码是一种用于表示分类数据的编码方式，每个分类标签都会转换为一个二进制向量，其中仅一个位置为1，其他位置为0。
@@ -606,7 +604,7 @@
 &gt; &gt;   ```
 &gt; &gt;   Male:   [1, 0]
 &gt; &gt;   Female: [0, 1]
-&gt; &gt;   ```
+&gt; &gt; ```
 &gt; &gt;
 &gt; &gt; ### `stringsAsFactors` 与 独热码的比较
 &gt; &gt;
@@ -652,17 +650,17 @@
 &gt;
 &gt; ```r
 &gt; abline(h=5)
-&gt; ```
+&gt;```
 &gt;
 &gt; 如果要在y轴的值为10的位置添加一条垂直线，可以使用：
 &gt;
 &gt; ```r
 &gt; abline(v=10)
-&gt; ```
+&gt;```
 
 ### `x[]` 和 `x` 在赋值操作中有不同的含义?
 
-&gt; x[] 表示取 x 的全部元素作为子集。这与 x 本身不同，比如 
+&gt; x[] 表示取 x 的全部元素作为子集。这与 x 本身不同，比如
 &gt;
 &gt; ```r
 &gt; x &lt;- c(1,4,6.25)
@@ -673,7 +671,7 @@
 &gt; x &lt;- 999
 &gt; x
 &gt; ## [1] 999
-&gt; ```
+&gt;```
 
 &gt; 在R语言中，`x[]` 和 `x` 在赋值操作中有不同的含义。
 &gt;
@@ -693,7 +691,7 @@
 &gt; x &lt;- c(1, 4, 6.25)
 &gt; x[x &gt; 3]
 &gt; ## [1] 4.00 6.25
-&gt; ```
+&gt;```
 &gt;
 &gt; 在这个例子中：
 &gt;
@@ -712,21 +710,21 @@
 &gt;    ```r
 &gt;    seq(from = 1, to = 10, by = 1)  # 生成从1到10的等差数列
 &gt;    # [1] 1 2 3 4 5 6 7 8 9 10
-&gt;    ```
+&gt;```
 &gt;
 &gt; 2. **生成等比数列**：
 &gt;    使用 `from`, `to`, 和 `by` 参数，其中 `by` 是每次乘以的因子。
 &gt;    ```r
 &gt;    seq(from = 1, to = 100, by = 2)  # 生成从1到100的等比数列，每次乘以2
 &gt;    # [1]  1  2  4  8 16 32 64
-&gt;    ```
+&gt;```
 &gt;
 &gt; 3. **指定序列的长度**：
 &gt;    使用 `length.out` 参数来指定序列的长度。如果同时指定 `from`, `to`, 和 `length.out`，`by` 将自动计算。
 &gt;    ```r
 &gt;    seq(from = 1, to = 10, length.out = 5)  # 从1到10生成5个数的序列
 &gt;    # [1] 1.000000 3.333333 5.666667 8.000000 10.000000
-&gt;    ```
+&gt;```
 &gt;
 &gt; 4. **使用 `along.with` 参数**：
 &gt;    `along.with` 参数允许你根据另一个对象的长度来生成序列。
@@ -734,21 +732,21 @@
 &gt;    x &lt;- 1:5
 &gt;    seq(along.with = x)
 &gt;    # [1] 1 2 3 4 5
-&gt;    ```
+&gt;```
 &gt;
 &gt; 5. **生成不规律的序列**：
 &gt;    使用 `from` 和 `length.out`，不使用 `by`，可以生成一个起始值和长度确定，但步长不固定的序列。
 &gt;    ```r
 &gt;    seq(from = 0, length.out = 10)  # 从0开始，生成长度为10的序列
 &gt;    # [1] 0.0000000 0.3333333 0.6666667 1.0000000 1.3333333 1.6666667 2.0000000 2.3333333 2.6666667 3.0000000
-&gt;    ```
+&gt;```
 &gt;
 &gt; 6. **使用 `...` 来传递其他参数**：
 &gt;    `seq()` 函数还可以接受其他参数，如 `by`，这些参数可以通过 `...` 传递给内部的 `seq_len()` 函数。
 &gt;    ```r
 &gt;    seq(from = 0, by = 0.5, length.out = 10)
 &gt;    # [1] 0.0 0.5 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5
-&gt;    ```
+&gt;```
 &gt;
 &gt; `seq()` 函数是R语言中非常基础且强大的工具，可以用来生成各种类型的序列，以满足不同的数据分析和编程需求。
 
@@ -786,7 +784,7 @@
 &gt; is.na(NA_complex_)     # TRUE
 &gt; is.na(NA_character_)    # TRUE
 &gt; is.na(NA_bool_)        # TRUE
-&gt; ```
+&gt;```
 &gt;
 &gt; 在R中处理数据时，理解不同类型的 `NA` 是非常重要的，因为它们在数据清洗、分析和建模中的行为可能不同。例如，某些函数可能需要显式地处理 `NA`，而其他函数可能默认忽略它们。此外，不同类型的 `NA` 在数学运算和统计函数中的表现也可能不同。
 
@@ -832,7 +830,7 @@
 &gt; ## [1] "character"
 &gt; print(x)
 &gt; ## [1] "1" "A" "3"
-&gt; ```
+&gt;```
 &gt;
 &gt; 在R语言中，尝试创建一个包含不同类型元素的向量，比如 `c(1, "A", 3)`，将会导致一个警告，并自动将整个向量转换为字符向量。这是因为R语言中的向量要求所有元素必须是同一类型。在这个例子中，数字 `1` 和 `3` 会被转换为字符，整个向量会变成字符向量，包含元素 `"1"`、`"A"` 和 `"3"`。
 &gt;
@@ -841,10 +839,10 @@
 &gt; ```R
 &gt; # 尝试创建一个包含数字和字符的向量
 &gt; mixed_vector &lt;- c(1, "A", 3)
-&gt; 
+&gt;
 &gt; # 查看结果
 &gt; print(mixed_vector)
-&gt; ```
+&gt;```
 &gt;
 &gt; 执行这段代码后，输出将是：
 &gt;
@@ -854,7 +852,7 @@
 &gt;
 &gt; 并且可能会有一个警告信息，指出向量中的元素被转换为字符类型。这是因为R语言在处理混合类型的向量时，会将所有元素转换为最能够容纳所有元素的数据类型，在这个例子中就是字符类型。
 &gt;
-&gt; 
+&gt;
 
 ### 以`c(1, c(2,3, c(4,5)))`为例，如何理解“原子类型的各个元素除了基本类型相同，还不包含任何嵌套结构”？
 
@@ -894,7 +892,7 @@
 &gt;    ```r
 &gt;    x &lt;- NULL
 &gt;    length(x) # 返回 0
-&gt;    ```
+&gt;```
 &gt;
 &gt; 2. **`NA`**：
 &gt;    - **定义**：`NA` 表示数据中的缺失值或未知值。它是数据分析中处理缺失数据的常用标记。
@@ -905,7 +903,7 @@
 &gt;    y &lt;- c(1, NA, 3)
 &gt;    length(y) # 返回 3
 &gt;    is.na(y) # 返回 FALSE TRUE FALSE
-&gt;    ```
+&gt;```
 &gt;
 &gt; 总结：
 &gt; - **`NULL`** 表示对象不存在或为空，长度为0。
@@ -920,7 +918,7 @@
 &gt; &gt; ### 基本用法
 &gt; &gt; ```r
 &gt; &gt; table(x)
-&gt; &gt; ```
+&gt; &gt;```
 &gt; &gt; - **`x`**：要创建频次表的向量或因子变量。
 &gt; &gt;
 &gt; &gt; ### 示例
@@ -928,10 +926,10 @@
 &gt; &gt; data &lt;- c(1, 2, 1, 3, 2, 1)
 &gt; &gt; freq_table &lt;- table(data)
 &gt; &gt; print(freq_table)
-&gt; &gt; ```
+&gt; &gt;```
 &gt; &gt; 输出：
 &gt; &gt; ```
-&gt; &gt; 1 2 3 
+&gt; &gt; 1 2 3
 &gt; &gt; 3 2 1
 &gt; &gt; ```
 &gt; &gt; 这表示值 `1` 出现了 3 次，值 `2` 出现了 2 次，值 `3` 出现了 1 次。
@@ -939,7 +937,7 @@
 &gt; &gt; ### 多维表格
 &gt; &gt; `table()` 函数也可以处理多个变量，创建多维频次表。
 &gt; &gt;
-&gt; &gt; ==这里要求多个变量的长度相同== 
+&gt; &gt; ==这里要求多个变量的长度相同==
 &gt; &gt;
 &gt; &gt; 例如：
 &gt; &gt;
@@ -948,7 +946,7 @@
 &gt; &gt; data2 &lt;- c("X", "X", "Y", "Y", "Y")
 &gt; &gt; multi_table &lt;- table(data1, data2)
 &gt; &gt; print(multi_table)
-&gt; &gt; ```
+&gt; &gt;```
 &gt; &gt; 输出：
 &gt; &gt; ```
 &gt; &gt;      data2
@@ -998,49 +996,49 @@
 &gt; &gt; `table()` 函数是处理和汇总分类数据的强大工具，广泛用于数据探索和统计分析中。
 &gt;
 &gt; 1. **创建表格对象**：
-&gt;    
+&gt;
 &gt;    ```r
 &gt;    x &lt;- table(c(1, 2, 1, 3, 2, 1))
-&gt;    ```
+&gt;```
 &gt;    `x` 是一个表格对象，显示了每个值出现的频次。它的输出是：
 &gt;    ```
-&gt;    1 2 3 
+&gt;    1 2 3
 &gt;    3 2 1
-&gt;    ```
-&gt;    
+&gt; ```
+&gt;
 &gt; 2. **查看属性**：
 &gt;    ```r
 &gt;    attributes(x)
-&gt;    ```
+&gt;```
 &gt;    在这里，你会看到 `x` 的属性信息，通常包括 `names`（表示表格的维度名称）。
 &gt;
 &gt; 3. **移除属性**：
 &gt;    ```r
 &gt;    attributes(x) &lt;- NULL
-&gt;    ```
+&gt;```
 &gt;    这行代码将 `x` 的所有属性设为 `NULL`，即移除所有属性。
 &gt;
 &gt; 4. **再次查看属性**：
 &gt;    ```r
 &gt;    attributes(x)
-&gt;    ```
+&gt;```
 &gt;    这时会返回 `NULL`，因为属性已经被移除。
 &gt;
 &gt; 5. **检查数据类型**：
 &gt;    ```r
 &gt;    typeof(x)
-&gt;    ```
+&gt;```
 &gt;    `x` 的数据类型仍然是 `table`，但移除了属性后，它只是一个基本的向量。
 &gt;
 &gt; 6. **打印 `x`**：
 &gt;    ```r
 &gt;    print(x)
-&gt;    ```
+&gt;```
 &gt;    打印的结果会依然是原始数据，但不再有表格的维度名称。输出可能如下：
 &gt;    ```
-&gt;    1 2 3 
+&gt;    1 2 3
 &gt;    3 2 1
-&gt;    ```
+&gt; ```
 &gt;
 &gt; **总结**：
 &gt; 通过 `attributes(x) &lt;- NULL`，你将表格对象 `x` 的所有额外属性（如维度名称）移除了，使其变回一个没有任何附加属性的基本向量。数据本身（频次计数）保持不变，但不再有表格的结构或标签。
@@ -1054,14 +1052,14 @@
 &gt; 1. **获取属性**：
 &gt;    ```r
 &gt;    attr(x, "属性名")
-&gt;    ```
+&gt;```
 &gt;    - **`x`**：对象
 &gt;    - **`"属性名"`**：你想获取的属性名称
 &gt;
 &gt; 2. **设置属性**：
 &gt;    ```r
 &gt;    attr(x, "属性名") &lt;- value
-&gt;    ```
+&gt;```
 &gt;    - **`value`**：要设置的属性值
 &gt;
 &gt; ### 示例
@@ -1070,7 +1068,7 @@
 &gt;    ```r
 &gt;    x &lt;- c(1, 2, 3)
 &gt;    attr(x, "names") # 试图获取名为 "names" 的属性
-&gt;    ```
+&gt;```
 &gt;
 &gt;    在这个例子中，`x` 并没有 `names` 属性，因此结果会是 `NULL`。
 &gt;
@@ -1079,18 +1077,18 @@
 &gt;    x &lt;- c(1, 2, 3)
 &gt;    attr(x, "names") &lt;- c("a", "b", "c")
 &gt;    print(x)
-&gt;    ```
+&gt;```
 &gt;    输出：
 &gt;    ```
-&gt;    a b c 
-&gt;    1 2 3 
-&gt;    ```
+&gt;    a b c
+&gt;    1 2 3
+&gt; ```
 &gt;    这里，我们为向量 `x` 设置了一个 `names` 属性，使其每个元素都有一个名称。
 &gt;
 &gt; 3. **查看现有属性**：
 &gt;    ```r
 &gt;    attributes(x) # 查看所有属性
-&gt;    ```
+&gt;```
 &gt;    这会显示 `x` 的所有属性，包括刚设置的 `names`。
 &gt;
 &gt; ### 应用场景
@@ -1118,7 +1116,7 @@
 &gt; ## [2,]    2    6   10
 &gt; ## [3,]    3    7   11
 &gt; ## [4,]    4    8   12
-&gt; ```
+&gt;```
 &gt;
 &gt; 修改 dim 属性就将向量转换成矩阵（数组），或修改了矩阵的性质，元素按列次序重排填入新的矩阵。==有限按照列来排列==
 
@@ -1133,15 +1131,15 @@
 &gt;   x &lt;- 1:5
 &gt;   dim(x) &lt;- c(5)
 &gt;   print(x)
-&gt;   ```
+&gt;```
 &gt;   在这里，`x` 是一个一维向量，但通过 `dim(x) &lt;- c(5)`，它具有了 `dim` 属性，使其可以被视作一个具有1行5列的矩阵。
 &gt;
 &gt; - **普通向量（没有 `dim` 属性）**：普通的向量没有 `dim` 属性，通常仅表示一个一维数据集合。例如：
-&gt;   
+&gt;
 &gt;   ```r
 &gt;   y &lt;- 1:5
 &gt;   print(y)
-&gt;   ```
+&gt;```
 &gt;   在这里，`y` 是一个普通向量，没有 `dim` 属性。
 &gt;
 &gt; ### 2. **矩阵子集的取法**
@@ -1156,17 +1154,17 @@
 &gt; #      [,1] [,2] [,3]
 &gt; # [1,]    1    3    5
 &gt; # [2,]    2    4    6
-&gt; 
+&gt;
 &gt; # 提取第1行
 &gt; row1 &lt;- mat[1, ]
 &gt; print(row1)
 &gt; # [1] 1 3 5
-&gt; 
+&gt;
 &gt; # 提取第1列
 &gt; col1 &lt;- mat[, 1]
 &gt; print(col1)
 &gt; # [1] 1 2
-&gt; ```
+&gt;```
 &gt;
 &gt; 在这两个提取操作中：
 &gt; - `row1` 是一维向量，`dim` 属性不再存在，因为提取的结果只有一行。
@@ -1182,14 +1180,14 @@
 &gt; print(row1_matrix)
 &gt; #      [,1] [,2] [,3]
 &gt; # [1,]    1    3    5
-&gt; 
+&gt;
 &gt; # 提取第1列，保持矩阵结构
 &gt; col1_matrix &lt;- mat[, 1, drop = FALSE]
 &gt; print(col1_matrix)
 &gt; #      [,1]
 &gt; # [1,]    1
 &gt; # [2,]    2
-&gt; ```
+&gt;```
 &gt;
 &gt; 在这两个操作中，`drop = FALSE` 保持了矩阵的维度属性，确保结果是具有适当维度的矩阵，而不是简化为一维向量。
 &gt;
@@ -1205,17 +1203,17 @@
 &gt; ```R
 &gt; # 创建一个日期对象
 &gt; date &lt;- as.Date("2024-08-30")
-&gt; 
+&gt;
 &gt; # 查看日期
 &gt; print(date)
-&gt; ```
+&gt;```
 &gt;
 &gt; 如果你的日期格式不同，可以使用`format`参数指定。例如：
 &gt;
 &gt; ```R
 &gt; # 指定日期格式
 &gt; date &lt;- as.Date("30-08-2024", format="%d-%m-%Y")
-&gt; ```
+&gt;```
 
 ### 关于一个计算周岁函数的讨论
 
@@ -1228,7 +1226,7 @@
 &gt; age[sele] &lt;- age[sele] - 1
 &gt; age
 &gt; }
-&gt; ```
+&gt;```
 &gt;
 &gt; 看起来很奇怪，但是你要注意，这个函数是经过向量化的
 &gt;
@@ -1261,15 +1259,15 @@
 &gt;
 &gt; ```r
 &gt; library(lubridate)
-&gt; 
+&gt;
 &gt; # 创建一个时间区间，开始时间晚于结束时间
 &gt; interval1 &lt;- interval(ymd_hms("2024-08-30 15:00:00"), ymd_hms("2024-08-30 12:00:00"))
-&gt; 
+&gt;
 &gt; # 标准化时间区间
 &gt; standardized_interval &lt;- int_standardize(interval1)
-&gt; 
+&gt;
 &gt; print(standardized_interval)
-&gt; ```
+&gt;```
 &gt;
 &gt; 在这个示例中，`interval1` 的开始时间晚于结束时间，`int_standardize()` 会调整为开始时间早于结束时间的标准格式。
 
@@ -1282,7 +1280,7 @@
 &gt; library(dplyr)
 &gt; library(ggplot2)
 &gt; library(lubridate)
-&gt; ```
+&gt;```
 &gt;
 &gt; 你可以按顺序逐个加载需要的包。如果你有很多包需要加载，也可以将它们放在一个代码块中以方便管理。
 &gt;
@@ -1296,10 +1294,10 @@
 &gt;    if (!requireNamespace("pacman", quietly = TRUE)) {
 &gt;      install.packages("pacman")
 &gt;    }
-&gt;    
+&gt;
 &gt;    # 使用 pacman 加载多个包
 &gt;    pacman::p_load(dplyr, ggplot2, lubridate)
-&gt;    ```
+&gt;```
 &gt;
 &gt; 2. **使用 `lapply()` 结合 `library()`**：
 &gt;    如果你有一个包名的向量，可以使用 `lapply()` 函数来循环加载这些包。
@@ -1307,10 +1305,10 @@
 &gt;    ```r
 &gt;    # 包名向量
 &gt;    packages &lt;- c("dplyr", "ggplot2", "lubridate")
-&gt;    
+&gt;
 &gt;    # 加载所有包
 &gt;    lapply(packages, library, character.only = TRUE)
-&gt;    ```
+&gt;```
 &gt;
 &gt; 这些方法可以使加载多个包的过程更加高效和简洁。
 
@@ -1318,7 +1316,7 @@
 
 &gt; ```r
 &gt;  my_day &lt;- as.POSIXct(paste("01",my_str,sep=""),format='%d%b%y')
-&gt; ```
+&gt;```
 &gt;
 &gt; `paste()` 函数在 R 中用于将多个字符串连接成一个字符串。它可以通过设置 `sep` 参数来指定连接符。在你的例子中，`paste()` 用于将字符串合并为一个符合特定格式的日期字符串。
 &gt;
@@ -1327,7 +1325,7 @@
 &gt; ```r
 &gt; my_str &lt;- "Aug2024"  # 例子中的字符串，表示月份和年份
 &gt; my_day &lt;- as.POSIXct(paste("01", my_str, sep=""), format='%d%b%y')
-&gt; ```
+&gt;```
 &gt;
 &gt; #### 解释步骤
 &gt;
@@ -1345,8 +1343,6 @@
 &gt; - **`as.POSIXct()`**: 将拼接后的字符串转换为日期时间对象。
 &gt;
 &gt; 在你的例子中，`paste()` 生成了一个符合日期格式的字符串，然后 `as.POSIXct()` 将其转换为日期时间对象。
-
-
 
 ## Note
 
@@ -1378,11 +1374,11 @@
 &gt;    - **结果输出**：执行结果返回给用户，结果可以是计算结果、图形展示或者其他形式的输出。
 &gt;
 &gt; 3. **数据处理机制**
-&gt;    
+&gt;
 &gt;    - ==**对象模型**==：R语言中的数据以对象的形式存在，例如向量（vector）、矩阵（matrix）、列表（list）、数据框（data frame）等。每种对象都有其特定的操作方式。
 &gt;    - **内存管理**：R使用垃圾回收机制来管理内存，自动回收不再使用的对象。这减少了内存泄漏的风险。
 &gt;    - **数据访问**：R通过向量化操作来提高效率，避免了显式的循环操作，这类似于Python中的NumPy数组。
-&gt;    
+&gt;
 &gt; 4. **扩展与包管理**
 &gt;    - **包管理**：R语言的功能可以通过安装和加载不同的包（packages）来扩展。包是由函数、数据集和文档组成的集合。用户可以使用`install.packages()`安装包，并用`library()`加载包。
 &gt;    - ==**CRAN**==：R的官方包仓库是CRAN（Comprehensive R Archive Network），提供了大量的第三方包和资源。
@@ -1397,7 +1393,7 @@
 &gt;    &gt;
 &gt;    &gt; ```R
 &gt;    &gt; options("repos" = c(CRAN="https://mirrors.pku.edu.cn/CRAN/"))
-&gt;    &gt; ```
+&gt;    &gt;```
 &gt;
 &gt; 5. **图形系统**
 &gt;
@@ -1426,7 +1422,7 @@
 &gt;      x &lt;- 10
 &gt;      name &lt;- "Alice"
 &gt;      is_valid &lt;- TRUE
-&gt;      ```
+&gt;```
 &gt;
 &gt; 2. **变量名规则**：
 &gt;    - **有效字符**：变量名必须以字母或点 `.` 开头，后面可以跟字母、数字或下划线 `_`。
@@ -1439,27 +1435,27 @@
 &gt;    - **`&lt;-`**：这是R中最常用的赋值操作符，用于将值赋给变量。例如：
 &gt;      ```r
 &gt;      x &lt;- 5
-&gt;      ```
+&gt;```
 &gt;    - **`=`**：也可以用于赋值，尤其是在函数调用中。例如：
 &gt;      ```r
 &gt;      x = 5
-&gt;      ```
+&gt;```
 &gt;    - **`-&gt;`**：这是另一种赋值形式，将值赋给变量在右侧。例如：
 &gt;      ```r
 &gt;      5 -&gt; x
-&gt;      ```
+&gt;```
 &gt;
 &gt; 2. **赋值示例**：
 &gt;    - **基本赋值**：
 &gt;      ```r
 &gt;      age &lt;- 30
 &gt;      name &lt;- "John"
-&gt;      ```
+&gt;```
 &gt;    - **多个赋值**：
 &gt;      ```r
 &gt;      x &lt;- y &lt;- z &lt;- 10
 &gt;      # x, y, z 都被赋值为 10
-&gt;      ```
+&gt;```
 &gt;
 &gt; ### 变量的类型
 &gt;
@@ -1468,42 +1464,42 @@
 &gt;      ```r
 &gt;      num1 &lt;- 42          # 整数
 &gt;      num2 &lt;- 3.14        # 浮点数
-&gt;      ```
+&gt;```
 &gt;    - **字符型（Character）**：字符串。例如：
 &gt;      ```r
 &gt;      str &lt;- "Hello, R!"
-&gt;      ```
+&gt;```
 &gt;    - **逻辑型（Logical）**：布尔值 `TRUE` 或 `FALSE`。例如：
-&gt;      
+&gt;
 &gt;      ```r
 &gt;      flag &lt;- TRUE
-&gt;      ```
+&gt;```
 &gt;
 &gt; 2. **复合数据类型**：
 &gt;
 &gt;    - **向量（Vector）**：一维数据集合。例如：
 &gt;      ```r
 &gt;      vec &lt;- c(1, 2, 3, 4)
-&gt;      ```
+&gt;```
 &gt;    - **矩阵（Matrix）**：二维数据集合。例如：
 &gt;      ```r
 &gt;      mat &lt;- matrix(1:6, nrow=2, ncol=3)
-&gt;      ```
+&gt;```
 &gt;    - **列表（List）**：可以包含不同类型的数据。例如：
 &gt;      ```r
 &gt;      lst &lt;- list(name="Alice", age=25, scores=c(90, 80, 85))
-&gt;      ```
+&gt;```
 &gt;    - **数据框（Data Frame）**：表格数据结构，类似于数据库表或Excel表。例如：
 &gt;      ```r
 &gt;      df &lt;- data.frame(name=c("John", "Jane"), age=c(28, 30))
-&gt;      ```
+&gt;```
 &gt;
 &gt; ### 变量的作用域
 &gt;
 &gt; 1. **全局变量**：在R脚本或R会话的顶层定义的变量，作用于整个脚本或会话。
 &gt;    ```r
 &gt;    global_var &lt;- 100
-&gt;    ```
+&gt;```
 &gt;
 &gt; 2. **局部变量**：在函数内部定义的变量，仅在函数内部有效。
 &gt;    ```r
@@ -1511,7 +1507,7 @@
 &gt;      local_var &lt;- 50
 &gt;      return(local_var)
 &gt;    }
-&gt;    ```
+&gt;```
 &gt;
 &gt; 3. **环境（Environment）**：R中的变量也存在于不同的环境中，如全局环境、函数环境等。可以使用 `ls()` 和 `environment()` 函数来查看和管理这些环境。
 &gt;
@@ -1531,99 +1527,99 @@
 &gt; - **创建向量**：
 &gt;   ```r
 &gt;   vec &lt;- c(10, 20, 30, 40, 50)
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **访问元素**：
 &gt;   - **按位置访问**：
 &gt;     ```r
 &gt;     vec[1]  # 访问第一个元素，结果是 10
 &gt;     vec[3]  # 访问第三个元素，结果是 30
-&gt;     ```
+&gt;```
 &gt;   - **按逻辑条件访问**：
 &gt;     ```r
 &gt;     vec[vec &gt; 25]  # 访问所有大于25的元素，结果是 30, 40, 50
-&gt;     ```
+&gt;```
 &gt;   - **按名称访问**：如果向量有命名元素，可以通过名称访问：
 &gt;     ```r
 &gt;     named_vec &lt;- c(a=1, b=2, c=3)
 &gt;     named_vec["b"]  # 结果是 2
-&gt;     ```
+&gt;```
 &gt;
 &gt; ### 2. 矩阵（Matrix）
 &gt;
 &gt; - **创建矩阵**：
 &gt;   ```r
 &gt;   mat &lt;- matrix(1:9, nrow=3, ncol=3)
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **访问元素**：
 &gt;   - **按位置访问**：
 &gt;     ```r
 &gt;     mat[1, 2]  # 访问第一行第二列的元素，结果是 4
-&gt;     ```
+&gt;```
 &gt;   - **按行列访问**：
 &gt;     ```r
 &gt;     mat[1, ]   # 访问第一行，结果是 1 4 7
 &gt;     mat[, 2]   # 访问第二列，结果是 4 5 6
-&gt;     ```
+&gt;```
 &gt;   - **按逻辑条件访问**：
 &gt;     ```r
 &gt;     mat[mat &gt; 5]  # 访问所有大于5的元素，结果是 6 7 8 9
-&gt;     ```
+&gt;```
 &gt;
 &gt; ### 3. 列表（List）
 &gt;
 &gt; - **创建列表**：
 &gt;   ```r
 &gt;   lst &lt;- list(name="Alice", age=30, scores=c(85, 90, 95))
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **访问元素**：
 &gt;   - **按名称访问**：
 &gt;     ```r
 &gt;     lst$name  # 结果是 "Alice"
 &gt;     lst$age   # 结果是 30
-&gt;     ```
+&gt;```
 &gt;   - **按位置访问**：
 &gt;     ```r
 &gt;     lst[[1]]  # 结果是 "Alice"
 &gt;     lst[[3]]  # 结果是 c(85, 90, 95)
-&gt;     ```
+&gt;```
 &gt;   - **按名称访问（替代方式）**：
 &gt;     ```r
 &gt;     lst[["name"]]  # 结果是 "Alice"
-&gt;     ```
+&gt;```
 &gt;
 &gt; - **访问嵌套列表**：
 &gt;   ```r
 &gt;   nested_lst &lt;- list(info=list(name="Bob", age=25), scores=c(70, 80, 90))
 &gt;   nested_lst$info$name  # 结果是 "Bob"
 &gt;   nested_lst[["info"]][["age"]]  # 结果是 25
-&gt;   ```
+&gt;```
 &gt;
 &gt; ### 4. 数据框（Data Frame）
 &gt;
 &gt; - **创建数据框**：
 &gt;   ```r
 &gt;   df &lt;- data.frame(name=c("John", "Jane"), age=c(28, 30), score=c(85, 90))
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **访问元素**：
 &gt;   - **按列访问**：
 &gt;     ```r
 &gt;     df$name   # 访问name列，结果是 c("John", "Jane")
 &gt;     df[["age"]]  # 访问age列，结果是 c(28, 30)
-&gt;     ```
+&gt;```
 &gt;   - **按行列访问**：
 &gt;     ```r
 &gt;     df[1, ]   # 访问第一行，结果是 name="John", age=28, score=85
 &gt;     df[, 2]   # 访问第二列（age列），结果是 c(28, 30)
 &gt;     df[1, 2]  # 访问第一行第二列的元素，结果是 28
-&gt;     ```
+&gt;```
 &gt;   - **按逻辑条件访问**：
 &gt;     ```r
 &gt;     df[df$age &gt; 28, ]  # 访问age大于28的所有行
-&gt;     ```
+&gt;```
 &gt;
 &gt; &gt; ### 1. 按照逻辑条件访问多个变量的返回方式
 &gt; &gt;
@@ -1636,14 +1632,14 @@
 &gt; &gt; ```r
 &gt; &gt; vec &lt;- c(1, 2, 3, 4, 5)
 &gt; &gt; result &lt;- vec[vec &gt; 3]  # 返回 c(4, 5)
-&gt; &gt; ```
+&gt; &gt;```
 &gt; &gt;
 &gt; &gt; 可以将结果解包并赋值给多个变量：
 &gt; &gt;
 &gt; &gt; ```r
 &gt; &gt; x &lt;- vec[1]
 &gt; &gt; y &lt;- vec[2]
-&gt; &gt; ```
+&gt; &gt;```
 &gt; &gt;
 &gt; &gt; 但要确保你知道返回结果的长度和结构。
 &gt; &gt;
@@ -1654,7 +1650,7 @@
 &gt; &gt; ```r
 &gt; &gt; df &lt;- data.frame(name=c("John", "Jane"), age=c(28, 30), score=c(85, 90))
 &gt; &gt; result &lt;- df[df$age &gt; 28, ]
-&gt; &gt; ```
+&gt; &gt;```
 &gt; &gt;
 &gt; &gt; 将结果解包到多个变量的一个常见方法是使用列提取：
 &gt; &gt;
@@ -1662,7 +1658,7 @@
 &gt; &gt; names &lt;- result$name
 &gt; &gt; ages &lt;- result$age
 &gt; &gt; scores &lt;- result$score
-&gt; &gt; ```
+&gt; &gt;```
 &gt; &gt;
 &gt; &gt; ### 2. 使用嵌套的中括号在列表和数据框中
 &gt; &gt;
@@ -1675,7 +1671,7 @@
 &gt; &gt;   ```r
 &gt; &gt;   lst &lt;- list(a=1, b=2, c=3)
 &gt; &gt;   sublist &lt;- lst[1:2]  # 返回子列表，包含lst的前两个元素
-&gt; &gt;   ```
+&gt; &gt;```
 &gt; &gt;
 &gt; &gt;   - `sublist` 结果是 `list(a=1, b=2)`，它仍然是一个列表。
 &gt; &gt;
@@ -1683,7 +1679,7 @@
 &gt; &gt;
 &gt; &gt;   ```r
 &gt; &gt;   element &lt;- lst[[1]]  # 返回第一个元素，结果是1
-&gt; &gt;   ```
+&gt; &gt;```
 &gt; &gt;
 &gt; &gt; #### 数据框（Data Frame）
 &gt; &gt;
@@ -1694,7 +1690,7 @@
 &gt; &gt;   ```r
 &gt; &gt;   df &lt;- data.frame(name=c("John", "Jane"), age=c(28, 30))
 &gt; &gt;   sub_df &lt;- df[1:1, ]  # 访问第一行，结果是一个数据框
-&gt; &gt;   ```
+&gt; &gt;```
 &gt; &gt;
 &gt; &gt;   - `sub_df` 结果是 `data.frame(name="John", age=28)`。
 &gt; &gt;
@@ -1702,7 +1698,7 @@
 &gt; &gt;
 &gt; &gt;   ```r
 &gt; &gt;   column &lt;- df[[1]]  # 返回第一列，结果是向量 c("John", "Jane")
-&gt; &gt;   ```
+&gt; &gt;```
 &gt; &gt;
 &gt; &gt; ### 层级关系
 &gt; &gt;
@@ -1731,96 +1727,96 @@
 &gt; - **加法**: `+`
 &gt;   ```R
 &gt;   3 + 2  # 返回5
-&gt;   ```
+&gt;```
 &gt; - **减法**: `-`
 &gt;   ```R
 &gt;   3 - 2  # 返回1
-&gt;   ```
+&gt;```
 &gt; - **乘法**: `*`
 &gt;   ```R
 &gt;   3 * 2  # 返回6
-&gt;   ```
+&gt;```
 &gt; - **除法**: `/`
 &gt;   ```R
 &gt;   3 / 2  # 返回1.5
-&gt;   ```
+&gt;```
 &gt; - **取余**: `%%`
 &gt;   ```R
 &gt;   7 %% 2  # 返回1
-&gt;   ```
+&gt;```
 &gt; - **整除**: `%/%`
 &gt;   ```R
 &gt;   7 %/% 2  # 返回3
-&gt;   ```
+&gt;```
 &gt; - **幂运算**: `^`
 &gt;   ```R
 &gt;   3 ^ 2  # 返回9
-&gt;   ```
+&gt;```
 &gt;
 &gt; ### 2. 逻辑运算符
 &gt; - **与**: `&amp;`（元素级）或 `&amp;&amp;`（仅检查第一个元素）
 &gt;   ```R
 &gt;   TRUE &amp; FALSE  # 返回FALSE
 &gt;   TRUE &amp;&amp; FALSE  # 返回FALSE
-&gt;   ```
+&gt;```
 &gt; - **或**: `|`（元素级）或 `||`（仅检查第一个元素）
 &gt;   ```R
 &gt;   TRUE | FALSE  # 返回TRUE
 &gt;   TRUE || FALSE  # 返回TRUE
-&gt;   ```
+&gt;```
 &gt; - **非**: `!`
 &gt;   ```R
 &gt;   !TRUE  # 返回FALSE
-&gt;   ```
+&gt;```
 &gt;
 &gt; ### 3. 比较运算符
 &gt; - **等于**: `==`
 &gt;   ```R
 &gt;   3 == 3  # 返回TRUE
-&gt;   ```
+&gt;```
 &gt; - **不等于**: `!=`
 &gt;   ```R
 &gt;   3 != 2  # 返回TRUE
-&gt;   ```
+&gt;```
 &gt; - **大于**: `&gt;`
 &gt;   ```R
 &gt;   3 &gt; 2  # 返回TRUE
-&gt;   ```
+&gt;```
 &gt; - **小于**: `&lt;`
 &gt;   ```R
 &gt;   3 &lt; 2  # 返回FALSE
-&gt;   ```
+&gt;```
 &gt; - **大于等于**: `&gt;=`
 &gt;   ```R
 &gt;   3 &gt;= 2  # 返回TRUE
-&gt;   ```
+&gt;```
 &gt; - **小于等于**: `&lt;=`
-&gt;   
+&gt;
 &gt;   ```R
 &gt;   3 &lt;= 2  # 返回FALSE
-&gt;   ```
+&gt;```
 &gt;
 &gt; ### 4. 赋值运算符
 &gt; - **左赋值**: `&lt;-` 或 `=`
 &gt;   ```R
 &gt;   x &lt;- 5  # 将5赋值给x
 &gt;   y = 3  # 将3赋值给y
-&gt;   ```
+&gt;```
 &gt; - **右赋值**: `-&gt;`
 &gt;   ```R
 &gt;   10 -&gt; z  # 将10赋值给z
-&gt;   ```
+&gt;```
 &gt;
 &gt; ### 5. 特殊运算符
 &gt; - **序列生成**: `:`
-&gt;   
+&gt;
 &gt;   ```R
 &gt;   1:5  # 生成序列1, 2, 3, 4, 5
-&gt;   ```
+&gt;```
 &gt; - **元素在集合中**: `%in%`
 &gt;   ```R
 &gt;   3 %in% c(1, 2, 3)  # 返回TRUE
-&gt;   ```
+&gt;```
 &gt;
 &gt; ### 6. 条件语句
 &gt; - **if-else**:
@@ -1831,7 +1827,7 @@
 &gt;   } else {
 &gt;     print("x不大于3")
 &gt;   }
-&gt;   ```
+&gt;```
 &gt;
 &gt; ### 7. 循环语句
 &gt; - **for循环**:
@@ -1840,7 +1836,7 @@
 &gt;   for (i in 1:5) {
 &gt;     print(i)
 &gt;   }
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **while循环**:
 &gt;   ```R
@@ -1849,7 +1845,7 @@
 &gt;     print(i)
 &gt;     i &lt;- i + 1
 &gt;   }
-&gt;   ```
+&gt;```
 &gt;
 &gt; ### 8. 函数定义
 &gt; - **function**:
@@ -1858,7 +1854,7 @@
 &gt;     return(a + b)
 &gt;   }
 &gt;   add(2, 3)  # 返回5
-&gt;   ```
+&gt;```
 &gt;
 
 #### 代码格式和注释
@@ -1874,79 +1870,79 @@
 &gt; ```R
 &gt; # 这是一个单行注释
 &gt; x &lt;- 10  # 这是变量 x 的赋值
-&gt; ```
+&gt;```
 &gt;
 &gt; #### 多行注释
 &gt; - R中没有直接支持多行注释的语法，但可以通过多次使用 `#` 实现多行注释。
-&gt;   
+&gt;
 &gt; ```R
 &gt; # 这是第一行注释
 &gt; # 这是第二行注释
 &gt; # 这是第三行注释
-&gt; ```
+&gt;```
 &gt;
 &gt; ### 2. 代码风格（Code Style）
 &gt;
 &gt; #### 2.1 缩进与空格
 &gt; - **缩进**: 使用2个空格进行缩进。避免使用制表符 (`Tab`) 进行缩进。
-&gt;   
+&gt;
 &gt; ```R
 &gt; if (x &gt; 0) {
 &gt;   print("x大于0")
 &gt; } else {
 &gt;   print("x小于等于0")
 &gt; }
-&gt; ```
+&gt;```
 &gt;
 &gt; - **空格**: 在操作符和关键词周围添加空格，提高代码可读性。
-&gt;   
+&gt;
 &gt; ```R
 &gt; # 推荐写法
 &gt; y &lt;- x + 2
-&gt; 
+&gt;
 &gt; # 不推荐写法
 &gt; y&lt;-x+2
-&gt; ```
+&gt;```
 &gt;
 &gt; #### 2.2 函数定义
 &gt; - 在函数名和参数列表之间不要加空格。
-&gt;   
+&gt;
 &gt; ```R
 &gt; # 推荐写法
 &gt; my_function &lt;- function(x, y) {
 &gt;   return(x + y)
 &gt; }
-&gt; 
+&gt;
 &gt; # 不推荐写法,在function和下一个括号之前不要有空格
 &gt; my_function &lt;- function (x, y) {
 &gt;   return (x + y)
 &gt; }
-&gt; ```
+&gt;```
 &gt;
 &gt; #### 2.3 长行换行
 &gt; - 如果一行代码过长，尽量保持在80个字符以内，可以通过换行来提升可读性。换行时，将操作符放在新行的开头，并进行适当的缩进。
-&gt;   
+&gt;
 &gt; ```R
 &gt; result &lt;- some_long_function_name(arg1, arg2, arg3,
 &gt;                                   arg4, arg5)
-&gt; ```
+&gt;```
 &gt;
 &gt; #### 2.4 命名规范
 &gt; - **变量和函数名称**: 使用小写字母，单词之间用下划线 `_` 或驼峰式（`camelCase`）命名。推荐使用有意义的变量名，避免使用单个字母。
-&gt;   
+&gt;
 &gt; ```R
 &gt; # 使用下划线命名法
 &gt; my_variable &lt;- 10
-&gt; 
+&gt;
 &gt; # 或使用驼峰式命名法
 &gt; myVariable &lt;- 10
-&gt; ```
+&gt;```
 &gt;
 &gt; - **常量**: 通常使用全大写字母命名，单词间用下划线分隔。
-&gt;   
+&gt;
 &gt; ```R
 &gt; MAX_VALUE &lt;- 100
-&gt; ```
+&gt;```
 &gt;
 &gt; #### 2.5 分号与表达式分隔
 &gt; - 在R中不必使用分号 `;` 作为行尾的结束符，尽量保持一行一条语句。如果在同一行有多条语句，可以使用分号分隔，但这通常不建议。
@@ -1955,39 +1951,39 @@
 &gt; # 推荐写法
 &gt; x &lt;- 5
 &gt; y &lt;- 10
-&gt; 
+&gt;
 &gt; # 不推荐写法
 &gt; x &lt;- 5; y &lt;- 10
-&gt; ```
+&gt;```
 &gt;
 &gt; ### 3. 代码组织
 &gt;
 &gt; #### 3.1 代码块和函数
 &gt; - 将相关的代码逻辑组织成函数，以提高代码的可重用性和可维护性。
-&gt;   
+&gt;
 &gt; ```R
 &gt; calculate_sum &lt;- function(a, b) {
 &gt;   return(a + b)
 &gt; }
-&gt; ```
+&gt;```
 &gt;
 &gt; #### 3.2 文件结构
 &gt; - 保持代码文件简洁。较长的代码可以分割成多个逻辑单元，每个文件只处理一个主要功能。
 &gt;
 &gt; #### 3.3 代码分组
 &gt; - 使用空行将代码逻辑分组，使得代码阅读时更加清晰。
-&gt;   
+&gt;
 &gt; ```R
 &gt; # 数据初始化
 &gt; x &lt;- 10
 &gt; y &lt;- 20
-&gt; 
+&gt;
 &gt; # 计算结果
 &gt; result &lt;- x + y
-&gt; 
+&gt;
 &gt; # 输出结果
 &gt; print(result)
-&gt; ```
+&gt;```
 &gt;
 &gt; ### 4. 文档化代码
 &gt; - 使用 `roxygen2` 格式化函数文档注释，特别适用于开发包时。注释格式包括函数描述、参数说明、返回值等。
@@ -2003,7 +1999,7 @@
 &gt; calculate_sum &lt;- function(a, b) {
 &gt;   return(a + b)
 &gt; }
-&gt; ```
+&gt;```
 &gt;
 &gt; ### 总结
 &gt; - **注释**: 尽量使注释清晰、简洁，并解释复杂或特殊逻辑。
@@ -2041,7 +2037,7 @@
 &gt;
 &gt; ```R
 &gt; data &lt;- read.csv(file, header = TRUE, sep = ",", stringsAsFactors = FALSE)
-&gt; ```
+&gt;```
 &gt;
 &gt; - **`file`**: 文件路径或URL，可以是相对路径或绝对路径。
 &gt; - **`header`**: 是否将文件的第一行作为列名。默认为 `TRUE`，即第一行是列名。
@@ -2053,38 +2049,38 @@
 &gt; ```R
 &gt; # 读取本地的 CSV 文件
 &gt; data &lt;- read.csv("data.csv")
-&gt; 
+&gt;
 &gt; # 如果第一行不是列名
 &gt; data &lt;- read.csv("data.csv", header = FALSE)
-&gt; 
+&gt;
 &gt; # 从网络读取 CSV 文件
 &gt; data &lt;- read.csv("https://example.com/data.csv")
-&gt; ```
+&gt;```
 &gt;
 &gt; #### 常用参数说明
 &gt;
 &gt; - **`file`**: 指定要读取的文件路径或URL。
 &gt;   ```R
 &gt;   data &lt;- read.csv("C:/Users/Username/Documents/data.csv")
-&gt;   ```
+&gt;```
 &gt; - **`header`**: 如果CSV文件没有列名，可以将 `header` 设置为 `FALSE`。
 &gt;   ```R
 &gt;   data &lt;- read.csv("data.csv", header = FALSE)
-&gt;   ```
+&gt;```
 &gt; - **`sep`**: 如果你的CSV文件使用的不是逗号，而是其他分隔符，如分号，可以使用此参数指定分隔符。
 &gt;   ```R
 &gt;   data &lt;- read.csv("data_semicolon.csv", sep = ";")
-&gt;   ```
+&gt;```
 &gt; - **`stringsAsFactors`**: 默认情况下，`read.csv()` 会将字符串转换为因子类型，但如果不需要，可以将其设为 `FALSE`。
 &gt;   ```R
 &gt;   data &lt;- read.csv("data.csv", stringsAsFactors = FALSE)
-&gt;   ```
+&gt;```
 &gt;
 &gt; #### 处理缺失值
 &gt; - **`na.strings`**: 用于指定文件中哪些字符表示缺失值（`NA`）。例如，如果文件中缺失值用 `""` 表示，可以这样设置：
 &gt;   ```R
 &gt;   data &lt;- read.csv("data.csv", na.strings = "")
-&gt;   ```
+&gt;```
 &gt;
 &gt; ### 2. 数据的导出：`write.csv()`
 &gt;
@@ -2093,7 +2089,7 @@
 &gt;
 &gt; ```R
 &gt; write.csv(data, file, row.names = TRUE)
-&gt; ```
+&gt;```
 &gt;
 &gt; - **`data`**: 要导出的数据框。
 &gt; - **`file`**: 文件路径，指定导出文件的路径和名称。
@@ -2104,32 +2100,32 @@
 &gt; ```R
 &gt; # 导出数据到本地 CSV 文件
 &gt; write.csv(data, "output.csv")
-&gt; 
+&gt;
 &gt; # 不导出行名
 &gt; write.csv(data, "output.csv", row.names = FALSE)
-&gt; ```
+&gt;```
 &gt;
 &gt; #### 常用参数说明
 &gt;
 &gt; - **`file`**: 指定要保存的文件路径，可以是相对路径或绝对路径。
 &gt;   ```R
 &gt;   write.csv(data, "C:/Users/Username/Documents/output.csv")
-&gt;   ```
+&gt;```
 &gt; - **`row.names`**: 控制是否导出行名。默认情况下，行名会作为第一列导出，如果不需要行名，可以将其设为 `FALSE`。
 &gt;   ```R
 &gt;   write.csv(data, "output.csv", row.names = FALSE)
-&gt;   ```
+&gt;```
 &gt; - **`na`**: 指定导出文件中缺失值的表示方式。默认值为 `"NA"`，但可以自定义缺失值符号。
 &gt;   ```R
 &gt;   write.csv(data, "output.csv", na = "")
-&gt;   ```
+&gt;```
 &gt;
 &gt; #### 追加数据到CSV文件
 &gt; 如果需要将数据追加到现有CSV文件中，可以通过 `append` 参数控制文件的写入模式。
 &gt;
 &gt; ```R
 &gt; write.csv(data, "output.csv", append = TRUE, row.names = FALSE)
-&gt; ```
+&gt;```
 &gt;
 &gt; ### 3. 注意事项
 &gt;
@@ -2149,26 +2145,26 @@
 &gt; `read.table()` 用于从文本文件中读取数据，并将其导入为一个数据框（`data.frame`）。它的基本语法如下：
 &gt;
 &gt; ```R
-&gt; data &lt;- read.table(file, header = FALSE, sep = "", quote = "\"", dec = ".", 
+&gt; data &lt;- read.table(file, header = FALSE, sep = "", quote = "\"", dec = ".",
 &gt;                    fill = FALSE, comment.char = "", stringsAsFactors = TRUE)
-&gt; ```
+&gt;```
 &gt;
 &gt; #### 主要参数说明
 &gt;
 &gt; - **`file`**: 要读取的文件路径或URL。
-&gt;   
+&gt;
 &gt; - **`header`**: 是否将文件的第一行作为列名。默认为 `FALSE`，即文件的第一行不作为列名。
 &gt;   ```R
 &gt;   data &lt;- read.table("data.txt", header = TRUE)
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **`sep`**: 字段分隔符。默认为空字符串 `""`，这意味着文件中的列由任意数量的空白字符（空格或制表符）分隔。你可以指定其他分隔符（如逗号 `","`、分号 `";"`）。
 &gt;   ```R
 &gt;   data &lt;- read.table("data.txt", sep = ",")
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **`quote`**: 用于引用的字符，通常是引号（`"`）。用来指定哪些字符会被视为字符串的引号。
-&gt;   
+&gt;
 &gt;   - &gt; 是的，`quote` 参数在 `read.table()` 和 `write.table()` 中用于处理字符串数据的引号。在文本数据的读取和写入过程中，`quote` 参数的作用是确定如何识别和处理字符串。
 &gt;     &gt;
 &gt;     &gt; ### `quote` 参数的作用
@@ -2190,25 +2186,25 @@
 &gt;     &gt; 2,"Jane Smith",25
 &gt;     &gt; ```
 &gt;     &gt;
-&gt;     &gt; - **`quote = "\""（默认值）**: 这会正确处理引号内的字符串 `"John Doe"` 和 `"Jane Smith"`，将它们识别为单个字符串值。
+&gt;     &gt; - **`quote = "\""（默认值）**: 这会正确处理引号内的字符串`"John Doe"` 和 `"Jane Smith"`，将它们识别为单个字符串值。
 &gt;     &gt;   ```R
 &gt;     &gt;   data &lt;- read.table("data.txt", header = TRUE, sep = ",")
 &gt;     &gt;   ```
 &gt;     &gt;
-&gt;     &gt; - **`quote = ""`**: 如果设置 `quote = ""`，那么所有的引号都不会被视为字符串的分隔符。这意味着引号内的内容会被当作普通文本处理，可能导致解析错误。
+&gt;     &gt; - **`quote = ""`**: 如果设置`quote = ""`，那么所有的引号都不会被视为字符串的分隔符。这意味着引号内的内容会被当作普通文本处理，可能导致解析错误。
 &gt;     &gt;   ```R
 &gt;     &gt;   data &lt;- read.table("data.txt", header = TRUE, sep = ",", quote = "")
 &gt;     &gt;   ```
 &gt;     &gt;
-&gt;     &gt; #### 在 `write.table()` 中
+&gt;     &gt; #### 在`write.table()` 中
 &gt;     &gt;
-&gt;     &gt; 在 `write.table()` 中，`quote` 参数用于决定是否将字符串数据用引号括起来。当 `quote = TRUE` 时，字符串会被引号括起来；当 `quote = FALSE` 时，字符串不会被引号括起来。
+&gt;     &gt; 在 `write.table()`中，`quote` 参数用于决定是否将字符串数据用引号括起来。当 `quote = TRUE` 时，字符串会被引号括起来；当 `quote = FALSE` 时，字符串不会被引号括起来。
 &gt;     &gt;
 &gt;     &gt; - **默认值**: `quote = TRUE`, 这表示将字符串用引号括起来。这个设置有助于防止数据中的分隔符被误解为列分隔符。
 &gt;     &gt;
 &gt;     &gt; #### 示例
 &gt;     &gt;
-&gt;     &gt; 假设有一个数据框 `data` 如下：
+&gt;     &gt; 假设有一个数据框`data`如下：
 &gt;     &gt;
 &gt;     &gt; ```R
 &gt;     &gt; data &lt;- data.frame(
@@ -2221,26 +2217,26 @@
 &gt;     &gt; - **`quote = TRUE（默认值）**: 导出时，字符串数据将用引号括起来。
 &gt;     &gt;   ```R
 &gt;     &gt;   write.table(data, "output.txt", sep = ",", quote = TRUE)
-&gt;     &gt;   ```
+&gt;     &gt;```
 &gt;     &gt;
 &gt;     &gt;   输出文件 `output.txt`:
 &gt;     &gt;   ```
 &gt;     &gt;   "id","name","age"
 &gt;     &gt;   "1","John Doe","30"
 &gt;     &gt;   "2","Jane Smith","25"
-&gt;     &gt;   ```
+&gt;     &gt; ```
 &gt;     &gt;
 &gt;     &gt; - **`quote = FALSE`**: 导出时，字符串数据不会用引号括起来。
 &gt;     &gt;   ```R
 &gt;     &gt;   write.table(data, "output.txt", sep = ",", quote = FALSE)
-&gt;     &gt;   ```
+&gt;     &gt;```
 &gt;     &gt;
 &gt;     &gt;   输出文件 `output.txt`:
 &gt;     &gt;   ```
 &gt;     &gt;   id,name,age
 &gt;     &gt;   1,John Doe,30
 &gt;     &gt;   2,Jane Smith,25
-&gt;     &gt;   ```
+&gt;     &gt; ```
 &gt;     &gt;
 &gt;     &gt; ### 总结
 &gt;     &gt;
@@ -2248,41 +2244,41 @@
 &gt;     &gt; - **在 `write.table()` 中**: `quote` 参数控制字符串是否被引号括起来，影响数据的导出格式。
 &gt;     &gt;
 &gt;     &gt; 理解 `quote` 参数的作用有助于正确处理和导出文本数据，尤其是在字符串数据中包含分隔符或其他特殊字符时。
-&gt;   
-&gt;   
+&gt;
+&gt;
 &gt;   ```R
 &gt;   data &lt;- read.table("data.txt", quote = "\"")
-&gt;   ```
-&gt;   
+&gt;```
+&gt;
 &gt; - **`dec`**: 小数点字符，默认为 `.`，用于指定小数点的表示方式。
 &gt;   ```R
 &gt;   data &lt;- read.table("data.txt", dec = ",")
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **`fill`**: 是否在数据不齐全时填充缺失值。默认为 `FALSE`，即如果某行的列数与其他行不一致，则会产生错误。
 &gt;   ```R
 &gt;   data &lt;- read.table("data.txt", fill = TRUE)
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **`comment.char`**: 用于指定注释字符，默认为 `""`（无注释字符）。指定的字符后面的内容被视为注释，不会被读取。
 &gt;   ```R
 &gt;   data &lt;- read.table("data.txt", comment.char = "#")
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **`stringsAsFactors`**: 是否将字符串转换为因子类型。默认为 `TRUE`，推荐设置为 `FALSE` 以避免自动转换。
 &gt;   ```R
 &gt;   data &lt;- read.table("data.txt", stringsAsFactors = FALSE)
-&gt;   ```
+&gt;```
 &gt;
 &gt; #### 示例
 &gt;
 &gt; ```R
 &gt; # 读取一个以空格分隔的文本文件
 &gt; data &lt;- read.table("data.txt", header = TRUE, sep = " ")
-&gt; 
+&gt;
 &gt; # 读取一个以逗号分隔的文本文件，并将字符串列保留为字符类型
 &gt; data &lt;- read.table("data.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
-&gt; ```
+&gt;```
 &gt;
 &gt; ### `write.table()`
 &gt;
@@ -2291,7 +2287,7 @@
 &gt; ```R
 &gt; write.table(x, file = "", row.names = TRUE, col.names = TRUE, sep = " ", quote = TRUE,
 &gt;             na = "NA", append = FALSE, eol = "\n", dec = ".", qmethod = c("escape", "double"))
-&gt; ```
+&gt;```
 &gt;
 &gt; #### 主要参数说明
 &gt;
@@ -2302,57 +2298,57 @@
 &gt; - **`row.names`**: 是否写入行名。默认为 `TRUE`。
 &gt;   ```R
 &gt;   write.table(data, "output.txt", row.names = FALSE)
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **`col.names`**: 是否写入列名。默认为 `TRUE`。
 &gt;   ```R
 &gt;   write.table(data, "output.txt", col.names = FALSE)
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **`sep`**: 字段分隔符，默认为空格 `" "`。可以指定其他分隔符（如逗号 `","`、分号 `";"`）。
 &gt;   ```R
 &gt;   write.table(data, "output.csv", sep = ",")
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **`quote`**: 是否对字符型数据进行引用。默认为 `TRUE`，即对字符型数据用引号括起来。
 &gt;   ```R
 &gt;   write.table(data, "output.txt", quote = FALSE)
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **`na`**: 指定缺失值的表示方式。默认为 `"NA"`。
 &gt;   ```R
 &gt;   write.table(data, "output.txt", na = "NULL")
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **`append`**: 是否将数据追加到现有文件中。默认为 `FALSE`，即覆盖现有文件。
 &gt;   ```R
 &gt;   write.table(data, "output.txt", append = TRUE)
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **`eol`**: 行结束符，默认为换行符 `"\n"`。
 &gt;   ```R
 &gt;   write.table(data, "output.txt", eol = "\r\n")
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **`dec`**: 小数点字符，默认为 `.`。
 &gt;   ```R
 &gt;   write.table(data, "output.txt", dec = ",")
-&gt;   ```
+&gt;```
 &gt;
 &gt; - **`qmethod`**: 指定如何处理引用字符。可以是 `"escape"` 或 `"double"`。
 &gt;   ```R
 &gt;   write.table(data, "output.txt", qmethod = "escape")
-&gt;   ```
+&gt;```
 &gt;
 &gt; #### 示例
 &gt;
 &gt; ```R
 &gt; # 将数据框写入到一个以空格分隔的文本文件
 &gt; write.table(data, "output.txt", sep = " ", row.names = FALSE, col.names = TRUE)
-&gt; 
+&gt;
 &gt; # 将数据框写入到一个以逗号分隔的CSV文件
 &gt; write.table(data, "output.csv", sep = ",", row.names = FALSE, col.names = TRUE)
-&gt; ```
+&gt;```
 &gt;
 &gt; ### 总结
 &gt;
@@ -2482,12 +2478,10 @@ qnorm(0.975)
 &gt; - `pnorm` 计算累积概率，即从左侧到给定 `x` 的累积概率。
 &gt; - `qnorm` 计算分位数，即给定概率 `p` 所对应的 `x` 值。
 
-
-
 &gt; - ==需要学习==
 &gt; - **PDF**  (概率密度函数)给出的是密度值，公式依赖于均值和标准差。
 &gt; - **CDF**  (累积分布函数)给出的是累积概率，涉及误差函数。
-&gt; - **QF ** (分位数函数) 是CDF的逆函数，用来找分位点，通常通过查表或数值方法求解。
+&gt; - **QF** (分位数函数) 是CDF的逆函数，用来找分位点，通常通过查表或数值方法求解。
 
 ### 函数的调用方式
 
@@ -2495,25 +2489,25 @@ qnorm(0.975)
 &gt;
 &gt; 复合函数的调用也与数学中用法类似， 如`log(exp(1.0))`表示：
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; ```r
 &gt; log(exp(1.0))
 &gt; ## [1] 1
-&gt; ```
+&gt;```
 &gt;
 &gt; 另外， R还提供了另外一种复合函数的调用格式：
 &gt;
 &gt; ```r
 &gt; exp(1.0) |&gt; log()
 &gt; ## [1] 1
-&gt; ```
+&gt;```
 &gt;
 &gt; 其中的==运算符`|&gt;`==称为管道运算符， 这种语法在复合函数有多层调用时更简明易读， 将每次调用函数看成对自变量的加工， 加工完以后通过管道传送给下一道工序加工， 如`f3(f2(f1(x)))`写成`x |&gt; f1() |&gt; f2() |&gt; f3()`就更容易看清楚数据的流向。
 &gt;
 &gt; R支持自定义函数， 比如， 将一个复杂的计算表达式封装在函数定义中：
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; ```r
 &gt; x &lt;- 1
@@ -2522,7 +2516,7 @@ qnorm(0.975)
 &gt; }
 &gt; y &lt;- (x |&gt; frat())
 &gt; print(y)
-&gt; ```
+&gt;```
 &gt;
 &gt; 定义中最后一个语句的结果作为函数输出， 也可以用`return(y)`输出变量`y`的值。
 &gt;
@@ -2545,7 +2539,7 @@ qnorm(0.975)
 &gt;
 &gt;```r
 &gt;cat("sin(pi/2)=", sin(pi/2), "\n")
-&gt;## sin(pi/2)= 1 
+&gt;## sin(pi/2)= 1
 &gt;```
 &gt;
 &gt;`cat()`函数最后一项一般是`"\n"`, 表示换行。 忽略此项将不换行。
@@ -2554,11 +2548,11 @@ qnorm(0.975)
 
 &gt; ### 用`sink()`函数作运行记录
 &gt;
-&gt; R使用经常是在命令行逐行输入命令（程序）， 结果紧接着显示在命令后面。 如何保存这些命令和显示结果？ 
+&gt; R使用经常是在命令行逐行输入命令（程序）， 结果紧接着显示在命令后面。 如何保存这些命令和显示结果？
 &gt;
 &gt; 在R命令行中运行过的命令会被保存在运行的工作文件夹中的一个名为`.Rhistory`的文件中。 用`sink()`函数打开一个文本文件开始记录文本型输出结果。 ==结束记录时用空的`sink()`即可关闭文件不再记录。== 如
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; ```r
 &gt; sink("tmpres01.txt", split=TRUE)
@@ -2566,7 +2560,7 @@ qnorm(0.975)
 &gt; print(cos(pi/6))
 &gt; cat("t(10)的双侧0.05分位数（临界值）=", qt(1 - 0.05/2, 10), "\n")
 &gt; sink()
-&gt; ```
+&gt;```
 &gt;
 &gt; `sink()`用作输出记录主要是在测试运行中使用， 正常的输出应该使用`cat()`函数、`write.table()`、`write.csv()`等函数。
 
@@ -2580,25 +2574,25 @@ qnorm(0.975)
 &gt;
 &gt; R中四则运算用`+ - * / ^`表示(加、减、乘、除、乘方)，如
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; ```r
 &gt; 1.5 + 2.3 - 0.6 + 2.1*1.2 - 1.5/0.5 + 2^3
 &gt; ## [1] 10.72
-&gt; ```
+&gt;```
 &gt;
 &gt; R中四则运算仍遵从通常的优先级规则， 可以用圆括号`()`改变运算的先后次序。 如
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; ```r
 &gt; 1.5 + 2.3 - (0.6 + 2.1)*1.2 - 1.5/0.5 + 2^3
 &gt; ## [1] 5.56
-&gt; ```
+&gt;```
 &gt;
 &gt; 除了加、减、乘、除、乘方， R还支持整除运算和求余运算。 用`%/%`表示整除，用`%%`表示求余。如
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; ```r
 &gt; 5 %/% 3
@@ -2609,13 +2603,13 @@ qnorm(0.975)
 &gt; ## [1] 2
 &gt; 5.1 %% 2.5
 &gt; ## [1] 0.1
-&gt; ```
+&gt;```
 &gt;
 &gt; ### 4.2.2 向量与标量运算
 &gt;
 &gt; 向量与标量的运算为每个元素与标量的运算, 如
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; ```r
 &gt; x &lt;- c(1, 10)
@@ -2633,24 +2627,24 @@ qnorm(0.975)
 &gt; ## [1] 2.0 0.2
 &gt; 2 ^ x
 &gt; ## [1]    2 1024
-&gt; ```
+&gt;```
 &gt;
 &gt; 一个向量乘以一个标量， 就是线性代数中的数乘运算。
 &gt;
 &gt; 四则运算时如果有缺失值，缺失元素参加的运算相应结果元素仍缺失。 如
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; ```r
 &gt; c(1, NA, 3) + 10
 &gt; ## [1] 11 NA 13
-&gt; ```
+&gt;```
 &gt;
 &gt; ### 4.2.3 等长向量运算
 &gt;
 &gt; 等长向量的运算为对应元素两两运算。 如
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; ```r
 &gt; x1 &lt;- c(1, 10)
@@ -2663,7 +2657,7 @@ qnorm(0.975)
 &gt; ## [1]  4 20
 &gt; x1 / x2
 &gt; ## [1] 0.25 5.00
-&gt; ```
+&gt;```
 &gt;
 &gt; 两个等长向量的加、减运算就是线性代数中两个向量的加、减运算。
 &gt;
@@ -2671,7 +2665,7 @@ qnorm(0.975)
 &gt;
 &gt; **两个不等长向量的四则运算， 如果其长度为倍数关系，规则是每次从头重复利用短的一个。** 如
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; ```r
 &gt; x1 &lt;- c(10, 20)
@@ -2680,20 +2674,20 @@ qnorm(0.975)
 &gt; ## [1] 11 23 15 27
 &gt; x1 * x2
 &gt; ## [1]  10  60  50 140
-&gt; ```
+&gt;```
 &gt;
 &gt; 不仅是四则运算，R中有两个或多个向量按照元素一一对应参与某种运算或函数调用时， 如果向量长度不同，一般都采用这样的规则。
 &gt;
 &gt; **如果两个向量的长度不是倍数关系，会给出警告信息。**如
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; ```r
 &gt; c(1,2) + c(1,2,3)
 &gt; ## Warning in c(1, 2) + c(1, 2, 3): longer object length is not a multiple of
 &gt; ## shorter object length
 &gt; ## [1] 2 4 4
-&gt; ```
+&gt;```
 &gt;
 &gt; ## 4.3 向量函数
 &gt;
@@ -2701,12 +2695,12 @@ qnorm(0.975)
 &gt;
 &gt; R中的函数一般都是向量化的: 在R中， 如果普通的一元函数以向量为自变量，一般会对每个元素计算。 这样的函数包括sqrt, log10, log, exp, sin, cos, tan等许多。 如
 &gt;
-&gt; 
+&gt;
 &gt;
 &gt; ```r
 &gt; sqrt(c(1, 4, 6.25))
 &gt; ## [1] 1.0 2.0 2.5
-&gt; ```
+&gt;```
 &gt;
 &gt; 为了查看这些基础的数学函数的列表，运行命令`help.start()`， 点击链接“Search Engine and Keywords”， 找到“Mathematics”栏目， 浏览其中的“arith”和“math”链接中的说明。 常用的数学函数有：
 &gt;
@@ -2734,6 +2728,3 @@ qnorm(0.975)
 &gt; - 简单的微分 `deriv`
 &gt;
 &gt; 如果自己编写的函数没有考虑向量化问题， 可以用`Vectorize()`函数将其转换成向量化版本。
-
-
-

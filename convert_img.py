@@ -1,12 +1,10 @@
 import os
-import re
 from bs4 import BeautifulSoup
 
 def convert_img_tags_to_markdown(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         content = file.read()
 
-    # 使用 BeautifulSoup 解析 HTML
     soup = BeautifulSoup(content, 'html.parser')
     imgs = soup.find_all('img')
 
@@ -20,7 +18,7 @@ def convert_img_tags_to_markdown(file_path):
 
     # 将修改后的内容写回文件
     with open(file_path, 'w', encoding='utf-8') as file:
-        # 使用 prettify 可能会改变文件的格式，这里直接使用 str(soup) 保持原有格式
+        # 使用 original_html_formatter 保持原有格式
         file.write(str(soup))
 
 def process_markdown_files(directory):

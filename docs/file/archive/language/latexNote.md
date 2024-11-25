@@ -8,7 +8,7 @@
 %β 
 \beta
 %γ 
-\gamma	
+\gamma 
 %δ 
 \delta
 %π 
@@ -22,7 +22,7 @@
 %σ 
 \sigma
 %η 
-\eta			
+\eta   
 %τ 
 \tau
 %θ 
@@ -38,7 +38,7 @@
 %χ 
 \chi
 %λ 
-\lambda	
+\lambda 
 %ψ 
 \psi
 %μ 
@@ -82,7 +82,7 @@
 
 ### 运算符 &amp; 空格
 
-普通字符在数学公式中含义一样，除了 # $ % &amp; ~ _ ^ \ { } 若要在数学环境中表示这些符号# $ % &amp; _ { }，需要分别表示为# $ % &amp; _ { }，即在个字符前加上`\ `。
+普通字符在数学公式中含义一样，除了 # $ % &amp; ~ _ ^ \ { } 若要在数学环境中表示这些符号# $ % &amp; _{ }，需要分别表示为# $ % &amp;_ { }，即在个字符前加上`\`。
 
 ```latex
 %单空格 
@@ -94,8 +94,8 @@ a \qquad b
 %#
 #
 %$
-\$	
-%%	 
+\$ 
+%%  
 \%
 %&amp;
 \&amp;
@@ -114,61 +114,73 @@ a \qquad b
 ```latex
 \hat{a}
 ```
+
 $\hat{a}$
 
 ```latex
 \acute{a}
 ```
+
 $\acute{a}$
 
 ```latex
 \grave{a}
 ```
+
 $\grave{a}$
 
 ```latex
 \breve{a}
 ```
+
 $\breve{a}$
 
 ```latex
 \bar{a}
 ```
+
 $\bar{a}$
 
 ```latex
 \widetilde{a}
 ```
+
 $\widetilde{a}$
 
 ```latex
 \check{a}
 ```
+
 $\check{a}$
 
 ```latex
 \tilde{a}
 ```
+
 $\tilde{a}$
 
 ```latex
 \dot{a}
 ```
+
 $\dot{a}$
 
 ```latex
 \ddot{a}
 ```
+
 $\ddot{a}$
 
 ```latex
 \vec{a}
 ```
+
 $\vec{a}$
 
 ```latex
 \widehat{a}
 ```
+
 $\widehat{a}$
 
 这些重音符号可用于表示变量的不同数学和科学含义，如导数、向量和其他特殊功能。在撰写数学或物理学文献时，使用这些修饰符可以帮助传达精确的概念。
@@ -181,8 +193,6 @@ $log_{e}{xy}$
 log_{e}{xy}
 ```
 
-
-
 ### 括号
 
 $$LaTex$$表达式中的 ( ) 、 [ ] 均可以正常使用，但是对于 { } 需要使用[转义字符](https://so.csdn.net/so/search?q=转义字符&amp;spm=1001.2101.3001.7020)使用，即使用 “\{” 和 “\}” 表示 { }
@@ -190,31 +200,37 @@ $$LaTex$$表达式中的 ( ) 、 [ ] 均可以正常使用，但是对于 { } �
 ```latex
 \left( A \right)
 ```
+
 $\left( A \right)$
 
 ```latex
 \vert A \vert
 ```
+
 $\vert A \vert$
 
 ```latex
 \Vert A \Vert
 ```
+
 $\Vert A \Vert$
 
 ```latex
 \langle A \rangle
 ```
+
 $\langle A \rangle$
 
 ```latex
 \lceil A \rceil
 ```
+
 $\lceil A \rceil$
 
 ```latex
 \lfloor A \rfloor
 ```
+
 $\lfloor A \rfloor$
 
 对于需要调整大小的标准数学符号，如圆括号、方括号等，您可以使用 `\left` 和 `\right` 命令，或者 `\bigl`, `\Bigl`, `\biggl`, `\Biggl` 等命令来调整左边符号的大小，以及 `\bigr`, `\Bigr`, `\biggr`, `\Biggr` 等命令来调整右边符号的大小。下面是一些例子：
@@ -222,6 +238,7 @@ $\lfloor A \rfloor$
 ```latex
 \Biggl( \biggl( \Bigl( \bigl( A \bigr) \Bigr) \biggr) \Biggr)
 ```
+
 $\Biggl( \biggl( \Bigl( \bigl( A \bigr) \Bigr) \biggr) \Biggr)$
 
 **请注意，`\left` 和 `\right` 命令总是成对出现，用以自动调整与中间内容相匹配的大小。而 `\bigl`, `\Bigl`, `\biggl`, `\Biggl` 等命令需要与 `\bigr`, `\Bigr`, `\biggr`, `\Biggr` 等对应的命令成对使用，以确保左右符号的大小相匹配**
@@ -280,13 +297,13 @@ $\begin{Vmatrix} i &amp; 0 \\ 0 &amp; -i \end{Vmatrix}$
 
 ### 求和&amp;积分
 
-$\sum$ 
+$\sum$
 
 ```latex
 \sum
 ```
 
-$\int$ 
+$\int$
 
 ```latex
 \int
@@ -365,7 +382,7 @@ $\lim\,\,\,\,\,\lim_{x\to 0}\,\,\,\,\,\sin x\,\,\,\,\,\cos x\,\,\,\,\,\hat x\,\,
 ```latex
 \lim
 
-\lim_{x\to 0}	% \to是右箭头
+\lim_{x\to 0} % \to是右箭头
 
 \sin x
 
@@ -397,351 +414,421 @@ $\lim\,\,\,\,\,\lim_{x\to 0}\,\,\,\,\,\sin x\,\,\,\,\,\cos x\,\,\,\,\,\hat x\,\,
 ```latex
 \lt
 ```
+
 $&lt;$
 
 ```latex
 \gt
 ```
+
 $&gt;$
 
 ```latex
 \le
 ```
+
 $\leq$
 
 ```latex
 \leqq
 ```
+
 $\leqq$
 
 ```latex
 \leqslant
 ```
+
 $\leqslant$
 
 ```latex
 \ge
 ```
+
 $\geq$
 
 ```latex
 \geqq
 ```
+
 $\geqq$
 
 ```latex
 \geqslant
 ```
+
 $\geqslant$
 
 ```latex
 \neq
 ```
+
 $\neq$
 
 ```latex
 \not\lt
 ```
+
 $\not\lt$
 
 ```latex
 \not
 ```
+
 (not applicable as it is an operation rather than a symbol)
 
 ```latex
 \times
 ```
+
 $\times$
 
 ```latex
 \div
 ```
+
 $\div$
 
 ```latex
 \pm
 ```
+
 $\pm$
 
 ```latex
 \mp
 ```
+
 $\mp$
 
 ```latex
 \cdot
 ```
+
 $\cdot$
 
 ```latex
 \cup
 ```
+
 $\cup$
 
 ```latex
 \cap
 ```
+
 $\cap$
 
 ```latex
 \setminus
 ```
+
 $\setminus$
 
 ```latex
 \subset
 ```
+
 $\subset$
 
 ```latex
 \subseteq
 ```
+
 $\subseteq$
 
 ```latex
 \subsetneq
 ```
+
 $\subsetneq$
 
 ```latex
 \supset
 ```
+
 $\supset$
 
 ```latex
 \in
 ```
+
 $\in$
 
 ```latex
 \notin
 ```
+
 $\notin$
 
 ```latex
 \emptyset
 ```
+
 $\emptyset$
 
 ```latex
 \varnothing
 ```
+
 $\varnothing$
 
 ```latex
 \choose
 ```
+
 (not applicable as it is part of a command rather than a standalone symbol)
 
 ```latex
 \to
 ```
+
 $\to$
 
 ```latex
 \rightarrow
 ```
+
 $\rightarrow$
 
 ```latex
 \leftarrow
 ```
+
 $\leftarrow$
 
 ```latex
 \Rightarrow
 ```
+
 $\Rightarrow$
 
 ```latex
 \Leftarrow
 ```
+
 $\Leftarrow$
 
 ```latex
 \mapsto
 ```
+
 $\mapsto$
 
 ```latex
 \land
 ```
+
 $\land$
 
 ```latex
 \lor
 ```
+
 $\lor$
 
 ```latex
 \lnot
 ```
+
 $\lnot$
 
 ```latex
 \forall
 ```
+
 $\forall$
 
 ```latex
 \exists
 ```
+
 $\exists$
 
 ```latex
 \top
 ```
+
 $\top$
 
 ```latex
 \bot
 ```
+
 $\bot$
 
 ```latex
 \vdash
 ```
+
 $\vdash$
 
 ```latex
 \vDash
 ```
+
 $\vDash$
 
 ```latex
 \star
 ```
+
 $\star$
 
 ```latex
 \ast
 ```
+
 $\ast$
 
 ```latex
 \oplus
 ```
+
 $\oplus$
 
 ```latex
 \circ
 ```
+
 $\circ$
 
 ```latex
 \bullet
 ```
+
 $\bullet$
 
 ```latex
 \approx
 ```
+
 $\approx$
 
 ```latex
 \sim
 ```
+
 $\sim$
 
 ```latex
 \simeq
 ```
+
 $\simeq$
 
 ```latex
 \cong
 ```
+
 $\cong$
 
 ```latex
 \equiv
 ```
+
 $\equiv$
 
 ```latex
 \prec
 ```
+
 $\prec$
 
 ```latex
 \lhd
 ```
+
 $\lhd$
 
 ```latex
 \therefore
 ```
+
 $\therefore$
 
 ```latex
 \infty
 ```
+
 $\infty$
 
 ```latex
 \aleph_0
 ```
+
 $\aleph_0$
 
 ```latex
 \nabla
 ```
+
 $\nabla$
 
 ```latex
 \partial
 ```
+
 $\partial$
 
 ```latex
 \Im
 ```
+
 $\Im$
 
 ```latex
 \Re
 ```
+
 $\Re$
 
 ```latex
 \equiv\ \pmod{n}
 ```
+
 $a \equiv b \pmod{n}$
 
 ```latex
 \ldots
 ```
+
 $\ldots$
 
 ```latex
 \cdots
 ```
+
 $\cdots$
 
 ```latex
 \epsilon
 ```
+
 $\epsilon$
 
 ```latex
 \varepsilon
 ```
+
 $\varepsilon$
 
 ```latex
 \phi
 ```
+
 $\phi$
 
 ```latex
 \varphi
 ```
+
 $\varphi$
 
 ```latex
 \ell
 ```
+
 $\ell$
 
 &gt;  Please note that some commands such as `\not` are not symbols themselves but rather are combined with other symbols to create a negated version (e.g., `\not\lt` creates a "not less than" symbol). Also, the `\choose` command is typically part of a larger construct to create binomial coefficients, so I've provided the `\binom` version instead for a correct standalone command.
@@ -751,41 +838,49 @@ $\ell$
 ```latex
 \mathbb{ABCDE}
 ```
+
 $\mathbb{ABCDE}$
 
 ```latex
 \mathbf{abcde}
 ```
+
 $\mathbf{abcde}$
 
 ```latex
 \mathtt{ABCDE}
 ```
+
 $\mathtt{ABCDE}$
 
 ```latex
 \mathrm{ABCDE}
 ```
+
 $\mathrm{ABCDE}$
 
 ```latex
 \mathsf{ABCDE}
 ```
+
 $\mathsf{ABCDE}$
 
 ```latex
 \mathcal{ABCDE}
 ```
+
 $\mathcal{ABCDE}$
 
 ```latex
 \mathscr{ABCDE}
 ```
+
 $\mathscr{ABCDE}$
 
 ```latex
 \mathfrak{ABCDE}
 ```
+
 $\mathfrak{ABCDE}$
 
 &gt; 请注意 `\Bbb` 命令在许多 LaTeX 系统中已经过时，取而代之的是 `\mathbb`。另外， `\mathscr` 需要 `mathrsfs` 包，而 `\mathfrak` 需要 `amssymb` 或者 `amsfonts` 包。如果你在使用 LaTeX 的时候这些命令没有正常工作，可能需要在文档的序言部分添加相应的包。

@@ -8,7 +8,7 @@ export default defineConfig({
     math: true,
     image: {
       // 默认禁用图片懒加载
-      lazyLoading: false
+      lazyLoading: true
     }
   },
   base: '/web/',

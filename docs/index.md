@@ -5,16 +5,28 @@ layout: home
 hero:
   name: "HomePage"
   text: "Eric's HomePage"
+  actions:
+    - theme: brand
+      text: 普心
+      link: docs\笔记\当前的学习重心\普通心理学B.md
+    - theme: brand
+      text: 社心
+      link: docs\笔记\当前的学习重心\社会心理学.md
+
 features:
-  - icon: 🛠️
+  - icon: A
     title: Markdown
     details: 支持Markdown文档
-  - icon: 🛠️
+  - icon: B
     title: Latex
     details: 支持Latex公式
+  - icon: C
+    title: 图片
+    details: 支持Markdown中的图片插入 
+
+  
 ---
 
-这是Eric的笔记,下面是一些测试
 
 $\sum_{n=1}^{\infty} \frac{x^n}{n!} = e^x$
 

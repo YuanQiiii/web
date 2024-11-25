@@ -9060,7 +9060,7 @@ int main() {
     >   - 对于单迭代器版本,`std::map`和`std::set`不返回新的迭代器.在C++11及以后版本,此函数返回void.
     >   - 对于接受键值的重载(只适用于`std::map`),返回被删除元素的数量(0或1).
     >
-    > 例如,`std::map<std::string, int> myMap = {{"one", 1}, {"two", 2}};` 调用`myMap.erase("two");`将删除键为`"two"`的元素.
+    > 例如,`std::map<std::string, int> myMap = { {"one", 1}, {"two", 2}};` 调用`myMap.erase("two");`将删除键为`"two"`的元素.
     >
     > ### 总结
     >
@@ -10246,11 +10246,11 @@ A func(int m, int n) { return {m, n}; }
 int main() {
   int arr[3]{1, 2, 3};
   vector<int> iv{1, 2, 3};
-  map<int, string> mp{{1, "a"}, {2, "b"}};
+  map<int, string> mp{ {1, "a"}, {2, "b"}};
   string str{"Hello World"};
   int *p = new int[20]{1, 2, 3};
   A *pa = new A{3, 7};
-  A a[] = {{1, 2}, {3, 4}, {5, 6}}; // 使用圆括号则不可以
+  A a[] = { {1, 2}, {3, 4}, {5, 6} }; // 使用圆括号则不可以
   return 0;
 }
 ```

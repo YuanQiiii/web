@@ -1,4 +1,4 @@
-name: Deploy VitePress site to Pages
+name: Deploy
 
 on:
   push:
@@ -21,14 +21,22 @@ jobs:
       - name: 检出代码
         uses: actions/checkout@v4
 
+      - name: 设置 Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: 运行 check.py
+        run: python check.py
+
       - name: 设置 Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
       - name: 安装依赖
-        run: npm install
-
+        run: npm install      
+        
       - name: 生成导航菜单
         run: npm run generate-nav
 

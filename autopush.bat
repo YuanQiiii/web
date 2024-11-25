@@ -1,16 +1,15 @@
 @echo off
-REM Navigate to project directory
+echo Navigate to project directory
 cd /d "C:\Users\exqin\Desktop\web"
 
-REM Add all changes
+echo Add all changes
 git add .
 
-REM Commit changes, skip if no changes
+echo Commit changes, skip if no changes
 git commit -m "auto push" || echo No changes to commit.
 
-REM Push to remote repository
+echo Push to remote repository
 git push
 
-REM Complete the task
-echo git push done
+echo Complete the task
 pause

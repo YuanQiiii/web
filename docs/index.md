@@ -175,4 +175,3 @@ export default config
 ```
 
 :::
-</lines></endl;></iostream>

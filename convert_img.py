@@ -36,7 +36,7 @@ if __name__ == '__main__':
     parser.add_argument('directory', type=str, help='要处理的目标目录路径')
 
     args = parser.parse_args()
-    target_directory = args.directory
+    target_directory = ".\docs"
 
     if not os.path.isdir(target_directory):
         print(f'错误: 目录 "{target_directory}" 不存在或不是一个目录。')

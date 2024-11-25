@@ -1,14 +1,11 @@
 import { defineConfig } from 'vitepress'
 import markdownItMathjax from 'markdown-it-mathjax3'
 import navItems from './navItems' // 导入生成的导航菜单项
- 
+
 export default defineConfig({
   lastUpdated: true, // 最后更新时间
   markdown: {
     math: true,
-    config: (md) => {
-      md.use(markdownItMathjax)
-    },
     image: {
       // 默认禁用图片懒加载
       lazyLoading: true

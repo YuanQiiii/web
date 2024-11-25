@@ -42,7 +42,6 @@ $\sum_{n=1}^{\infty} \frac{x^n}{n!} = e^x$
 ```python
 print("Hello World!")
 ```
-
 ```cpp
 #include<iostream>
 using namespace std;
@@ -107,7 +106,7 @@ console.log('Hello, VitePress!')
 
 此外,可以使用 `// [!code focus:<lines>]` 定义要聚焦的行数.
 
-```js
+</lines>```js
 export default {
   data () {
     return {
@@ -163,7 +162,6 @@ const config = {
 
 export default config
 ```
-
 ```ts [config.ts]
 import type { UserConfig } from 'vitepress'
 

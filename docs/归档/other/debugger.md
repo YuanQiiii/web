@@ -1,6 +1,6 @@
 # gdb
 
-> [GDB使用详解 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/297925056)
+&gt; [GDB使用详解 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/297925056)
 
 ## 1. 概述
 
@@ -500,7 +500,7 @@ Continuing.
 
  以下是GDB对 **until** 命令的解释:
 
-> (gdb) help until Execute until the program reaches a source line greater than the current or a specified location (same args as break command) within the current frame.
+&gt; (gdb) help until Execute until the program reaches a source line greater than the current or a specified location (same args as break command) within the current frame.
 
  该命令使得程序执行到指定位置停下来,命令参数和 **break** 命令一样.
 
@@ -765,7 +765,7 @@ which its expression is valid.
 
  当 **watch** 的变量或内存因超出作用域失效时,GDB 会有如下提示信息:
 
-> Watchpoint 4 deleted because the program has left the block in which its expression is valid.
+&gt; Watchpoint 4 deleted because the program has left the block in which its expression is valid.
 
  通过 **info watch** 命令可以查看当前所有监视的变量,通过 **delete watch编号** 可以删除对某个变量的监视.
 
@@ -802,11 +802,11 @@ which its expression is valid.
 - **replay mode**,回放模式;
 - **scheduler-locking** ,调度锁;
 
-> (gdb) help set scheduler-locking Set mode for locking scheduler during execution. off == no locking (threads may preempt at any time) on == full locking (no thread except the current thread may run) This applies to both normal execution and replay mode. step == scheduler locked during stepping commands (step, next, stepi, nexti). In this mode, other threads may run during other commands. This applies to both normal execution and replay mode. replay == scheduler locked in replay mode and unlocked during normal execution.
+&gt; (gdb) help set scheduler-locking Set mode for locking scheduler during execution. off == no locking (threads may preempt at any time) on == full locking (no thread except the current thread may run) This applies to both normal execution and replay mode. step == scheduler locked during stepping commands (step, next, stepi, nexti). In this mode, other threads may run during other commands. This applies to both normal execution and replay mode. replay == scheduler locked in replay mode and unlocked during normal execution.
 
 - **schedule-multiple**,多进程调度;
 
-> (gdb) help set schedule-multiple Set mode for resuming threads of all processes. When on, execution commands (such as 'continue' or 'next') resume all threads of all processes. When off (which is the default), execution commands only resume the threads of the current process. The set of threads that are resumed is further refined by the scheduler-locking mode (see help set scheduler-locking).
+&gt; (gdb) help set schedule-multiple Set mode for resuming threads of all processes. When on, execution commands (such as 'continue' or 'next') resume all threads of all processes. When off (which is the default), execution commands only resume the threads of the current process. The set of threads that are resumed is further refined by the scheduler-locking mode (see help set scheduler-locking).
 
 ### 6.4 设置线程锁
 

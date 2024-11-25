@@ -20,7 +20,7 @@
 
   - ![时间复杂度,不同数据规模的差异](./codeNote.assets/20200728191447384-20230310124015324.png)
 
-    - `O(1)常数阶 < O(logn)对数阶 < O(n)线性阶 < O(nlogn)线性对数阶 < O(n^2)平方阶 < O(n^3)立方阶 < O(2^n)指数阶`
+    - `O(1)常数阶 &lt; O(logn)对数阶 &lt; O(n)线性阶 &lt; O(nlogn)线性对数阶 &lt; O(n^2)平方阶 &lt; O(n^3)立方阶 &lt; O(2^n)指数阶`
 
       - 当然也要注意常数
 
@@ -100,7 +100,7 @@
   - 数组是存放在连续内存空间上的相同类型数据的集合
   - 数组可以方便的通过下标索引的方式获取到下标下对应的数据(下标索引其实是地址的一种更方便的使用形式)
   - 数组下标都是从0开始的(在任何语言中通用)
-  - 数组内存空间的地址是连续的(不能删除,只能覆盖)  **==>**  删除数组中元素时要移动其他元素
+  - 数组内存空间的地址是连续的(不能删除,只能覆盖)  **==&gt;**  删除数组中元素时要移动其他元素
 
 - 进阶用法
 
@@ -116,32 +116,32 @@
 
 #### [704. 二分查找](https://leetcode.cn/problems/binary-search/)
 
-> 给定一个 `n` 个元素有序的(升序)整型数组 `nums` 和一个目标值 `target` ,写一个函数搜索 `nums` 中的 `target`,如果目标值存在返回下标,否则返回 `-1`.
->
->
-> **示例 1:**
->
-> ```
+&gt; 给定一个 `n` 个元素有序的(升序)整型数组 `nums` 和一个目标值 `target` ,写一个函数搜索 `nums` 中的 `target`,如果目标值存在返回下标,否则返回 `-1`.
+&gt;
+&gt;
+&gt; **示例 1:**
+&gt;
+&gt; ```
 > 输入: nums = [-1,0,3,5,9,12], target = 9
 > 输出: 4
 > 解释: 9 出现在 nums 中并且下标为 4
 > ```
->
-> **示例 2:**
->
-> ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ```
 > 输入: nums = [-1,0,3,5,9,12], target = 2
 > 输出: -1
 > 解释: 2 不存在 nums 中因此返回 -1
 > ```
->
->  
->
-> **提示:**
->
-> 1. 你可以假设 `nums` 中的所有元素是不重复的.
-> 2. `n` 将在 `[1, 10000]`之间.
-> 3. `nums` 的每个元素都将在 `[-9999, 9999]`之间.
+&gt;
+&gt;  
+&gt;
+&gt; **提示:**
+&gt;
+&gt; 1. 你可以假设 `nums` 中的所有元素是不重复的.
+&gt; 2. `n` 将在 `[1, 10000]`之间.
+&gt; 3. `nums` 的每个元素都将在 `[-9999, 9999]`之间.
 
 ```c++
 class Solution {
@@ -162,7 +162,6 @@ public:
     }
 };
 ```
-
 ```c++
 class Solution {
 public:
@@ -186,8 +185,8 @@ public:
 - `left`,`right`的设置取决于你的**合法区间**的设置
   - 如果是闭区间,使用`int left = 0, right = nums.size() - 1;`
   - 如果是左闭右开区间,使用`int left = 0, right = nums.size();`
-- `while`的条件判断取`<`还是`<=`和上面的条件要求一致,如果可以取等即代表使用了**闭区间**
-- `>>`和`<<`可能会被忽视,但是后面可以用于**状态压缩**
+- `while`的条件判断取`&lt;`还是`&lt;=`和上面的条件要求一致,如果可以取等即代表使用了**闭区间**
+- `&gt;&gt;`和`&lt;&lt;`可能会被忽视,但是后面可以用于**状态压缩**
 - 要注意所有的分支都应当返回结果
 - 注意在`middle`的计算中出现了**加法**运算,要避免数据超出`int`所表示的范围(c++/c)
 
@@ -214,41 +213,41 @@ class Solution:
 
 #### [35. 搜索插入位置](https://leetcode.cn/problems/search-insert-position/)
 
-> 给定一个排序数组和一个目标值,在数组中找到目标值,并返回其索引.如果目标值不存在于数组中,返回它将会被按顺序插入的位置.
->
-> 请必须使用时间复杂度为 `O(log n)` 的算法.
->
->  
->
-> **示例 1:**
->
-> ```
+&gt; 给定一个排序数组和一个目标值,在数组中找到目标值,并返回其索引.如果目标值不存在于数组中,返回它将会被按顺序插入的位置.
+&gt;
+&gt; 请必须使用时间复杂度为 `O(log n)` 的算法.
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1:**
+&gt;
+&gt; ```
 > 输入: nums = [1,3,5,6], target = 5
 > 输出: 2
 > ```
->
-> **示例 2:**
->
-> ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ```
 > 输入: nums = [1,3,5,6], target = 2
 > 输出: 1
 > ```
->
-> **示例 3:**
->
-> ```
+&gt;
+&gt; **示例 3:**
+&gt;
+&gt; ```
 > 输入: nums = [1,3,5,6], target = 7
 > 输出: 4
 > ```
->
->  
->
-> **提示:**
->
-> - `1 <= nums.length <= 10^4`
-> - `-10^4 <= nums[i] <= 10^4`
-> - `nums` 为 **无重复元素** 的 **升序** 排列数组
-> - `-10^4 <= target <= 10^4`
+&gt;
+&gt;  
+&gt;
+&gt; **提示:**
+&gt;
+&gt; - `1 &lt;= nums.length &lt;= 10^4`
+&gt; - `-10^4 &lt;= nums[i] &lt;= 10^4`
+&gt; - `nums` 为 **无重复元素** 的 **升序** 排列数组
+&gt; - `-10^4 &lt;= target &lt;= 10^4`
 
 ```c++
 class Solution {
@@ -273,7 +272,6 @@ public:
     }
 };
 ```
-
 ```python
 class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
@@ -296,39 +294,39 @@ class Solution:
 
 #### [34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/)
 
-> 给你一个按照非递减顺序排列的整数数组 `nums`,和一个目标值 `target`.请你找出给定目标值在数组中的开始位置和结束位置.
->
-> 如果数组中不存在目标值 `target`,返回 `[-1, -1]`.
->
-> 你必须设计并实现时间复杂度为 `O(log n)` 的算法解决此问题.
->
-> **示例 1:**
->
-> ```
+&gt; 给你一个按照非递减顺序排列的整数数组 `nums`,和一个目标值 `target`.请你找出给定目标值在数组中的开始位置和结束位置.
+&gt;
+&gt; 如果数组中不存在目标值 `target`,返回 `[-1, -1]`.
+&gt;
+&gt; 你必须设计并实现时间复杂度为 `O(log n)` 的算法解决此问题.
+&gt;
+&gt; **示例 1:**
+&gt;
+&gt; ```
 > 输入：nums = [5,7,7,8,8,10], target = 8
 > 输出：[3,4]
 > ```
->
-> **示例 2:**
->
-> ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ```
 > 输入：nums = [5,7,7,8,8,10], target = 6
 > 输出：[-1,-1]
 > ```
->
-> **示例 3:**
->
-> ```
+&gt;
+&gt; **示例 3:**
+&gt;
+&gt; ```
 > 输入：nums = [], target = 0
 > 输出：[-1,-1]
 > ```
->
-> **提示:**
->
-> - `0 <= nums.length <= 105`
-> - `-109 <= nums[i] <= 109`
-> - `nums` 是一个非递减数组
-> - `-109 <= target <= 109`
+&gt;
+&gt; **提示:**
+&gt;
+&gt; - `0 &lt;= nums.length &lt;= 105`
+&gt; - `-109 &lt;= nums[i] &lt;= 109`
+&gt; - `nums` 是一个非递减数组
+&gt; - `-109 &lt;= target &lt;= 109`
 
 ```c++
 class Solution {
@@ -375,7 +373,6 @@ public:
     }
 };
 ```
-
 ```python
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
@@ -415,9 +412,9 @@ class Solution:
   - 一个在**二分查找**中普遍的现象是`left`会不断向右,(如果没有在循环内部终止)直至大于`right`,`right`会不断向左,直至小于`left`
   - 则`left`和`right`终止的位置会在目标值的两侧,也就是**未经处理的边界**
   - 一个数组会有以下三种情况
-    - 目标值大于或小于全体数据 ==> 对应的一侧`leftwall`或`rightwall`不被更新
-    - 目标值在数组中没有出现 ==> `leftwall`或`rightwall`的差值小于1
-    - 目标值出现 ==> `leftwall`或`rightwall`一个指向目标片段的前方,一个指向后方(不包含该元素)
+    - 目标值大于或小于全体数据 ==&gt; 对应的一侧`leftwall`或`rightwall`不被更新
+    - 目标值在数组中没有出现 ==&gt; `leftwall`或`rightwall`的差值小于1
+    - 目标值出现 ==&gt; `leftwall`或`rightwall`一个指向目标片段的前方,一个指向后方(不包含该元素)
 
 ```c++
 class Solution {
@@ -465,7 +462,6 @@ public:
     }
 };
 ```
-
 ```python
 class Solution:
     def searchLeftWall(self, nums: List[int], target: int) -> int:
@@ -514,23 +510,23 @@ class Solution:
 
 #### [27. 移除元素](https://leetcode.cn/problems/remove-element/)
 
-> 给你一个数组 `nums` 和一个值 `val`,你需要 **[原地](https://baike.baidu.com/item/原地算法)** 移除所有数值等于 `val` 的元素,并返回移除后数组的新长度.
->
-> 不要使用额外的数组空间,你必须仅使用 `O(1)` 额外空间并 **[原地](https://baike.baidu.com/item/原地算法)修改输入数组**.
->
-> 元素的顺序可以改变.你不需要考虑数组中超出新长度后面的元素.
->
->  
->
-> **说明:**
->
-> 为什么返回数值是整数,但输出的答案是数组呢?
->
-> 请注意,输入数组是以**「引用」**方式传递的,这意味着在函数里修改输入数组对于调用者是可见的.
->
-> 你可以想象内部操作如下:
->
-> ```
+&gt; 给你一个数组 `nums` 和一个值 `val`,你需要 **[原地](https://baike.baidu.com/item/原地算法)** 移除所有数值等于 `val` 的元素,并返回移除后数组的新长度.
+&gt;
+&gt; 不要使用额外的数组空间,你必须仅使用 `O(1)` 额外空间并 **[原地](https://baike.baidu.com/item/原地算法)修改输入数组**.
+&gt;
+&gt; 元素的顺序可以改变.你不需要考虑数组中超出新长度后面的元素.
+&gt;
+&gt;  
+&gt;
+&gt; **说明:**
+&gt;
+&gt; 为什么返回数值是整数,但输出的答案是数组呢?
+&gt;
+&gt; 请注意,输入数组是以**「引用」**方式传递的,这意味着在函数里修改输入数组对于调用者是可见的.
+&gt;
+&gt; 你可以想象内部操作如下:
+&gt;
+&gt; ```
 > // nums 是以“引用”方式传递的。也就是说，不对实参作任何拷贝
 > int len = removeElement(nums, val);
 > 
@@ -540,32 +536,32 @@ class Solution:
 >     print(nums[i]);
 > }
 > ```
->
->  
->
-> **示例 1:**
->
-> ```
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1:**
+&gt;
+&gt; ```
 > 输入：nums = [3,2,2,3], val = 3
 > 输出：2, nums = [2,2]
 > 解释：函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。你不需要考虑数组中超出新长度后面的元素。例如，函数返回的新长度为 2 ，而 nums = [2,2,3,3] 或 nums = [2,2,0,0]，也会被视作正确答案。
 > ```
->
-> **示例 2:**
->
-> ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ```
 > 输入：nums = [0,1,2,2,3,0,4,2], val = 2
 > 输出：5, nums = [0,1,3,0,4]
 > 解释：函数应该返回新的长度 5, 并且 nums 中的前五个元素为 0, 1, 3, 0, 4。注意这五个元素可为任意顺序。你不需要考虑数组中超出新长度后面的元素。
 > ```
->
->  
->
-> **提示:**
->
-> - `0 <= nums.length <= 100`
-> - `0 <= nums[i] <= 50`
-> - `0 <= val <= 100`
+&gt;
+&gt;  
+&gt;
+&gt; **提示:**
+&gt;
+&gt; - `0 &lt;= nums.length &lt;= 100`
+&gt; - `0 &lt;= nums[i] &lt;= 50`
+&gt; - `0 &lt;= val &lt;= 100`
 
 ```c++
 class Solution {
@@ -597,7 +593,6 @@ public:
     }
 };
 ```
-
 ```python
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
@@ -621,7 +616,7 @@ class Solution:
 
 - 使用了一种非常暴力的办法,甚至可以说是愚蠢(在一次删除操作没有达成目标时,再次使用相同操作)
 - 本质上是数组性质的深刻理解(数组的元素不能被直接删除,只能通过覆盖重写的方式实现删除的效果)
-  - 库函数 **==>** c++的`vector`中,如果使用了`erase`方法,则数组会被重排,`size`也会随之减小(并不是`O(1)`的操作,而是`O(n)`的操作,只是将下面的操作流程封装起来使用)
+  - 库函数 **==&gt;** c++的`vector`中,如果使用了`erase`方法,则数组会被重排,`size`也会随之减小(并不是`O(1)`的操作,而是`O(n)`的操作,只是将下面的操作流程封装起来使用)
     - 关于**库函数的使用**:如果可以直接用库函数解决,那么就不要使用库函数,如果库函数只是我们实现算法的一小步,并且我们知道它的实现逻辑和时空复杂度,那么是可以使用的,同时也减少了出错的概率
   - 对于一般的数组而言(没有`vector`的特性),则需要移动后续元素到前面覆盖删除位置完成删除操作以保证数组数据的地址连续性
 
@@ -644,7 +639,6 @@ public:
     }
 };
 ```
-
 ```python
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
@@ -680,7 +674,6 @@ public:
     }
 };
 ```
-
 ```python
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
@@ -701,18 +694,18 @@ class Solution:
 
 #### [26.删除排序数组中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)
 
-> 给你一个 **非严格递增排列** 的数组 `nums` ,请你**[原地](http://baike.baidu.com/item/原地算法)** 删除重复出现的元素,使每个元素 **只出现一次** ,返回删除后数组的新长度.元素的 **相对顺序** 应该保持 **一致** .然后返回 `nums` 中唯一元素的个数.
->
-> 考虑 `nums` 的唯一元素的数量为 `k` ,你需要做以下事情确保你的题解可以被通过:
->
-> - 更改数组 `nums` ,使 `nums` 的前 `k` 个元素包含唯一元素,并按照它们最初在 `nums` 中出现的顺序排列.`nums` 的其余元素与 `nums` 的大小不重要.
-> - 返回 `k` .
->
-> **判题标准:**
->
-> 系统会用下面的代码来测试你的题解:
->
-> ```
+&gt; 给你一个 **非严格递增排列** 的数组 `nums` ,请你**[原地](http://baike.baidu.com/item/原地算法)** 删除重复出现的元素,使每个元素 **只出现一次** ,返回删除后数组的新长度.元素的 **相对顺序** 应该保持 **一致** .然后返回 `nums` 中唯一元素的个数.
+&gt;
+&gt; 考虑 `nums` 的唯一元素的数量为 `k` ,你需要做以下事情确保你的题解可以被通过:
+&gt;
+&gt; - 更改数组 `nums` ,使 `nums` 的前 `k` 个元素包含唯一元素,并按照它们最初在 `nums` 中出现的顺序排列.`nums` 的其余元素与 `nums` 的大小不重要.
+&gt; - 返回 `k` .
+&gt;
+&gt; **判题标准:**
+&gt;
+&gt; 系统会用下面的代码来测试你的题解:
+&gt;
+&gt; ```
 > int[] nums = [...]; // 输入数组
 > int[] expectedNums = [...]; // 长度正确的期望答案
 > 
@@ -723,32 +716,32 @@ class Solution:
 >     assert nums[i] == expectedNums[i];
 > }
 > ```
->
-> 如果所有断言都通过,那么您的题解将被 **通过**.
->
->  
->
-> **示例 1:**
->
-> ```
+&gt;
+&gt; 如果所有断言都通过,那么您的题解将被 **通过**.
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1:**
+&gt;
+&gt; ```
 > 输入：nums = [1,1,2]
 > 输出：2, nums = [1,2,_]
 > 解释：函数应该返回新的长度 2 ，并且原数组 nums 的前两个元素被修改为 1, 2 。不需要考虑数组中超出新长度后面的元素。
 > ```
->
-> **示例 2:**
->
-> ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ```
 > 输入：nums = [0,0,1,1,1,2,2,3,3,4]
 > 输出：5, nums = [0,1,2,3,4]
 > 解释：函数应该返回新的长度 5 ， 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4 。不需要考虑数组中超出新长度后面的元素。
 > ```
->
-> **提示:**
->
-> - `1 <= nums.length <= 3 * 104`
-> - `-104 <= nums[i] <= 104`
-> - `nums` 已按 **非严格递增** 排列
+&gt;
+&gt; **提示:**
+&gt;
+&gt; - `1 &lt;= nums.length &lt;= 3 * 104`
+&gt; - `-104 &lt;= nums[i] &lt;= 104`
+&gt; - `nums` 已按 **非严格递增** 排列
 
 ```c++
 class Solution {
@@ -765,7 +758,6 @@ public:
     }
 };
 ```
-
 ```python
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
@@ -784,36 +776,36 @@ class Solution:
 
 #### [283.移动零](https://leetcode.cn/problems/move-zeroes/)
 
-> 给定一个数组 `nums`,编写一个函数将所有 `0` 移动到数组的末尾,同时保持非零元素的相对顺序.
->
-> **请注意** ,必须在不复制数组的情况下原地对数组进行操作.
->
->  
->
-> **示例 1:**
->
-> ```
+&gt; 给定一个数组 `nums`,编写一个函数将所有 `0` 移动到数组的末尾,同时保持非零元素的相对顺序.
+&gt;
+&gt; **请注意** ,必须在不复制数组的情况下原地对数组进行操作.
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1:**
+&gt;
+&gt; ```
 > 输入: nums = [0,1,0,3,12]
 > 输出: [1,3,12,0,0]
 > ```
->
-> **示例 2:**
->
-> ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ```
 > 输入: nums = [0]
 > 输出: [0]
 > ```
->
->  
->
-> **提示**:
->
-> - `1 <= nums.length <= 104`
-> - `-231 <= nums[i] <= 231 - 1`
->
->  
->
-> **进阶:**你能尽量减少完成的操作次数吗?
+&gt;
+&gt;  
+&gt;
+&gt; **提示**:
+&gt;
+&gt; - `1 &lt;= nums.length &lt;= 104`
+&gt; - `-231 &lt;= nums[i] &lt;= 231 - 1`
+&gt;
+&gt;  
+&gt;
+&gt; **进阶:**你能尽量减少完成的操作次数吗?
 
 ```c++
 class Solution {
@@ -832,7 +824,6 @@ public:
     }
 };
 ```
-
 ```python
 class Solution:
     def moveZeroes(self, nums: List[int]) -> None:
@@ -853,42 +844,42 @@ class Solution:
 
 #### [844.比较含退格的字符串](https://leetcode.cn/problems/backspace-string-compare/)
 
-> 给定 `s` 和 `t` 两个字符串,当它们分别被输入到空白的文本编辑器后,如果两者相等,返回 `true` .`#` 代表退格字符.
->
-> **注意:**如果对空文本输入退格字符,文本继续为空.
->
->  
->
-> **示例 1:**
->
-> ```
+&gt; 给定 `s` 和 `t` 两个字符串,当它们分别被输入到空白的文本编辑器后,如果两者相等,返回 `true` .`#` 代表退格字符.
+&gt;
+&gt; **注意:**如果对空文本输入退格字符,文本继续为空.
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1:**
+&gt;
+&gt; ```
 > 输入：s = "ab#c", t = "ad#c"
 > 输出：true
 > 解释：s 和 t 都会变成 "ac"。
 > ```
->
-> **示例 2:**
->
-> ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ```
 > 输入：s = "ab##", t = "c#d#"
 > 输出：true
 > 解释：s 和 t 都会变成 ""。
 > ```
->
-> **示例 3:**
->
-> ```
+&gt;
+&gt; **示例 3:**
+&gt;
+&gt; ```
 > 输入：s = "a#c", t = "b"
 > 输出：false
 > 解释：s 会变成 "c"，但 t 仍然是 "b"。
 > ```
->
->  
->
-> **提示:**
->
-> - `1 <= s.length, t.length <= 200`
-> - `s` 和 `t` 只含有小写字母以及字符 `'#'`
+&gt;
+&gt;  
+&gt;
+&gt; **提示:**
+&gt;
+&gt; - `1 &lt;= s.length, t.length &lt;= 200`
+&gt; - `s` 和 `t` 只含有小写字母以及字符 `'#'`
 
 - 栈方法(后续的章节里会展开)
 
@@ -1015,7 +1006,6 @@ public:
     }
 };
 ```
-
 ```python
 class Solution:
     def backspaceCompare(self, s: str, t: str) -> bool:
@@ -1055,33 +1045,33 @@ class Solution:
 
 #### [977.有序数组的平方](https://leetcode.cn/problems/squares-of-a-sorted-array/)
 
-> 给你一个按 **非递减顺序** 排序的整数数组 `nums`,返回 **每个数字的平方** 组成的新数组,要求也按 **非递减顺序** 排序.
->
-> **示例 1:**
->
-> ```
+&gt; 给你一个按 **非递减顺序** 排序的整数数组 `nums`,返回 **每个数字的平方** 组成的新数组,要求也按 **非递减顺序** 排序.
+&gt;
+&gt; **示例 1:**
+&gt;
+&gt; ```
 > 输入：nums = [-4,-1,0,3,10]
 > 输出：[0,1,9,16,100]
 > 解释：平方后，数组变为 [16,1,0,9,100]
 > 排序后，数组变为 [0,1,9,16,100]
 > ```
->
-> **示例 2:**
->
-> ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ```
 > 输入：nums = [-7,-3,2,3,11]
 > 输出：[4,9,9,49,121]
 > ```
->
-> **提示:**
->
-> - `1 <= nums.length <= 104`
-> - `-104 <= nums[i] <= 104`
-> - `nums` 已按 **非递减顺序** 排序
->
-> **进阶:**
->
-> - 请你设计时间复杂度为 `O(n)` 的算法解决本问题
+&gt;
+&gt; **提示:**
+&gt;
+&gt; - `1 &lt;= nums.length &lt;= 104`
+&gt; - `-104 &lt;= nums[i] &lt;= 104`
+&gt; - `nums` 已按 **非递减顺序** 排序
+&gt;
+&gt; **进阶:**
+&gt;
+&gt; - 请你设计时间复杂度为 `O(n)` 的算法解决本问题
 
 - 暴力做法(直接平方+排序)
   - `python`中`list`的`sort()`方法的一些参数
@@ -1090,7 +1080,7 @@ class Solution:
   - `c++`中`algorithm`头文件下`std::sort()`函数的一些参数
     - `first` 和 `last`:指定排序范围的首元素和尾元素的迭代器.排序将从 `first` 开始,直到 `last` 的前一个元素.
       - 注意是**迭代器**,对于`vector`或者`string`排序要使用相应的迭代器;对一般数组排序使用地址即可
-    - `comp`(可选):指定一个自定义的比较函数,用于确定元素的顺序.默认情况下,使用 `<` 运算符进行比较.比较函数应该接受两个参数,并返回一个布尔值,表示第一个参数是否小于第二个参数.
+    - `comp`(可选):指定一个自定义的比较函数,用于确定元素的顺序.默认情况下,使用 `&lt;` 运算符进行比较.比较函数应该接受两个参数,并返回一个布尔值,表示第一个参数是否小于第二个参数.
 
 ```c++
 class Solution {
@@ -1104,7 +1094,6 @@ public:
     }
 };
 ```
-
 ```python
 class Solution:
     def sortedSquares(self, nums: List[int]) -> List[int]:
@@ -1140,7 +1129,6 @@ public:
     }
 };
 ```
-
 ```python
 class Solution:
     def sortedSquares(self, nums: List[int]) -> List[int]:
@@ -1207,41 +1195,41 @@ class Solution:
 
 #### [209.长度最小的子数组](https://leetcode.cn/problems/minimum-size-subarray-sum/)
 
-> 给定一个含有 `n` 个正整数的数组和一个正整数 `target` **.**
->
-> 找出该数组中满足其总和大于等于 `target` 的长度最小的 **连续子数组** `[numsl, numsl+1, ..., numsr-1, numsr]` ,并返回其长度**.**如果不存在符合条件的子数组,返回 `0` .
->
->  
->
-> **示例 1:**
->
-> ```
+&gt; 给定一个含有 `n` 个正整数的数组和一个正整数 `target` **.**
+&gt;
+&gt; 找出该数组中满足其总和大于等于 `target` 的长度最小的 **连续子数组** `[numsl, numsl+1, ..., numsr-1, numsr]` ,并返回其长度**.**如果不存在符合条件的子数组,返回 `0` .
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1:**
+&gt;
+&gt; ```
 > 输入：target = 7, nums = [2,3,1,2,4,3]
 > 输出：2
 > 解释：子数组 [4,3] 是该条件下的长度最小的子数组。
 > ```
->
-> **示例 2:**
->
-> ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ```
 > 输入：target = 4, nums = [1,4,4]
 > 输出：1
 > ```
->
-> **示例 3:**
->
-> ```
+&gt;
+&gt; **示例 3:**
+&gt;
+&gt; ```
 > 输入：target = 11, nums = [1,1,1,1,1,1,1,1]
 > 输出：0
 > ```
->
->  
->
-> **提示:**
->
-> - `1 <= target <= 109`
-> - `1 <= nums.length <= 105`
-> - `1 <= nums[i] <= 105`
+&gt;
+&gt;  
+&gt;
+&gt; **提示:**
+&gt;
+&gt; - `1 &lt;= target &lt;= 109`
+&gt; - `1 &lt;= nums.length &lt;= 105`
+&gt; - `1 &lt;= nums[i] &lt;= 105`
 
 - 暴力解法,遇到特别大的数据规模会超时
   - 时间复杂度:`O(n^2)`
@@ -1343,7 +1331,6 @@ public:
     }
 };
 ```
-
 ```python
 # 优化了连续子序列和的计算方式(有点像"忒修斯之船")
 class Solution:
@@ -1367,56 +1354,56 @@ class Solution:
 
 #### [904. 水果成篮](https://leetcode.cn/problems/fruit-into-baskets/)
 
->你正在探访一家农场,农场从左到右种植了一排果树.这些树用一个整数数组 `fruits` 表示,其中 `fruits[i]` 是第 `i` 棵树上的水果 **种类** .
->
->你想要尽可能多地收集水果.然而,农场的主人设定了一些严格的规矩,你必须按照要求采摘水果:
->
->- 你只有 **两个** 篮子,并且每个篮子只能装 **单一类型** 的水果.每个篮子能够装的水果总量没有限制.
->- 你可以选择任意一棵树开始采摘,你必须从 **每棵** 树(包括开始采摘的树)上 **恰好摘一个水果** .采摘的水果应当符合篮子中的水果类型.每采摘一次,你将会向右移动到下一棵树,并继续采摘.
->- 一旦你走到某棵树前,但水果不符合篮子的水果类型,那么就必须停止采摘.
->
->给你一个整数数组 `fruits` ,返回你可以收集的水果的 **最大** 数目.
->
->**示例 1:**
->
->```
+&gt;你正在探访一家农场,农场从左到右种植了一排果树.这些树用一个整数数组 `fruits` 表示,其中 `fruits[i]` 是第 `i` 棵树上的水果 **种类** .
+&gt;
+&gt;你想要尽可能多地收集水果.然而,农场的主人设定了一些严格的规矩,你必须按照要求采摘水果:
+&gt;
+&gt;- 你只有 **两个** 篮子,并且每个篮子只能装 **单一类型** 的水果.每个篮子能够装的水果总量没有限制.
+&gt;- 你可以选择任意一棵树开始采摘,你必须从 **每棵** 树(包括开始采摘的树)上 **恰好摘一个水果** .采摘的水果应当符合篮子中的水果类型.每采摘一次,你将会向右移动到下一棵树,并继续采摘.
+&gt;- 一旦你走到某棵树前,但水果不符合篮子的水果类型,那么就必须停止采摘.
+&gt;
+&gt;给你一个整数数组 `fruits` ,返回你可以收集的水果的 **最大** 数目.
+&gt;
+&gt;**示例 1:**
+&gt;
+&gt;```
 >输入：fruits = [1,2,1]
 >输出：3
 >解释：可以采摘全部 3 棵树。
 >```
->
->**示例 2:**
->
->```
+&gt;
+&gt;**示例 2:**
+&gt;
+&gt;```
 >输入：fruits = [0,1,2,2]
 >输出：3
 >解释：可以采摘 [1,2,2] 这三棵树。
 >如果从第一棵树开始采摘，则只能采摘 [0,1] 这两棵树。
 >```
->
->**示例 3:**
->
->```
+&gt;
+&gt;**示例 3:**
+&gt;
+&gt;```
 >输入：fruits = [1,2,3,2,2]
 >输出：4
 >解释：可以采摘 [2,3,2,2] 这四棵树。
 >如果从第一棵树开始采摘，则只能采摘 [1,2] 这两棵树。
 >```
->
->**示例 4:**
->
->```
+&gt;
+&gt;**示例 4:**
+&gt;
+&gt;```
 >输入：fruits = [3,3,3,1,2,1,1,2,3,3,4]
 >输出：5
 >解释：可以采摘 [1,2,1,1,2] 这五棵树。
 >```
->
->
->
->**提示:**
->
->- `1 <= fruits.length <= 105`
->- `0 <= fruits[i] < fruits.length`
+&gt;
+&gt;
+&gt;
+&gt;**提示:**
+&gt;
+&gt;- `1 &lt;= fruits.length &lt;= 105`
+&gt;- `0 &lt;= fruits[i] &lt; fruits.length`
 
 ```c++
 // 还没写......
@@ -1424,54 +1411,54 @@ class Solution:
 
 #### [76.最小覆盖子串](https://leetcode.cn/problems/minimum-window-substring/)
 
-> 给你一个字符串 `s` 、一个字符串 `t` .返回 `s` 中涵盖 `t` 所有字符的最小子串.如果 `s` 中不存在涵盖 `t` 所有字符的子串,则返回空字符串 `""` .
->
->  
->
-> **注意:**
->
-> - 对于 `t` 中重复字符,我们寻找的子字符串中该字符数量必须不少于 `t` 中该字符数量.
-> - 如果 `s` 中存在这样的子串,我们保证它是唯一的答案.
->
->  
->
-> **示例 1:**
->
-> ```
+&gt; 给你一个字符串 `s` 、一个字符串 `t` .返回 `s` 中涵盖 `t` 所有字符的最小子串.如果 `s` 中不存在涵盖 `t` 所有字符的子串,则返回空字符串 `""` .
+&gt;
+&gt;  
+&gt;
+&gt; **注意:**
+&gt;
+&gt; - 对于 `t` 中重复字符,我们寻找的子字符串中该字符数量必须不少于 `t` 中该字符数量.
+&gt; - 如果 `s` 中存在这样的子串,我们保证它是唯一的答案.
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1:**
+&gt;
+&gt; ```
 > 输入：s = "ADOBECODEBANC", t = "ABC"
 > 输出："BANC"
 > 解释：最小覆盖子串 "BANC" 包含来自字符串 t 的 'A'、'B' 和 'C'。
 > ```
->
-> **示例 2:**
->
-> ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ```
 > 输入：s = "a", t = "a"
 > 输出："a"
 > 解释：整个字符串 s 是最小覆盖子串。
 > ```
->
-> **示例 3:**
->
-> ```
+&gt;
+&gt; **示例 3:**
+&gt;
+&gt; ```
 > 输入: s = "a", t = "aa"
 > 输出: ""
 > 解释: t 中两个字符 'a' 均应包含在 s 的子串中，
 > 因此没有符合条件的子字符串，返回空字符串。
 > ```
->
->  
->
-> **提示:**
->
-> - `m == s.length`
-> - `n == t.length`
-> - `1 <= m, n <= 105`
-> - `s` 和 `t` 由英文字母组成
->
->  
->
-> **进阶:**你能设计一个在 `o(m+n)` 时间内解决此问题的算法吗?
+&gt;
+&gt;  
+&gt;
+&gt; **提示:**
+&gt;
+&gt; - `m == s.length`
+&gt; - `n == t.length`
+&gt; - `1 &lt;= m, n &lt;= 105`
+&gt; - `s` 和 `t` 由英文字母组成
+&gt;
+&gt;  
+&gt;
+&gt; **进阶:**你能设计一个在 `o(m+n)` 时间内解决此问题的算法吗?
 
 ```c++
 // 还没写......
@@ -1479,31 +1466,31 @@ class Solution:
 
 #### [59. 螺旋矩阵 II](https://leetcode.cn/problems/spiral-matrix-ii/)
 
-> 给你一个正整数 `n` ,生成一个包含 `1` 到 `n2` 所有元素,且元素按顺时针顺序螺旋排列的 `n x n` 正方形矩阵 `matrix` .
->
->  
->
-> **示例 1:**
->
-> ![img](./codeNote.assets/spiraln.jpg)
->
-> ```
+&gt; 给你一个正整数 `n` ,生成一个包含 `1` 到 `n2` 所有元素,且元素按顺时针顺序螺旋排列的 `n x n` 正方形矩阵 `matrix` .
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1:**
+&gt;
+&gt; ![img](./codeNote.assets/spiraln.jpg)
+&gt;
+&gt; ```
 > 输入：n = 3
 > 输出：[[1,2,3],[8,9,4],[7,6,5]]
 > ```
->
-> **示例 2:**
->
-> ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ```
 > 输入：n = 1
 > 输出：[[1]]
 > ```
->
->  
->
-> **提示:**
->
-> - `1 <= n <= 20`
+&gt;
+&gt;  
+&gt;
+&gt; **提示:**
+&gt;
+&gt; - `1 &lt;= n &lt;= 20`
 
 ```c++
 class Solution {
@@ -1525,7 +1512,6 @@ public:
     }
 };
 ```
-
 ```c++
 class Solution {
 public:
@@ -1554,7 +1540,6 @@ public:
     }
 };
 ```
-
 ```python
 class Solution:
     def generateMatrix(self, n: int) -> List[List[int]]:
@@ -1659,36 +1644,36 @@ class Solution:
 
 #### [54. 螺旋矩阵](https://leetcode.cn/problems/spiral-matrix/)
 
-> 给你一个 `m` 行 `n` 列的矩阵 `matrix` ,请按照 **顺时针螺旋顺序** ,返回矩阵中的所有元素.
->
->  
->
-> **示例 1:**
->
-> ![img](./codeNote.assets/spiral1.jpg)
->
-> ```
+&gt; 给你一个 `m` 行 `n` 列的矩阵 `matrix` ,请按照 **顺时针螺旋顺序** ,返回矩阵中的所有元素.
+&gt;
+&gt;  
+&gt;
+&gt; **示例 1:**
+&gt;
+&gt; ![img](./codeNote.assets/spiral1.jpg)
+&gt;
+&gt; ```
 > 输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
 > 输出：[1,2,3,6,9,8,7,4,5]
 > ```
->
-> **示例 2:**
->
-> ![img](./codeNote.assets/spiral.jpg)
->
-> ```
+&gt;
+&gt; **示例 2:**
+&gt;
+&gt; ![img](./codeNote.assets/spiral.jpg)
+&gt;
+&gt; ```
 > 输入：matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
 > 输出：[1,2,3,4,8,12,11,10,9,5,6,7]
 > ```
->
->  
->
-> **提示:**
->
-> - `m == matrix.length`
-> - `n == matrix[i].length`
-> - `1 <= m, n <= 10`
-> - `-100 <= matrix[i][j] <= 100`
+&gt;
+&gt;  
+&gt;
+&gt; **提示:**
+&gt;
+&gt; - `m == matrix.length`
+&gt; - `n == matrix[i].length`
+&gt; - `1 &lt;= m, n &lt;= 10`
+&gt; - `-100 &lt;= matrix[i][j] &lt;= 100`
 
 ```c++
 class Solution {
@@ -1760,7 +1745,7 @@ class Solution:
 - 链表是一种通过指针串联在一起的线性结构,每一个节点由两部分组成,一个是**数据域**一个是**指针域**(存放指向下一个节点的指针),最后一个节点的指针域指向null(空指针的意思).
 
 - 链表基本分为**三类**
-  - 单链表 ==> 单向查询
+  - 单链表 ==&gt; 单向查询
     - 指针域只能指向节点的下一个节点
 
     - 一个例子
@@ -1817,34 +1802,34 @@ class Solution:
 > ![img](./codeNote.assets/removelinked-list.jpg)
 >
 > ```
-> 输入:head = [1,2,6,3,4,5,6], val = 6
-> 输出:[1,2,3,4,5]
-> ```
+&gt; 输入:head = [1,2,6,3,4,5,6], val = 6
+&gt; 输出:[1,2,3,4,5]
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:head = [], val = 1
-> 输出:[]
-> ```
+&gt; 输入:head = [], val = 1
+&gt; 输出:[]
+&gt; ```
 >
 > **示例 3：**
 >
 > ```
-> 输入:head = [7,7,7,7], val = 7
-> 输出:[]
-> ```
+&gt; 输入:head = [7,7,7,7], val = 7
+&gt; 输出:[]
+&gt; ```
 >
 > ```c++
-> // Definition for singly-linked list.
-> struct ListNode {
->     int val;
->     ListNode* next;
->     ListNode() : val(0), next(nullptr) {}
->     ListNode(int x) : val(x), next(nullptr) {}
->     ListNode(int x, ListNode* next) : val(x), next(next) {}
-> };
-> ```
+&gt; // Definition for singly-linked list.
+&gt; struct ListNode {
+&gt;     int val;
+&gt;     ListNode* next;
+&gt;     ListNode() : val(0), next(nullptr) {}
+&gt;     ListNode(int x) : val(x), next(nullptr) {}
+&gt;     ListNode(int x, ListNode* next) : val(x), next(next) {}
+&gt; };
+&gt; ```
 >
 > **提示：**
 >
@@ -1859,20 +1844,20 @@ public:
     ListNode* removeElements(ListNode* head, int val) {
         ListNode* temp = head;
         // 目标值在头节点上
-        while (head != nullptr && head->val == val) {
-            head = head->next;
+        while (head != nullptr &amp;&amp; head-&gt;val == val) {
+            head = head-&gt;next;
             delete temp;
             temp = head;
         }
         // 目标值在非头节点上
-        while (temp != nullptr && temp->next != nullptr) {
+        while (temp != nullptr &amp;&amp; temp-&gt;next != nullptr) {
             ListNode* deletePtr = head; // 释放内存
-            if (temp->next->val == val) {
-                deletePtr = temp->next;
-                temp->next = temp->next->next;
+            if (temp-&gt;next-&gt;val == val) {
+                deletePtr = temp-&gt;next;
+                temp-&gt;next = temp-&gt;next-&gt;next;
                 delete deletePtr;
             } else {
-                temp = temp->next;
+                temp = temp-&gt;next;
             }
         }
         return head;
@@ -1888,16 +1873,16 @@ public:
         ListNode* dummyHead = new ListNode(0, head); //对象的实例化
         ListNode* deletePtr = nullptr;
         ListNode* temp = dummyHead;
-        while (temp->next != nullptr) {
-            if (temp->next->val == val) {
-                deletePtr = temp->next;
-                temp->next = temp->next->next;
+        while (temp-&gt;next != nullptr) {
+            if (temp-&gt;next-&gt;val == val) {
+                deletePtr = temp-&gt;next;
+                temp-&gt;next = temp-&gt;next-&gt;next;
                 delete deletePtr;
             } else {
-                temp = temp->next;
+                temp = temp-&gt;next;
             }
         }
-        return dummyHead->next;
+        return dummyHead-&gt;next;
     }
 };
 ```
@@ -1912,7 +1897,7 @@ public:
 #         self.val = val
 #         self.next = next
 class Solution:
-    def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
+    def removeElements(self, head: Optional[ListNode], val: int) -&gt; Optional[ListNode]:
         dummyHead = ListNode(0, head)
         temp = dummyHead
         while temp.next != None:
@@ -1949,21 +1934,21 @@ class Solution:
 > **示例：**
 >
 > ```
-> 输入
-> ["MyLinkedList", "addAtHead", "addAtTail", "addAtIndex", "get", "deleteAtIndex", "get"]
-> [[], [1], [3], [1, 2], [1], [1], [1]]
-> 输出
-> [null, null, null, null, 2, null, 3]
-> 
-> 解释
-> MyLinkedList myLinkedList = new MyLinkedList();
-> myLinkedList.addAtHead(1);
-> myLinkedList.addAtTail(3);
-> myLinkedList.addAtIndex(1, 2);    // 链表变为 1->2->3
-> myLinkedList.get(1);              // 返回 2
-> myLinkedList.deleteAtIndex(1);    // 现在,链表变为 1->3
-> myLinkedList.get(1);              // 返回 3
-> ```
+&gt; 输入
+&gt; ["MyLinkedList", "addAtHead", "addAtTail", "addAtIndex", "get", "deleteAtIndex", "get"]
+&gt; [[], [1], [3], [1, 2], [1], [1], [1]]
+&gt; 输出
+&gt; [null, null, null, null, 2, null, 3]
+&gt; 
+&gt; 解释
+&gt; MyLinkedList myLinkedList = new MyLinkedList();
+&gt; myLinkedList.addAtHead(1);
+&gt; myLinkedList.addAtTail(3);
+&gt; myLinkedList.addAtIndex(1, 2);    // 链表变为 1-&gt;2-&gt;3
+&gt; myLinkedList.get(1);              // 返回 2
+&gt; myLinkedList.deleteAtIndex(1);    // 现在,链表变为 1-&gt;3
+&gt; myLinkedList.get(1);              // 返回 3
+&gt; ```
 >
 >
 >
@@ -1991,19 +1976,19 @@ private:
 public:
     // 构造函数
     MyLinkedList() {
-        this->size = 0;
-        this->head = nullptr;
+        this-&gt;size = 0;
+        this-&gt;head = nullptr;
     }
  // 获取指定位置的节点值
     int get(int index) {
-        if (index < 0 || index >= size) {
+        if (index &lt; 0 || index &gt;= size) {
             return -1;
         }
         ListNode* current = head;
-        for (int i = 0; i < index; i++) {
-            current = current->next;
+        for (int i = 0; i &lt; index; i++) {
+            current = current-&gt;next;
         }
-        return current->val;
+        return current-&gt;val;
     }
  // 在链表头上加入一个节点
     void addAtHead(int val) {
@@ -2018,15 +2003,15 @@ public:
             return;
         }
         ListNode* current = head;
-        while (current->next != nullptr) {
-            current = current->next;
+        while (current-&gt;next != nullptr) {
+            current = current-&gt;next;
         }
-        current->next = new ListNode(val);
+        current-&gt;next = new ListNode(val);
         size++;
     }
     // 在指定节点前加入一个节点
     void addAtIndex(int index, int val) {
-        if (index < 0 || index > size) {
+        if (index &lt; 0 || index &gt; size) {
             return;
         }
         if (index == 0) {
@@ -2034,28 +2019,28 @@ public:
             return;
         }
         ListNode* current = head;
-        for (int i = 0; i < index - 1; i++) {
-            current = current->next;
+        for (int i = 0; i &lt; index - 1; i++) {
+            current = current-&gt;next;
         }
-        ListNode* newNode = new ListNode(val, current->next);
-        current->next = newNode;
+        ListNode* newNode = new ListNode(val, current-&gt;next);
+        current-&gt;next = newNode;
         size++;
     }
  // 删除指定节点
     void deleteAtIndex(int index) {
-        if (index < 0 || index >= size) {
+        if (index &lt; 0 || index &gt;= size) {
             return;
         }
         ListNode* current = head;
         if (index == 0) {
-            head = head->next;
+            head = head-&gt;next;
             delete current;
         } else {
-            for (int i = 0; i < index - 1; i++) {
-                current = current->next;
+            for (int i = 0; i &lt; index - 1; i++) {
+                current = current-&gt;next;
             }
-            ListNode* deletePtr = current->next;
-            current->next = current->next->next;
+            ListNode* deletePtr = current-&gt;next;
+            current-&gt;next = current-&gt;next-&gt;next;
             delete deletePtr;
         }
         size--;
@@ -2064,7 +2049,7 @@ public:
     ~MyLinkedList() {
         ListNode* current = head;
         while (current != nullptr) {
-            ListNode* next = current->next;
+            ListNode* next = current-&gt;next;
             delete current;
             current = next;
         }
@@ -2087,20 +2072,20 @@ class MyLinkedList:
         self.head = None  # self指向自身
         self.size = 0
 
-    def get(self, index: int) -> int:
-        if index < 0 or index >= self.size:
+    def get(self, index: int) -&gt; int:
+        if index &lt; 0 or index &gt;= self.size:
             return -1
         current = self.head
         for _ in range(index):
             current = current.next
         return current.val
 
-    def addAtHead(self, val: int) -> None:
+    def addAtHead(self, val: int) -&gt; None:
         newNode = ListNode(val, self.head)
         self.head = newNode
         self.size += 1
 
-    def addAtTail(self, val: int) -> None:
+    def addAtTail(self, val: int) -&gt; None:
         if self.head == None:
             self.addAtHead(val)
         else:
@@ -2110,8 +2095,8 @@ class MyLinkedList:
             current.next = ListNode(val)
             self.size += 1
 
-    def addAtIndex(self, index: int, val: int) -> None:
-        if index < 0 or index > self.size:
+    def addAtIndex(self, index: int, val: int) -&gt; None:
+        if index &lt; 0 or index &gt; self.size:
             pass
         elif index == 0:
             self.addAtHead(val)
@@ -2127,8 +2112,8 @@ class MyLinkedList:
             self.size += 1
             self.head = dummy_head.next # 哑节点的后续操作
 
-    def deleteAtIndex(self, index: int) -> None:
-        if index < 0 or index >= self.size:
+    def deleteAtIndex(self, index: int) -&gt; None:
+        if index &lt; 0 or index &gt;= self.size:
             return
         if index == 0:
             self.head = self.head.next
@@ -2168,19 +2153,19 @@ private:
 
 public:
     MyLinkedList() {
-        this->size = 0;
-        this->head = nullptr;
+        this-&gt;size = 0;
+        this-&gt;head = nullptr;
     }
 
     int get(int index) {
-        if (index < 0 || index >= size) {
+        if (index &lt; 0 || index &gt;= size) {
             return -1;
         }
         ListNode* current = head;
-        for (int i = 0; i < index; i++) {
-            current = current->next;
+        for (int i = 0; i &lt; index; i++) {
+            current = current-&gt;next;
         }
-        return current->val;
+        return current-&gt;val;
     }
 
     void addAtHead(int val) {
@@ -2195,15 +2180,15 @@ public:
             return;
         }
         ListNode* current = head;
-        while (current->next != nullptr) {
-            current = current->next;
+        while (current-&gt;next != nullptr) {
+            current = current-&gt;next;
         }
-        current->next = new ListNode(val, current, nullptr);
+        current-&gt;next = new ListNode(val, current, nullptr);
         size++;
     }
 
     void addAtIndex(int index, int val) {
-        if (index < 0 || index > size) {
+        if (index &lt; 0 || index &gt; size) {
             return;
         }
         if (index == 0) {
@@ -2211,33 +2196,33 @@ public:
             return;
         }
         ListNode* current = head;
-        for (int i = 0; i < index - 1; i++) {
-            current = current->next;
+        for (int i = 0; i &lt; index - 1; i++) {
+            current = current-&gt;next;
         }
-        ListNode* newNode = new ListNode(val, current, current->next);
-        current->next = newNode;
+        ListNode* newNode = new ListNode(val, current, current-&gt;next);
+        current-&gt;next = newNode;
         size++;
     }
 
     void deleteAtIndex(int index) {
-        if (index < 0 || index >= size) {
+        if (index &lt; 0 || index &gt;= size) {
             return;
         }
         ListNode* current = head;
         if (index == 0) {
-            head = head->next;
+            head = head-&gt;next;
             if (head != nullptr) { // 边界的细节
-                head->prev = nullptr;
+                head-&gt;prev = nullptr;
             }
             delete current;
         } else {
-            for (int i = 0; i < index - 1; i++) {
-                current = current->next;
+            for (int i = 0; i &lt; index - 1; i++) {
+                current = current-&gt;next;
             }
-            ListNode* deletePtr = current->next;
-            current->next = deletePtr->next;
-            if (current->next != nullptr) { // 边界的细节
-                current->next->prev = current;
+            ListNode* deletePtr = current-&gt;next;
+            current-&gt;next = deletePtr-&gt;next;
+            if (current-&gt;next != nullptr) { // 边界的细节
+                current-&gt;next-&gt;prev = current;
             }
             delete deletePtr;
         }
@@ -2247,7 +2232,7 @@ public:
     ~MyLinkedList() {
         ListNode* current = head;
         while (current != nullptr) {
-            ListNode* next = current->next;
+            ListNode* next = current-&gt;next;
             delete current;
             current = next;
         }
@@ -2270,8 +2255,8 @@ class MyLinkedList:
         self.head = None  # self指向自身
         self.size = 0
 
-    def get(self, index: int) -> int:
-        if index < 0 or index >= self.size:
+    def get(self, index: int) -&gt; int:
+        if index &lt; 0 or index &gt;= self.size:
             return -1
         if self.size == 0:
             return -1
@@ -2283,12 +2268,12 @@ class MyLinkedList:
         else:
             return -1
 
-    def addAtHead(self, val: int) -> None:
+    def addAtHead(self, val: int) -&gt; None:
         newNode = ListNode(val, None, self.head)
         self.head = newNode
         self.size += 1
 
-    def addAtTail(self, val: int) -> None:
+    def addAtTail(self, val: int) -&gt; None:
         if self.head == None:
             self.addAtHead(val)
         else:
@@ -2298,8 +2283,8 @@ class MyLinkedList:
             current.next = ListNode(val, current, None)
             self.size += 1
 
-    def addAtIndex(self, index: int, val: int) -> None:
-        if index < 0 or index > self.size:
+    def addAtIndex(self, index: int, val: int) -&gt; None:
+        if index &lt; 0 or index &gt; self.size:
             pass
         elif index == 0:
             self.addAtHead(val)
@@ -2315,8 +2300,8 @@ class MyLinkedList:
             self.size += 1
             self.head = dummy_head.next
 
-    def deleteAtIndex(self, index: int) -> None:
-        if index < 0 or index >= self.size:
+    def deleteAtIndex(self, index: int) -&gt; None:
+        if index &lt; 0 or index &gt;= self.size:
             return
 
         if index == 0:
@@ -2360,25 +2345,25 @@ Your MyLinkedList object will be instantiated and called as such:
 > ![img](./codeNote.assets/rev1ex1.jpg)
 >
 > ```
-> 输入:head = [1,2,3,4,5]
-> 输出:[5,4,3,2,1]
-> ```
+&gt; 输入:head = [1,2,3,4,5]
+&gt; 输出:[5,4,3,2,1]
+&gt; ```
 >
 > **示例 2：**
 >
 > ![img](./codeNote.assets/rev1ex2.jpg)
 >
 > ```
-> 输入:head = [1,2]
-> 输出:[2,1]
-> ```
+&gt; 输入:head = [1,2]
+&gt; 输出:[2,1]
+&gt; ```
 >
 > **示例 3：**
 >
 > ```
-> 输入:head = []
-> 输出:[]
-> ```
+&gt; 输入:head = []
+&gt; 输出:[]
+&gt; ```
 >
 > ![206_反转链表](./codeNote.assets/20210218090901207.png)
 >
@@ -2410,8 +2395,8 @@ public:
         ListNode* fast = head;
         ListNode* slow = nullptr;
         while (fast != nullptr) {
-            ListNode* temp = fast->next;
-            fast->next = slow;
+            ListNode* temp = fast-&gt;next;
+            fast-&gt;next = slow;
             slow = fast;
             fast = temp;
         }
@@ -2433,7 +2418,7 @@ public:
          self.next = next
 """
 class Solution:
-    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    def reverseList(self, head: Optional[ListNode]) -&gt; Optional[ListNode]:
         fast = head
         slow = None
         while fast!=None:
@@ -2455,23 +2440,23 @@ class Solution:
 > ![img](./codeNote.assets/swap_ex1.jpg)
 >
 > ```
-> 输入:head = [1,2,3,4]
-> 输出:[2,1,4,3]
-> ```
+&gt; 输入:head = [1,2,3,4]
+&gt; 输出:[2,1,4,3]
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:head = []
-> 输出:[]
-> ```
+&gt; 输入:head = []
+&gt; 输出:[]
+&gt; ```
 >
 > **示例 3：**
 >
 > ```
-> 输入:head = [1]
-> 输出:[1]
-> ```
+&gt; 输入:head = [1]
+&gt; 输出:[1]
+&gt; ```
 >
 >  
 >
@@ -2484,20 +2469,20 @@ class Solution:
 class Solution {
 public:
     ListNode* swapPairs(ListNode* head) {
-        if (head == nullptr || head->next == nullptr) {
+        if (head == nullptr || head-&gt;next == nullptr) {
             return head;
         }
         ListNode dummy = ListNode(0, head);
-        ListNode* prev = &dummy; // prev 初始化为 dummy 节点
+        ListNode* prev = &amp;dummy // prev 初始化为 dummy 节点
 
-        while (prev->next != nullptr && prev->next->next != nullptr) {
-            ListNode* first = prev->next;        // 第一个节点
-            ListNode* second = prev->next->next; // 第二个节点
+        while (prev-&gt;next != nullptr &amp;&amp; prev-&gt;next-&gt;next != nullptr) {
+            ListNode* first = prev-&gt;next;        // 第一个节点
+            ListNode* second = prev-&gt;next-&gt;next; // 第二个节点
 
             // 交换 first 和 second
-            first->next = second->next;
-            second->next = first;
-            prev->next = second;
+            first-&gt;next = second-&gt;next;
+            second-&gt;next = first;
+            prev-&gt;next = second;
 
             // 移动 prev 节点,准备下一对交换
             prev = first;
@@ -2517,7 +2502,7 @@ public:
          self.next = next
 """
 class Solution:
-    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    def swapPairs(self, head: Optional[ListNode]) -&gt; Optional[ListNode]:
         if head == None or head.next == None:
             return head
         dummy = ListNode(0, head)
@@ -2546,23 +2531,23 @@ class Solution:
 > ![img](./codeNote.assets/remove_ex1.jpg)
 >
 > ```
-> 输入:head = [1,2,3,4,5], n = 2
-> 输出:[1,2,3,5]
-> ```
+&gt; 输入:head = [1,2,3,4,5], n = 2
+&gt; 输出:[1,2,3,5]
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:head = [1], n = 1
-> 输出:[]
-> ```
+&gt; 输入:head = [1], n = 1
+&gt; 输出:[]
+&gt; ```
 >
 > **示例 3：**
 >
 > ```
-> 输入:head = [1,2], n = 1
-> 输出:[1]
-> ```
+&gt; 输入:head = [1,2], n = 1
+&gt; 输出:[1]
+&gt; ```
 >
 >  
 >
@@ -2593,17 +2578,17 @@ public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
         ListNode* current = head;
         int nodeNumber = 1;
-        while (current->next != nullptr) {
+        while (current-&gt;next != nullptr) {
             nodeNumber++;
-            current = current->next;
+            current = current-&gt;next;
         }
         ListNode dummy = ListNode(0, head);
-        current = &dummy;
-        for (int i = 0; i < nodeNumber - n; i++) {
-            current = current->next;
+        current = &amp;dummy
+        for (int i = 0; i &lt; nodeNumber - n; i++) {
+            current = current-&gt;next;
         }
-        ListNode* temp = current->next;
-        current->next = current->next->next;
+        ListNode* temp = current-&gt;next;
+        current-&gt;next = current-&gt;next-&gt;next;
         delete temp;
         return dummy.next; // 本身就是链表节点内指针域的数据,数据类型为LinkNode指针
     }
@@ -2619,7 +2604,7 @@ public:
          self.next = next
 """
 class Solution:
-    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -&gt; Optional[ListNode]:
         nodeNumber = 1
         current = head
         while current.next != None:
@@ -2652,36 +2637,36 @@ class Solution:
 > [![img](./codeNote.assets/160_example_1.png)](https://assets.leetcode.com/uploads/2018/12/13/160_example_1.png)
 >
 > ```
-> 输入:intersectVal = 8, listA = [4,1,8,4,5], listB = [5,0,1,8,4,5], skipA = 2, skipB = 3
-> 输出:Intersected at '8'
-> 解释:相交节点的值为 8 (注意,如果两个链表相交则不能为 0).
-> 从各自的表头开始算起,链表 A 为 [4,1,8,4,5],链表 B 为 [5,0,1,8,4,5].
-> 在 A 中,相交节点前有 2 个节点;在 B 中,相交节点前有 3 个节点.
-> ```
+&gt; 输入:intersectVal = 8, listA = [4,1,8,4,5], listB = [5,0,1,8,4,5], skipA = 2, skipB = 3
+&gt; 输出:Intersected at '8'
+&gt; 解释:相交节点的值为 8 (注意,如果两个链表相交则不能为 0).
+&gt; 从各自的表头开始算起,链表 A 为 [4,1,8,4,5],链表 B 为 [5,0,1,8,4,5].
+&gt; 在 A 中,相交节点前有 2 个节点;在 B 中,相交节点前有 3 个节点.
+&gt; ```
 >
 > **示例 2：**
 >
 > [![img](./codeNote.assets/160_example_2.png)](https://assets.leetcode.com/uploads/2018/12/13/160_example_2.png)
 >
 > ```
-> 输入:intersectVal = 2, listA = [0,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
-> 输出:Intersected at '2'
-> 解释:相交节点的值为 2 (注意,如果两个链表相交则不能为 0).
-> 从各自的表头开始算起,链表 A 为 [0,9,1,2,4],链表 B 为 [3,2,4].
-> 在 A 中,相交节点前有 3 个节点;在 B 中,相交节点前有 1 个节点.
-> ```
+&gt; 输入:intersectVal = 2, listA = [0,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
+&gt; 输出:Intersected at '2'
+&gt; 解释:相交节点的值为 2 (注意,如果两个链表相交则不能为 0).
+&gt; 从各自的表头开始算起,链表 A 为 [0,9,1,2,4],链表 B 为 [3,2,4].
+&gt; 在 A 中,相交节点前有 3 个节点;在 B 中,相交节点前有 1 个节点.
+&gt; ```
 >
 > **示例 3：**
 >
 > [![img](./codeNote.assets/160_example_3.png)](https://assets.leetcode.com/uploads/2018/12/13/160_example_3.png)
 >
 > ```
-> 输入:intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
-> 输出:null
-> 解释:从各自的表头开始算起,链表 A 为 [2,6,4],链表 B 为 [1,5].
-> 由于这两个链表不相交,所以 intersectVal 必须为 0,而 skipA 和 skipB 可以是任意值.
-> 这两个链表不相交,因此返回 null .
-> ```
+&gt; 输入:intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
+&gt; 输出:null
+&gt; 解释:从各自的表头开始算起,链表 A 为 [2,6,4],链表 B 为 [1,5].
+&gt; 由于这两个链表不相交,所以 intersectVal 必须为 0,而 skipA 和 skipB 可以是任意值.
+&gt; 这两个链表不相交,因此返回 null .
+&gt; ```
 >
 >
 >
@@ -2719,30 +2704,30 @@ public:
         }
         int nodeNumberA = 1, nodeNumberB = 1;
         ListNode* currentA = headA;
-        while (currentA->next != nullptr) {
-            currentA = currentA->next;
+        while (currentA-&gt;next != nullptr) {
+            currentA = currentA-&gt;next;
             nodeNumberA++;
         }
         ListNode* currentB = headB;
-        while (currentB->next != nullptr) {
-            currentB = currentB->next;
+        while (currentB-&gt;next != nullptr) {
+            currentB = currentB-&gt;next;
             nodeNumberB++;
         }
         // 得到二者长度
         currentB = headB;
         currentA = headA;
-        if (nodeNumberA >= nodeNumberB) {
-            for (int i = 0; i < nodeNumberA - nodeNumberB; i++) {
-                currentA = currentA->next;
+        if (nodeNumberA &gt;= nodeNumberB) {
+            for (int i = 0; i &lt; nodeNumberA - nodeNumberB; i++) {
+                currentA = currentA-&gt;next;
             }
         } else {
-            for (int i = 0; i < nodeNumberB - nodeNumberA; i++) {
-                currentB = currentB->next;
+            for (int i = 0; i &lt; nodeNumberB - nodeNumberA; i++) {
+                currentB = currentB-&gt;next;
             }
         }
         while (currentA != currentB) {
-            currentA = currentA->next;
-            currentB = currentB->next;
+            currentA = currentA-&gt;next;
+            currentB = currentB-&gt;next;
         }
         if (currentA == nullptr) {
             return nullptr;
@@ -2762,7 +2747,7 @@ public:
 
 
 class Solution:
-    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -&gt; ListNode:
         if headA == None or headB == None:
             return None
         nodeNumberA = 1
@@ -2777,7 +2762,7 @@ class Solution:
             nodeNumberB += 1
         currentA = headA
         currentB = headB
-        if nodeNumberA >= nodeNumberB:
+        if nodeNumberA &gt;= nodeNumberB:
             for _ in range(nodeNumberA - nodeNumberB):
                 currentA = currentA.next
         else:
@@ -2810,30 +2795,30 @@ class Solution:
 > ![img](./codeNote.assets/circularlinkedlist.png)
 >
 > ```
-> 输入:head = [3,2,0,-4], pos = 1
-> 输出:返回索引为 1 的链表节点
-> 解释:链表中有一个环,其尾部连接到第二个节点.
-> ```
+&gt; 输入:head = [3,2,0,-4], pos = 1
+&gt; 输出:返回索引为 1 的链表节点
+&gt; 解释:链表中有一个环,其尾部连接到第二个节点.
+&gt; ```
 >
 > **示例 2：**
 >
 > ![img](./codeNote.assets/circularlinkedlist_test2.png)
 >
 > ```
-> 输入:head = [1,2], pos = 0
-> 输出:返回索引为 0 的链表节点
-> 解释:链表中有一个环,其尾部连接到第一个节点.
-> ```
+&gt; 输入:head = [1,2], pos = 0
+&gt; 输出:返回索引为 0 的链表节点
+&gt; 解释:链表中有一个环,其尾部连接到第一个节点.
+&gt; ```
 >
 > **示例 3：**
 >
 > ![img](./codeNote.assets/circularlinkedlist_test3.png)
 >
 > ```
-> 输入:head = [1], pos = -1
-> 输出:返回 null
-> 解释:链表中没有环.
-> ```
+&gt; 输入:head = [1], pos = -1
+&gt; 输出:返回 null
+&gt; 解释:链表中没有环.
+&gt; ```
 >
 >  
 >
@@ -2863,21 +2848,21 @@ public:
         ListNode* slow = head;
         ListNode* index1 = head;
         ListNode* index2 = nullptr;
-        while (fast != nullptr &&
-               fast->next != nullptr) { // 没有环结构在这里终止
-            fast = fast->next->next;
-            slow = slow->next;
+        while (fast != nullptr &amp;&amp;
+               fast-&gt;next != nullptr) { // 没有环结构在这里终止
+            fast = fast-&gt;next-&gt;next;
+            slow = slow-&gt;next;
             if (fast == slow) { // 有环结构在这里终止
                 index2 = fast;
                 break;
             }
         }
-        if (!(fast != nullptr && fast->next != nullptr)) {
+        if (!(fast != nullptr &amp;&amp; fast-&gt;next != nullptr)) {
             return nullptr;
         }
         while (index1 != index2) {
-            index1 = index1->next;
-            index2 = index2->next;
+            index1 = index1-&gt;next;
+            index2 = index2-&gt;next;
         }
         return index2;
     }
@@ -2897,7 +2882,7 @@ public:
 
 
 class Solution:
-    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    def detectCycle(self, head: Optional[ListNode]) -&gt; Optional[ListNode]:
         fast = head
         slow = head
         index1 = head
@@ -3006,12 +2991,12 @@ int main() {
 
     // 迭代器遍历向量
     for (std::vector<int>::iterator it = myVector.begin(); it != myVector.end(); ++it) {
-        std::cout << *it << " ";
+        std::cout &lt;&lt; *it &lt;&lt; " ";
     }
 
     return 0;
 }
-```
+</int></int></vector></iostream>```
 
 在上面的示例中，我们创建了一个整数向量 `myVector`，其中包含了一些整数。然后，我们使用迭代器 `std::vector<int>::iterator` 来遍历向量中的元素。我们初始化迭代器 `it` 为 `myVector` 的起始迭代器 `myVector.begin()`，并在循环中逐步递增迭代器，直到它等于 `myVector` 的结束迭代器 `myVector.end()`。在循环中，我们通过解引用迭代器 `*it` 来访问当前元素，并将其输出。
 
@@ -3104,16 +3089,16 @@ auto pi = 3.14f;  // 推导为 float 类型
 > **示例 1:**
 >
 > ```
-> 输入: s = "anagram", t = "nagaram"
-> 输出: true
-> ```
+&gt; 输入: s = "anagram", t = "nagaram"
+&gt; 输出: true
+&gt; ```
 >
 > **示例 2:**
 >
 > ```
-> 输入: s = "rat", t = "car"
-> 输出: false
-> ```
+&gt; 输入: s = "rat", t = "car"
+&gt; 输出: false
+&gt; ```
 >
 >  
 >
@@ -3136,11 +3121,11 @@ public:
         return ss == ts;
     }
 };
-```
+</char>```
 
 ```python
 class Solution:
-    def isAnagram(self, s: str, t: str) -> bool:
+    def isAnagram(self, s: str, t: str) -&gt; bool:
         ss = set(s)
         ts = set(t)
         return ss==ts
@@ -3156,17 +3141,17 @@ class Solution:
 > **示例 1：**
 >
 > ```
-> 输入:nums1 = [1,2,2,1], nums2 = [2,2]
-> 输出:[2]
-> ```
+&gt; 输入:nums1 = [1,2,2,1], nums2 = [2,2]
+&gt; 输出:[2]
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:nums1 = [4,9,5], nums2 = [9,4,9,8,4]
-> 输出:[9,4]
-> 解释:[4,9] 也是可通过的
-> ```
+&gt; 输入:nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+&gt; 输出:[9,4]
+&gt; 解释:[4,9] 也是可通过的
+&gt; ```
 >
 >  
 >
@@ -3178,7 +3163,7 @@ class Solution:
 ```c++
 class Solution {
 public:
-    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+    vector<int> intersection(vector<int>&amp; nums1, vector<int>&amp; nums2) {
         unordered_set<int> sans;
         unordered_set<int> temp(nums1.begin(), nums1.end());
         for (int num : nums2) {
@@ -3190,14 +3175,14 @@ public:
         return ans;
     }
 };
-```
+</int></int></int></int></int></int>```
 
 ```python
 class Solution:
-    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+    def intersection(self, nums1: List[int], nums2: List[int]) -&gt; List[int]:
         s1 = set(nums1)
         s2 = set(nums2)
-        return list(s1 & s2)
+        return list(s1 &amp; s2)
 ```
 
 [350. 两个数组的交集 II](https://leetcode.cn/problems/intersection-of-two-arrays-ii/)
@@ -3209,16 +3194,16 @@ class Solution:
 > **示例 1：**
 >
 > ```
-> 输入:nums1 = [1,2,2,1], nums2 = [2,2]
-> 输出:[2,2]
-> ```
+&gt; 输入:nums1 = [1,2,2,1], nums2 = [2,2]
+&gt; 输出:[2,2]
+&gt; ```
 >
 > **示例 2:**
 >
 > ```
-> 输入:nums1 = [4,9,5], nums2 = [9,4,9,8,4]
-> 输出:[4,9]
-> ```
+&gt; 输入:nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+&gt; 输出:[4,9]
+&gt; ```
 >
 >  
 >
@@ -3259,21 +3244,21 @@ class Solution:
 > **示例 1：**
 >
 > ```
-> 输入:n = 19
-> 输出:true
-> 解释:
-> 1^2 + 9^2 = 82
-> 8^2 + 2^2 = 68
-> 6^2 + 8^2 = 100
-> 1^2 + 0^2 + 0^2 = 1
-> ```
+&gt; 输入:n = 19
+&gt; 输出:true
+&gt; 解释:
+&gt; 1^2 + 9^2 = 82
+&gt; 8^2 + 2^2 = 68
+&gt; 6^2 + 8^2 = 100
+&gt; 1^2 + 0^2 + 0^2 = 1
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:n = 2
-> 输出:false
-> ```
+&gt; 输入:n = 2
+&gt; 输出:false
+&gt; ```
 >
 >  
 >
@@ -3302,11 +3287,11 @@ public:
         return false;
     }
 };
-```
+</int>```
 
 ```python
 class Solution:
-    def isHappy(self, n: int) -> bool:
+    def isHappy(self, n: int) -&gt; bool:
         temp = 0
         sumNum = 0
         result = set()
@@ -3337,24 +3322,24 @@ class Solution:
 > **示例 1：**
 >
 > ```
-> 输入:nums = [2,7,11,15], target = 9
-> 输出:[0,1]
-> 解释:因为 nums[0] + nums[1] == 9 ,返回 [0, 1] .
-> ```
+&gt; 输入:nums = [2,7,11,15], target = 9
+&gt; 输出:[0,1]
+&gt; 解释:因为 nums[0] + nums[1] == 9 ,返回 [0, 1] .
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:nums = [3,2,4], target = 6
-> 输出:[1,2]
-> ```
+&gt; 输入:nums = [3,2,4], target = 6
+&gt; 输出:[1,2]
+&gt; ```
 >
 > **示例 3：**
 >
 > ```
-> 输入:nums = [3,3], target = 6
-> 输出:[0,1]
-> ```
+&gt; 输入:nums = [3,3], target = 6
+&gt; 输出:[0,1]
+&gt; ```
 >
 >  
 >
@@ -3373,9 +3358,9 @@ class Solution:
 // 暴力解法
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        for (int i = 0; i < nums.size(); i++) {
-            for (int j = i + 1; j < nums.size(); j++) {
+    vector<int> twoSum(vector<int>&amp; nums, int target) {
+        for (int i = 0; i &lt; nums.size(); i++) {
+            for (int j = i + 1; j &lt; nums.size(); j++) {
                 if (nums[i] + nums[j] == target) {
                     return {i, j};
                 }
@@ -3387,19 +3372,19 @@ public:
 // map || unordered_map
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        unordered_map<int, int> umap;
-        for (int i = 0; i < nums.size(); i++) {
+    vector<int> twoSum(vector<int>&amp; nums, int target) {
+        unordered_map<int, int=""> umap;
+        for (int i = 0; i &lt; nums.size(); i++) {
             auto iter = umap.find(target - nums[i]);
             if (iter != umap.end()) {
-                return {iter->second, i};
+                return {iter-&gt;second, i};
             }
-            umap.insert(pair<int, int>(nums[i], i));
+            umap.insert(pair<int, int="">(nums[i], i));
         }
         return {-1, -1};
     }
 };
-```
+</int,></int,></int></int></int></int>```
 
 - `std::pair`是C++标准库中的一个模板类，用于存储两个不同类型的值(可用构造键值对`{key,value}`)。`std::pair`的使用方法如下：
 
@@ -3408,10 +3393,10 @@ public:
   2. 创建`std::pair`对象：可以使用以下方式创建`std::pair`对象：
 
      ```cpp
-     std::pair<T1, T2> myPair; // 创建一个空的pair对象,其中T1和T2分别是两个元素的类型
-     std::pair<T1, T2> myPair(value1, value2); // 创建一个带有初始值的pair对象
+     std::pair<t1, t2=""> myPair; // 创建一个空的pair对象,其中T1和T2分别是两个元素的类型
+     std::pair<t1, t2=""> myPair(value1, value2); // 创建一个带有初始值的pair对象
      std::make_pair(value1, value2); // 使用make_pair函数创建一个带有初始值的pair对象
-     ```
+     </t1,></t1,>```
 
   3. 访问`std::pair`中的元素：可以使用以下方式访问`std::pair`中的元素：
 
@@ -3437,21 +3422,21 @@ public:
   6. 使用`std::pair`作为函数的返回值：`std::pair`常用于函数返回多个值的情况，例如：
 
      ```cpp
-     std::pair<int, int> getMinMax(const std::vector<int>& nums) {
+     std::pair<int, int=""> getMinMax(const std::vector<int>&amp; nums) {
          int minVal = *std::min_element(nums.begin(), nums.end());
          int maxVal = *std::max_element(nums.begin(), nums.end());
          return std::make_pair(minVal, maxVal);
      }
      
      // 使用返回的pair对象
-     std::pair<int, int> result = getMinMax(nums);
+     std::pair<int, int=""> result = getMinMax(nums);
      int minValue = result.first;
      int maxValue = result.second;
-     ```
+     </int,></int></int,>```
 
 ```python
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
+    def twoSum(self, nums: List[int], target: int) -&gt; List[int]:
         num_dict = dict()
         for i in range(len(nums)):
             temp = num_dict.get(target - nums[i])
@@ -3471,20 +3456,20 @@ class Solution:
 > **示例 1：**
 >
 > ```
->输入:nums1 = [1,2], nums2 = [-2,-1], nums3 = [-1,2], nums4 = [0,2]
-> 输出:2
-> 解释:
-> 两个元组如下:
-> 1. (0, 0, 0, 1) -> nums1[0] + nums2[0] + nums3[0] + nums4[1] = 1 + (-2) + (-1) + 2 = 0
-> 2. (1, 1, 0, 0) -> nums1[1] + nums2[1] + nums3[0] + nums4[0] = 2 + (-1) + (-1) + 0 = 0
-> ```
+&gt;输入:nums1 = [1,2], nums2 = [-2,-1], nums3 = [-1,2], nums4 = [0,2]
+&gt; 输出:2
+&gt; 解释:
+&gt; 两个元组如下:
+&gt; 1. (0, 0, 0, 1) -&gt; nums1[0] + nums2[0] + nums3[0] + nums4[1] = 1 + (-2) + (-1) + 2 = 0
+&gt; 2. (1, 1, 0, 0) -&gt; nums1[1] + nums2[1] + nums3[0] + nums4[0] = 2 + (-1) + (-1) + 0 = 0
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
->输入:nums1 = [0], nums2 = [0], nums3 = [0], nums4 = [0]
-> 输出:1
-> ```
+&gt;输入:nums1 = [0], nums2 = [0], nums3 = [0], nums4 = [0]
+&gt; 输出:1
+&gt; ```
 >
 > **提示：**
 >
@@ -3502,13 +3487,13 @@ class Solution:
 // 暴力解法(超时)
 class Solution {
 public:
-    int fourSumCount(vector<int>& nums1, vector<int>& nums2, vector<int>& nums3,
-                     vector<int>& nums4) {
+    int fourSumCount(vector<int>&amp; nums1, vector<int>&amp; nums2, vector<int>&amp; nums3,
+                     vector<int>&amp; nums4) {
         int ans = 0;
-        for (int i = 0; i < nums1.size(); i++) {
-            for (int j = 0; j < nums2.size(); j++) {
-                for (int k = 0; k < nums3.size(); k++) {
-                    for (int l = 0; l < nums4.size(); l++) {
+        for (int i = 0; i &lt; nums1.size(); i++) {
+            for (int j = 0; j &lt; nums2.size(); j++) {
+                for (int k = 0; k &lt; nums3.size(); k++) {
+                    for (int l = 0; l &lt; nums4.size(); l++) {
                         if (nums1[i] + nums2[j] + nums3[k] + nums4[l] == 0) {
                             ans++;
                         }
@@ -3522,11 +3507,11 @@ public:
 // unordered_map 对暴力法降次
 class Solution {
 public:
-    int fourSumCount(vector<int>& nums1, vector<int>& nums2, vector<int>& nums3,
-                     vector<int>& nums4) {
-        unordered_map<int, int> umap;
-        for (int i = 0; i < nums1.size(); i++) {
-            for (int j = 0; j < nums2.size(); j++) {
+    int fourSumCount(vector<int>&amp; nums1, vector<int>&amp; nums2, vector<int>&amp; nums3,
+                     vector<int>&amp; nums4) {
+        unordered_map<int, int=""> umap;
+        for (int i = 0; i &lt; nums1.size(); i++) {
+            for (int j = 0; j &lt; nums2.size(); j++) {
                 int sum = nums1[i] + nums2[j];
                 if (umap.find(sum) == umap.end()) {
                     umap[sum] = 1;
@@ -3536,8 +3521,8 @@ public:
             }
         }
         int ans = 0;
-        for (int i = 0; i < nums3.size(); i++) {
-            for (int j = 0; j < nums4.size(); j++) {
+        for (int i = 0; i &lt; nums3.size(); i++) {
+            for (int j = 0; j &lt; nums4.size(); j++) {
                 int sum = nums3[i] + nums4[j];
                 if (umap.find(0 - sum) != umap.end()) {
                     ans += umap[0 - sum];
@@ -3550,8 +3535,8 @@ public:
 // 另一写法
 class Solution {
 public:
-    int fourSumCount(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D) {
-        unordered_map<int, int> umap; //key:a+b的数值,value:a+b数值出现的次数
+    int fourSumCount(vector<int>&amp; A, vector<int>&amp; B, vector<int>&amp; C, vector<int>&amp; D) {
+        unordered_map<int, int=""> umap; //key:a+b的数值,value:a+b数值出现的次数
         // 遍历大A和大B数组,统计两个数组元素之和,和出现的次数,放到map中
         for (int a : A) {
             for (int b : B) {
@@ -3571,13 +3556,13 @@ public:
     }
 };
 
-```
+</int,></int></int></int></int></int,></int></int></int></int></int></int></int></int>```
 
 ```python
 class Solution:
     def fourSumCount(
         self, nums1: List[int], nums2: List[int], nums3: List[int], nums4: List[int]
-    ) -> int:
+    ) -&gt; int:
         numDict = dict()
         for i in nums1:
             for j in nums2:
@@ -3608,23 +3593,23 @@ class Solution:
 > **示例 1：**
 >
 > ```
-> 输入:ransomNote = "a", magazine = "b"
-> 输出:false
-> ```
+&gt; 输入:ransomNote = "a", magazine = "b"
+&gt; 输出:false
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:ransomNote = "aa", magazine = "ab"
-> 输出:false
-> ```
+&gt; 输入:ransomNote = "aa", magazine = "ab"
+&gt; 输出:false
+&gt; ```
 >
 > **示例 3：**
 >
 > ```
-> 输入:ransomNote = "aa", magazine = "aab"
-> 输出:true
-> ```
+&gt; 输入:ransomNote = "aa", magazine = "aab"
+&gt; 输出:true
+&gt; ```
 >
 > **提示：**
 >
@@ -3642,8 +3627,8 @@ public:
         for (char iter : magazine) {
             arr2[iter - 'a']++;
         }
-        for (int i = 0; i < 26; i++) {
-            if (arr2[i] - arr1[i] < 0) {
+        for (int i = 0; i &lt; 26; i++) {
+            if (arr2[i] - arr1[i] &lt; 0) {
                 return false;
             }
         }
@@ -3654,27 +3639,27 @@ public:
 
 ```python
 class Solution:
-    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+    def canConstruct(self, ransomNote: str, magazine: str) -&gt; bool:
         list1 = [0 for _ in range(26)]
         list2 = [0 for _ in range(26)]
-        # ord(char) -> int 可以返回字符的ascii码对应整型
-        # char(int) -> str 相对的
+        # ord(char) -&gt; int 可以返回字符的ascii码对应整型
+        # char(int) -&gt; str 相对的
         for item in ransomNote:
             list1[ord(item) - ord('a')] += 1
         for item in magazine:
             list2[ord(item) - ord('a')] += 1
         for i in range(26):
-            if list2[i] - list1[i] < 0:
+            if list2[i] - list1[i] &lt; 0:
                 return False
         return True
     
 # python风格
 class Solution:
-    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+    def canConstruct(self, ransomNote: str, magazine: str) -&gt; bool:
         r_set = set(ransomNote)
         r_list = list(r_set)
         for char in r_list:
-            if char  not in magazine or ransomNote.count(char) > magazine.count(char):
+            if char  not in magazine or ransomNote.count(char) &gt; magazine.count(char):
                 return False
         return True    
 ```
@@ -3717,31 +3702,31 @@ class Solution:
 > **示例 1：**
 >
 > ```
-> 输入:nums = [-1,0,1,2,-1,-4]
-> 输出:[[-1,-1,2],[-1,0,1]]
-> 解释:
-> nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0 .
-> nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0 .
-> nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0 .
-> 不同的三元组是 [-1,0,1] 和 [-1,-1,2] .
-> 注意,输出的顺序和三元组的顺序并不重要.
-> ```
+&gt; 输入:nums = [-1,0,1,2,-1,-4]
+&gt; 输出:[[-1,-1,2],[-1,0,1]]
+&gt; 解释:
+&gt; nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0 .
+&gt; nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0 .
+&gt; nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0 .
+&gt; 不同的三元组是 [-1,0,1] 和 [-1,-1,2] .
+&gt; 注意,输出的顺序和三元组的顺序并不重要.
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:nums = [0,1,1]
-> 输出:[]
-> 解释:唯一可能的三元组和不为 0 .
-> ```
+&gt; 输入:nums = [0,1,1]
+&gt; 输出:[]
+&gt; 解释:唯一可能的三元组和不为 0 .
+&gt; ```
 >
 > **示例 3：**
 >
 > ```
-> 输入:nums = [0,0,0]
-> 输出:[[0,0,0]]
-> 解释:唯一可能的三元组和为 0 .
-> ```
+&gt; 输入:nums = [0,0,0]
+&gt; 输出:[[0,0,0]]
+&gt; 解释:唯一可能的三元组和为 0 .
+&gt; ```
 >
 >
 >
@@ -3762,11 +3747,11 @@ class Solution:
   #include <tuple>
   
   // 创建一个 tuple
-  std::tuple<int, std::string, float> my_tuple(42, "Hello", 3.14);
+  std::tuple<int, float="" std::string,=""> my_tuple(42, "Hello", 3.14);
   
   // 使用 std::make_tuple 来创建 tuple
   auto another_tuple = std::make_tuple(42, "Hello", 3.14);
-  ```
+  </int,></tuple>```
 
   - 访问元素
 
@@ -3774,10 +3759,10 @@ class Solution:
 
   ```cpp
   // 获取第一个元素
-  int my_int = std::get<0>(my_tuple);
+  int my_int = std::get&lt;0&gt;(my_tuple);
   
   // 获取第二个元素
-  std::string my_string = std::get<1>(my_tuple);
+  std::string my_string = std::get&lt;1&gt;(my_tuple);
   ```
 
   - 解包（Unpacking）
@@ -3805,7 +3790,7 @@ class Solution:
 
   ```cpp
   constexpr size_t num_elements = std::tuple_size<decltype(my_tuple)>::value;
-  ```
+  </decltype(my_tuple)>```
 
   - 比较操作
 
@@ -3848,15 +3833,15 @@ class Solution:
 // hash去重 (很慢)
 class Solution {
 public:
-    vector<vector<int>> threeSum(vector<int>& nums) {
-        set<vector<int>> result_set;
+    vector<vector<int>&gt; threeSum(vector<int>&amp; nums) {
+        set<vector<int>&gt; result_set;
         sort(nums.begin(), nums.end());
-        for (int i = 0; i < nums.size() && nums[i] <= 0; i++) {
+        for (int i = 0; i &lt; nums.size() &amp;&amp; nums[i] &lt;= 0; i++) {
             int left = i + 1, right = nums.size() - 1;
-            while (left < right) {
-                if (nums[i] + nums[left] + nums[right] > 0) {
+            while (left &lt; right) {
+                if (nums[i] + nums[left] + nums[right] &gt; 0) {
                     right--;
-                } else if (nums[i] + nums[left] + nums[right] < 0) {
+                } else if (nums[i] + nums[left] + nums[right] &lt; 0) {
                     left++;
                 } else {
                     result_set.insert({nums[i], nums[left], nums[right]});
@@ -3865,35 +3850,35 @@ public:
                 }
             }
         }
-        vector<vector<int>> result(result_set.begin(), result_set.end());
+        vector<vector<int>&gt; result(result_set.begin(), result_set.end());
         return result;
     }
 };
 // 不使用hash去重 O(n^2)
 class Solution {
 public:
-    vector<vector<int>> threeSum(vector<int>& nums) {
-        vector<vector<int>> result;
+    vector<vector<int>&gt; threeSum(vector<int>&amp; nums) {
+        vector<vector<int>&gt; result;
         sort(nums.begin(), nums.end());
-        for (int i = 0; i < nums.size() && nums[i] <= 0; ++i) {
+        for (int i = 0; i &lt; nums.size() &amp;&amp; nums[i] &lt;= 0; ++i) {
             // 跳过重复的数
-            if (i > 0 && nums[i] == nums[i - 1]) {
+            if (i &gt; 0 &amp;&amp; nums[i] == nums[i - 1]) {
                 continue;
             }
             int left = i + 1, right = nums.size() - 1;
-            while (left < right) {
+            while (left &lt; right) {
                 const int sum = nums[i] + nums[left] + nums[right];
-                if (sum > 0) {
+                if (sum &gt; 0) {
                     --right;
-                } else if (sum < 0) {
+                } else if (sum &lt; 0) {
                     ++left;
                 } else {
                     result.push_back({nums[i], nums[left], nums[right]});
                     // 跳过所有相同的左值和右值
-                    while (left < right && nums[left] == nums[left + 1]) {
+                    while (left &lt; right &amp;&amp; nums[left] == nums[left + 1]) {
                         ++left;
                     }
-                    while (left < right && nums[right] == nums[right - 1]) {
+                    while (left &lt; right &amp;&amp; nums[right] == nums[right - 1]) {
                         --right;
                     }
                     ++left;
@@ -3904,7 +3889,7 @@ public:
         return result;
     }
 };
-```
+</vector<int></int></vector<int></vector<int></vector<int></int></vector<int>```
 
 - **可哈希化**
 
@@ -3929,14 +3914,14 @@ public:
     };
     
     namespace std {
-        template <>
-        struct hash<MyType> {
-            size_t operator()(const MyType& my_type) const {
+        template &lt;&gt;
+        struct hash<mytype> {
+            size_t operator()(const MyType&amp; my_type) const {
                 return std::hash<int>()(my_type.x) ^ std::hash<bool>()(my_type.y);
             }
         };
     }
-    ```
+    </bool></int></mytype>```
 
     - Python
 
@@ -3968,17 +3953,17 @@ public:
 
 ```python
 class Solution:
-    def threeSum(self, nums: List[int]) -> List[List[int]]:
+    def threeSum(self, nums: List[int]) -&gt; List[List[int]]:
         nums.sort()
         ans = set()
         for i in range(len(nums)):
             left = i + 1
             right = len(nums) - 1
-            while left < right:
+            while left &lt; right:
                 sumNum = nums[i] + nums[left] + nums[right]
-                if sumNum > 0:
+                if sumNum &gt; 0:
                     right -= 1
-                elif sumNum < 0:
+                elif sumNum &lt; 0:
                     left += 1
                 else:
                     ans.add((nums[i], nums[left], nums[right]))
@@ -4002,16 +3987,16 @@ class Solution:
 > **示例 1：**
 >
 > ```
-> 输入:nums = [1,0,-1,0,-2,2], target = 0
-> 输出:[[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
-> ```
+&gt; 输入:nums = [1,0,-1,0,-2,2], target = 0
+&gt; 输出:[[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:nums = [2,2,2,2,2], target = 8
-> 输出:[[2,2,2,2]]
-> ```
+&gt; 输入:nums = [2,2,2,2,2], target = 8
+&gt; 输出:[[2,2,2,2]]
+&gt; ```
 >
 >  
 >
@@ -4087,16 +4072,16 @@ class Solution:
 >**示例 1：**
 >
 >```
->输入:s = ["h","e","l","l","o"]
->输出:["o","l","l","e","h"]
->```
+&gt;输入:s = ["h","e","l","l","o"]
+&gt;输出:["o","l","l","e","h"]
+&gt;```
 >
 >**示例 2：**
 >
 >```
->输入:s = ["H","a","n","n","a","h"]
->输出:["h","a","n","n","a","H"]
->```
+&gt;输入:s = ["H","a","n","n","a","h"]
+&gt;输出:["h","a","n","n","a","H"]
+&gt;```
 >
 >
 >
@@ -4108,9 +4093,9 @@ class Solution:
 ```c++
 class Solution {
 public:
-    void reverseString(vector<char>& s) {
+    void reverseString(vector<char>&amp; s) {
         int i = 0, j = s.size() - 1;
-        while (i <= j) {
+        while (i &lt;= j) {
             char temp = s[j];
             s[j] = s[i];
             s[i] = temp;
@@ -4122,23 +4107,23 @@ public:
 // 简洁版
 class Solution {
 public:
-    void reverseString(vector<char>& s) {
-        for (int i = 0, j = s.size() - 1; i <= j; i++, j--) {
+    void reverseString(vector<char>&amp; s) {
+        for (int i = 0, j = s.size() - 1; i &lt;= j; i++, j--) {
             swap(s[i], s[j]);
         }
     }
 };
-```
+</char></char>```
 
 ```python
 class Solution:
-    def reverseString(self, s: List[str]) -> None:
+    def reverseString(self, s: List[str]) -&gt; None:
         """
         Do not return anything, modify s in-place instead.
         """
         i = 0
         j = len(s) - 1
-        while i <= j:
+        while i &lt;= j:
             temp = s[i]
             s[i] = s[j]
             s[j] = temp
@@ -4176,16 +4161,16 @@ class Solution:
 > **示例 1：**
 >
 > ```
-> 输入:s = "abcdefg", k = 2
-> 输出:"bacdfeg"
-> ```
+&gt; 输入:s = "abcdefg", k = 2
+&gt; 输出:"bacdfeg"
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:s = "abcd", k = 2
-> 输出:"bacd"
-> ```
+&gt; 输入:s = "abcd", k = 2
+&gt; 输出:"bacd"
+&gt; ```
 >
 >  
 >
@@ -4198,8 +4183,8 @@ class Solution:
 ```c++
 class Solution {
 private:
-    void reverse(string& s, int forward_ptr, int behind_ptr) {
-        while (forward_ptr < behind_ptr) {
+    void reverse(string&amp; s, int forward_ptr, int behind_ptr) {
+        while (forward_ptr &lt; behind_ptr) {
             char temp = s[forward_ptr];
             s[forward_ptr] = s[behind_ptr];
             s[behind_ptr] = temp;
@@ -4211,11 +4196,11 @@ private:
 public:
     string reverseStr(string s, int k) {
         int begin_ptr = 0;
-        while (begin_ptr < s.size()) {
-            if (s.size() - begin_ptr >= 2 * k) {
+        while (begin_ptr &lt; s.size()) {
+            if (s.size() - begin_ptr &gt;= 2 * k) {
                 reverse(s, begin_ptr, begin_ptr + k - 1);
 
-            } else if (s.size() - begin_ptr >= k) {
+            } else if (s.size() - begin_ptr &gt;= k) {
                 reverse(s, begin_ptr, begin_ptr + k - 1);
             } else {
                 reverse(s, begin_ptr, s.size() - 1);
@@ -4243,18 +4228,18 @@ public:
 
 ```python
 class Solution:
-    def reverse(self, s: str, startIndex: int, endIndex: int) -> str:
+    def reverse(self, s: str, startIndex: int, endIndex: int) -&gt; str:
         s_list = list(s)  # 将字符串转换为列表
-        while startIndex < endIndex:
+        while startIndex &lt; endIndex:
             s_list[startIndex], s_list[endIndex] = s_list[endIndex], s_list[startIndex]
             startIndex += 1
             endIndex -= 1
         return ''.join(s_list)  # 将列表转换回字符串
 
-    def reverseStr(self, s: str, k: int) -> str:
+    def reverseStr(self, s: str, k: int) -&gt; str:
         startIndex = 0
-        while startIndex < len(s):
-            if len(s) - startIndex >= k:
+        while startIndex &lt; len(s):
+            if len(s) - startIndex &gt;= k:
                 s = self.reverse(s, startIndex, startIndex + k - 1)
             else:
                 s = self.reverse(s, startIndex, len(s) - 1)
@@ -4282,14 +4267,14 @@ class Solution:
 > ###### 输入示例
 >
 > ```
-> a1b2c3
-> ```
+&gt; a1b2c3
+&gt; ```
 >
 > ###### 输出示例
 >
 > ```
-> anumberbnumbercnumber
-> ```
+&gt; anumberbnumbercnumber
+&gt; ```
 >
 > ###### 提示信息
 >
@@ -4302,15 +4287,15 @@ class Solution:
 using namespace std;
 int main() {
   string temp, out;
-  cin >> temp;
+  cin &gt;&gt; temp;
   for (auto iter : temp) {
-    if (iter <= '9' && iter >= '0') {
+    if (iter &lt;= '9' &amp;&amp; iter &gt;= '0') {
       out = out + "number";
     } else {
       out = out + iter;
     }
   }
-  cout << out << endl;
+  cout &lt;&lt; out &lt;&lt; endl;
 }
 // 时间复杂度更小的算法
 
@@ -4318,11 +4303,11 @@ int main() {
 using namespace std;
 int main() {
     string s;
-    while (cin >> s) {
+    while (cin &gt;&gt; s) {
         int count = 0; // 统计数字的个数
         int sOldSize = s.size();
-        for (int i = 0; i < s.size(); i++) {
-            if (s[i] >= '0' && s[i] <= '9') {
+        for (int i = 0; i &lt; s.size(); i++) {
+            if (s[i] &gt;= '0' &amp;&amp; s[i] &lt;= '9') {
                 count++;
             }
         }
@@ -4330,8 +4315,8 @@ int main() {
         s.resize(s.size() + count * 5);
         int sNewSize = s.size();
         // 从后先前将空格替换为"number"
-        for (int i = sNewSize - 1, j = sOldSize - 1; j < i; i--, j--) {
-            if (s[j] > '9' || s[j] < '0') {
+        for (int i = sNewSize - 1, j = sOldSize - 1; j &lt; i; i--, j--) {
+            if (s[j] &gt; '9' || s[j] &lt; '0') {
                 s[i] = s[j];
             } else {
                 s[i] = 'r';
@@ -4343,11 +4328,11 @@ int main() {
                 i -= 5;
             }
         }
-        cout << s << endl;
+        cout &lt;&lt; s &lt;&lt; endl;
     }
 }
 
-```
+</iostream></string></iostream>```
 
 ```python
 temp = input()
@@ -4378,25 +4363,25 @@ print(out)
 >**示例 1：**
 >
 >```
->输入:s = "the sky is blue"
->输出:"blue is sky the"
->```
+&gt;输入:s = "the sky is blue"
+&gt;输出:"blue is sky the"
+&gt;```
 >
 >**示例 2：**
 >
 >```
->输入:s = "  hello world  "
->输出:"world hello"
->解释:反转后的字符串中不能存在前导空格和尾随空格.
->```
+&gt;输入:s = "  hello world  "
+&gt;输出:"world hello"
+&gt;解释:反转后的字符串中不能存在前导空格和尾随空格.
+&gt;```
 >
 >**示例 3：**
 >
 >```
->输入:s = "a good   example"
->输出:"example good a"
->解释:如果两个单词间有多余的空格,反转后的字符串需要将单词间的空格减少到仅有一个.
->```
+&gt;输入:s = "a good   example"
+&gt;输出:"example good a"
+&gt;解释:如果两个单词间有多余的空格,反转后的字符串需要将单词间的空格减少到仅有一个.
+&gt;```
 >
 >
 >
@@ -4416,17 +4401,17 @@ public:
         istringstream is(s);
         vector<string> s_container;
         string temp;
-        while (is >> temp) {
+        while (is &gt;&gt; temp) {
             s_container.push_back(temp);
         }
         int forward = 0, behind = s_container.size() - 1;
-        while (forward < behind) {
+        while (forward &lt; behind) {
             swap(s_container[forward], s_container[behind]);
             forward++;
             behind--;
         }
         string ans;
-        for (int i = 0; i < s_container.size(); i++) {
+        for (int i = 0; i &lt; s_container.size(); i++) {
             if (i == 0) {
                 ans = s_container[i];
             } else {
@@ -4436,7 +4421,7 @@ public:
         return ans;
     }
 };
-```
+</string>```
 
 ```c++
 // 移除多余空格
@@ -4447,7 +4432,7 @@ public:
 
 ```python
 class Solution:
-    def reverseWords(self, s: str) -> str:
+    def reverseWords(self, s: str) -&gt; str:
         return " ".join(s.strip().split()[::-1])
 ```
 
@@ -4473,15 +4458,15 @@ class Solution:
 > ###### 输入示例
 >
 > ```
-> 2
-> abcdefg
-> ```
+&gt; 2
+&gt; abcdefg
+&gt; ```
 >
 > ###### 输出示例
 >
 > ```
-> fgabcde
-> ```
+&gt; fgabcde
+&gt; ```
 >
 > ###### 提示信息
 >
@@ -4496,16 +4481,16 @@ using namespace std;
 int main() {
   string temp;
   int k = 0;
-  cin >> k;
-  cin >> temp;
+  cin &gt;&gt; k;
+  cin &gt;&gt; temp;
   int startIndex = temp.size() - k;
   string targetS = temp.substr(startIndex, k);
   temp.erase(startIndex, k);
   string ans = targetS + temp;
-  cout << ans << endl;
+  cout &lt;&lt; ans &lt;&lt; endl;
   return 0;
 }
-```
+</string></iostream>```
 
 ```python
 k = int(input())
@@ -4524,19 +4509,19 @@ print(s)
 > **示例 1：**
 >
 > ```
-> 输入:haystack = "sadbutsad", needle = "sad"
-> 输出:0
-> 解释:"sad" 在下标 0 和 6 处匹配.
-> 第一个匹配项的下标是 0 ,所以返回 0 .
-> ```
+&gt; 输入:haystack = "sadbutsad", needle = "sad"
+&gt; 输出:0
+&gt; 解释:"sad" 在下标 0 和 6 处匹配.
+&gt; 第一个匹配项的下标是 0 ,所以返回 0 .
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:haystack = "leetcode", needle = "leeto"
-> 输出:-1
-> 解释:"leeto" 没有在 "leetcode" 中出现,所以返回 -1 .
-> ```
+&gt; 输入:haystack = "leetcode", needle = "leeto"
+&gt; 输出:-1
+&gt; 解释:"leeto" 没有在 "leetcode" 中出现,所以返回 -1 .
+&gt; ```
 >
 >  
 >
@@ -4560,25 +4545,25 @@ print(s)
 > **示例 1:**
 >
 > ```
-> 输入: s = "abab"
-> 输出: true
-> 解释: 可由子串 "ab" 重复两次构成.
-> ```
+&gt; 输入: s = "abab"
+&gt; 输出: true
+&gt; 解释: 可由子串 "ab" 重复两次构成.
+&gt; ```
 >
 > **示例 2:**
 >
 > ```
-> 输入: s = "aba"
-> 输出: false
-> ```
+&gt; 输入: s = "aba"
+&gt; 输出: false
+&gt; ```
 >
 > **示例 3:**
 >
 > ```
-> 输入: s = "abcabcabcabc"
-> 输出: true
-> 解释: 可由子串 "abc" 重复四次构成. (或子串 "abcabc" 重复两次构成.)
-> ```
+&gt; 输入: s = "abcabcabcabc"
+&gt; 输出: true
+&gt; 解释: 可由子串 "abc" 重复四次构成. (或子串 "abcabc" 重复两次构成.)
+&gt; ```
 >
 >  
 >
@@ -4769,20 +4754,20 @@ print(s)
   > **示例 1：**
   >
   > ```
-  > 输入:
-  > ["MyQueue", "push", "push", "peek", "pop", "empty"]
-  > [[], [1], [2], [], [], []]
-  > 输出:
-  > [null, null, null, 1, 1, false]
-  > 
-  > 解释:
-  > MyQueue myQueue = new MyQueue();
-  > myQueue.push(1); // queue is: [1]
-  > myQueue.push(2); // queue is: [1, 2] (leftmost is front of the queue)
-  > myQueue.peek(); // return 1
-  > myQueue.pop(); // return 1, queue is [2]
-  > myQueue.empty(); // return false
-  > ```
+  &gt; 输入:
+  &gt; ["MyQueue", "push", "push", "peek", "pop", "empty"]
+  &gt; [[], [1], [2], [], [], []]
+  &gt; 输出:
+  &gt; [null, null, null, 1, 1, false]
+  &gt; 
+  &gt; 解释:
+  &gt; MyQueue myQueue = new MyQueue();
+  &gt; myQueue.push(1); // queue is: [1]
+  &gt; myQueue.push(2); // queue is: [1, 2] (leftmost is front of the queue)
+  &gt; myQueue.peek(); // return 1
+  &gt; myQueue.pop(); // return 1, queue is [2]
+  &gt; myQueue.empty(); // return false
+  &gt; ```
   >
   >  
   >
@@ -4842,12 +4827,12 @@ print(s)
   /**
    * Your MyQueue object will be instantiated and called as such:
    * MyQueue* obj = new MyQueue();
-   * obj->push(x);
-   * int param_2 = obj->pop();
-   * int param_3 = obj->peek();
-   * bool param_4 = obj->empty();
+   * obj-&gt;push(x);
+   * int param_2 = obj-&gt;pop();
+   * int param_3 = obj-&gt;peek();
+   * bool param_4 = obj-&gt;empty();
    */
-  ```
+  </int></int></int>```
 
 - 但是上述办法时间复杂度上不占优势,因此推荐使用以下方式
 
@@ -4885,23 +4870,23 @@ public:
     }
 
     int peek() {
-        int result = this->pop();
+        int result = this-&gt;pop();
         stack_out.push(result);
         return result;
     }
 
-    bool empty() { return stack_in.empty() && stack_out.empty(); }
+    bool empty() { return stack_in.empty() &amp;&amp; stack_out.empty(); }
 };
 
 /**
  * Your MyQueue object will be instantiated and called as such:
  * MyQueue* obj = new MyQueue();
- * obj->push(x);
- * int param_2 = obj->pop();
- * int param_3 = obj->peek();
- * bool param_4 = obj->empty();
+ * obj-&gt;push(x);
+ * int param_2 = obj-&gt;pop();
+ * int param_3 = obj-&gt;peek();
+ * bool param_4 = obj-&gt;empty();
  */
-```
+</int></int>```
 
 - python可以使用list完成队列或者栈的模拟
 
@@ -4910,16 +4895,16 @@ public:
       def __init__(self):
           self.stack = []
   
-      def push(self, x: int) -> None:
+      def push(self, x: int) -&gt; None:
           self.stack.append(x)
   
-      def pop(self) -> int:
+      def pop(self) -&gt; int:
           return self.stack.pop(0)
   
-      def peek(self) -> int:
+      def peek(self) -&gt; int:
           return self.stack[0]
   
-      def empty(self) -> bool:
+      def empty(self) -&gt; bool:
           return len(self.stack) == 0
   
   
@@ -4954,20 +4939,20 @@ public:
   > **示例：**
   >
   > ```
-  > 输入:
-  > ["MyStack", "push", "push", "top", "pop", "empty"]
-  > [[], [1], [2], [], [], []]
-  > 输出:
-  > [null, null, null, 2, 2, false]
-  > 
-  > 解释:
-  > MyStack myStack = new MyStack();
-  > myStack.push(1);
-  > myStack.push(2);
-  > myStack.top(); // 返回 2
-  > myStack.pop(); // 返回 2
-  > myStack.empty(); // 返回 False
-  > ```
+  &gt; 输入:
+  &gt; ["MyStack", "push", "push", "top", "pop", "empty"]
+  &gt; [[], [1], [2], [], [], []]
+  &gt; 输出:
+  &gt; [null, null, null, 2, 2, false]
+  &gt; 
+  &gt; 解释:
+  &gt; MyStack myStack = new MyStack();
+  &gt; myStack.push(1);
+  &gt; myStack.push(2);
+  &gt; myStack.top(); // 返回 2
+  &gt; myStack.pop(); // 返回 2
+  &gt; myStack.empty(); // 返回 False
+  &gt; ```
   >
   >  
   >
@@ -5014,28 +4999,28 @@ public:
   /**
    * Your MyStack object will be instantiated and called as such:
    * MyStack* obj = new MyStack();
-   * obj->push(x);
-   * int param_2 = obj->pop();
-   * int param_3 = obj->top();
-   * bool param_4 = obj->empty();
+   * obj-&gt;push(x);
+   * int param_2 = obj-&gt;pop();
+   * int param_3 = obj-&gt;top();
+   * bool param_4 = obj-&gt;empty();
    */
-  ```
+  </int></int>```
 
   ```python
   class MyStack:
       def __init__(self):
           self.stack = []
   
-      def push(self, x: int) -> None:
+      def push(self, x: int) -&gt; None:
           self.stack.append(x)
   
-      def pop(self) -> int:
+      def pop(self) -&gt; int:
           return self.stack.pop(-1)
   
-      def top(self) -> int:
+      def top(self) -&gt; int:
           return self.stack[-1]
   
-      def empty(self) -> bool:
+      def empty(self) -&gt; bool:
           return len(self.stack) == 0
   
   
@@ -5077,7 +5062,7 @@ public:
 
     bool empty() { return one.empty(); }
 };
-```
+</int>```
 
 #### [20. 有效的括号](https://leetcode.cn/problems/valid-parentheses/)
 
@@ -5094,23 +5079,23 @@ public:
 > **示例 1：**
 >
 > ```
-> 输入:s = "()"
-> 输出:true
-> ```
+&gt; 输入:s = "()"
+&gt; 输出:true
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:s = "()[]{}"
-> 输出:true
-> ```
+&gt; 输入:s = "()[]{}"
+&gt; 输出:true
+&gt; ```
 >
 > **示例 3：**
 >
 > ```
-> 输入:s = "(]"
-> 输出:false
-> ```
+&gt; 输入:s = "(]"
+&gt; 输出:false
+&gt; ```
 >
 >  
 >
@@ -5123,8 +5108,8 @@ public:
 class Solution {
 private:
     bool isPair(char down, char up) {
-        return (down == '(' && up == ')') || (down == '[' && up == ']') ||
-               (down == '{' && up == '}');
+        return (down == '(' &amp;&amp; up == ')') || (down == '[' &amp;&amp; up == ']') ||
+               (down == '{' &amp;&amp; up == '}');
     }
 
 public:
@@ -5144,18 +5129,18 @@ public:
         return temp.empty();
     }
 };
-```
+</char>```
 
 ```python
 class Solution:
-    def isPair(self, down: str, up: str) -> bool:
+    def isPair(self, down: str, up: str) -&gt; bool:
         return (
             (down == "(" and up == ")")
             or (down == "[" and up == "]")
             or (down == "{" and up == "}")
         )
 
-    def isValid(self, s: str) -> bool:
+    def isValid(self, s: str) -&gt; bool:
         stack = []
         for item in s:
             if len(stack) != 0:
@@ -5182,11 +5167,11 @@ class Solution:
 > **示例：**
 >
 > ```
-> 输入:"abbaca"
-> 输出:"ca"
-> 解释:
-> 例如,在 "abbaca" 中,我们可以删除 "bb" 由于两字母相邻且相同,这是此时唯一可以执行删除操作的重复项.之后我们得到字符串 "aaca",其中又只有 "aa" 可以执行重复项删除操作,所以最后的字符串为 "ca".
-> ```
+&gt; 输入:"abbaca"
+&gt; 输出:"ca"
+&gt; 解释:
+&gt; 例如,在 "abbaca" 中,我们可以删除 "bb" 由于两字母相邻且相同,这是此时唯一可以执行删除操作的重复项.之后我们得到字符串 "aaca",其中又只有 "aa" 可以执行重复项删除操作,所以最后的字符串为 "ca".
+&gt; ```
 >
 >  
 >
@@ -5217,7 +5202,7 @@ public:
             temp.pop();
         }
         int left = 0, right = ans.size() - 1;
-        while (left < right) {
+        while (left &lt; right) {
             swap(ans[left], ans[right]);
             left++;
             right--;
@@ -5231,7 +5216,7 @@ public:
     string removeDuplicates(string s) {
         string result;
         for (char c : s) {
-            if (!result.empty() && result.back() == c) {
+            if (!result.empty() &amp;&amp; result.back() == c) {
                 // If the current character is the same as the last character
                 // in the result, remove the last character from the result.
                 result.pop_back();
@@ -5243,11 +5228,11 @@ public:
         return result;
     }
 };
-```
+</char>```
 
 ```python
 class Solution:
-    def removeDuplicates(self, s: str) -> str:
+    def removeDuplicates(self, s: str) -&gt; str:
         ans = []
         for item in s:
             if len(ans) != 0 and ans[-1] == item:
@@ -5278,33 +5263,33 @@ class Solution:
 > **示例 1：**
 >
 > ```
-> 输入:tokens = ["2","1","+","3","*"]
-> 输出:9
-> 解释:该算式转化为常见的中缀算术表达式为:((2 + 1) * 3) = 9
-> ```
+&gt; 输入:tokens = ["2","1","+","3","*"]
+&gt; 输出:9
+&gt; 解释:该算式转化为常见的中缀算术表达式为:((2 + 1) * 3) = 9
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:tokens = ["4","13","5","/","+"]
-> 输出:6
-> 解释:该算式转化为常见的中缀算术表达式为:(4 + (13 / 5)) = 6
-> ```
+&gt; 输入:tokens = ["4","13","5","/","+"]
+&gt; 输出:6
+&gt; 解释:该算式转化为常见的中缀算术表达式为:(4 + (13 / 5)) = 6
+&gt; ```
 >
 > **示例 3：**
 >
 > ```
-> 输入:tokens = ["10","6","9","3","+","-11","*","/","*","17","+","5","+"]
-> 输出:22
-> 解释:该算式转化为常见的中缀算术表达式为:
->   ((10 * (6 / ((9 + 3) * -11))) + 17) + 5
-> = ((10 * (6 / (12 * -11))) + 17) + 5
-> = ((10 * (6 / -132)) + 17) + 5
-> = ((10 * 0) + 17) + 5
-> = (0 + 17) + 5
-> = 17 + 5
-> = 22
-> ```
+&gt; 输入:tokens = ["10","6","9","3","+","-11","*","/","*","17","+","5","+"]
+&gt; 输出:22
+&gt; 解释:该算式转化为常见的中缀算术表达式为:
+&gt;   ((10 * (6 / ((9 + 3) * -11))) + 17) + 5
+&gt; = ((10 * (6 / (12 * -11))) + 17) + 5
+&gt; = ((10 * (6 / -132)) + 17) + 5
+&gt; = ((10 * 0) + 17) + 5
+&gt; = (0 + 17) + 5
+&gt; = 17 + 5
+&gt; = 22
+&gt; ```
 >
 >  
 >
@@ -5345,10 +5330,10 @@ private:
     }
 
 public:
-    int evalRPN(vector<string>& tokens) {
+    int evalRPN(vector<string>&amp; tokens) {
         stack<int> temp;
         for (auto iter : tokens) {
-            if ((iter[0] >= '0' && iter[0] <= '9') || (iter.size() > 1)) {
+            if ((iter[0] &gt;= '0' &amp;&amp; iter[0] &lt;= '9') || (iter.size() &gt; 1)) {
                 temp.push(stoi(iter));
             } else {
                 int right = temp.top();
@@ -5361,11 +5346,11 @@ public:
         return temp.top();
     }
 };
-```
+</int></string>```
 
 ```python
 class Solution:
-    def calu(self, left: int, right: int, symbol: str) -> int:
+    def calu(self, left: int, right: int, symbol: str) -&gt; int:
         if symbol == "+":
             return left + right
         elif symbol == "-":
@@ -5375,7 +5360,7 @@ class Solution:
         else:
             return int(left / right) # 实现整数除法,向0取整;如果是//,则向下取整,与c++中不符
 
-    def evalRPN(self, tokens: List[str]) -> int:
+    def evalRPN(self, tokens: List[str]) -&gt; int:
         temp = []
         flag = ["+", "-", "*", "/"]
         for item in tokens:
@@ -5401,25 +5386,25 @@ class Solution:
 > **示例 1：**
 >
 > ```
-> 输入:nums = [1,3,-1,-3,5,3,6,7], k = 3
-> 输出:[3,3,5,5,6,7]
-> 解释:
-> 滑动窗口的位置                最大值
-> ---------------               -----
-> [1  3  -1] -3  5  3  6  7       3
->  1 [3  -1  -3] 5  3  6  7       3
->  1  3 [-1  -3  5] 3  6  7       5
->  1  3  -1 [-3  5  3] 6  7       5
->  1  3  -1  -3 [5  3  6] 7       6
->  1  3  -1  -3  5 [3  6  7]      7
-> ```
+&gt; 输入:nums = [1,3,-1,-3,5,3,6,7], k = 3
+&gt; 输出:[3,3,5,5,6,7]
+&gt; 解释:
+&gt; 滑动窗口的位置                最大值
+&gt; ---------------               -----
+&gt; [1  3  -1] -3  5  3  6  7       3
+&gt;  1 [3  -1  -3] 5  3  6  7       3
+&gt;  1  3 [-1  -3  5] 3  6  7       5
+&gt;  1  3  -1 [-3  5  3] 6  7       5
+&gt;  1  3  -1  -3 [5  3  6] 7       6
+&gt;  1  3  -1  -3  5 [3  6  7]      7
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:nums = [1], k = 1
-> 输出:[1]
-> ```
+&gt; 输入:nums = [1], k = 1
+&gt; 输出:[1]
+&gt; ```
 >
 >  
 >
@@ -5433,12 +5418,12 @@ class Solution:
 // 超时做法(直观暴力做法)
 class Solution {
 public:
-    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+    vector<int> maxSlidingWindow(vector<int>&amp; nums, int k) {
         int head = 0, tail = k - 1;
         vector<int> window_max;
-        while (tail < nums.size()) {
+        while (tail &lt; nums.size()) {
             int temp = INT_MIN;
-            for (int i = head; i <= tail; i++) {
+            for (int i = head; i &lt;= tail; i++) {
                 temp = max(temp, nums[i]);
             }
             window_max.push_back(temp);
@@ -5459,12 +5444,12 @@ private:
 
     public:
         void pop(int value) {
-            if (!que.empty() && value == que.front()) {
+            if (!que.empty() &amp;&amp; value == que.front()) {
                 que.pop_front();
             }
         }
         void push(int value) {
-            while (!que.empty() && value > que.back()) {
+            while (!que.empty() &amp;&amp; value &gt; que.back()) {
                 que.pop_back();
             }
             que.push_back(value);
@@ -5473,14 +5458,14 @@ private:
     };
 
 public:
-    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+    vector<int> maxSlidingWindow(vector<int>&amp; nums, int k) {
         MyQueue que;
         vector<int> ans;
-        for (int i = 0; i < k; i++) {
+        for (int i = 0; i &lt; k; i++) {
             que.push(nums[i]);
         }
         ans.push_back(que.front());
-        for (int i = k; i < nums.size(); i++) {
+        for (int i = k; i &lt; nums.size(); i++) {
             que.pop(nums[i - k]);
             que.push(nums[i]);
             ans.push_back(que.front());
@@ -5488,7 +5473,7 @@ public:
         return ans;
     }
 };
-```
+</int></int></int></int></int></int></int>```
 
 ```python
 class MyQueue:
@@ -5500,16 +5485,16 @@ class MyQueue:
             self.que.pop(0)
 
     def push(self, value: int):
-        while len(self.que) > 0 and value > self.que[-1]:
+        while len(self.que) &gt; 0 and value &gt; self.que[-1]:
             self.que.pop(-1)
         self.que.append(value)
 
-    def front(self) -> int:
+    def front(self) -&gt; int:
         return self.que[0]
 
 
 class Solution:
-    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+    def maxSlidingWindow(self, nums: List[int], k: int) -&gt; List[int]:
         ans = []
         que = MyQueue()
         for i in range(k):
@@ -5532,16 +5517,16 @@ class Solution:
 > **示例 1:**
 >
 > ```
-> 输入: nums = [1,1,1,2,2,3], k = 2
-> 输出: [1,2]
-> ```
+&gt; 输入: nums = [1,1,1,2,2,3], k = 2
+&gt; 输出: [1,2]
+&gt; ```
 >
 > **示例 2:**
 >
 > ```
-> 输入: nums = [1], k = 1
-> 输出: [1]
-> ```
+&gt; 输入: nums = [1], k = 1
+&gt; 输出: [1]
+&gt; ```
 >
 >  
 >
@@ -5558,25 +5543,25 @@ class Solution:
 ```c++
 class Solution {
 private:
-    static bool cmp(pair<int, int> a, pair<int, int> b) { return a.second > b.second; }
+    static bool cmp(pair<int, int=""> a, pair<int, int=""> b) { return a.second &gt; b.second; }
 /*
 静态成员函数的一个重要特点是它们不依赖于特定的对象实例,因此它们可以直接通过类名访问(Solution::cmp).这使得静态成员函数成为类的全局函数,可以在没有对象实例的情况下使用.
 */
 public:
-    vector<int> topKFrequent(vector<int>& nums, int k) {
-        unordered_map<int, int> pq_map;
+    vector<int> topKFrequent(vector<int>&amp; nums, int k) {
+        unordered_map<int, int=""> pq_map;
         for (auto iter : nums) {
             pq_map[iter]++;
         }
         // 建立映射关系
-        vector<pair<int, int>> ans;
+        vector<pair<int, int="">&gt; ans;
         for (auto iter : pq_map) {
             ans.push_back(iter);
         }
         // 将pair元素放在vector中,便于排序
-        sort(ans.begin(), ans.end(), this->cmp);
+        sort(ans.begin(), ans.end(), this-&gt;cmp);
         vector<int> res;
-        for (int i = 0; i < k; i++) {
+        for (int i = 0; i &lt; k; i++) {
             res.push_back(ans[i].first);
         }
         return res;
@@ -5589,11 +5574,11 @@ public:
 最后,使用sort函数对vector进行排序的时间复杂度为O(nlogn).
 因此,整个代码的时间复杂度为O(nlogn).
 */
-```
+</int></pair<int,></int,></int></int></int,></int,>```
 
 ```python
 class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+    def topKFrequent(self, nums: List[int], k: int) -&gt; List[int]:
         pq_dict = dict()
         for item in nums:
             pq_dict[item] = pq_dict.get(item, 0) + 1
@@ -5623,32 +5608,32 @@ public:
     // 小顶堆
     class mycomparison {
     public:
-        bool operator()(const pair<int, int>& lhs, const pair<int, int>& rhs) {
-            return lhs.second > rhs.second;
+        bool operator()(const pair<int, int="">&amp; lhs, const pair<int, int="">&amp; rhs) {
+            return lhs.second &gt; rhs.second;
         }
     };
-    vector<int> topKFrequent(vector<int>& nums, int k) {
+    vector<int> topKFrequent(vector<int>&amp; nums, int k) {
         // 要统计元素出现频率
-        unordered_map<int, int> map; // map<nums[i],对应出现的次数>
-        for (int i = 0; i < nums.size(); i++) {
+        unordered_map<int, int=""> map; // map<nums[i],对应出现的次数>
+        for (int i = 0; i &lt; nums.size(); i++) {
             map[nums[i]]++;
         }
 
         // 对频率排序
         // 定义一个小顶堆,大小为k
-        priority_queue<pair<int, int>, vector<pair<int, int>>, mycomparison> pri_que;
+        priority_queue<pair<int, int="">, vector<pair<int, int="">&gt;, mycomparison&gt; pri_que;
 
         // 用固定大小为k的小顶堆,扫面所有频率的数值
-        for (unordered_map<int, int>::iterator it = map.begin(); it != map.end(); it++) {
+        for (unordered_map<int, int="">::iterator it = map.begin(); it != map.end(); it++) {
             pri_que.push(*it);
-            if (pri_que.size() > k) { // 如果堆的大小大于了K,则队列弹出,保证堆的大小一直为k
+            if (pri_que.size() &gt; k) { // 如果堆的大小大于了K,则队列弹出,保证堆的大小一直为k
                 pri_que.pop();
             }
         }
 
         // 找出前K个高频元素,因为小顶堆先弹出的是最小的,所以倒序来输出到数组
         vector<int> result(k);
-        for (int i = k - 1; i >= 0; i--) {
+        for (int i = k - 1; i &gt;= 0; i--) {
             result[i] = pri_que.top().first;
             pri_que.pop();
         }
@@ -5657,7 +5642,7 @@ public:
     }
 };
 // 来自Carl的解法
-```
+</int></int,></pair<int,></pair<int,></nums[i],对应出现的次数></int,></int></int></int,></int,>```
 
 > 这里有一段来自GPT4.0的解析(关于重载运算符)
 >
@@ -5668,13 +5653,13 @@ public:
 > ### 1. 重载运算符的类定义 (`mycomparison`)
 >
 > ```cpp
-> class mycomparison {
-> public:
->     bool operator()(const pair<int, int>& lhs, const pair<int, int>& rhs) {
->         return lhs.second > rhs.second;
->     }
-> };
-> ```
+&gt; class mycomparison {
+&gt; public:
+&gt;     bool operator()(const pair<int, int="">&amp; lhs, const pair<int, int="">&amp; rhs) {
+&gt;         return lhs.second &gt; rhs.second;
+&gt;     }
+&gt; };
+&gt; </int,></int,>```
 >
 > - `class mycomparison` 定义了一个可调用的对象，它的作用是比较两个 `pair<int, int>` 类型的对象。
 > - `operator()` 是一个函数调用运算符，可以让对象像函数一样被调用。
@@ -5685,8 +5670,8 @@ public:
 > ### 2. 如何在 `priority_queue` 中使用
 >
 > ```cpp
-> priority_queue<pair<int, int>, vector<pair<int, int>>, mycomparison> pri_que;
-> ```
+&gt; priority_queue<pair<int, int="">, vector<pair<int, int="">&gt;, mycomparison&gt; pri_que;
+&gt; </pair<int,></pair<int,>```
 >
 > - 这行代码创建了一个 `priority_queue`，它使用了 `mycomparison` 对象来决定元素的顺序。
 > - 这意味着 `priority_queue` 会使用 `mycomparison` 类的 `operator()` 方法来决定两个元素的顺序。
@@ -5697,13 +5682,13 @@ public:
 > 在 `topKFrequent` 方法的循环中：
 >
 > ```cpp
-> for (unordered_map<int, int>::iterator it = map.begin(); it != map.end(); it++) {
->     pri_que.push(*it);
->     if (pri_que.size() > k) {
->         pri_que.pop();
->     }
-> }
-> ```
+&gt; for (unordered_map<int, int="">::iterator it = map.begin(); it != map.end(); it++) {
+&gt;     pri_que.push(*it);
+&gt;     if (pri_que.size() &gt; k) {
+&gt;         pri_que.pop();
+&gt;     }
+&gt; }
+&gt; </int,>```
 >
 > - 每当一个新的元素（一个 `pair`）被插入到 `priority_queue` 中时，`priority_queue` 将使用 `mycomparison` 类的 `operator()` 方法来保持元素的正确顺序。
 > - 如果队列的大小超过了 `k`，它将弹出顶部的元素（即频率最小的元素），因为我们希望保留频率最高的 `k` 个元素。
@@ -5910,9 +5895,9 @@ class TreeNode:
   1. **确定递归函数的参数和返回值**：因为要打印出前序遍历节点的数值，所以参数里需要传入vector来放节点的数值，除了这一点就不需要再处理什么数据了也不需要有返回值，所以递归函数返回类型就是void，代码如下：
 
 	```cpp
-	void traversal(TreeNode* cur, vector<int>& vec)
+	void traversal(TreeNode* cur, vector<int>&amp; vec)
 	// 均使用地址传递,可以修改vec的值
-	```
+	</int>```
 	
 	2. **确定终止条件**：在递归的过程中，如何算是递归结束了呢，当然是当前遍历的节点是空了，那么本层递归就要结束了，所以如果当前遍历的这个节点是空，就直接return，代码如下：
 	
@@ -5923,9 +5908,9 @@ class TreeNode:
 	3. **确定单层递归的逻辑**：前序遍历是中左右的循序，所以在单层递归的逻辑，是要先取中节点的数值，代码如下：
 	
 	```cpp
-	vec.push_back(cur->val);    // 中
-	traversal(cur->left, vec);  // 左
-	traversal(cur->right, vec); // 右
+	vec.push_back(cur-&gt;val);    // 中
+	traversal(cur-&gt;left, vec);  // 左
+	traversal(cur-&gt;right, vec); // 右
 	// 结果保存时也会按照这个逻辑
 	```
 
@@ -5936,11 +5921,11 @@ class TreeNode:
 	```cpp
 	class Solution {
 	public:
-	    void traversal(TreeNode* cur, vector<int>& vec) {
+	    void traversal(TreeNode* cur, vector<int>&amp; vec) {
 	        if (cur == NULL) return;
-	        vec.push_back(cur->val);    // 中
-	        traversal(cur->left, vec);  // 左
-	        traversal(cur->right, vec); // 右
+	        vec.push_back(cur-&gt;val);    // 中
+	        traversal(cur-&gt;left, vec);  // 左
+	        traversal(cur-&gt;right, vec); // 右
 	    }
 	    vector<int> preorderTraversal(TreeNode* root) {
 	        vector<int> result;
@@ -5948,31 +5933,31 @@ class TreeNode:
 	        return result;
 	    }
 	};
-	```
+	</int></int></int>```
 
 	​	那么前序遍历写出来之后，中序和后序遍历就不难理解了，代码如下：
 
 	​	中序遍历：
 	
 	```cpp
-	void traversal(TreeNode* cur, vector<int>& vec) {
+	void traversal(TreeNode* cur, vector<int>&amp; vec) {
 	    if (cur == NULL) return;
-	    traversal(cur->left, vec);  // 左
-	    vec.push_back(cur->val);    // 中
-	    traversal(cur->right, vec); // 右
+	    traversal(cur-&gt;left, vec);  // 左
+	    vec.push_back(cur-&gt;val);    // 中
+	    traversal(cur-&gt;right, vec); // 右
 	}
-	```
+	</int>```
 
 	​	后序遍历：
 	
 	```cpp
-	void traversal(TreeNode* cur, vector<int>& vec) {
+	void traversal(TreeNode* cur, vector<int>&amp; vec) {
 	    if (cur == NULL) return;
-	    traversal(cur->left, vec);  // 左
-	    traversal(cur->right, vec); // 右
-	    vec.push_back(cur->val);    // 中
+	    traversal(cur-&gt;left, vec);  // 左
+	    traversal(cur-&gt;right, vec); // 右
+	    vec.push_back(cur-&gt;val);    // 中
 	}
-	```
+	</int>```
 
 ##### [144. 二叉树的前序遍历](https://leetcode.cn/problems/binary-tree-preorder-traversal/)
 
@@ -5985,41 +5970,41 @@ class TreeNode:
 > ![img](./codeNote.assets/inorder_1.jpg)
 >
 > ```
-> 输入:root = [1,null,2,3]
-> 输出:[1,2,3]
-> ```
+&gt; 输入:root = [1,null,2,3]
+&gt; 输出:[1,2,3]
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:root = []
-> 输出:[]
-> ```
+&gt; 输入:root = []
+&gt; 输出:[]
+&gt; ```
 >
 > **示例 3：**
 >
 > ```
-> 输入:root = [1]
-> 输出:[1]
-> ```
+&gt; 输入:root = [1]
+&gt; 输出:[1]
+&gt; ```
 >
 > **示例 4：**
 >
 > ![img](./codeNote.assets/inorder_5.jpg)
 >
 > ```
-> 输入:root = [1,2]
-> 输出:[1,2]
-> ```
+&gt; 输入:root = [1,2]
+&gt; 输出:[1,2]
+&gt; ```
 >
 > **示例 5：**
 >
 > ![img](./codeNote.assets/inorder_4.jpg)
 >
 > ```
-> 输入:root = [1,null,2]
-> 输出:[1,2]
-> ```
+&gt; 输入:root = [1,null,2]
+&gt; 输出:[1,2]
+&gt; ```
 >
 >  
 >
@@ -6036,13 +6021,13 @@ class TreeNode:
 
 class Solution {
 private:
-    void traversal(TreeNode* cur, vector<int>& vec) {
+    void traversal(TreeNode* cur, vector<int>&amp; vec) {
         if (cur == nullptr) {
             return;
         }
-        vec.push_back(cur->val);
-        traversal(cur->left, vec);
-        traversal(cur->right, vec);
+        vec.push_back(cur-&gt;val);
+        traversal(cur-&gt;left, vec);
+        traversal(cur-&gt;right, vec);
     }
 
 public:
@@ -6052,10 +6037,10 @@ public:
         return ans;
     }
 };
-```
+</int></int></int>```
 
 ```python
-def traversal(cur: Optional[TreeNode], vec: List) -> None:
+def traversal(cur: Optional[TreeNode], vec: List) -&gt; None:
     if cur == None:
         return
     vec.append(cur.val)
@@ -6063,7 +6048,7 @@ def traversal(cur: Optional[TreeNode], vec: List) -> None:
     traversal(cur.right, vec)
 
 class Solution:
-    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def preorderTraversal(self, root: Optional[TreeNode]) -&gt; List[int]:
         ans = []
         traversal(root, ans)
         return ans
@@ -6082,23 +6067,23 @@ class Solution:
 > ![img](./codeNote.assets/pre1.jpg)
 >
 > ```
-> 输入:root = [1,null,2,3]
-> 输出:[3,2,1]
-> ```
+&gt; 输入:root = [1,null,2,3]
+&gt; 输出:[3,2,1]
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:root = []
-> 输出:[]
-> ```
+&gt; 输入:root = []
+&gt; 输出:[]
+&gt; ```
 >
 > **示例 3：**
 >
 > ```
-> 输入:root = [1]
-> 输出:[1]
-> ```
+&gt; 输入:root = [1]
+&gt; 输出:[1]
+&gt; ```
 >
 >  
 >
@@ -6114,13 +6099,13 @@ class Solution:
 ```c++
 class Solution {
 private:
-    void traversal(TreeNode* cur, vector<int>& vec) {
+    void traversal(TreeNode* cur, vector<int>&amp; vec) {
         if (cur == nullptr) {
             return;
         } 
-        traversal(cur->left, vec);
-        traversal(cur->right, vec);
-        vec.push_back(cur->val);
+        traversal(cur-&gt;left, vec);
+        traversal(cur-&gt;right, vec);
+        vec.push_back(cur-&gt;val);
     }
 
 public:
@@ -6130,10 +6115,10 @@ public:
         return ans;
     }
 };
-```
+</int></int></int>```
 
 ```python
-def traversal(cur: Optional[TreeNode], vec: List) -> None:
+def traversal(cur: Optional[TreeNode], vec: List) -&gt; None:
     if cur == None:
         return
     traversal(cur.left, vec)
@@ -6142,7 +6127,7 @@ def traversal(cur: Optional[TreeNode], vec: List) -> None:
 
 
 class Solution:
-    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def postorderTraversal(self, root: Optional[TreeNode]) -&gt; List[int]:
         ans = []
         traversal(root, ans)
         return ans
@@ -6162,23 +6147,23 @@ class Solution:
 >![img](./codeNote.assets/inorder_1-1707709908198-9.jpg)
 >
 >```
->输入:root = [1,null,2,3]
->输出:[1,3,2]
->```
+&gt;输入:root = [1,null,2,3]
+&gt;输出:[1,3,2]
+&gt;```
 >
 >**示例 2：**
 >
 >```
->输入:root = []
->输出:[]
->```
+&gt;输入:root = []
+&gt;输出:[]
+&gt;```
 >
 >**示例 3：**
 >
 >```
->输入:root = [1]
->输出:[1]
->```
+&gt;输入:root = [1]
+&gt;输出:[1]
+&gt;```
 >
 > 
 >
@@ -6194,13 +6179,13 @@ class Solution:
 ```c++
 class Solution {
 private:
-    void traversal(TreeNode* cur, vector<int>& vec) {
+    void traversal(TreeNode* cur, vector<int>&amp; vec) {
         if (cur == nullptr) {
             return;
         } 
-        traversal(cur->left, vec);
-        vec.push_back(cur->val);
-        traversal(cur->right, vec);
+        traversal(cur-&gt;left, vec);
+        vec.push_back(cur-&gt;val);
+        traversal(cur-&gt;right, vec);
     }
 
 public:
@@ -6210,10 +6195,10 @@ public:
         return ans;
     }
 };
-```
+</int></int></int>```
 
 ```python
-def traversal(cur: Optional[TreeNode], vec: List) -> None:
+def traversal(cur: Optional[TreeNode], vec: List) -&gt; None:
     if cur == None:
         return
 
@@ -6222,7 +6207,7 @@ def traversal(cur: Optional[TreeNode], vec: List) -> None:
     traversal(cur.right, vec)
 
 class Solution:
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def inorderTraversal(self, root: Optional[TreeNode]) -&gt; List[int]:
         ans = []
         traversal(root, ans)
         return ans
@@ -6257,7 +6242,7 @@ class Solution:
 class Solution {
 public:
     vector<int> preorderTraversal(TreeNode* root) {
-        stack<TreeNode*> tree_stack;
+        stack<treenode*> tree_stack;
         vector<int> ans;
         if (root == nullptr) {
             return ans;
@@ -6266,23 +6251,23 @@ public:
         TreeNode* cur = tree_stack.top();
         while (!tree_stack.empty()) {
             cur = tree_stack.top();
-            ans.push_back(cur->val); // 中
+            ans.push_back(cur-&gt;val); // 中
             tree_stack.pop();
-            if (cur->right) {
-                tree_stack.push(cur->right); // 压入右
+            if (cur-&gt;right) {
+                tree_stack.push(cur-&gt;right); // 压入右
             }
-            if (cur->left) {
-                tree_stack.push(cur->left); // 压入左
+            if (cur-&gt;left) {
+                tree_stack.push(cur-&gt;left); // 压入左
             }
         }
         return ans;
     }
 };
-```
+</int></treenode*></int>```
 
 ```python
 class Solution:
-    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def preorderTraversal(self, root: Optional[TreeNode]) -&gt; List[int]:
         node_stack = []
         ans = []
         if root == None:
@@ -6313,7 +6298,7 @@ class Solution:
 class Solution {
 public:
     vector<int> postorderTraversal(TreeNode* root) {
-        stack<TreeNode*> tree_stack;
+        stack<treenode*> tree_stack;
         vector<int> ans;
         if (root == nullptr) {
             return ans;
@@ -6322,23 +6307,23 @@ public:
         TreeNode* cur = tree_stack.top();
         while (!tree_stack.empty()) {
             cur = tree_stack.top();
-            ans.push_back(cur->val); // 中
+            ans.push_back(cur-&gt;val); // 中
             tree_stack.pop();
-            if (cur->left) {
-                tree_stack.push(cur->left); // 压入左
+            if (cur-&gt;left) {
+                tree_stack.push(cur-&gt;left); // 压入左
             }
-            if (cur->right) {
-                tree_stack.push(cur->right); // 压入右
+            if (cur-&gt;right) {
+                tree_stack.push(cur-&gt;right); // 压入右
             }
         }
         return vector<int>(ans.rbegin(), ans.rend());
     }
 };
-```
+</int></int></treenode*></int>```
 
 ```python
 class Solution:
-    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def postorderTraversal(self, root: Optional[TreeNode]) -&gt; List[int]:
         node_stack = []
         ans = []
         if root == None:
@@ -6369,7 +6354,7 @@ class Solution:
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
-        stack<TreeNode*> node_stack;
+        stack<treenode*> node_stack;
         vector<int> ans;
         if (root == nullptr) {
             return ans;
@@ -6378,22 +6363,22 @@ public:
         while (!node_stack.empty() || cur != nullptr) {
             if (cur != nullptr) {
                 node_stack.push(cur);
-                cur = cur->left;
+                cur = cur-&gt;left;
             } else {
                 cur = node_stack.top();
                 node_stack.pop();
-                ans.push_back(cur->val);
-                cur = cur->right;
+                ans.push_back(cur-&gt;val);
+                cur = cur-&gt;right;
             }
         }
         return ans;
     }
 };
-```
+</int></treenode*></int>```
 
 ```python
 class Solution:
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def inorderTraversal(self, root: Optional[TreeNode]) -&gt; List[int]:
         node_stack = []
         ans = []
         cur = root
@@ -6436,29 +6421,29 @@ class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int> result;
-        stack<TreeNode*> st;
+        stack<treenode*> st;
         if (root != NULL) st.push(root);
         while (!st.empty()) {
             TreeNode* node = st.top();
             if (node != NULL) {
                 st.pop(); // 将该节点弹出,避免重复操作,下面再将右中左节点添加到栈中
-                if (node->right) st.push(node->right);  // 添加右节点(空节点不入栈)
+                if (node-&gt;right) st.push(node-&gt;right);  // 添加右节点(空节点不入栈)
 
                 st.push(node);                          // 添加中节点
                 st.push(NULL); // 中节点访问过,但是还没有处理,加入空节点做为标记.
 
-                if (node->left) st.push(node->left);    // 添加左节点(空节点不入栈)
+                if (node-&gt;left) st.push(node-&gt;left);    // 添加左节点(空节点不入栈)
             } else { // 只有遇到空节点的时候,才将下一个节点放进结果集
                 st.pop();           // 将空节点弹出
                 node = st.top();    // 重新取出栈中元素
                 st.pop();
-                result.push_back(node->val); // 加入到结果集
+                result.push_back(node-&gt;val); // 加入到结果集
             }
         }
         return result;
     }
 };
-```
+</treenode*></int></int>```
 
 看代码有点抽象我们来看一下动画(中序遍历)：
 
@@ -6470,7 +6455,7 @@ public:
 
 ```python
 class Solution:
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def inorderTraversal(self, root: Optional[TreeNode]) -&gt; List[int]:
         node_stack = []
         ans = []
         if root != None:
@@ -6504,31 +6489,31 @@ class Solution {
 public:
     vector<int> preorderTraversal(TreeNode* root) {
         vector<int> result;
-        stack<TreeNode*> st;
+        stack<treenode*> st;
         if (root != NULL) st.push(root);
         while (!st.empty()) {
             TreeNode* node = st.top();
             if (node != NULL) {
                 st.pop();
-                if (node->right) st.push(node->right);  // 右
-                if (node->left) st.push(node->left);    // 左
+                if (node-&gt;right) st.push(node-&gt;right);  // 右
+                if (node-&gt;left) st.push(node-&gt;left);    // 左
                 st.push(node);                          // 中
                 st.push(NULL);
             } else {
                 st.pop();
                 node = st.top();
                 st.pop();
-                result.push_back(node->val);
+                result.push_back(node-&gt;val);
             }
         }
         return result;
     }
 };
-```
+</treenode*></int></int>```
 
 ```python
 class Solution:
-    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def preorderTraversal(self, root: Optional[TreeNode]) -&gt; List[int]:
         node_stack = []
         ans = []
         if root != None:
@@ -6562,7 +6547,7 @@ class Solution {
 public:
     vector<int> postorderTraversal(TreeNode* root) {
         vector<int> result;
-        stack<TreeNode*> st;
+        stack<treenode*> st;
         if (root != NULL) st.push(root);
         while (!st.empty()) {
             TreeNode* node = st.top();
@@ -6571,24 +6556,24 @@ public:
                 st.push(node);                          // 中
                 st.push(NULL);
 
-                if (node->right) st.push(node->right);  // 右
-                if (node->left) st.push(node->left);    // 左
+                if (node-&gt;right) st.push(node-&gt;right);  // 右
+                if (node-&gt;left) st.push(node-&gt;left);    // 左
 
             } else {
                 st.pop();
                 node = st.top();
                 st.pop();
-                result.push_back(node->val);
+                result.push_back(node-&gt;val);
             }
         }
         return result;
     }
 };
-```
+</treenode*></int></int>```
 
 ```python
 class Solution:
-    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def postorderTraversal(self, root: Optional[TreeNode]) -&gt; List[int]:
         node_stack = []
         ans = []
         if root != None:
@@ -6638,23 +6623,23 @@ class Solution:
 > <img src="C:\Users\exqin\Desktop\Blog\codeNote.assets\tree1.jpg" alt="img" style="zoom:33%;" />
 >
 > ```
-> 输入:root = [3,9,20,null,null,15,7]
-> 输出:[[3],[9,20],[15,7]]
-> ```
+&gt; 输入:root = [3,9,20,null,null,15,7]
+&gt; 输出:[[3],[9,20],[15,7]]
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:root = [1]
-> 输出:[[1]]
-> ```
+&gt; 输入:root = [1]
+&gt; 输出:[[1]]
+&gt; ```
 >
 > **示例 3：**
 >
 > ```
-> 输入:root = []
-> 输出:[]
-> ```
+&gt; 输入:root = []
+&gt; 输出:[]
+&gt; ```
 >
 >  
 >
@@ -6666,9 +6651,9 @@ class Solution:
 ```c++
 class Solution {
 public:
-    vector<vector<int>> levelOrder(TreeNode* root) {
-        queue<TreeNode*> node_queue;
-        vector<vector<int>> ans;
+    vector<vector<int>&gt; levelOrder(TreeNode* root) {
+        queue<treenode*> node_queue;
+        vector<vector<int>&gt; ans;
 
         if (root == nullptr) {
             return ans;
@@ -6679,13 +6664,13 @@ public:
         while (!node_queue.empty()) {
             TreeNode* node = node_queue.front();
             node_queue.pop();
-            path.push_back(node->val);
+            path.push_back(node-&gt;val);
             size--;
-            if (node->left) {
-                node_queue.push(node->left);
+            if (node-&gt;left) {
+                node_queue.push(node-&gt;left);
             }
-            if (node->right) {
-                node_queue.push(node->right);
+            if (node-&gt;right) {
+                node_queue.push(node-&gt;right);
             }
             if (size == 0) {
                 ans.push_back(path);
@@ -6701,35 +6686,35 @@ public:
 // 简便方法
 class Solution {
 public:
-    vector<vector<int>> levelOrder(TreeNode* root) {
-        queue<TreeNode*> que;
+    vector<vector<int>&gt; levelOrder(TreeNode* root) {
+        queue<treenode*> que;
         if (root != nullptr) {
             que.push(root);
         }
-        vector<vector<int>> result;
+        vector<vector<int>&gt; result;
         while (!que.empty()) {
             int size = que.size();
             vector<int> vec;
             // 这里一定要使用固定大小size,不要使用que.size(),因为que.size是不断变化的
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 TreeNode* node = que.front();
                 que.pop();
-                vec.push_back(node->val);
-                if (node->left)
-                    que.push(node->left);
-                if (node->right)
-                    que.push(node->right);
+                vec.push_back(node-&gt;val);
+                if (node-&gt;left)
+                    que.push(node-&gt;left);
+                if (node-&gt;right)
+                    que.push(node-&gt;right);
             }
             result.push_back(vec);
         }
         return result;
     }
 };
-```
+</int></vector<int></treenode*></vector<int></int></vector<int></treenode*></vector<int>```
 
 ```python
 class Solution:
-    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+    def levelOrder(self, root: Optional[TreeNode]) -&gt; List[List[int]]:
         ans = []
         node_queue = []
         if root == None:
@@ -6756,28 +6741,28 @@ class Solution:
 ```c++
 class Solution {
 public:
-    void bfs(TreeNode* cur, int depth, vector<vector<int>>& ans) {
+    void bfs(TreeNode* cur, int depth, vector<vector<int>&gt;&amp; ans) {
         if (cur == nullptr) {
             return;
         }
         if (ans.size() == depth) { //如果当前层不为空,则会增加一层来使用(depth从0开始,当depth和ans.size()相等的时候,说明层数少一,应当加一层)
             ans.push_back(vector<int>());
         }
-        ans[depth].push_back(cur->val);
-        bfs(cur->left, depth + 1, ans);
-        bfs(cur->right, depth + 1, ans);
+        ans[depth].push_back(cur-&gt;val);
+        bfs(cur-&gt;left, depth + 1, ans);
+        bfs(cur-&gt;right, depth + 1, ans);
     }
-    vector<vector<int>> levelOrder(TreeNode* root) {
-        vector<vector<int>> ans;
+    vector<vector<int>&gt; levelOrder(TreeNode* root) {
+        vector<vector<int>&gt; ans;
         bfs(root, 0, ans);
         return ans;
     }
 };
-```
+</vector<int></vector<int></int></vector<int>```
 
 ```python
 class Solution:
-    def bfs(self, cur: Optional[TreeNode], depth: int, ans: List[List[int]]) -> None:
+    def bfs(self, cur: Optional[TreeNode], depth: int, ans: List[List[int]]) -&gt; None:
         if cur == None:
             return
         if len(ans) == depth:
@@ -6786,7 +6771,7 @@ class Solution:
         self.bfs(cur.left, depth + 1, ans)
         self.bfs(cur.right, depth + 1, ans)
 
-    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+    def levelOrder(self, root: Optional[TreeNode]) -&gt; List[List[int]]:
         ans = []
         self.bfs(root, 0, ans)
         return ans
@@ -6803,23 +6788,23 @@ class Solution:
 > ![img](./codeNote.assets/tree1-1707752897746-80.jpg)
 >
 > ```
-> 输入:root = [3,9,20,null,null,15,7]
-> 输出:[[15,7],[9,20],[3]]
-> ```
+&gt; 输入:root = [3,9,20,null,null,15,7]
+&gt; 输出:[[15,7],[9,20],[3]]
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:root = [1]
-> 输出:[[1]]
-> ```
+&gt; 输入:root = [1]
+&gt; 输出:[[1]]
+&gt; ```
 >
 > **示例 3：**
 >
 > ```
-> 输入:root = []
-> 输出:[]
-> ```
+&gt; 输入:root = []
+&gt; 输出:[]
+&gt; ```
 >
 >  
 >
@@ -6831,9 +6816,9 @@ class Solution:
 ```c++
 class Solution {
 public:
-    vector<vector<int>> levelOrderBottom(TreeNode* root) {
-        queue<TreeNode*> node_queue;
-        vector<vector<int>> ans;
+    vector<vector<int>&gt; levelOrderBottom(TreeNode* root) {
+        queue<treenode*> node_queue;
+        vector<vector<int>&gt; ans;
         if (root == nullptr) {
             return ans;
         }
@@ -6841,27 +6826,27 @@ public:
         while (!node_queue.empty()) {
             int size = node_queue.size();
             vector<int> path;
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 TreeNode* cur = node_queue.front();
-                path.push_back(cur->val);
+                path.push_back(cur-&gt;val);
                 node_queue.pop();
-                if (cur->left) {
-                    node_queue.push(cur->left);
+                if (cur-&gt;left) {
+                    node_queue.push(cur-&gt;left);
                 }
-                if (cur->right) {
-                    node_queue.push(cur->right);
+                if (cur-&gt;right) {
+                    node_queue.push(cur-&gt;right);
                 }
             }
             ans.push_back(path);
         }
-        return vector<vector<int>>(ans.rbegin(), ans.rend());
+        return vector<vector<int>&gt;(ans.rbegin(), ans.rend());
     }
 };
-```
+</vector<int></int></vector<int></treenode*></vector<int>```
 
 ```python
 class Solution:
-    def levelOrderBottom(self, root: Optional[TreeNode]) -> List[List[int]]:
+    def levelOrderBottom(self, root: Optional[TreeNode]) -&gt; List[List[int]]:
         node_queue = []
         ans = []
         if root == None:
@@ -6886,28 +6871,28 @@ class Solution:
 // 递归法
 class Solution {
 public:
-    void bfs(vector<vector<int>>& ans, int depth, TreeNode* cur) {
+    void bfs(vector<vector<int>&gt;&amp; ans, int depth, TreeNode* cur) {
         if (cur == nullptr) {
             return;
         }
         if (depth == ans.size()) {
             ans.push_back(vector<int>());
         }
-        ans[depth].push_back(cur->val);
-        bfs(ans, depth + 1, cur->left);
-        bfs(ans, depth + 1, cur->right);
+        ans[depth].push_back(cur-&gt;val);
+        bfs(ans, depth + 1, cur-&gt;left);
+        bfs(ans, depth + 1, cur-&gt;right);
     }
-    vector<vector<int>> levelOrderBottom(TreeNode* root) {
-        vector<vector<int>> ans;
+    vector<vector<int>&gt; levelOrderBottom(TreeNode* root) {
+        vector<vector<int>&gt; ans;
         bfs(ans, 0, root);
-        return vector<vector<int>>(ans.rbegin(), ans.rend());
+        return vector<vector<int>&gt;(ans.rbegin(), ans.rend());
     }
 };
-```
+</vector<int></vector<int></vector<int></int></vector<int>```
 
 ```python
 class Solution:
-    def bfs(self, cur: Optional[TreeNode], depth: int, ans: List[List[int]]) -> None:
+    def bfs(self, cur: Optional[TreeNode], depth: int, ans: List[List[int]]) -&gt; None:
         if cur == None:
             return
         if len(ans) == depth:
@@ -6916,7 +6901,7 @@ class Solution:
         self.bfs(cur.left, depth + 1, ans)
         self.bfs(cur.right, depth + 1, ans)
 
-    def levelOrderBottom(self, root: Optional[TreeNode]) -> List[List[int]]:
+    def levelOrderBottom(self, root: Optional[TreeNode]) -&gt; List[List[int]]:
         ans = []
         self.bfs(root, 0, ans)
         return ans[::-1]
@@ -6933,23 +6918,23 @@ class Solution:
 > ![img](./codeNote.assets/tree.jpg)
 >
 > ```
-> 输入: [1,2,3,null,5,null,4]
-> 输出: [1,3,4]
-> ```
+&gt; 输入: [1,2,3,null,5,null,4]
+&gt; 输出: [1,3,4]
+&gt; ```
 >
 > **示例 2:**
 >
 > ```
-> 输入: [1,null,3]
-> 输出: [1,3]
-> ```
+&gt; 输入: [1,null,3]
+&gt; 输出: [1,3]
+&gt; ```
 >
 > **示例 3:**
 >
 > ```
-> 输入: []
-> 输出: []
-> ```
+&gt; 输入: []
+&gt; 输出: []
+&gt; ```
 >
 >  
 >
@@ -6963,36 +6948,36 @@ class Solution {
 public:
     vector<int> rightSideView(TreeNode* root) {
         vector<int> ans;
-        queue<TreeNode*> node_queue;
+        queue<treenode*> node_queue;
         if (root == nullptr) {
             return ans;
         }
         node_queue.push(root);
         while (!node_queue.empty()) {
             int size = node_queue.size();
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 TreeNode* cur = node_queue.front();
                 if (i == size - 1) {
-                    ans.push_back(cur->val);
+                    ans.push_back(cur-&gt;val);
                 }
                 node_queue.pop();
-                if (cur->left) {
-                    node_queue.push(cur->left);
+                if (cur-&gt;left) {
+                    node_queue.push(cur-&gt;left);
                 }
-                if (cur->right) {
-                    node_queue.push(cur->right);
+                if (cur-&gt;right) {
+                    node_queue.push(cur-&gt;right);
                 }
             }
         }
         return ans;
     }
 };
-```
+</treenode*></int></int>```
 
 ```python
 # 使用了递归法,迭代法没有难度
 class Solution:
-    def bfs(self, cur: Optional[TreeNode], depth: int, ans: List[List[int]]) -> None:
+    def bfs(self, cur: Optional[TreeNode], depth: int, ans: List[List[int]]) -&gt; None:
         if cur == None:
             return
         if len(ans) == depth:
@@ -7001,7 +6986,7 @@ class Solution:
         self.bfs(cur.left, depth + 1, ans)
         self.bfs(cur.right, depth + 1, ans)
 
-    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+    def rightSideView(self, root: Optional[TreeNode]) -&gt; List[int]:
         ans = []
         self.bfs(root, 0, ans)
         out = []
@@ -7022,20 +7007,20 @@ class Solution:
 > ![img](./codeNote.assets/avg1-tree.jpg)
 >
 > ```
-> 输入:root = [3,9,20,null,null,15,7]
-> 输出:[3.00000,14.50000,11.00000]
-> 解释:第 0 层的平均值为 3,第 1 层的平均值为 14.5,第 2 层的平均值为 11 .
-> 因此返回 [3, 14.5, 11] .
-> ```
+&gt; 输入:root = [3,9,20,null,null,15,7]
+&gt; 输出:[3.00000,14.50000,11.00000]
+&gt; 解释:第 0 层的平均值为 3,第 1 层的平均值为 14.5,第 2 层的平均值为 11 .
+&gt; 因此返回 [3, 14.5, 11] .
+&gt; ```
 >
 > **示例 2:**
 >
 > ![img](./codeNote.assets/avg2-tree.jpg)
 >
 > ```
-> 输入:root = [3,9,20,15,7]
-> 输出:[3.00000,14.50000,11.00000]
-> ```
+&gt; 输入:root = [3,9,20,15,7]
+&gt; 输出:[3.00000,14.50000,11.00000]
+&gt; ```
 >
 >  
 >
@@ -7050,7 +7035,7 @@ class Solution:
 class Solution {
 public:
     vector<double> averageOfLevels(TreeNode* root) {
-        queue<TreeNode*> node_queue;
+        queue<treenode*> node_queue;
         vector<double> ans;
         if (root == nullptr) {
             return ans;
@@ -7060,15 +7045,15 @@ public:
             TreeNode* cur;
             double sum = 0;
             int size = node_queue.size();
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 cur = node_queue.front();
-                sum += cur->val;
+                sum += cur-&gt;val;
                 node_queue.pop();
-                if (cur->left) {
-                    node_queue.push(cur->left);
+                if (cur-&gt;left) {
+                    node_queue.push(cur-&gt;left);
                 }
-                if (cur->right) {
-                    node_queue.push(cur->right);
+                if (cur-&gt;right) {
+                    node_queue.push(cur-&gt;right);
                 }
             }
             ans.push_back(sum / size);
@@ -7076,11 +7061,11 @@ public:
         return ans;
     }
 };
-```
+</double></treenode*></double>```
 
 ```python
 class Solution:
-    def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
+    def averageOfLevels(self, root: Optional[TreeNode]) -&gt; List[float]:
         ans = []
         node_queue = []
         if root == None:
@@ -7115,18 +7100,18 @@ class Solution:
 > ![img](./codeNote.assets/narytreeexample.png)
 >
 > ```
-> 输入:root = [1,null,3,2,4,null,5,6]
-> 输出:[[1],[3,2,4],[5,6]]
-> ```
+&gt; 输入:root = [1,null,3,2,4,null,5,6]
+&gt; 输出:[[1],[3,2,4],[5,6]]
+&gt; ```
 >
 > **示例 2：**
 >
 > ![img](./codeNote.assets/sample_4_964.png)
 >
 > ```
-> 输入:root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]
-> 输出:[[1],[2,3,4,5],[6,7,8,9,10],[11,12,13],[14]]
-> ```
+&gt; 输入:root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]
+&gt; 输出:[[1],[2,3,4,5],[6,7,8,9,10],[11,12,13],[14]]
+&gt; ```
 >
 >  
 >
@@ -7141,7 +7126,7 @@ class Solution:
 class Node {
 public:
     int val;
-    vector<Node*> children;
+    vector<node*> children;
 
     Node() {}
 
@@ -7149,7 +7134,7 @@ public:
         val = _val;
     }
 
-    Node(int _val, vector<Node*> _children) {
+    Node(int _val, vector<node*> _children) {
         val = _val;
         children = _children;
     }
@@ -7158,9 +7143,9 @@ public:
 
 class Solution {
 public:
-    vector<vector<int>> levelOrder(Node* root) {
-        queue<Node*> node_queue;
-        vector<vector<int>> ans;
+    vector<vector<int>&gt; levelOrder(Node* root) {
+        queue<node*> node_queue;
+        vector<vector<int>&gt; ans;
         if (root == nullptr) {
             return ans;
         }
@@ -7169,11 +7154,11 @@ public:
             Node* cur;
             int size = node_queue.size();
             vector<int> path;
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 cur = node_queue.front();
-                path.push_back(cur->val);
+                path.push_back(cur-&gt;val);
                 node_queue.pop();
-                for (auto iter : cur->children) {
+                for (auto iter : cur-&gt;children) {
                     node_queue.push(iter);
                 }
             }
@@ -7182,7 +7167,7 @@ public:
         return ans;
     }
 };
-```
+</int></vector<int></node*></vector<int></node*></node*>```
 
 ```python
 """
@@ -7195,7 +7180,7 @@ class Node:
 
 
 class Solution:
-    def levelOrder(self, root: "Node") -> List[List[int]]:
+    def levelOrder(self, root: "Node") -&gt; List[List[int]]:
         ans = []
         node_queue = []
         if root == None:
@@ -7217,49 +7202,49 @@ class Solution:
 > 对于**递归法**,只需要修改以下代码
 >
 > ```python
-> def bfs(self, cur: Optional[TreeNode], depth: int, ans: List[List[int]]) -> None:
->         if cur == None:
->             return
->         if len(ans) == depth:
->             ans.append([])
->         ans[depth].append(cur.val)
->         self.bfs(cur.left, depth + 1, ans)
->         self.bfs(cur.right, depth + 1, ans)
-> ```
+&gt; def bfs(self, cur: Optional[TreeNode], depth: int, ans: List[List[int]]) -&gt; None:
+&gt;         if cur == None:
+&gt;             return
+&gt;         if len(ans) == depth:
+&gt;             ans.append([])
+&gt;         ans[depth].append(cur.val)
+&gt;         self.bfs(cur.left, depth + 1, ans)
+&gt;         self.bfs(cur.right, depth + 1, ans)
+&gt; ```
 >
 > 其中的7,8行修改
 >
 > ```python
-> def bfs(self, cur: Optional[TreeNode], depth: int, ans: List[List[int]]) -> None:
->         if cur == None:
->             return
->         if len(ans) == depth:
->             ans.append([])
->         ans[depth].append(cur.val)
->         for item in node.children:
->             self.bfs(item, depth + 1, ans)
-> ```
+&gt; def bfs(self, cur: Optional[TreeNode], depth: int, ans: List[List[int]]) -&gt; None:
+&gt;         if cur == None:
+&gt;             return
+&gt;         if len(ans) == depth:
+&gt;             ans.append([])
+&gt;         ans[depth].append(cur.val)
+&gt;         for item in node.children:
+&gt;             self.bfs(item, depth + 1, ans)
+&gt; ```
 >
 > C++的修改类似,在这里不在赘述
 >
 > Python的具体递归解法为:
 >
 > ```python
-> class Solution:
->     def bfs(self, cur: "Node", depth: int, ans: List[List[int]]) -> None:
->         if cur == None:
->             return
->         if len(ans) == depth:
->             ans.append([])
->         ans[depth].append(cur.val)
->         for item in cur.children:
->             self.bfs(item, depth + 1, ans)
-> 
->     def levelOrder(self, root: "Node") -> List[List[int]]:
->         ans = []
->         self.bfs(root, 0, ans)
->         return ans
-> ```
+&gt; class Solution:
+&gt;     def bfs(self, cur: "Node", depth: int, ans: List[List[int]]) -&gt; None:
+&gt;         if cur == None:
+&gt;             return
+&gt;         if len(ans) == depth:
+&gt;             ans.append([])
+&gt;         ans[depth].append(cur.val)
+&gt;         for item in cur.children:
+&gt;             self.bfs(item, depth + 1, ans)
+&gt; 
+&gt;     def levelOrder(self, root: "Node") -&gt; List[List[int]]:
+&gt;         ans = []
+&gt;         self.bfs(root, 0, ans)
+&gt;         return ans
+&gt; ```
 
 ##### [515. 在每个树行中找最大值](https://leetcode.cn/problems/find-largest-value-in-each-tree-row/)
 
@@ -7272,16 +7257,16 @@ class Solution:
 > ![img](./codeNote.assets/largest_e1.jpg)
 >
 > ```
-> 输入: root = [1,3,2,5,3,null,9]
-> 输出: [1,3,9]
-> ```
+&gt; 输入: root = [1,3,2,5,3,null,9]
+&gt; 输出: [1,3,9]
+&gt; ```
 >
 > **示例2：**
 >
 > ```
-> 输入: root = [1,2,3]
-> 输出: [1,3]
-> ```
+&gt; 输入: root = [1,2,3]
+&gt; 输出: [1,3]
+&gt; ```
 >
 >  
 >
@@ -7294,7 +7279,7 @@ class Solution:
 class Solution {
 public:
     vector<int> largestValues(TreeNode* root) {
-        queue<TreeNode*> node_queue;
+        queue<treenode*> node_queue;
         vector<int> ans;
         if (root == nullptr) {
             return ans;
@@ -7304,15 +7289,15 @@ public:
             TreeNode* cur;
             int maxNum = INT_MIN;
             int size = node_queue.size();
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 cur = node_queue.front();
-                maxNum = max(cur->val, maxNum);
+                maxNum = max(cur-&gt;val, maxNum);
                 node_queue.pop();
-                if (cur->left) {
-                    node_queue.push(cur->left);
+                if (cur-&gt;left) {
+                    node_queue.push(cur-&gt;left);
                 }
-                if (cur->right) {
-                    node_queue.push(cur->right);
+                if (cur-&gt;right) {
+                    node_queue.push(cur-&gt;right);
                 }
             }
             ans.push_back(maxNum);
@@ -7320,11 +7305,11 @@ public:
         return ans;
     }
 };	
-```
+</int></treenode*></int>```
 
 ```python
 class Solution:
-    def largestValues(self, root: Optional[TreeNode]) -> List[int]:
+    def largestValues(self, root: Optional[TreeNode]) -&gt; List[int]:
         node_queue = []
         ans = []
         if root == None:
@@ -7351,13 +7336,13 @@ class Solution:
 > 给定一个 **完美二叉树** ，其所有叶子节点都在同一层，每个父节点都有两个子节点。二叉树定义如下：
 >
 > ```
-> struct Node {
->   int val;
->   Node *left;
->   Node *right;
->   Node *next;
-> }
-> ```
+&gt; struct Node {
+&gt;   int val;
+&gt;   Node *left;
+&gt;   Node *right;
+&gt;   Node *next;
+&gt; }
+&gt; ```
 >
 > 填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 `NULL`。
 >
@@ -7370,19 +7355,19 @@ class Solution:
 > ![img](./codeNote.assets/116_sample.png)
 >
 > ```
-> 输入:root = [1,2,3,4,5,6,7]
-> 输出:[1,#,2,3,#,4,5,6,7,#]
-> 解释:给定二叉树如图 A 所示,你的函数应该填充它的每个 next 指针,以指向其下一个右侧节点,如图 B 所示.序列化的输出按层序遍历排列,同一层节点由 next 指针连接,'#' 标志着每一层的结束.
-> ```
+&gt; 输入:root = [1,2,3,4,5,6,7]
+&gt; 输出:[1,#,2,3,#,4,5,6,7,#]
+&gt; 解释:给定二叉树如图 A 所示,你的函数应该填充它的每个 next 指针,以指向其下一个右侧节点,如图 B 所示.序列化的输出按层序遍历排列,同一层节点由 next 指针连接,'#' 标志着每一层的结束.
+&gt; ```
 >
 > 
 >
 > **示例 2:**
 >
 > ```
-> 输入:root = []
-> 输出:[]
-> ```
+&gt; 输入:root = []
+&gt; 输出:[]
+&gt; ```
 >
 >  
 >
@@ -7420,7 +7405,7 @@ public:
 class Solution {
 public:
     Node* connect(Node* root) {
-        queue<Node*> node_queue;
+        queue<node*> node_queue;
         if (root == nullptr) {
             return root;
         }
@@ -7428,24 +7413,24 @@ public:
         while (!node_queue.empty()) {
             Node* cur;
             int size = node_queue.size();
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 cur = node_queue.front();
                 node_queue.pop();
                 if (i != size - 1) {
-                    cur->next = node_queue.front();
+                    cur-&gt;next = node_queue.front();
                 }
-                if (cur->left) {
-                    node_queue.push(cur->left);
+                if (cur-&gt;left) {
+                    node_queue.push(cur-&gt;left);
                 }
-                if (cur->right) {
-                    node_queue.push(cur->right);
+                if (cur-&gt;right) {
+                    node_queue.push(cur-&gt;right);
                 }
             }
         }
         return root;
     }
 };
-```
+</node*>```
 
 ```python
 """
@@ -7460,7 +7445,7 @@ class Node:
 
 
 class Solution:
-    def connect(self, root: "Optional[Node]") -> "Optional[Node]":
+    def connect(self, root: "Optional[Node]") -&gt; "Optional[Node]":
         node_queue = []
         if root == None:
             return root
@@ -7485,13 +7470,13 @@ class Solution:
 > 给定一个二叉树：
 >
 > ```
-> struct Node {
->   int val;
->   Node *left;
->   Node *right;
->   Node *next;
-> }
-> ```
+&gt; struct Node {
+&gt;   int val;
+&gt;   Node *left;
+&gt;   Node *right;
+&gt;   Node *next;
+&gt; }
+&gt; ```
 >
 > 填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 `NULL` 。
 >
@@ -7504,17 +7489,17 @@ class Solution:
 > ![img](./codeNote.assets/117_sample.png)
 >
 > ```
-> 输入:root = [1,2,3,4,5,null,7]
-> 输出:[1,#,2,3,#,4,5,7,#]
-> 解释:给定二叉树如图 A 所示,你的函数应该填充它的每个 next 指针,以指向其下一个右侧节点,如图 B 所示.序列化输出按层序遍历顺序(由 next 指针连接),'#' 表示每层的末尾.
-> ```
+&gt; 输入:root = [1,2,3,4,5,null,7]
+&gt; 输出:[1,#,2,3,#,4,5,7,#]
+&gt; 解释:给定二叉树如图 A 所示,你的函数应该填充它的每个 next 指针,以指向其下一个右侧节点,如图 B 所示.序列化输出按层序遍历顺序(由 next 指针连接),'#' 表示每层的末尾.
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:root = []
-> 输出:[]
-> ```
+&gt; 输入:root = []
+&gt; 输出:[]
+&gt; ```
 >
 >  
 >
@@ -7545,16 +7530,16 @@ class Solution:
 >  
 >
 > ```
-> 输入:root = [3,9,20,null,null,15,7]
-> 输出:3
-> ```
+&gt; 输入:root = [3,9,20,null,null,15,7]
+&gt; 输出:3
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:root = [1,null,2]
-> 输出:2
-> ```
+&gt; 输入:root = [1,null,2]
+&gt; 输出:2
+&gt; ```
 >
 >  
 >
@@ -7567,7 +7552,7 @@ class Solution:
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
-        queue<TreeNode*> node_queue;
+        queue<treenode*> node_queue;
         int depth = 0;
         if (root == nullptr) {
             return depth;
@@ -7576,14 +7561,14 @@ public:
         while (!node_queue.empty()) {
             TreeNode* cur;
             int size = node_queue.size();
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 cur = node_queue.front();
                 node_queue.pop();
-                if (cur->left) {
-                    node_queue.push(cur->left);
+                if (cur-&gt;left) {
+                    node_queue.push(cur-&gt;left);
                 }
-                if (cur->right) {
-                    node_queue.push(cur->right);
+                if (cur-&gt;right) {
+                    node_queue.push(cur-&gt;right);
                 }
             }
             depth++;
@@ -7591,11 +7576,11 @@ public:
         return depth;
     }
 };
-```
+</treenode*>```
 
 ```python
 class Solution:
-    def maxDepth(self, root: Optional[TreeNode]) -> int:
+    def maxDepth(self, root: Optional[TreeNode]) -&gt; int:
         node_queue = []
         depth = 0
         if root == None:
@@ -7630,16 +7615,16 @@ class Solution:
 > ![img](./codeNote.assets/ex_depth.jpg)
 >
 > ```
-> 输入:root = [3,9,20,null,null,15,7]
-> 输出:2
-> ```
+&gt; 输入:root = [3,9,20,null,null,15,7]
+&gt; 输出:2
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:root = [2,null,3,null,4,null,5,null,6]
-> 输出:5
-> ```
+&gt; 输入:root = [2,null,3,null,4,null,5,null,6]
+&gt; 输出:5
+&gt; ```
 >
 >  
 >
@@ -7656,22 +7641,22 @@ public:
         if (root == nullptr) {
             return depth;
         }
-        queue<TreeNode*> node_queue;
+        queue<treenode*> node_queue;
         node_queue.push(root);
         while (!node_queue.empty()) {
             TreeNode* cur;
             int size = node_queue.size();
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 cur = node_queue.front();
                 node_queue.pop();
-                if (!cur->left && !cur->right) {
+                if (!cur-&gt;left &amp;&amp; !cur-&gt;right) {
                     return ++depth;
                 } else {
-                    if (cur->left) {
-                        node_queue.push(cur->left);
+                    if (cur-&gt;left) {
+                        node_queue.push(cur-&gt;left);
                     }
-                    if (cur->right) {
-                        node_queue.push(cur->right);
+                    if (cur-&gt;right) {
+                        node_queue.push(cur-&gt;right);
                     }
                 }
             }
@@ -7680,11 +7665,11 @@ public:
         return depth; // 虽然没用,但是没有会报错
     }
 };
-```
+</treenode*>```
 
 ```python
 class Solution:
-    def minDepth(self, root: Optional[TreeNode]) -> int:
+    def minDepth(self, root: Optional[TreeNode]) -&gt; int:
         node_queue = []
         depth = 0
         if root == None:
@@ -7717,25 +7702,25 @@ class Solution:
 > ![img](./codeNote.assets/invert1-tree.jpg)
 >
 > ```
-> 输入:root = [4,2,7,1,3,6,9]
-> 输出:[4,7,2,9,6,3,1]
-> ```
+&gt; 输入:root = [4,2,7,1,3,6,9]
+&gt; 输出:[4,7,2,9,6,3,1]
+&gt; ```
 >
 > **示例 2：**
 >
 > ![img](./codeNote.assets/invert2-tree.jpg)
 >
 > ```
-> 输入:root = [2,1,3]
-> 输出:[2,3,1]
-> ```
+&gt; 输入:root = [2,1,3]
+&gt; 输出:[2,3,1]
+&gt; ```
 >
 > **示例 3：**
 >
 > ```
-> 输入:root = []
-> 输出:[]
-> ```
+&gt; 输入:root = []
+&gt; 输出:[]
+&gt; ```
 >
 >  
 >
@@ -7751,11 +7736,11 @@ public:
         if (cur == nullptr) {
             return;
         }
-        TreeNode* temp = cur->right;
-        cur->right = cur->left;
-        cur->left = temp;
-        reverse(cur->left);
-        reverse(cur->right);
+        TreeNode* temp = cur-&gt;right;
+        cur-&gt;right = cur-&gt;left;
+        cur-&gt;left = temp;
+        reverse(cur-&gt;left);
+        reverse(cur-&gt;right);
     }
     TreeNode* invertTree(TreeNode* root) {
         reverse(root);
@@ -7773,23 +7758,23 @@ public:
         if (root == nullptr) {
             return root;
         }
-        stack<TreeNode*> node_stack;
+        stack<treenode*> node_stack;
         node_stack.push(root);
         while (!node_stack.empty()) {
             TreeNode* cur = node_stack.top();
             node_stack.pop();
-            swap(cur->left, cur->right);
-            if (cur->right) {
-                node_stack.push(cur->right);
+            swap(cur-&gt;left, cur-&gt;right);
+            if (cur-&gt;right) {
+                node_stack.push(cur-&gt;right);
             }
-            if (cur->left) {
-                node_stack.push(cur->left);
+            if (cur-&gt;left) {
+                node_stack.push(cur-&gt;left);
             }
         }
         return root;
     }
 };
-```
+</treenode*>```
 
 - 或者使用**统一迭代法**,这里使用**前序**为例子
 
@@ -7800,19 +7785,19 @@ public:
         if (root == nullptr) {
             return root;
         }
-        stack<TreeNode*> node_stack;
+        stack<treenode*> node_stack;
         node_stack.push(root);
         TreeNode* cur = root;
         while (!node_stack.empty()) {
             cur = node_stack.top();
             if (cur != nullptr) {
                 node_stack.pop(); // 先把节点拿出来
-                swap(cur->left, cur->right);
-                if (cur->left) {
-                    node_stack.push(cur->left);
+                swap(cur-&gt;left, cur-&gt;right);
+                if (cur-&gt;left) {
+                    node_stack.push(cur-&gt;left);
                 }
-                if (cur->right) {
-                    node_stack.push(cur->right);
+                if (cur-&gt;right) {
+                    node_stack.push(cur-&gt;right);
                 }
                 node_stack.push(cur);
                 node_stack.push(nullptr);
@@ -7824,19 +7809,19 @@ public:
         return root;
     }
 };
-```
+</treenode*>```
 
 ```python
 # 只用回溯法写,其他方法不再赘述
 class Solution:
-    def reverse(self, cur: Optional[TreeNode]) -> None:
+    def reverse(self, cur: Optional[TreeNode]) -&gt; None:
         if cur == None:
             return
         cur.left, cur.right = cur.right, cur.left
         self.reverse(cur.left)
         self.reverse(cur.right)
 
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+    def invertTree(self, root: Optional[TreeNode]) -&gt; Optional[TreeNode]:
         self.reverse(root)
         return root
 ```
@@ -7853,18 +7838,18 @@ class Solution:
 > ![img](./codeNote.assets/narytreeexample-1707807420886-5.png)
 >
 > ```
-> 输入:root = [1,null,3,2,4,null,5,6]
-> 输出:[1,3,5,6,2,4]
-> ```
+&gt; 输入:root = [1,null,3,2,4,null,5,6]
+&gt; 输出:[1,3,5,6,2,4]
+&gt; ```
 >
 > **示例 2：**
 >
 > ![img](./codeNote.assets/sample_4_964-1707807420886-7.png)
 >
 > ```
-> 输入:root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]
-> 输出:[1,2,3,6,7,11,14,4,8,12,5,9,13,10]
-> ```
+&gt; 输入:root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]
+&gt; 输出:[1,2,3,6,7,11,14,4,8,12,5,9,13,10]
+&gt; ```
 >
 >  
 >
@@ -7883,7 +7868,7 @@ class Solution {
 public:
     // 使用一波统一迭代法(递归和普通迭代没有难度)
     vector<int> preorder(Node* root) {
-        stack<Node*> node_stack;
+        stack<node*> node_stack;
         vector<int> ans_vector;
         if (root == nullptr) {
             return ans_vector;
@@ -7893,8 +7878,8 @@ public:
             Node* cur = node_stack.top();
             if (cur != nullptr) {
                 node_stack.pop();
-                for (auto iter : vector<Node*>(cur->children.rbegin(),
-                                               cur->children.rend())) {
+                for (auto iter : vector<node*>(cur-&gt;children.rbegin(),
+                                               cur-&gt;children.rend())) {
                     node_stack.push(iter);
                 }
                 node_stack.push(cur);
@@ -7902,25 +7887,25 @@ public:
             } else {
                 node_stack.pop();
                 cur = node_stack.top();
-                ans_vector.push_back(cur->val);
+                ans_vector.push_back(cur-&gt;val);
                 node_stack.pop();
             }
         }
         return ans_vector;
     }
 };
-```
+</node*></int></node*></int>```
 
 ```python
 class Solution:
-    def order(self, cur: "Node", ans_list: List[int]) -> None:
+    def order(self, cur: "Node", ans_list: List[int]) -&gt; None:
         if cur == None:
             return
         ans_list.append(cur.val)
         for item in cur.children:
             self.order(item, ans_list)
 
-    def preorder(self, root: "Node") -> List[int]:
+    def preorder(self, root: "Node") -&gt; List[int]:
         ans_list = []
         self.order(root, ans_list)
         return ans_list
@@ -7940,18 +7925,18 @@ class Solution:
 > ![img](./codeNote.assets/narytreeexample-1707807492794-11.png)
 >
 > ```
-> 输入:root = [1,null,3,2,4,null,5,6]
-> 输出:[5,6,3,2,4,1]
-> ```
+&gt; 输入:root = [1,null,3,2,4,null,5,6]
+&gt; 输出:[5,6,3,2,4,1]
+&gt; ```
 >
 > **示例 2：**
 >
 > ![img](./codeNote.assets/sample_4_964-1707807492795-13.png)
 >
 > ```
-> 输入:root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]
-> 输出:[2,6,14,11,7,3,12,8,4,13,9,10,5,1]
-> ```
+&gt; 输入:root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]
+&gt; 输出:[2,6,14,11,7,3,12,8,4,13,9,10,5,1]
+&gt; ```
 >
 >  
 >
@@ -7974,24 +7959,24 @@ public:
         if (root == nullptr) {
             return ans_vector;
         }
-        stack<Node*> node_stack;
+        stack<node*> node_stack;
         node_stack.push(root);
         while (!node_stack.empty()) {
             Node* cur = node_stack.top();
             node_stack.pop();
-            ans_vector.push_back(cur->val);
-            for (auto iter : cur->children) {
+            ans_vector.push_back(cur-&gt;val);
+            for (auto iter : cur-&gt;children) {
                 node_stack.push(iter);
             }
         }
         return vector<int>(ans_vector.rbegin(), ans_vector.rend());
     }
 };
-```
+</int></node*></int></int>```
 
 ```python
 class Solution:
-    def order(self, cur: "Node", ans_list: List[int]) -> None:
+    def order(self, cur: "Node", ans_list: List[int]) -&gt; None:
         if cur == None:
             return
         ans_list.append(cur.val)
@@ -7999,7 +7984,7 @@ class Solution:
             self.order(item, ans_list)
         
 
-    def postorder(self, root: "Node") -> List[int]:
+    def postorder(self, root: "Node") -&gt; List[int]:
         ans_list = []
         self.order(root, ans_list)
         return ans_list[::-1]
@@ -8016,18 +8001,18 @@ class Solution:
 > ![img](./codeNote.assets/1698026966-JDYPDU-image.png)
 >
 > ```
-> 输入:root = [1,2,2,3,4,4,3]
-> 输出:true
-> ```
+&gt; 输入:root = [1,2,2,3,4,4,3]
+&gt; 输出:true
+&gt; ```
 >
 > **示例 2：**
 >
 > ![img](./codeNote.assets/1698027008-nPFLbM-image.png)
 >
 > ```
-> 输入:root = [1,2,2,null,3,null,3]
-> 输出:false
-> ```
+&gt; 输入:root = [1,2,2,null,3,null,3]
+&gt; 输出:false
+&gt; ```
 >
 >  
 >
@@ -8045,7 +8030,7 @@ class Solution {
 public:
     // 思路:层序遍历,检查每层是否对称(迭代)
     bool isSymmetric(TreeNode* root) {
-        queue<TreeNode*> node_queue;
+        queue<treenode*> node_queue;
         if (root == nullptr) {
             return true;
         }
@@ -8054,20 +8039,20 @@ public:
             int size = node_queue.size();
             vector<int> path_vector;
             TreeNode* cur;
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 cur = node_queue.front();
                 node_queue.pop();
                 if (cur == nullptr) {
                     path_vector.push_back(INT_MAX);
                     continue;
                 }
-                path_vector.push_back(cur->val);
+                path_vector.push_back(cur-&gt;val);
                 // 自认为比较妙的一步(使用占位的nullptr,补充空节点)而且并不会陷入死循环,空节点只会补充一次左右节点,作为中间节点的时候不会填充空节点
-                node_queue.push(cur->left);
-                node_queue.push(cur->right);
+                node_queue.push(cur-&gt;left);
+                node_queue.push(cur-&gt;right);
             }
             int left = 0, right = path_vector.size() - 1;
-            while (left < right) {
+            while (left &lt; right) {
                 if (path_vector[left] != path_vector[right]) {
                     return false;
                 }
@@ -8078,12 +8063,12 @@ public:
         return true;
     }
 };
-```
+</int></treenode*>```
 
 ```python
 class Solution:
     # 递归
-    def check(self, left: Optional[TreeNode], right: Optional[TreeNode]) -> bool:
+    def check(self, left: Optional[TreeNode], right: Optional[TreeNode]) -&gt; bool:
         if left and right:
             if left.val != right.val:
                 return False
@@ -8096,7 +8081,7 @@ class Solution:
         else:
             return False
 
-    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+    def isSymmetric(self, root: Optional[TreeNode]) -&gt; bool:
         if root == None:
             return True
         else:
@@ -8124,27 +8109,27 @@ class Solution:
 > ![img](./codeNote.assets/ex1.jpg)
 >
 > ```
-> 输入:p = [1,2,3], q = [1,2,3]
-> 输出:true
-> ```
+&gt; 输入:p = [1,2,3], q = [1,2,3]
+&gt; 输出:true
+&gt; ```
 >
 > **示例 2：**
 >
 > ![img](C:\Users\exqin\Desktop\Blog\codeNote.assets\ex2.jpg)
 >
 > ```
-> 输入:p = [1,2], q = [1,null,2]
-> 输出:false
-> ```
+&gt; 输入:p = [1,2], q = [1,null,2]
+&gt; 输出:false
+&gt; ```
 >
 > **示例 3：**
 >
 > ![img](./codeNote.assets/ex3.jpg)
 >
 > ```
-> 输入:p = [1,2,1], q = [1,1,2]
-> 输出:false
-> ```
+&gt; 输入:p = [1,2,1], q = [1,1,2]
+&gt; 输出:false
+&gt; ```
 >
 >  
 >
@@ -8158,10 +8143,10 @@ class Solution:
 class Solution {
 public:
     bool isSameTree(TreeNode* p, TreeNode* q) {
-        stack<TreeNode*> node_stack;
-        if (p == nullptr && q == nullptr) {
+        stack<treenode*> node_stack;
+        if (p == nullptr &amp;&amp; q == nullptr) {
             return true;
-        } else if (p && q) {
+        } else if (p &amp;&amp; q) {
             node_stack.push(p);
             node_stack.push(q);
             while (!node_stack.empty()) {
@@ -8169,19 +8154,19 @@ public:
                 node_stack.pop();
                 TreeNode* right = node_stack.top();
                 node_stack.pop();
-                if (left == nullptr && right == nullptr) {
+                if (left == nullptr &amp;&amp; right == nullptr) {
                     continue;
                 }
-                if ((left || right) && (!(left && right))) {
+                if ((left || right) &amp;&amp; (!(left &amp;&amp; right))) {
                     return false;
                 }
-                if (left->val != right->val) {
+                if (left-&gt;val != right-&gt;val) {
                     return false;
                 }
-                node_stack.push(left->left);
-                node_stack.push(right->left);
-                node_stack.push(left->right);
-                node_stack.push(right->right);
+                node_stack.push(left-&gt;left);
+                node_stack.push(right-&gt;left);
+                node_stack.push(left-&gt;right);
+                node_stack.push(right-&gt;right);
             }
         } else {
             return false;
@@ -8189,12 +8174,12 @@ public:
         return true;
     }
 };
-```
+</treenode*>```
 
 ```python
 # 递归
 class Solution:
-    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -&gt; bool:
         if not (p or q):
             return True
         if (p or q) and (not (p and q)):
@@ -8217,18 +8202,18 @@ class Solution:
 > ![img](./codeNote.assets/subtree1-tree.jpg)
 >
 > ```
-> 输入:root = [3,4,5,1,2], subRoot = [4,1,2]
-> 输出:true
-> ```
+&gt; 输入:root = [3,4,5,1,2], subRoot = [4,1,2]
+&gt; 输出:true
+&gt; ```
 >
 > **示例 2：**
 >
 > ![img](./codeNote.assets/subtree2-tree.jpg)
 >
 > ```
-> 输入:root = [3,4,5,1,2,null,null,null,null,0], subRoot = [4,1,2]
-> 输出:false
-> ```
+&gt; 输入:root = [3,4,5,1,2,null,null,null,null,0], subRoot = [4,1,2]
+&gt; 输出:false
+&gt; ```
 >
 >  
 >
@@ -8243,16 +8228,16 @@ class Solution:
 class Solution {
 private:
     bool samecheck(TreeNode* first, TreeNode* second) {
-        if ((first || second) && !(first && second)) {
+        if ((first || second) &amp;&amp; !(first &amp;&amp; second)) {
             return false;
         } else if (!(first || second)) {
             return true;
         } else {
-            if (first->val != second->val) {
+            if (first-&gt;val != second-&gt;val) {
                 return false;
             } else {
-                return samecheck(first->left, second->left) &&
-                       samecheck(first->right, second->right);
+                return samecheck(first-&gt;left, second-&gt;left) &amp;&amp;
+                       samecheck(first-&gt;right, second-&gt;right);
             }
         }
     }
@@ -8265,15 +8250,15 @@ public:
         if (samecheck(root, subRoot)) {
             return true;
         }
-        return isSubtree(root->left, subRoot) ||
-               isSubtree(root->right, subRoot);
+        return isSubtree(root-&gt;left, subRoot) ||
+               isSubtree(root-&gt;right, subRoot);
     }
 };
 ```
 
 ```python
 class Solution:
-    def samecheck(self, first: Optional[TreeNode], second: Optional[TreeNode]) -> bool:
+    def samecheck(self, first: Optional[TreeNode], second: Optional[TreeNode]) -&gt; bool:
         if first == None and second == None:
             return True
         elif not (first and second) and (first or second):
@@ -8301,7 +8286,7 @@ class Solution:
                     node_stack.append(right.left)
         return True
 
-    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
+    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -&gt; bool:
         if root == None:
             return False
         else:
@@ -8327,16 +8312,16 @@ class Solution:
 >  
 >
 > ```
-> 输入:root = [3,9,20,null,null,15,7]
-> 输出:3
-> ```
+&gt; 输入:root = [3,9,20,null,null,15,7]
+&gt; 输出:3
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:root = [1,null,2]
-> 输出:2
-> ```
+&gt; 输入:root = [1,null,2]
+&gt; 输出:2
+&gt; ```
 >
 >  
 >
@@ -8349,7 +8334,7 @@ class Solution:
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
-        queue<TreeNode*> node_queue;
+        queue<treenode*> node_queue;
         int depth = 0;
         if (root == nullptr) {
             return depth;
@@ -8359,14 +8344,14 @@ public:
         while (!node_queue.empty()) {
             TreeNode* cur;
             int size = node_queue.size();
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 cur = node_queue.front();
                 node_queue.pop();
-                if (cur->left) {
-                    node_queue.push(cur->left);
+                if (cur-&gt;left) {
+                    node_queue.push(cur-&gt;left);
                 }
-                if (cur->right) {
-                    node_queue.push(cur->right);
+                if (cur-&gt;right) {
+                    node_queue.push(cur-&gt;right);
                 }
             }
             depth++;
@@ -8380,18 +8365,18 @@ class Solution {
 private:
     int result = 0;
     void getmaxdepth(TreeNode* cur, int depth) {
-        result = depth > result ? depth : result;
-        if (cur->left == nullptr && cur->right == nullptr) {
+        result = depth &gt; result ? depth : result;
+        if (cur-&gt;left == nullptr &amp;&amp; cur-&gt;right == nullptr) {
             return;
         }
-        if (cur->left) {
+        if (cur-&gt;left) {
             depth++;
-            getmaxdepth(cur->left, depth);  // 这里可以直接把数据变化放在形参depth的位置上
+            getmaxdepth(cur-&gt;left, depth);  // 这里可以直接把数据变化放在形参depth的位置上
             depth--;
         }
-        if (cur->right) {
+        if (cur-&gt;right) {
             depth++;
-            getmaxdepth(cur->right, depth);
+            getmaxdepth(cur-&gt;right, depth);
             depth--;
         }
         return;
@@ -8412,7 +8397,7 @@ public:
     int maxDepth(TreeNode* root) {
         int result = 0;
         int depth = 0;
-        stack<TreeNode*> node_stack;
+        stack<treenode*> node_stack;
         if (root == nullptr) {
             return result;
         }
@@ -8423,11 +8408,11 @@ public:
                 node_stack.pop();
                 node_stack.push(cur);
                 node_stack.push(nullptr);
-                if (cur->right) {
-                    node_stack.push(cur->right);
+                if (cur-&gt;right) {
+                    node_stack.push(cur-&gt;right);
                 }
-                if (cur->left) {
-                    node_stack.push(cur->left);
+                if (cur-&gt;left) {
+                    node_stack.push(cur-&gt;left);
                 }
                 depth++;
             } else {
@@ -8440,11 +8425,11 @@ public:
         return result;
     }
 };
-```
+</treenode*></treenode*>```
 
 ```python
 class Solution:
-    def maxDepth(self, root: Optional[TreeNode]) -> int:
+    def maxDepth(self, root: Optional[TreeNode]) -&gt; int:
         node_queue = []
         depth = 0
         if root == None:
@@ -8478,18 +8463,18 @@ class Solution:
 > ![img](./codeNote.assets/narytreeexample-1708246485795-4.png)
 >
 > ```
-> 输入:root = [1,null,3,2,4,null,5,6]
-> 输出:3
-> ```
+&gt; 输入:root = [1,null,3,2,4,null,5,6]
+&gt; 输出:3
+&gt; ```
 >
 > **示例 2：**
 >
 > ![img](./codeNote.assets/sample_4_964-1708246485795-6.png)
 >
 > ```
-> 输入:root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]
-> 输出:5
-> ```
+&gt; 输入:root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]
+&gt; 输出:5
+&gt; ```
 >
 >  
 >
@@ -8507,15 +8492,15 @@ public:
         if (root == nullptr) {
             return depth;
         }
-        queue<Node*> node_queue;
+        queue<node*> node_queue;
         node_queue.push(root);
         depth++;
         while (!node_queue.empty()) {
             int size = node_queue.size();
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 Node* cur = node_queue.front();
                 node_queue.pop();
-                for (auto iter : cur->children) {
+                for (auto iter : cur-&gt;children) {
                     if (iter) {
                         node_queue.push(iter);
                     }
@@ -8526,13 +8511,13 @@ public:
         return depth - 1;
     }
 };
-```
+</node*>```
 
 ```python
 # 递归法
 class Solution:
     # 后序遍历(得到左右子树的高度最大值+1,即左右中)
-    def getdepth(self, cur: "Node") -> int:
+    def getdepth(self, cur: "Node") -&gt; int:
         if cur == None:
             return 0
         maxdp = 0
@@ -8540,7 +8525,7 @@ class Solution:
             maxdp = max(maxdp, self.getdepth(item))
         return maxdp + 1
 
-    def maxDepth(self, root: "Node") -> int:
+    def maxDepth(self, root: "Node") -&gt; int:
         return self.getdepth(root)
 ```
 
@@ -8559,16 +8544,16 @@ class Solution:
 > ![img](./codeNote.assets/ex_depth-1708252330150-10.jpg)
 >
 > ```
-> 输入:root = [3,9,20,null,null,15,7]
-> 输出:2
-> ```
+&gt; 输入:root = [3,9,20,null,null,15,7]
+&gt; 输出:2
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:root = [2,null,3,null,4,null,5,null,6]
-> 输出:5
-> ```
+&gt; 输入:root = [2,null,3,null,4,null,5,null,6]
+&gt; 输出:5
+&gt; ```
 >
 >  
 >
@@ -8591,11 +8576,11 @@ public:
             return 0;
         }
 
-        int leftDepth = minDepth(root->left);
-        int rightDepth = minDepth(root->right);
+        int leftDepth = minDepth(root-&gt;left);
+        int rightDepth = minDepth(root-&gt;right);
 
         // 当左子树或右子树有一个为空时,返回非空子树的最小深度加一
-        if (root->left == nullptr || root->right == nullptr) {
+        if (root-&gt;left == nullptr || root-&gt;right == nullptr) {
             return max(leftDepth, rightDepth) + 1;
         }
 
@@ -8607,7 +8592,7 @@ public:
 
 ```python
 class Solution:
-    def minDepth(self, root: Optional[TreeNode]) -> int:
+    def minDepth(self, root: Optional[TreeNode]) -&gt; int:
         # 尝试使用层序遍历
         node_queue = []
         depth = 0
@@ -8643,23 +8628,23 @@ class Solution:
 > ![img](./codeNote.assets/complete.jpg)
 >
 > ```
-> 输入:root = [1,2,3,4,5,6]
-> 输出:6
-> ```
+&gt; 输入:root = [1,2,3,4,5,6]
+&gt; 输出:6
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:root = []
-> 输出:0
-> ```
+&gt; 输入:root = []
+&gt; 输出:0
+&gt; ```
 >
 > **示例 3：**
 >
 > ```
-> 输入:root = [1]
-> 输出:1
-> ```
+&gt; 输入:root = [1]
+&gt; 输出:1
+&gt; ```
 >
 >  
 >
@@ -8686,27 +8671,27 @@ public:
             return 0;
         }
         int left_depth = 0, right_depth = 0;
-        TreeNode* left_ptr = root->left;
-        TreeNode* right_ptr = root->right;
+        TreeNode* left_ptr = root-&gt;left;
+        TreeNode* right_ptr = root-&gt;right;
         while (left_ptr != nullptr) {
-            left_ptr = left_ptr->left;
+            left_ptr = left_ptr-&gt;left;
             left_depth++;
         }
         while (right_ptr != nullptr) {
-            right_ptr = right_ptr->right;
+            right_ptr = right_ptr-&gt;right;
             right_depth++;
         }
         if (left_depth == right_depth) {
-            return (2 << left_depth) - 1;
+            return (2 &lt;&lt; left_depth) - 1;
         } // 这里要深入理解为什么会向下递归
-        return countNodes(root->left) + countNodes(root->right) + 1;
+        return countNodes(root-&gt;left) + countNodes(root-&gt;right) + 1;
     }
 };
 ```
 
 ```python
 class Solution:
-    def countNodes(self, root: Optional[TreeNode]) -> int:
+    def countNodes(self, root: Optional[TreeNode]) -&gt; int:
         if root == None:
             return 0
         left_depth = 0
@@ -8720,7 +8705,7 @@ class Solution:
             right_ptr = right_ptr.right
             right_depth += 1
         if left_depth == right_depth:
-            return (2 << left_depth) - 1
+            return (2 &lt;&lt; left_depth) - 1
         return self.countNodes(root.left) + self.countNodes(root.right) + 1
 ```
 
@@ -8741,25 +8726,25 @@ class Solution:
 > ![img](./codeNote.assets/balance_1.jpg)
 >
 > ```
-> 输入:root = [3,9,20,null,null,15,7]
-> 输出:true
-> ```
+&gt; 输入:root = [3,9,20,null,null,15,7]
+&gt; 输出:true
+&gt; ```
 >
 > **示例 2：**
 >
 > ![img](./codeNote.assets/balance_2.jpg)
 >
 > ```
-> 输入:root = [1,2,2,3,3,null,null,4,4]
-> 输出:false
-> ```
+&gt; 输入:root = [1,2,2,3,3,null,null,4,4]
+&gt; 输出:false
+&gt; ```
 >
 > **示例 3：**
 >
 > ```
-> 输入:root = []
-> 输出:true
-> ```
+&gt; 输入:root = []
+&gt; 输出:true
+&gt; ```
 >
 >  
 >
@@ -8775,7 +8760,7 @@ private:
         if (cur == nullptr) { //终止条件
             return 0;
         }
-        return max(getHeight(cur->left), getHeight(cur->right)) + 1; // 递归逻辑
+        return max(getHeight(cur-&gt;left), getHeight(cur-&gt;right)) + 1; // 递归逻辑
     }
 
 public:
@@ -8784,23 +8769,23 @@ public:
         if (root == nullptr) {
             return true;
         }
-        return (abs(getHeight(root->left) - getHeight(root->right)) < 2) &&
-               isBalanced(root->left) && isBalanced(root->right);
+        return (abs(getHeight(root-&gt;left) - getHeight(root-&gt;right)) &lt; 2) &amp;&amp;
+               isBalanced(root-&gt;left) &amp;&amp; isBalanced(root-&gt;right);
     }
 };
 // 这种方法对于同一个节点可能存在访问的情况,可以考虑使用记忆化操作优化
 class Solution {
 private:
-    unordered_map<TreeNode*, int> height_map; // 记忆化操作
+    unordered_map<treenode*, int=""> height_map; // 记忆化操作
     int getHeight(TreeNode* cur) {
         auto it = height_map.find(cur); // 如果存在该键,则迭代器指向对应的键值对,可以用name.second访问值,不存在该键则指向height_map的尾迭代器
         if (it != height_map.end()) {
-            return it->second;
+            return it-&gt;second;
         }
         if (cur == nullptr) { //终止条件
             return 0;
         }
-        int height = max(getHeight(cur->left), getHeight(cur->right)) + 1;
+        int height = max(getHeight(cur-&gt;left), getHeight(cur-&gt;right)) + 1;
         return height_map[cur] = height; // 可以之间使用下标操作符[]来访问和修改对应的值
         // 递归逻辑
     }
@@ -8811,18 +8796,18 @@ public:
         if (root == nullptr) {
             return true;
         }
-        return (abs(getHeight(root->left) - getHeight(root->right)) < 2) &&
-               isBalanced(root->left) && isBalanced(root->right);
+        return (abs(getHeight(root-&gt;left) - getHeight(root-&gt;right)) &lt; 2) &amp;&amp;
+               isBalanced(root-&gt;left) &amp;&amp; isBalanced(root-&gt;right);
     }
 };
-```
+</treenode*,>```
 
 ```python
 class Solution:
     def __init__(self): # 初始化函数在不需要类外参数的时候形式参数只有self
         self.height_dict = {}
 
-    def getHeight(self, cur: Optional[TreeNode]) -> int:
+    def getHeight(self, cur: Optional[TreeNode]) -&gt; int:
         if cur == None:
             return 0
         if self.height_dict.get(cur, 0) != 0: # get方法得到的值为键值对中的值,并且设置了默认的返回值0
@@ -8831,11 +8816,11 @@ class Solution:
         self.height_dict[cur] = height
         return height
 
-    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+    def isBalanced(self, root: Optional[TreeNode]) -&gt; bool:
         if root == None:
             return True
         return (
-            -2 < self.getHeight(root.left) - self.getHeight(root.right) < 2
+            -2 &lt; self.getHeight(root.left) - self.getHeight(root.right) &lt; 2
             and self.isBalanced(root.left)
             and self.isBalanced(root.right)
         )
@@ -8854,16 +8839,16 @@ class Solution:
 > ![img](./codeNote.assets/paths-tree.jpg)
 >
 > ```
-> 输入:root = [1,2,3,null,5]
-> 输出:["1->2->5","1->3"]
-> ```
+&gt; 输入:root = [1,2,3,null,5]
+&gt; 输出:["1-&gt;2-&gt;5","1-&gt;3"]
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:root = [1]
-> 输出:["1"]
-> ```
+&gt; 输入:root = [1]
+&gt; 输出:["1"]
+&gt; ```
 >
 >  
 >
@@ -8880,18 +8865,18 @@ private:
     vector<string> ans;
     // 注意string对于+运算符的特殊支持(简化代码)
     void backtracing(TreeNode* cur, string path) {
-        if (cur->left == nullptr && cur->right == nullptr) {
-            path += to_string(cur->val); // 将当前节点值添加到路径字符串中
+        if (cur-&gt;left == nullptr &amp;&amp; cur-&gt;right == nullptr) {
+            path += to_string(cur-&gt;val); // 将当前节点值添加到路径字符串中
             ans.push_back(path);
             return;
         }
-        if (cur->left) {
-            backtracing(cur->left, path + to_string(cur->val) +
-                                       "->"); // 在递归调用前更新路径
+        if (cur-&gt;left) {
+            backtracing(cur-&gt;left, path + to_string(cur-&gt;val) +
+                                       "-&gt;"); // 在递归调用前更新路径
         }
-        if (cur->right) {
-            backtracing(cur->right, path + to_string(cur->val) +
-                                        "->"); // 在递归调用前更新路径
+        if (cur-&gt;right) {
+            backtracing(cur-&gt;right, path + to_string(cur-&gt;val) +
+                                        "-&gt;"); // 在递归调用前更新路径
         }
     }
 
@@ -8905,23 +8890,23 @@ public:
         return ans;
     }
 };
-```
+</string></string>```
 
 ```python
 class Solution:
     def __init__(self):
         self.ans = []
 
-    def findway(self, cur: Optional[TreeNode], path: str) -> None:
+    def findway(self, cur: Optional[TreeNode], path: str) -&gt; None:
         if cur.left == None and cur.right == None:
             self.ans.append(path + str(cur.val))
             return
         if cur.left:
-            self.findway(cur.left, path + str(cur.val) + "->")
+            self.findway(cur.left, path + str(cur.val) + "-&gt;")
         if cur.right:
-            self.findway(cur.right, path + str(cur.val) + "->")
+            self.findway(cur.right, path + str(cur.val) + "-&gt;")
 
-    def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
+    def binaryTreePaths(self, root: Optional[TreeNode]) -&gt; List[str]:
         if root == None:
             return ans
         path = ""
@@ -8949,17 +8934,17 @@ class Solution:
 > ![img](./codeNote.assets/leftsum-tree.jpg)
 >
 > ```
-> 输入: root = [3,9,20,null,null,15,7] 
-> 输出: 24 
-> 解释: 在这个二叉树中,有两个左叶子,分别是 9 和 15,所以返回 24
-> ```
+&gt; 输入: root = [3,9,20,null,null,15,7] 
+&gt; 输出: 24 
+&gt; 解释: 在这个二叉树中,有两个左叶子,分别是 9 和 15,所以返回 24
+&gt; ```
 >
 > **示例 2:**
 >
 > ```
-> 输入: root = [1]
-> 输出: 0
-> ```
+&gt; 输入: root = [1]
+&gt; 输出: 0
+&gt; ```
 >
 >  
 >
@@ -8974,17 +8959,17 @@ class Solution {
 private:
     int ans = 0;
     void visit(TreeNode* cur) {
-        if (cur->left == nullptr && cur->right == nullptr) {
+        if (cur-&gt;left == nullptr &amp;&amp; cur-&gt;right == nullptr) {
             return;
         }
-        if (cur->left) {
-            if (cur->left->left == nullptr && cur->left->right == nullptr) {
-                ans += cur->left->val;
+        if (cur-&gt;left) {
+            if (cur-&gt;left-&gt;left == nullptr &amp;&amp; cur-&gt;left-&gt;right == nullptr) {
+                ans += cur-&gt;left-&gt;val;
             }
-            visit(cur->left);
+            visit(cur-&gt;left);
         }
-        if (cur->right) {
-            visit(cur->right);
+        if (cur-&gt;right) {
+            visit(cur-&gt;right);
         }
     }
 
@@ -9005,7 +8990,7 @@ class Solution:
     def __init__(self):
         self.ans = 0
 
-    def visit(self, cur: Optional[TreeNode]) -> None:
+    def visit(self, cur: Optional[TreeNode]) -&gt; None:
         if cur.left == None and cur.right == None:
             return
         if cur.left:
@@ -9016,7 +9001,7 @@ class Solution:
         if cur.right:
             self.visit(cur.right)
 
-    def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
+    def sumOfLeftLeaves(self, root: Optional[TreeNode]) -&gt; int:
         if root == None:
             return self.ans
         self.visit(root)
@@ -9036,18 +9021,18 @@ class Solution:
 > ![img](./codeNote.assets/tree1-1708419922156-17.jpg)
 >
 > ```
-> 输入: root = [2,1,3]
-> 输出: 1
-> ```
+&gt; 输入: root = [2,1,3]
+&gt; 输出: 1
+&gt; ```
 >
 > **示例 2:**
 >
 > ![img](./codeNote.assets/tree2.jpg)
 >
 > ```
-> 输入: [1,2,3,4,null,5,6,null,null,7]
-> 输出: 7
-> ```
+&gt; 输入: [1,2,3,4,null,5,6,null,null,7]
+&gt; 输出: 7
+&gt; ```
 >
 >  
 >
@@ -9061,21 +9046,21 @@ class Solution {
 public:
     int findBottomLeftValue(TreeNode* root) {
         // 使用层序遍历,最下层的第一个
-        queue<TreeNode*> node_queue;
-        vector<vector<int>> ans;
+        queue<treenode*> node_queue;
+        vector<vector<int>&gt; ans;
         node_queue.push(root);
         while (!node_queue.empty()) {
             vector<int> path;
             int size = node_queue.size();
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i &lt; size; i++) {
                 TreeNode* cur = node_queue.front();
-                path.push_back(cur->val);
+                path.push_back(cur-&gt;val);
                 node_queue.pop();
-                if (cur->left) {
-                    node_queue.push(cur->left);
+                if (cur-&gt;left) {
+                    node_queue.push(cur-&gt;left);
                 }
-                if (cur->right) {
-                    node_queue.push(cur->right);
+                if (cur-&gt;right) {
+                    node_queue.push(cur-&gt;right);
                 }
             }
             ans.push_back(path);
@@ -9083,7 +9068,7 @@ public:
         return ans[ans.size() - 1][0];
     }
 };
-```
+</int></vector<int></treenode*>```
 
 ```python
 class Solution:
@@ -9091,9 +9076,9 @@ class Solution:
         self.result = 0
         self.depth = 0
 
-    def findvalue(self, cur: Optional[TreeNode], depth: int) -> None:
+    def findvalue(self, cur: Optional[TreeNode], depth: int) -&gt; None:
         if not (cur.left or cur.right):
-            if self.depth < depth:
+            if self.depth &lt; depth:
                 self.depth = depth
                 self.result = cur.val
             return
@@ -9102,7 +9087,7 @@ class Solution:
         if cur.right:
             self.findvalue(cur.right, depth + 1)
 
-    def findBottomLeftValue(self, root: Optional[TreeNode]) -> int:
+    def findBottomLeftValue(self, root: Optional[TreeNode]) -&gt; int:
         # 考虑使用递归方法
         self.result = root.val
         self.findvalue(root, 0)
@@ -9122,31 +9107,31 @@ class Solution:
 > ![img](./codeNote.assets/pathsum1.jpg)
 >
 > ```
-> 输入:root = [5,4,8,11,null,13,4,7,2,null,null,null,1], targetSum = 22
-> 输出:true
-> 解释:等于目标和的根节点到叶节点路径如上图所示.
-> ```
+&gt; 输入:root = [5,4,8,11,null,13,4,7,2,null,null,null,1], targetSum = 22
+&gt; 输出:true
+&gt; 解释:等于目标和的根节点到叶节点路径如上图所示.
+&gt; ```
 >
 > **示例 2：**
 >
 > ![img](./codeNote.assets/pathsum2.jpg)
 >
 > ```
-> 输入:root = [1,2,3], targetSum = 5
-> 输出:false
-> 解释:树中存在两条根节点到叶子节点的路径:
-> (1 --> 2): 和为 3
-> (1 --> 3): 和为 4
-> 不存在 sum = 5 的根节点到叶子节点的路径.
-> ```
+&gt; 输入:root = [1,2,3], targetSum = 5
+&gt; 输出:false
+&gt; 解释:树中存在两条根节点到叶子节点的路径:
+&gt; (1 --&gt; 2): 和为 3
+&gt; (1 --&gt; 3): 和为 4
+&gt; 不存在 sum = 5 的根节点到叶子节点的路径.
+&gt; ```
 >
 > **示例 3：**
 >
 > ```
-> 输入:root = [], targetSum = 0
-> 输出:false
-> 解释:由于树是空的,所以不存在根节点到叶子节点的路径.
-> ```
+&gt; 输入:root = [], targetSum = 0
+&gt; 输出:false
+&gt; 解释:由于树是空的,所以不存在根节点到叶子节点的路径.
+&gt; ```
 >
 >  
 >
@@ -9162,18 +9147,18 @@ private:
     int target;
     bool flag = false;
     void backtracing(TreeNode* cur, int current_sum) {
-        current_sum += cur->val;
-        if (cur->left == nullptr && cur->right == nullptr) {
+        current_sum += cur-&gt;val;
+        if (cur-&gt;left == nullptr &amp;&amp; cur-&gt;right == nullptr) {
             if (current_sum == target) {
                 flag = true;
             }
             return;
         }
-        if (cur->left) {
-            backtracing(cur->left, current_sum);
+        if (cur-&gt;left) {
+            backtracing(cur-&gt;left, current_sum);
         }
-        if (cur->right) {
-            backtracing(cur->right, current_sum);
+        if (cur-&gt;right) {
+            backtracing(cur-&gt;right, current_sum);
         }
     }
 
@@ -9192,7 +9177,7 @@ public:
 
 ```python
 class Solution:
-    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -&gt; bool:
         node_stack = []
         # 别忘了前序遍历
         if root == None:
@@ -9223,25 +9208,25 @@ class Solution:
 > ![img](./codeNote.assets/pathsumii1.jpg)
 >
 > ```
-> 输入:root = [5,4,8,11,null,13,4,7,2,null,null,5,1], targetSum = 22
-> 输出:[[5,4,11,2],[5,8,4,5]]
-> ```
+&gt; 输入:root = [5,4,8,11,null,13,4,7,2,null,null,5,1], targetSum = 22
+&gt; 输出:[[5,4,11,2],[5,8,4,5]]
+&gt; ```
 >
 > **示例 2：**
 >
 > ![img](./codeNote.assets/pathsum2-1708427766269-27.jpg)
 >
 > ```
-> 输入:root = [1,2,3], targetSum = 5
-> 输出:[]
-> ```
+&gt; 输入:root = [1,2,3], targetSum = 5
+&gt; 输出:[]
+&gt; ```
 >
 > **示例 3：**
 >
 > ```
-> 输入:root = [1,2], targetSum = 0
-> 输出:[]
-> ```
+&gt; 输入:root = [1,2], targetSum = 0
+&gt; 输出:[]
+&gt; ```
 >
 > 
 >
@@ -9256,91 +9241,91 @@ class Solution:
 ```c++
 class Solution {
 private:
-    vector<vector<int>> ans;
+    vector<vector<int>&gt; ans;
     void backtracing(TreeNode* cur, vector<int> path, int current_num,
                      int targetSum) {
 
-        if (!cur->left && !cur->right) {
+        if (!cur-&gt;left &amp;&amp; !cur-&gt;right) {
             if (current_num == targetSum) {
                 ans.push_back(path);
             }
             return;
         }
-        if (cur->left) {
-            path.push_back(cur->left->val);
-            backtracing(cur->left, path, current_num + cur->left->val,
+        if (cur-&gt;left) {
+            path.push_back(cur-&gt;left-&gt;val);
+            backtracing(cur-&gt;left, path, current_num + cur-&gt;left-&gt;val,
                         targetSum);
             path.pop_back();
         }
-        if (cur->right) {
-            path.push_back(cur->right->val);
-            backtracing(cur->right, path, current_num + cur->right->val,
+        if (cur-&gt;right) {
+            path.push_back(cur-&gt;right-&gt;val);
+            backtracing(cur-&gt;right, path, current_num + cur-&gt;right-&gt;val,
                         targetSum);
             path.pop_back();
         }
     }
 
 public:
-    vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
+    vector<vector<int>&gt; pathSum(TreeNode* root, int targetSum) {
         if (root == nullptr) {
             return ans;
         }
         vector<int> path;
-        path.push_back(root->val);
-        backtracing(root, path, root->val, targetSum);
+        path.push_back(root-&gt;val);
+        backtracing(root, path, root-&gt;val, targetSum);
         return ans;
     }
 };
 // 这段代码其实也可以只使用一个path,放在private声明之下,做好递归操作
 // 也不使用current_sum了,使用targetSum做差得0即可
-```
+</int></vector<int></int></vector<int>```
 ```c++
 // carl的写法
 class solution {
 private:
-    vector<vector<int>> result;
+    vector<vector<int>&gt; result;
     vector<int> path;
     // 递归函数不需要返回值,因为我们要遍历整个树
     void traversal(TreeNode* cur, int count) {
-        if (!cur->left && !cur->right && count == 0) { // 遇到了叶子节点且找到了和为sum的路径
+        if (!cur-&gt;left &amp;&amp; !cur-&gt;right &amp;&amp; count == 0) { // 遇到了叶子节点且找到了和为sum的路径
             result.push_back(path);
             return;
         }
 
-        if (!cur->left && !cur->right) return ; // 遇到叶子节点而没有找到合适的边,直接返回
+        if (!cur-&gt;left &amp;&amp; !cur-&gt;right) return ; // 遇到叶子节点而没有找到合适的边,直接返回
 
-        if (cur->left) { // 左 (空节点不遍历)
-            path.push_back(cur->left->val);
-            count -= cur->left->val;
-            traversal(cur->left, count);    // 递归
-            count += cur->left->val;        // 回溯
+        if (cur-&gt;left) { // 左 (空节点不遍历)
+            path.push_back(cur-&gt;left-&gt;val);
+            count -= cur-&gt;left-&gt;val;
+            traversal(cur-&gt;left, count);    // 递归
+            count += cur-&gt;left-&gt;val;        // 回溯
             path.pop_back();                // 回溯
         }
-        if (cur->right) { // 右 (空节点不遍历)
-            path.push_back(cur->right->val);
-            count -= cur->right->val;
-            traversal(cur->right, count);   // 递归
-            count += cur->right->val;       // 回溯
+        if (cur-&gt;right) { // 右 (空节点不遍历)
+            path.push_back(cur-&gt;right-&gt;val);
+            count -= cur-&gt;right-&gt;val;
+            traversal(cur-&gt;right, count);   // 递归
+            count += cur-&gt;right-&gt;val;       // 回溯
             path.pop_back();                // 回溯
         }
         return ;
     }
 
 public:
-    vector<vector<int>> pathSum(TreeNode* root, int sum) {
+    vector<vector<int>&gt; pathSum(TreeNode* root, int sum) {
         result.clear();
         path.clear();
         if (root == NULL) return result;
-        path.push_back(root->val); // 把根节点放进路径
-        traversal(root, sum - root->val);
+        path.push_back(root-&gt;val); // 把根节点放进路径
+        traversal(root, sum - root-&gt;val);
         return result;
     }
 };
-```
+</vector<int></int></vector<int>```
 
 ```python
 class Solution:
-    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -&gt; List[List[int]]:
         ans = []
         if root == None:
             return ans
@@ -9367,16 +9352,16 @@ class Solution:
 > ![img](./codeNote.assets/tree-1708653879157-3.jpg)
 >
 > ```
-> 输入:inorder = [9,3,15,20,7], postorder = [9,15,7,20,3]
-> 输出:[3,9,20,null,null,15,7]
-> ```
+&gt; 输入:inorder = [9,3,15,20,7], postorder = [9,15,7,20,3]
+&gt; 输出:[3,9,20,null,null,15,7]
+&gt; ```
 >
 > **示例 2:**
 >
 > ```
-> 输入:inorder = [-1], postorder = [-1]
-> 输出:[-1]
-> ```
+&gt; 输入:inorder = [-1], postorder = [-1]
+&gt; 输出:[-1]
+&gt; ```
 >
 > 
 >
@@ -9401,7 +9386,7 @@ class Solution:
 ```c++
 class Solution {
 public:
-    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+    TreeNode* buildTree(vector<int>&amp; inorder, vector<int>&amp; postorder) {
         if (postorder.empty()) {
             return nullptr;
         }
@@ -9410,7 +9395,7 @@ public:
                       1]; // 后序遍历数组的最后一个元素是当前的中间节点
         TreeNode* root = new TreeNode(rootvalue);
         int spiltIndex = 0;
-        for (; spiltIndex < inorder.size(); spiltIndex++) {
+        for (; spiltIndex &lt; inorder.size(); spiltIndex++) {
             if (inorder[spiltIndex] == rootvalue) {
                 break;
             }
@@ -9425,21 +9410,21 @@ public:
                                   postorder.begin() + inorderLeft.size());
         vector<int> postorderRight(postorder.begin() + inorderLeft.size(),
                                    postorder.end());
-        root->left = buildTree(inorderLeft, postorderLeft);
-        root->right = buildTree(inorderRight, postorderRight);
+        root-&gt;left = buildTree(inorderLeft, postorderLeft);
+        root-&gt;right = buildTree(inorderRight, postorderRight);
         return root;
     }
 };
-```
+</int></int></int></int></int></int>```
 
 ```python
 class Solution:
-    def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
+    def buildTree(self, inorder: List[int], postorder: List[int]) -&gt; Optional[TreeNode]:
         if len(postorder) == 0:
             return None
         root = TreeNode(postorder[-1])
         spiltIndex = 0
-        while spiltIndex < len(inorder):
+        while spiltIndex &lt; len(inorder):
             if inorder[spiltIndex] == root.val:
                 break
             spiltIndex += 1
@@ -9531,11 +9516,11 @@ print(deep)      # [1, 2, [3, 4]] - 内嵌列表没有改变,因为它是一个�
 > **不可变对象包括整数、浮点数、字符串、元组等。**==当你对不可变对象进行修改时，实际上是在创建一个新的对象，并改变了变量的引用。==原始对象本身并未改变，因为它是不可变的。
 >
 > ```python
-> a = 3
-> b = a
-> a = a + 2  # 这里不是修改了3,而是创建了一个新的整数5,并让a引用它
-> print(b)  # b仍然是3
-> ```
+&gt; a = 3
+&gt; b = a
+&gt; a = a + 2  # 这里不是修改了3,而是创建了一个新的整数5,并让a引用它
+&gt; print(b)  # b仍然是3
+&gt; ```
 >
 > 在上面的例子中，`b`的值不会改变，因为`3`这个对象是不可变的，`a = a + 2`语句创建了一个新的整数对象`5`，然后将`a`的引用从`3`改变到了`5`。
 >
@@ -9544,11 +9529,11 @@ print(deep)      # [1, 2, [3, 4]] - 内嵌列表没有改变,因为它是一个�
 > **可变对象包括列表、字典、集合等。**==它们可以被直接修改，而不需要创建一个新的对象。如果你有多个引用指向同一个可变对象，对该对象的任何修改都会反映在所有引用上。==
 >
 > ```python
-> a = [1, 2, 3]
-> b = a
-> a.append(4)  # 直接修改了对象 [1, 2, 3]
-> print(b)  # b现在是 [1, 2, 3, 4]
-> ```
+&gt; a = [1, 2, 3]
+&gt; b = a
+&gt; a.append(4)  # 直接修改了对象 [1, 2, 3]
+&gt; print(b)  # b现在是 [1, 2, 3, 4]
+&gt; ```
 >
 > 在这个例子中，`a`和`b`都指向同一个列表对象。通过`a`对列表进行修改（添加了`4`），`b`也反映了这一改变，因为它们是指向同一个对象的引用。
 >
@@ -9579,24 +9564,24 @@ print(deep)      # [1, 2, [3, 4]] - 内嵌列表没有改变,因为它是一个�
 > **示例 1：**
 >
 > ```
-> 输入:n = 4, k = 2
-> 输出:
-> [
->   [2,4],
->   [3,4],
->   [2,3],
->   [1,2],
->   [1,3],
->   [1,4],
-> ]
-> ```
+&gt; 输入:n = 4, k = 2
+&gt; 输出:
+&gt; [
+&gt;   [2,4],
+&gt;   [3,4],
+&gt;   [2,3],
+&gt;   [1,2],
+&gt;   [1,3],
+&gt;   [1,4],
+&gt; ]
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:n = 1, k = 1
-> 输出:[[1]]
-> ```
+&gt; 输入:n = 1, k = 1
+&gt; 输出:[[1]]
+&gt; ```
 >
 >  
 >
@@ -9609,13 +9594,13 @@ print(deep)      # [1, 2, [3, 4]] - 内嵌列表没有改变,因为它是一个�
 class Solution {
 private:
     vector<int> path;
-    vector<vector<int>> ans;
+    vector<vector<int>&gt; ans;
     void backtracing(int n, int k, int start_index) {
         if (k == 0) {
             ans.push_back(path);
             return;
         }
-        for (int i = start_index; i <= n; i++) {
+        for (int i = start_index; i &lt;= n; i++) {
             path.push_back(i);
             backtracing(n, k - 1, i + 1);
             path.pop_back();
@@ -9624,15 +9609,15 @@ private:
     }
     
 public:
-    vector<vector<int>> combine(int n, int k) {
-        if (n < k) {
+    vector<vector<int>&gt; combine(int n, int k) {
+        if (n &lt; k) {
             return ans;
         }
         backtracing(n, k, 1);
         return ans;
     }
 };
-```
+</vector<int></vector<int></int>```
 
 ```python
 class Solution:
@@ -9640,20 +9625,20 @@ class Solution:
         self.ans = []
         self.path = []
 
-    def backtracing(self, n: int, k: int, start_index: int) -> None:
+    def backtracing(self, n: int, k: int, start_index: int) -&gt; None:
         if k == 0:
             self.ans.append(self.path[::])
             return
         i = start_index
-        while i <= n:
+        while i &lt;= n:
             self.path.append(i)
             self.backtracing(n, k - 1, i + 1)
             self.path.pop()
             i += 1
         return
 
-    def combine(self, n: int, k: int) -> List[List[int]]:
-        if n < k:
+    def combine(self, n: int, k: int) -&gt; List[List[int]]:
+        if n &lt; k:
             return self.ans
         self.backtracing(n, k, 1)
         return self.ans
@@ -9683,17 +9668,17 @@ class Solution:
 class Solution {
 private:
     vector<int> path;
-    vector<vector<int>> ans;
+    vector<vector<int>&gt; ans;
     void backtracing(int n, int k, int start_index) {
         // 在剩余元素不足的直接返回
-        if (n - start_index + 1 < k) {
+        if (n - start_index + 1 &lt; k) {
             return;
         }
         if (k == 0) {
             ans.push_back(path);
             return;
         }
-        for (int i = start_index; i <= n; i++) {
+        for (int i = start_index; i &lt;= n; i++) {
             path.push_back(i);
             backtracing(n, k - 1, i + 1);
             path.pop_back();
@@ -9702,15 +9687,15 @@ private:
     }
 
 public:
-    vector<vector<int>> combine(int n, int k) {
-        if (n < k) {
+    vector<vector<int>&gt; combine(int n, int k) {
+        if (n &lt; k) {
             return ans;
         }
         backtracing(n, k, 1);
         return ans;
     }
 };
-```
+</vector<int></vector<int></int>```
 
 ```python
 class Solution:
@@ -9718,22 +9703,22 @@ class Solution:
         self.ans = []
         self.path = []
 
-    def backtracing(self, n: int, k: int, start_index: int) -> None:
-        if n - start_index + 1 < k:
+    def backtracing(self, n: int, k: int, start_index: int) -&gt; None:
+        if n - start_index + 1 &lt; k:
             return 
         if k == 0:
             self.ans.append(self.path[::])
             return
         i = start_index
-        while i <= n:
+        while i &lt;= n:
             self.path.append(i)
             self.backtracing(n, k - 1, i + 1)
             self.path.pop()
             i += 1
         return
 
-    def combine(self, n: int, k: int) -> List[List[int]]:
-        if n < k:
+    def combine(self, n: int, k: int) -&gt; List[List[int]]:
+        if n &lt; k:
             return self.ans
         self.backtracing(n, k, 1)
         return self.ans
@@ -9754,33 +9739,33 @@ class Solution:
 > **示例 1:**
 >
 > ```
-> 输入: k = 3, n = 7
-> 输出: [[1,2,4]]
-> 解释:
-> 1 + 2 + 4 = 7
-> 没有其他符合的组合了.
-> ```
+&gt; 输入: k = 3, n = 7
+&gt; 输出: [[1,2,4]]
+&gt; 解释:
+&gt; 1 + 2 + 4 = 7
+&gt; 没有其他符合的组合了.
+&gt; ```
 >
 > **示例 2:**
 >
 > ```
-> 输入: k = 3, n = 9
-> 输出: [[1,2,6], [1,3,5], [2,3,4]]
-> 解释:
-> 1 + 2 + 6 = 9
-> 1 + 3 + 5 = 9
-> 2 + 3 + 4 = 9
-> 没有其他符合的组合了.
-> ```
+&gt; 输入: k = 3, n = 9
+&gt; 输出: [[1,2,6], [1,3,5], [2,3,4]]
+&gt; 解释:
+&gt; 1 + 2 + 6 = 9
+&gt; 1 + 3 + 5 = 9
+&gt; 2 + 3 + 4 = 9
+&gt; 没有其他符合的组合了.
+&gt; ```
 >
 > **示例 3:**
 >
 > ```
-> 输入: k = 4, n = 1
-> 输出: []
-> 解释: 不存在有效的组合.
-> 在[1,9]范围内使用4个不同的数字,我们可以得到的最小和是1+2+3+4 = 10,因为10 > 1,没有有效的组合.
-> ```
+&gt; 输入: k = 4, n = 1
+&gt; 输出: []
+&gt; 解释: 不存在有效的组合.
+&gt; 在[1,9]范围内使用4个不同的数字,我们可以得到的最小和是1+2+3+4 = 10,因为10 &gt; 1,没有有效的组合.
+&gt; ```
 >
 > 
 >
@@ -9794,14 +9779,14 @@ class Solution:
 class Solution {
 private:
     vector<int> path;
-    vector<vector<int>> ans;
-    void backtracing(vector<int>& visit, int start_index, int k, int n) {
-        if (k == 0 && n == 0) {
+    vector<vector<int>&gt; ans;
+    void backtracing(vector<int>&amp; visit, int start_index, int k, int n) {
+        if (k == 0 &amp;&amp; n == 0) {
             ans.push_back(path);
             return;
         }
-        for (int i = start_index; i <= 9; i++) {
-            if (n >= i && !visit[i]) { // 剪枝
+        for (int i = start_index; i &lt;= 9; i++) {
+            if (n &gt;= i &amp;&amp; !visit[i]) { // 剪枝
                 path.push_back(i);
                 visit[i] = 1;
                 backtracing(visit, i + 1, k - 1, n - i);
@@ -9815,7 +9800,7 @@ private:
     }
 
 public:
-    vector<vector<int>> combinationSum3(int k, int n) {
+    vector<vector<int>&gt; combinationSum3(int k, int n) {
         vector<int> visit(n + 1, 0);
         backtracing(visit, 1, k, n);
         return ans;
@@ -9827,14 +9812,14 @@ public:
 class Solution {
 private:
     vector<int> path;
-    vector<vector<int>> ans;
+    vector<vector<int>&gt; ans;
     void backtracing(int start_index, int k, int n) {
-        if (k == 0 && n == 0) {
+        if (k == 0 &amp;&amp; n == 0) {
             ans.push_back(path);
             return;
         }
-        for (int i = start_index; i <= 9; i++) {
-            if (n >= i) {
+        for (int i = start_index; i &lt;= 9; i++) {
+            if (n &gt;= i) {
                 path.push_back(i);
                 backtracing(i + 1, k - 1, n - i);
                 path.pop_back();
@@ -9846,12 +9831,12 @@ private:
     }
 
 public:
-    vector<vector<int>> combinationSum3(int k, int n) {
+    vector<vector<int>&gt; combinationSum3(int k, int n) {
         backtracing(1, k, n);
         return ans;
     }
 };
-```
+</vector<int></vector<int></int></int></vector<int></int></vector<int></int>```
 
 ```python
 class Solution:
@@ -9859,18 +9844,18 @@ class Solution:
         self.path = []
         self.ans = []
 
-    def backtracing(self, start_index: int, n: int, k: int) -> None:
+    def backtracing(self, start_index: int, n: int, k: int) -&gt; None:
         if k == 0 and n == 0:
             self.ans.append(self.path[::])
             return
         for i in range(start_index, 10):
-            if n >= i:
+            if n &gt;= i:
                 self.path.append(i)
                 self.backtracing(i + 1, n - i, k - 1)
                 self.path.pop()
         return
 
-    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+    def combinationSum3(self, k: int, n: int) -&gt; List[List[int]]:
         self.backtracing(1, n, k)
         return self.ans
 
@@ -9889,23 +9874,23 @@ class Solution:
 > **示例 1：**
 >
 > ```
-> 输入:digits = "23"
-> 输出:["ad","ae","af","bd","be","bf","cd","ce","cf"]
-> ```
+&gt; 输入:digits = "23"
+&gt; 输出:["ad","ae","af","bd","be","bf","cd","ce","cf"]
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:digits = ""
-> 输出:[]
-> ```
+&gt; 输入:digits = ""
+&gt; 输出:[]
+&gt; ```
 >
 > **示例 3：**
 >
 > ```
-> 输入:digits = "2"
-> 输出:["a","b","c"]
-> ```
+&gt; 输入:digits = "2"
+&gt; 输出:["a","b","c"]
+&gt; ```
 >
 > 
 >
@@ -9921,14 +9906,14 @@ private:
     string path;
     vector<string> function = {"",    "",    "abc",  "def", "ghi",
                                "jkl", "mno", "pqrs", "tuv", "wxyz"};
-    void backtracing(const string& digits, int index) {
+    void backtracing(const string&amp; digits, int index) {
         if (index == digits.size()) {
             if (!path.empty()) {
                 ans.push_back(path);
             }
             return;
         }
-        for (int i = 0; i < function[digits[index] - '0'].size(); i++) {
+        for (int i = 0; i &lt; function[digits[index] - '0'].size(); i++) {
             path.push_back(function[digits[index] - '0'][i]);
             backtracing(digits, index + 1);
             path.pop_back();
@@ -9942,7 +9927,7 @@ public:
         return ans;
     }
 };
-```
+</string></string></string>```
 
 ```python
 function = [" ", " ", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
@@ -9953,7 +9938,7 @@ class Solution:
         self.ans = []
         self.path = []
 
-    def backtracing(self, index: int, digits: str) -> None:
+    def backtracing(self, index: int, digits: str) -&gt; None:
         if index == len(digits):
             if len(self.path) != 0:
                 self.ans.append("".join(self.path[::]))
@@ -9964,7 +9949,7 @@ class Solution:
             self.path.pop()
         return
 
-    def letterCombinations(self, digits: str) -> List[str]:
+    def letterCombinations(self, digits: str) -&gt; List[str]:
         self.backtracing(0, digits)
         return self.ans
 
@@ -9983,27 +9968,27 @@ class Solution:
 > **示例 1：**
 >
 > ```
-> 输入:candidates = [2,3,6,7], target = 7
-> 输出:[[2,2,3],[7]]
-> 解释:
-> 2 和 3 可以形成一组候选,2 + 2 + 3 = 7 .注意 2 可以使用多次.
-> 7 也是一个候选, 7 = 7 .
-> 仅有这两种组合.
-> ```
+&gt; 输入:candidates = [2,3,6,7], target = 7
+&gt; 输出:[[2,2,3],[7]]
+&gt; 解释:
+&gt; 2 和 3 可以形成一组候选,2 + 2 + 3 = 7 .注意 2 可以使用多次.
+&gt; 7 也是一个候选, 7 = 7 .
+&gt; 仅有这两种组合.
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入: candidates = [2,3,5], target = 8
-> 输出: [[2,2,2,2],[2,3,3],[3,5]]
-> ```
+&gt; 输入: candidates = [2,3,5], target = 8
+&gt; 输出: [[2,2,2,2],[2,3,3],[3,5]]
+&gt; ```
 >
 > **示例 3：**
 >
 > ```
-> 输入: candidates = [2], target = 1
-> 输出: []
-> ```
+&gt; 输入: candidates = [2], target = 1
+&gt; 输出: []
+&gt; ```
 >
 >  
 >
@@ -10017,16 +10002,16 @@ class Solution:
 ```c++
 class Solution {
 private:
-    vector<vector<int>> ans;
+    vector<vector<int>&gt; ans;
     vector<int> path;
-    void backtracing(const vector<int>& candidates, int target,
+    void backtracing(const vector<int>&amp; candidates, int target,
                      int start_index) {
         if (target == 0) {
             ans.push_back(path);
             return;
         }
-        for (int i = start_index; i < candidates.size(); i++) {
-            if (target >= candidates[i]) {
+        for (int i = start_index; i &lt; candidates.size(); i++) {
+            if (target &gt;= candidates[i]) {
                 path.push_back(candidates[i]);
                 backtracing(candidates, target - candidates[i],
                             i); // 控制它不用跳转的这么快,跟随i的变化而变化
@@ -10037,12 +10022,12 @@ private:
     }
 
 public:
-    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+    vector<vector<int>&gt; combinationSum(vector<int>&amp; candidates, int target) {
         backtracing(candidates, target, 0);
         return ans;
     }
 };
-```
+</int></vector<int></int></int></vector<int>```
 
 ```python
 class Solution:
@@ -10050,17 +10035,17 @@ class Solution:
         self.ans = []
         self.path = []
 
-    def backtracing(self, candidates: List[int], start_index: int, target: int) -> None:
+    def backtracing(self, candidates: List[int], start_index: int, target: int) -&gt; None:
         if target == 0:
             self.ans.append(self.path[::])
             return
         for i in range(start_index, len(candidates)):
-            if target >= candidates[i]:
+            if target &gt;= candidates[i]:
                 self.path.append(candidates[i])
                 self.backtracing(candidates, i, target - candidates[i])
                 self.path.pop()
 
-    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+    def combinationSum(self, candidates: List[int], target: int) -&gt; List[List[int]]:
         self.backtracing(candidates, 0, target)
         return self.ans
 ```
@@ -10078,26 +10063,26 @@ class Solution:
 > **示例 1:**
 >
 > ```
-> 输入: candidates = [10,1,2,7,6,1,5], target = 8,
-> 输出:
-> [
-> [1,1,6],
-> [1,2,5],
-> [1,7],
-> [2,6]
-> ]
-> ```
+&gt; 输入: candidates = [10,1,2,7,6,1,5], target = 8,
+&gt; 输出:
+&gt; [
+&gt; [1,1,6],
+&gt; [1,2,5],
+&gt; [1,7],
+&gt; [2,6]
+&gt; ]
+&gt; ```
 >
 > **示例 2:**
 >
 > ```
-> 输入: candidates = [2,5,2,1,2], target = 5,
-> 输出:
-> [
-> [1,2,2],
-> [5]
-> ]
-> ```
+&gt; 输入: candidates = [2,5,2,1,2], target = 5,
+&gt; 输出:
+&gt; [
+&gt; [1,2,2],
+&gt; [5]
+&gt; ]
+&gt; ```
 >
 >  
 >
@@ -10111,18 +10096,18 @@ class Solution:
 ```c++
 class Solution {
 private:
-    vector<vector<int>> ans;
+    vector<vector<int>&gt; ans;
     vector<int> path;
-    void backtracing(vector<int> visited, const vector<int>& candidates,
+    void backtracing(vector<int> visited, const vector<int>&amp; candidates,
                      int target, int start_index) {
         if (target == 0) {
             ans.push_back(path);
             return;
         }
-        for (int i = start_index; i < candidates.size(); i++) {
-            if (target >= candidates[i]) {
+        for (int i = start_index; i &lt; candidates.size(); i++) {
+            if (target &gt;= candidates[i]) {
                 // 注意这一步的逻辑是前一个元素没选,且上一个元素与该元素相同(要求数组排序过)
-                if (i > 0 && candidates[i] == candidates[i - 1] &&
+                if (i &gt; 0 &amp;&amp; candidates[i] == candidates[i - 1] &amp;&amp;
                     !visited[i - 1]) {
                     continue;
                 }
@@ -10137,14 +10122,14 @@ private:
     }
 
 public:
-    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+    vector<vector<int>&gt; combinationSum2(vector<int>&amp; candidates, int target) {
         sort(candidates.begin(), candidates.end());
         vector<int> visited(candidates.size(), 0);
         backtracing(visited, candidates, target, 0);
         return ans;
     }
 };
-```
+</int></int></vector<int></int></int></int></vector<int>```
 
 ```python
 class Solution:
@@ -10154,14 +10139,14 @@ class Solution:
 
     def backtracing(
         self, candidates: List[int], visited: List[int], start_index: int, target: int
-    ) -> None:
+    ) -&gt; None:
         if target == 0:
             self.ans.append(self.path[::])
             return
         for i in range(start_index, len(candidates)):
 
-            if target >= candidates[i]:
-                if i > 0 and candidates[i] == candidates[i - 1] and visited[i - 1] == 0:
+            if target &gt;= candidates[i]:
+                if i &gt; 0 and candidates[i] == candidates[i - 1] and visited[i - 1] == 0:
                     continue
                 visited[i] = 1
                 self.path.append(candidates[i])
@@ -10169,7 +10154,7 @@ class Solution:
                 visited[i] = 0
                 self.path.pop()
 
-    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+    def combinationSum2(self, candidates: List[int], target: int) -&gt; List[List[int]]:
         candidates.sort()
         visited = [0 for _ in range(len(candidates))]
         self.backtracing(candidates, visited, 0, target)
@@ -10183,16 +10168,16 @@ class Solution:
 > **示例 1：**
 >
 > ```
-> 输入:s = "aab"
-> 输出:[["a","a","b"],["aa","b"]]
-> ```
+&gt; 输入:s = "aab"
+&gt; 输出:[["a","a","b"],["aa","b"]]
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:s = "a"
-> 输出:[["a"]] 
-> ```
+&gt; 输入:s = "a"
+&gt; 输出:[["a"]] 
+&gt; ```
 >
 > **提示：**
 >
@@ -10202,11 +10187,11 @@ class Solution:
 ```c++
 class Solution {
 private:
-    vector<vector<string>> ans;
+    vector<vector<string>&gt; ans;
     vector<string> way;
     bool isPalindrome(string s) {
         int left = 0, right = s.size() - 1;
-        while (left < right) {
+        while (left &lt; right) {
             if (s[left] != s[right]) {
                 return false;
             }
@@ -10215,12 +10200,12 @@ private:
         }
         return true;
     }
-    void backtracing(const string& mother, int start_index) {
+    void backtracing(const string&amp; mother, int start_index) {
         if (start_index == mother.size()) {
             ans.push_back(way);
             return;
         }
-        for (int end_index = start_index; end_index < mother.size();
+        for (int end_index = start_index; end_index &lt; mother.size();
              end_index++) {
             string temp =
                 mother.substr(start_index, end_index - start_index + 1);
@@ -10234,12 +10219,12 @@ private:
     }
 
 public:
-    vector<vector<string>> partition(string s) {
+    vector<vector<string>&gt; partition(string s) {
         backtracing(s, 0);
         return ans;
     }
 };
-```
+</vector<string></string></vector<string>```
 
 ```python
 class Solution:
@@ -10247,17 +10232,17 @@ class Solution:
         self.ans = []
         self.path = []
 
-    def isValid(self, s: str) -> bool:
+    def isValid(self, s: str) -&gt; bool:
         left = 0
         right = len(s) - 1
-        while left < right:
+        while left &lt; right:
             if s[left] != s[right]:
                 return False
             left += 1
             right -= 1
         return True
 
-    def backtracing(self, s: str, start_index: int) -> None:
+    def backtracing(self, s: str, start_index: int) -&gt; None:
         if start_index == len(s):
             self.ans.append(self.path[::])
             return
@@ -10269,7 +10254,7 @@ class Solution:
                 self.path.pop()
         return
 
-    def partition(self, s: str) -> List[List[str]]:
+    def partition(self, s: str) -&gt; List[List[str]]:
         self.backtracing(s, 0)
         return self.ans
 ```
@@ -10277,51 +10262,51 @@ class Solution:
 > 这道题可以使用动态规划来加速回文串的计算的速度
 >
 > ```c++
-> class Solution {
-> private:
->     vector<vector<string>> result;
->     vector<string> path; // 放已经回文的子串
->     vector<vector<bool>> isPalindrome; // 放事先计算好的是否回文子串的结果
->     void backtracking (const string& s, int startIndex) {
->         // 如果起始位置已经大于s的大小,说明已经找到了一组分割方案了
->         if (startIndex >= s.size()) {
->             result.push_back(path);
->             return;
->         }
->         for (int i = startIndex; i < s.size(); i++) {
->             if (isPalindrome[startIndex][i]) {   // 是回文子串
->                 // 获取[startIndex,i]在s中的子串
->                 string str = s.substr(startIndex, i - startIndex + 1);
->                 path.push_back(str);
->             } else {                                // 不是回文,跳过
->                 continue;
->             }
->             backtracking(s, i + 1); // 寻找i+1为起始位置的子串
->             path.pop_back(); // 回溯过程,弹出本次已经添加的子串
->         }
->     }
->     void computePalindrome(const string& s) {
->         // isPalindrome[i][j] 代表 s[i:j](双边包括)是否是回文字串 
->         isPalindrome.resize(s.size(), vector<bool>(s.size(), false)); // 根据字符串s, 刷新布尔矩阵的大小
->         for (int i = s.size() - 1; i >= 0; i--) { 
->             // 需要倒序计算, 保证在i行时, i+1行已经计算好了
->             for (int j = i; j < s.size(); j++) {
->                 if (j == i) {isPalindrome[i][j] = true;}
->                 else if (j - i == 1) {isPalindrome[i][j] = (s[i] == s[j]);}
->                 else {isPalindrome[i][j] = (s[i] == s[j] && isPalindrome[i+1][j-1]);}
->             }
->         }
->     }
-> public:
->     vector<vector<string>> partition(string s) {
->         result.clear();
->         path.clear();
->         computePalindrome(s);
->         backtracking(s, 0);
->         return result;
->     }
-> };
-> ```
+&gt; class Solution {
+&gt; private:
+&gt;     vector<vector<string>&gt; result;
+&gt;     vector<string> path; // 放已经回文的子串
+&gt;     vector<vector<bool>&gt; isPalindrome; // 放事先计算好的是否回文子串的结果
+&gt;     void backtracking (const string&amp; s, int startIndex) {
+&gt;         // 如果起始位置已经大于s的大小,说明已经找到了一组分割方案了
+&gt;         if (startIndex &gt;= s.size()) {
+&gt;             result.push_back(path);
+&gt;             return;
+&gt;         }
+&gt;         for (int i = startIndex; i &lt; s.size(); i++) {
+&gt;             if (isPalindrome[startIndex][i]) {   // 是回文子串
+&gt;                 // 获取[startIndex,i]在s中的子串
+&gt;                 string str = s.substr(startIndex, i - startIndex + 1);
+&gt;                 path.push_back(str);
+&gt;             } else {                                // 不是回文,跳过
+&gt;                 continue;
+&gt;             }
+&gt;             backtracking(s, i + 1); // 寻找i+1为起始位置的子串
+&gt;             path.pop_back(); // 回溯过程,弹出本次已经添加的子串
+&gt;         }
+&gt;     }
+&gt;     void computePalindrome(const string&amp; s) {
+&gt;         // isPalindrome[i][j] 代表 s[i:j](双边包括)是否是回文字串 
+&gt;         isPalindrome.resize(s.size(), vector<bool>(s.size(), false)); // 根据字符串s, 刷新布尔矩阵的大小
+&gt;         for (int i = s.size() - 1; i &gt;= 0; i--) { 
+&gt;             // 需要倒序计算, 保证在i行时, i+1行已经计算好了
+&gt;             for (int j = i; j &lt; s.size(); j++) {
+&gt;                 if (j == i) {isPalindrome[i][j] = true;}
+&gt;                 else if (j - i == 1) {isPalindrome[i][j] = (s[i] == s[j]);}
+&gt;                 else {isPalindrome[i][j] = (s[i] == s[j] &amp;&amp; isPalindrome[i+1][j-1]);}
+&gt;             }
+&gt;         }
+&gt;     }
+&gt; public:
+&gt;     vector<vector<string>&gt; partition(string s) {
+&gt;         result.clear();
+&gt;         path.clear();
+&gt;         computePalindrome(s);
+&gt;         backtracking(s, 0);
+&gt;         return result;
+&gt;     }
+&gt; };
+&gt; </vector<string></bool></vector<bool></string></vector<string>```
 >
 > 标记一下,到时候到动态规划的时候做一下
 
@@ -10338,23 +10323,23 @@ class Solution:
 > **示例 1：**
 >
 > ```
-> 输入:s = "25525511135"
-> 输出:["255.255.11.135","255.255.111.35"]
-> ```
+&gt; 输入:s = "25525511135"
+&gt; 输出:["255.255.11.135","255.255.111.35"]
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:s = "0000"
-> 输出:["0.0.0.0"]
-> ```
+&gt; 输入:s = "0000"
+&gt; 输出:["0.0.0.0"]
+&gt; ```
 >
 > **示例 3：**
 >
 > ```
-> 输入:s = "101023"
-> 输出:["1.0.10.23","1.0.102.3","10.1.0.23","10.10.2.3","101.0.2.3"]
-> ```
+&gt; 输入:s = "101023"
+&gt; 输出:["1.0.10.23","1.0.102.3","10.1.0.23","10.10.2.3","101.0.2.3"]
+&gt; ```
 >
 >  
 >
@@ -10369,13 +10354,13 @@ private:
     vector<string> ans;
     string path;
     bool isvalid(string temp) {
-        if (temp.size() <= 1) {
+        if (temp.size() &lt;= 1) {
             return true;
-        } else if (temp.size() <= 3) {
+        } else if (temp.size() &lt;= 3) {
             if (temp[0] == '0') {
                 return false;
             }
-            if (stoi(temp) > 255) {
+            if (stoi(temp) &gt; 255) {
                 return false;
             }
             return true;
@@ -10383,16 +10368,16 @@ private:
             return false;
         }
     }
-    void backtracing(const string& s, int start_index, int k) {
-        if (start_index == s.size() && k == 0) {
+    void backtracing(const string&amp; s, int start_index, int k) {
+        if (start_index == s.size() &amp;&amp; k == 0) {
             ans.push_back(path);
             return;
         }
         if (start_index == s.size() || k == 0) {
             return;
         }
-        for (int end_index = start_index; end_index < s.size(); end_index++) {
-            if (end_index - start_index + 1 > 3) {
+        for (int end_index = start_index; end_index &lt; s.size(); end_index++) {
+            if (end_index - start_index + 1 &gt; 3) {
                 break;
             }
             string temp = s.substr(start_index, end_index - start_index + 1);
@@ -10416,7 +10401,7 @@ public:
         return ans;
     }
 };
-```
+</string></string>```
 
 ```python
 class Solution:
@@ -10424,18 +10409,18 @@ class Solution:
         self.path = ""
         self.ans = []
 
-    def isValid(self, s: str) -> bool:
-        if len(s) <= 1:
+    def isValid(self, s: str) -&gt; bool:
+        if len(s) &lt;= 1:
             return True
-        elif len(s) <= 3:
-            if s[0] == "0" or int(s) > 255:
+        elif len(s) &lt;= 3:
+            if s[0] == "0" or int(s) &gt; 255:
                 return False
             else:
                 return True
         else:
             return False
 
-    def backtracing(self, s: str, start_index: int, n: int) -> None:
+    def backtracing(self, s: str, start_index: int, n: int) -&gt; None:
         if start_index == len(s) and n == 0:
             self.ans.append(self.path[::])
             return
@@ -10453,7 +10438,7 @@ class Solution:
                 self.path = save
         return
 
-    def restoreIpAddresses(self, s: str) -> List[str]:
+    def restoreIpAddresses(self, s: str) -&gt; List[str]:
         self.backtracing(s, 0, 4)
         return self.ans
 ```
@@ -10475,16 +10460,16 @@ class Solution:
 > **示例 1：**
 >
 > ```
-> 输入:nums = [1,2,3]
-> 输出:[[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
-> ```
+&gt; 输入:nums = [1,2,3]
+&gt; 输出:[[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:nums = [0]
-> 输出:[[],[0]]
-> ```
+&gt; 输入:nums = [0]
+&gt; 输出:[[],[0]]
+&gt; ```
 >
 >  
 >
@@ -10512,16 +10497,16 @@ class Solution:
 > **示例 1：**
 >
 > ```
-> 输入:nums = [1,2,2]
-> 输出:[[],[1],[1,2],[1,2,2],[2],[2,2]]
-> ```
+&gt; 输入:nums = [1,2,2]
+&gt; 输出:[[],[1],[1,2],[1,2,2],[2],[2,2]]
+&gt; ```
 >
 > **示例 2：**
 >
 > ```
-> 输入:nums = [0]
-> 输出:[[],[0]]
-> ```
+&gt; 输入:nums = [0]
+&gt; 输出:[[],[0]]
+&gt; ```
 >
 >  
 >

@@ -3842,7 +3842,7 @@ int main() {
     pq.push(State(start.first, start.second, 0, 0, 0)); // 将起点状态加入优先队列
     visited[{start.first, start.second, 0}] = 0; // 标记起点状态已访问，时间为0
 
-    int directions[4][2] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}}; // 定义四个方向的增量数组
+    int directions[4][2] = { {1, 0}, {-1, 0}, {0, 1}, {0, -1}}; // 定义四个方向的增量数组
     bool found = false; // 标记是否找到终点
     int min_time = -1; // 记录找到终点时的最短时间
 

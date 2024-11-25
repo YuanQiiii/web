@@ -472,7 +472,9 @@ int main()
 
 - 可以通过判断结尾是否是\0,来判断字符串的结束
 
-</string>```c++
+</string>
+
+```cpp
 #include <iostream>
 using namespace std;
 #include <string>
@@ -491,6 +493,7 @@ int main()
 
  return 0;
 }
+
 ```
 
 #### 布尔类型 bool

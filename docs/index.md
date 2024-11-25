@@ -15,6 +15,7 @@ features:
 ---
 
 这是Eric的笔记,下面是一些测试
+
 $\sum_{n=1}^{\infty} \frac{x^n}{n!} = e^x$
 
 ```python

@@ -2,6 +2,14 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  lastUpdated: true, // 最后更新时间
+  markdown: {
+    math: true,
+    image: {
+      // 默认禁用图片懒加载
+      lazyLoading: true
+    }
+  },
   base: '/web/',
   title: "HomePage",
   description: "Eric's HomePage",
@@ -10,17 +18,6 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
     ],
-
-    sidebar: [
-      {
-        text: 'Notes',
-        items: [
-          { text: '普通心理学', link: '/gp.md' },
-          { text: '书签', link: '/bookmark.md' },
-        ]
-      }
-    ],
-
     socialLinks: [
       { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
     ]

@@ -32,12 +32,12 @@ print(result)
 下面是一些基本的`mpi.h`用法，以及在您提供的代码片段中出现的MPI函数：
 
 1. 初始化和终止MPI：
-   - `MPI_Init(&argc, &argv);`：初始化MPI环境，这个函数必须是MPI程序中第一个被调用的MPI函数。它接受main函数的`argc`和`argv`作为参数，这样可以让MPI处理任何MPI库特定的命令行参数。
+   - `MPI_Init(&amp;argc, &amp;argv);`：初始化MPI环境，这个函数必须是MPI程序中第一个被调用的MPI函数。它接受main函数的`argc`和`argv`作为参数，这样可以让MPI处理任何MPI库特定的命令行参数。
    - `MPI_Finalize();`：终止MPI环境，清理所有MPI状态。在程序结束前，这个函数应该是最后调用的MPI函数。
 
 2. 获取进程信息：
-   - `MPI_Comm_rank(MPI_COMM_WORLD, &rank);`：获取当前进程的秩（`rank`）。在一个MPI程序中，每个进程都被分配一个唯一的秩，用于标识。`MPI_COMM_WORLD`是所有进程的默认通信器（communicator）。
-   - `MPI_Comm_size(MPI_COMM_WORLD, &nprocs);`：获取在给定通信器（这里是`MPI_COMM_WORLD`）中的进程总数。
+   - `MPI_Comm_rank(MPI_COMM_WORLD, &amp;rank);`：获取当前进程的秩（`rank`）。在一个MPI程序中，每个进程都被分配一个唯一的秩，用于标识。`MPI_COMM_WORLD`是所有进程的默认通信器（communicator）。
+   - `MPI_Comm_size(MPI_COMM_WORLD, &amp;nprocs);`：获取在给定通信器（这里是`MPI_COMM_WORLD`）中的进程总数。
 
 3. 发送和接收消息（在您提供的代码片段中没有这部分，但这是MPI的核心功能之一）：
    - `MPI_Send(void* data, int count, MPI_Datatype datatype, int destination, int tag, MPI_Comm communicator);`：发送消息到指定的目的地进程。

@@ -60,7 +60,7 @@ def relu_prime(x):
     '''
     relu函数的导数
     '''
-    return np.where(x>0,1,0)
+    return np.where(x&gt;0,1,0)
 
 
 # 输出层激活函数
@@ -167,8 +167,8 @@ class Network(object):
         y_pred = self.forward(x_batch) # (batch_size, 10)
 
         # 计算损失和准确率
-        batch_loss = np.mean(loss_fn(y_batch,y_pred)) # (batch_size,10) ==> (1,1)
-        batch_acc = np.mean(np.argmax(y_pred, axis=1) == np.argmax(y_batch, axis=1)) # 在对应行找出两者最大的位置的索引,看是否相等,相等即为acc  ==>  (1,1)
+        batch_loss = np.mean(loss_fn(y_batch,y_pred)) # (batch_size,10) ==&gt; (1,1)
+        batch_acc = np.mean(np.argmax(y_pred, axis=1) == np.argmax(y_batch, axis=1)) # 在对应行找出两者最大的位置的索引,看是否相等,相等即为acc  ==&gt;  (1,1)
 
         # 反向传播
 
@@ -246,7 +246,7 @@ if __name__ == '__main__':
     loss=np.mean(loss_fn(y_test,y_pred))
     acc=np.mean(np.argmax(y_pred, axis=1) == np.argmax(y_test, axis=1))
     # 训练完成后测试集损失值和准确率
-    print(f"test ==> loss:{loss:.4f}, batch_acc:{acc*100:.2f}% ,lr:{net.lr}")
+    print(f"test ==&gt; loss:{loss:.4f}, batch_acc:{acc*100:.2f}% ,lr:{net.lr}")
 ```
 
 - 总结
@@ -257,85 +257,85 @@ if __name__ == '__main__':
 
 
 
-> 这段代码是用于训练一个多层感知器（MLP）模型，以识别MNIST数据集中的手写数字。MNIST数据集包含了手写数字的灰度图像和对应的标签（0-9）。让我们逐行解析这个脚本的功能和组成部分：
->
-> ```python
-> import torch
-> import torch.nn as nn
-> import torch.nn.functional as F
-> import torch.optim as optim
-> from torch.utils.data import Dataset, DataLoader
-> import numpy as np
-> from matplotlib import pyplot as plt
-> import os
-> ```
-> 这部分代码导入了所需的库。`torch`是PyTorch的主库，用于构建和训练神经网络。`torch.nn`、`torch.nn.functional`和`torch.optim`分别用于定义网络层、提供激活函数和优化器。`Dataset`和`DataLoader`类用于处理和加载数据。`numpy`用于数据处理，`matplotlib.pyplot`用于绘图，`os`用于处理文件路径和目录。
->
-> ```python
-> print("Current working directory:", os.getcwd())
-> x = 'C:/Users/exqin/Desktop/hw2'
-> os.chdir(x)
-> print("Current working directory:", os.getcwd())
-> ```
-> 这几行代码打印当前工作目录，然后改变工作目录到指定路径，并再次打印以确认目录已更改。
->
-> ```python
-> X_train = np.load('./mnist/X_train.npy')
-> y_train = np.load('./mnist/y_train.npy')
-> X_val = np.load('./mnist/X_val.npy')
-> y_val = np.load('./mnist/y_val.npy')
-> X_test = np.load('./mnist/X_test.npy')
-> y_test = np.load('./mnist/y_test.npy')
-> ```
-> 加载训练集、验证集和测试集数据及其对应的标签。数据以NumPy数组的形式存储。
->
-> ```python
-> class MNISTDataset(Dataset):
->     def __init__(self, data=X_train, label=y_train):
->         ...
->     def __getitem__(self, index):
->         ...
->     def __len__(self):
->         ...
-> ```
-> 定义了一个继承自`Dataset`的类，用于封装MNIST数据，以便`DataLoader`能够加载数据。`__init__`方法初始化数据集，`__getitem__`方法根据索引返回单个样本，`__len__`方法返回数据集的总大小。
->
-> ```python
-> class Net(nn.Module):
->     def __init__(self):
->         super(Net, self).__init__()
->         ...
->     def forward(self, x):
->         ...
-> ```
-> 定义了网络结构。该网络包含三个全连接层，使用ReLU激活函数，最后一层不使用激活函数而是直接返回结果，用于计算log_softmax。
->
-> ```python
-> model = Net()
-> model.to(device='cuda')
-> ```
-> 实例化模型并将其移至GPU以加速训练。
->
-> ```python
-> criterion = nn.CrossEntropyLoss()
-> optimizer = optim.SGD(model.parameters(), lr=0.001)
-> ```
-> 定义了损失函数和优化器。这里使用交叉熵损失和随机梯度下降优化器。
->
-> ```python
-> train_loader = DataLoader(MNISTDataset(X_train, y_train), batch_size=64, shuffle=True)
-> val_loader = DataLoader(MNISTDataset(X_val, y_val), batch_size=64, shuffle=True)
-> test_loader = DataLoader(MNISTDataset(X_test, y_test), batch_size=64, shuffle=True)
-> ```
-> 创建了训练、验证和测试数据的`DataLoader`，这些`DataLoader`能够批量加载数据，同时提供数据打乱的功能。
->
-> 接下来的部分是训练循环，其中包括设置模型为训练模式，遍历训练数据加载器中的数据，执行前向传播、计算损失、执行后向传播和参数更新。
->
-> 然后，将模型设置为评估模式，遍历验证数据加载器中的数据，计算模型在验证集上的性能。
->
-> 最后，绘制训练和验证过程中的损失和准确率，以便于观察模型的学习情况。
->
-> 整个脚本的目的是通过调整网络结构和参数，比如增加隐藏层和改变优化器，以及添加诸如Dropout之类的正则化方法，观察模型在MNIST数据集上的训练效果，尝试达到或超过98%的测试集准确率。
+&gt; 这段代码是用于训练一个多层感知器（MLP）模型，以识别MNIST数据集中的手写数字。MNIST数据集包含了手写数字的灰度图像和对应的标签（0-9）。让我们逐行解析这个脚本的功能和组成部分：
+&gt;
+&gt; ```python
+&gt; import torch
+&gt; import torch.nn as nn
+&gt; import torch.nn.functional as F
+&gt; import torch.optim as optim
+&gt; from torch.utils.data import Dataset, DataLoader
+&gt; import numpy as np
+&gt; from matplotlib import pyplot as plt
+&gt; import os
+&gt; ```
+&gt; 这部分代码导入了所需的库。`torch`是PyTorch的主库，用于构建和训练神经网络。`torch.nn`、`torch.nn.functional`和`torch.optim`分别用于定义网络层、提供激活函数和优化器。`Dataset`和`DataLoader`类用于处理和加载数据。`numpy`用于数据处理，`matplotlib.pyplot`用于绘图，`os`用于处理文件路径和目录。
+&gt;
+&gt; ```python
+&gt; print("Current working directory:", os.getcwd())
+&gt; x = 'C:/Users/exqin/Desktop/hw2'
+&gt; os.chdir(x)
+&gt; print("Current working directory:", os.getcwd())
+&gt; ```
+&gt; 这几行代码打印当前工作目录，然后改变工作目录到指定路径，并再次打印以确认目录已更改。
+&gt;
+&gt; ```python
+&gt; X_train = np.load('./mnist/X_train.npy')
+&gt; y_train = np.load('./mnist/y_train.npy')
+&gt; X_val = np.load('./mnist/X_val.npy')
+&gt; y_val = np.load('./mnist/y_val.npy')
+&gt; X_test = np.load('./mnist/X_test.npy')
+&gt; y_test = np.load('./mnist/y_test.npy')
+&gt; ```
+&gt; 加载训练集、验证集和测试集数据及其对应的标签。数据以NumPy数组的形式存储。
+&gt;
+&gt; ```python
+&gt; class MNISTDataset(Dataset):
+&gt;     def __init__(self, data=X_train, label=y_train):
+&gt;         ...
+&gt;     def __getitem__(self, index):
+&gt;         ...
+&gt;     def __len__(self):
+&gt;         ...
+&gt; ```
+&gt; 定义了一个继承自`Dataset`的类，用于封装MNIST数据，以便`DataLoader`能够加载数据。`__init__`方法初始化数据集，`__getitem__`方法根据索引返回单个样本，`__len__`方法返回数据集的总大小。
+&gt;
+&gt; ```python
+&gt; class Net(nn.Module):
+&gt;     def __init__(self):
+&gt;         super(Net, self).__init__()
+&gt;         ...
+&gt;     def forward(self, x):
+&gt;         ...
+&gt; ```
+&gt; 定义了网络结构。该网络包含三个全连接层，使用ReLU激活函数，最后一层不使用激活函数而是直接返回结果，用于计算log_softmax。
+&gt;
+&gt; ```python
+&gt; model = Net()
+&gt; model.to(device='cuda')
+&gt; ```
+&gt; 实例化模型并将其移至GPU以加速训练。
+&gt;
+&gt; ```python
+&gt; criterion = nn.CrossEntropyLoss()
+&gt; optimizer = optim.SGD(model.parameters(), lr=0.001)
+&gt; ```
+&gt; 定义了损失函数和优化器。这里使用交叉熵损失和随机梯度下降优化器。
+&gt;
+&gt; ```python
+&gt; train_loader = DataLoader(MNISTDataset(X_train, y_train), batch_size=64, shuffle=True)
+&gt; val_loader = DataLoader(MNISTDataset(X_val, y_val), batch_size=64, shuffle=True)
+&gt; test_loader = DataLoader(MNISTDataset(X_test, y_test), batch_size=64, shuffle=True)
+&gt; ```
+&gt; 创建了训练、验证和测试数据的`DataLoader`，这些`DataLoader`能够批量加载数据，同时提供数据打乱的功能。
+&gt;
+&gt; 接下来的部分是训练循环，其中包括设置模型为训练模式，遍历训练数据加载器中的数据，执行前向传播、计算损失、执行后向传播和参数更新。
+&gt;
+&gt; 然后，将模型设置为评估模式，遍历验证数据加载器中的数据，计算模型在验证集上的性能。
+&gt;
+&gt; 最后，绘制训练和验证过程中的损失和准确率，以便于观察模型的学习情况。
+&gt;
+&gt; 整个脚本的目的是通过调整网络结构和参数，比如增加隐藏层和改变优化器，以及添加诸如Dropout之类的正则化方法，观察模型在MNIST数据集上的训练效果，尝试达到或超过98%的测试集准确率。
 
 
 
@@ -343,261 +343,261 @@ if __name__ == '__main__':
 
 ### 请为我介绍`Numpy`的广播机制?
 
-> NumPy 的广播机制是一个非常强大的功能，它允许不同形状的数组进行数学运算。广播的核心思想是在适当的条件下，用较小的数组在较大数组的某个维度上进行复制，使它们的形状相匹配，从而可以进行元素级的运算。
->
-> ### 广播的规则
->
-> NumPy在执行操作时遵循以下规则进行广播：
->
-> 1. **维度对齐**：比较两个数组的形状，从末尾维度（最右边）开始比较，每个维度大小需要满足以下条件之一：
->    - 相等。
->    - 其中一个为1。
->    - 其中一个数组的该维度不存在。
->
-> 2. **维度扩展**：在较小的数组形状前面补1，直到两个数组的维度数相同。
->
-> 3. **大小为1的维度扩展**：在比较的维度中，大小为1的维度会被扩展（复制）以匹配另一个数组的大小。
->
-> ### 广播的例子
->
-> **例1**：一个数组加上一个数字
->
-> ```python
-> import numpy as np
-> 
-> a = np.array([1, 2, 3])
-> b = 2
-> print(a + b)
-> ```
->
-> 输出将会是 `[3, 4, 5]`。这里，数字`b`被“广播”到数组`a`的所有元素上。
->
-> **例2**：两个数组形状不完全相同
->
-> ```python
-> import numpy as np
-> 
-> a = np.array([[0], [10], [20], [30]])
-> b = np.array([0, 1, 2])
-> 
-> print(a + b)
-> ```
->
-> 输出将会是：
->
-> ```cmd
-> [[ 0  1  2]
->  [10 11 12]
->  [20 21 22]
->  [30 31 32]]
-> ```
->
-> 这里，`a`的形状是`(4, 1)`，而`b`的形状是`(3,)`。根据广播规则：
->
-> - 首先，`b`的形状在前面补1，变为`(1, 3)`。
-> - 然后，两个数组的形状都在不足的维度上扩展，`a`变为`(4, 3)`，`b`也变为`(4, 3)`。
-> - 最后，两个数组可以进行元素级的加法操作。
->
-> ### 注意事项
->
-> - 广播机制使得数组操作更加高效，但也需要注意，它可能导致意外的内存使用增加，因为它会在需要的时候创建较大数组的临时副本。
-> - 不是所有的操作都可以通过广播来完成，如果无法按照上述规则匹配数组形状，NumPy将抛出一个异常。
->
-> 理解和熟练使用NumPy的广播机制，可以极大地提高数据处理的效率和代码的简洁性。
+&gt; NumPy 的广播机制是一个非常强大的功能，它允许不同形状的数组进行数学运算。广播的核心思想是在适当的条件下，用较小的数组在较大数组的某个维度上进行复制，使它们的形状相匹配，从而可以进行元素级的运算。
+&gt;
+&gt; ### 广播的规则
+&gt;
+&gt; NumPy在执行操作时遵循以下规则进行广播：
+&gt;
+&gt; 1. **维度对齐**：比较两个数组的形状，从末尾维度（最右边）开始比较，每个维度大小需要满足以下条件之一：
+&gt;    - 相等。
+&gt;    - 其中一个为1。
+&gt;    - 其中一个数组的该维度不存在。
+&gt;
+&gt; 2. **维度扩展**：在较小的数组形状前面补1，直到两个数组的维度数相同。
+&gt;
+&gt; 3. **大小为1的维度扩展**：在比较的维度中，大小为1的维度会被扩展（复制）以匹配另一个数组的大小。
+&gt;
+&gt; ### 广播的例子
+&gt;
+&gt; **例1**：一个数组加上一个数字
+&gt;
+&gt; ```python
+&gt; import numpy as np
+&gt; 
+&gt; a = np.array([1, 2, 3])
+&gt; b = 2
+&gt; print(a + b)
+&gt; ```
+&gt;
+&gt; 输出将会是 `[3, 4, 5]`。这里，数字`b`被“广播”到数组`a`的所有元素上。
+&gt;
+&gt; **例2**：两个数组形状不完全相同
+&gt;
+&gt; ```python
+&gt; import numpy as np
+&gt; 
+&gt; a = np.array([[0], [10], [20], [30]])
+&gt; b = np.array([0, 1, 2])
+&gt; 
+&gt; print(a + b)
+&gt; ```
+&gt;
+&gt; 输出将会是：
+&gt;
+&gt; ```cmd
+&gt; [[ 0  1  2]
+&gt;  [10 11 12]
+&gt;  [20 21 22]
+&gt;  [30 31 32]]
+&gt; ```
+&gt;
+&gt; 这里，`a`的形状是`(4, 1)`，而`b`的形状是`(3,)`。根据广播规则：
+&gt;
+&gt; - 首先，`b`的形状在前面补1，变为`(1, 3)`。
+&gt; - 然后，两个数组的形状都在不足的维度上扩展，`a`变为`(4, 3)`，`b`也变为`(4, 3)`。
+&gt; - 最后，两个数组可以进行元素级的加法操作。
+&gt;
+&gt; ### 注意事项
+&gt;
+&gt; - 广播机制使得数组操作更加高效，但也需要注意，它可能导致意外的内存使用增加，因为它会在需要的时候创建较大数组的临时副本。
+&gt; - 不是所有的操作都可以通过广播来完成，如果无法按照上述规则匹配数组形状，NumPy将抛出一个异常。
+&gt;
+&gt; 理解和熟练使用NumPy的广播机制，可以极大地提高数据处理的效率和代码的简洁性。
 
 ### 请为我详细介绍`Numpy`中的形状函数shape对应的形状
 
-> 在 NumPy 中，`shape` 是一个非常基础且重要的概念，它表示数组的维度和每个维度的大小。了解一个数组的形状对于进行数据分析和数学运算至关重要。
->
-> ### 形状（Shape）
->
-> - **形状**：一个数组的形状由一系列的整数定义，这些整数表示数组在每个维度上的大小。形状是一个元组（tuple），其中包含的每个元素代表该维度上的元素数量。
->
-> ### 如何获取形状
->
-> 你可以通过数组的 `.shape` 属性来访问其形状：
->
-> ```python
-> import numpy as np
-> 
-> a = np.array([[1, 2, 3], [4, 5, 6]])
-> print(a.shape)  # 输出: (2, 3)
-> ```
->
-> 在这个例子中，`a` 是一个 2x3 的二维数组，因此它的形状为 `(2, 3)`。
->
-> ### 形状的组成
->
-> - 对于一维数组（向量），形状会是 `(n,)`，其中 `n` 是数组中元素的数量。
-> - 对于二维数组（矩阵），形状是 `(m, n)`，其中 `m` 是行数，`n` 是列数。
-> - 对于更高维度的数组，形状会依次包含更多的维度大小。
->
-> ### 示例
->
-> 1. **一维数组**：
->
->     ```python
->     arr1d = np.array([1, 2, 3, 4, 5])
->     print(arr1d.shape)  # 输出: (5,)
->     ```
->
-> 2. **二维数组**：
->
->     ```python
->     arr2d = np.array([[1, 2, 3], [4, 5, 6]])
->     print(arr2d.shape)  # 输出: (2, 3)
->     ```
->
-> 3. **三维数组**：
->
->     ```python
->     arr3d = np.array([[[1, 2], [3, 4]], [[5, 6], [7, 8]]])
->     print(arr3d.shape)  # 输出: (2, 2, 2)
->     ```
->
-> ### 修改形状
->
-> NumPy 也允许你改变数组的形状，而不改变其数据，这可以通过 `reshape` 方法实现：
->
-> ```python
-> a = np.arange(6)  # 创建一个形状为 (6,) 的数组
-> print(a)  # 输出: [0 1 2 3 4 5]
-> 
-> b = a.reshape((2, 3))  # 将其重新形状为 2x3 的二维数组
-> print(b)
-> # 输出:
-> # [[0 1 2]
-> #  [3 4 5]]
-> ```
->
-> ### 注意事项
->
-> - 形状修改操作，如 `reshape`，通常返回数组的视图（view），而不是复制数据。这意味着，原数组和新形状的数组共享相同的数据缓冲区。
-> - 如果指定的新形状与原始数组的元素总数不匹配，`reshape` 操作将失败。
->
-> 理解并熟悉 NumPy 数组的形状及其操作对于有效地使用 NumPy 进行数据处理和分析至关重要。
+&gt; 在 NumPy 中，`shape` 是一个非常基础且重要的概念，它表示数组的维度和每个维度的大小。了解一个数组的形状对于进行数据分析和数学运算至关重要。
+&gt;
+&gt; ### 形状（Shape）
+&gt;
+&gt; - **形状**：一个数组的形状由一系列的整数定义，这些整数表示数组在每个维度上的大小。形状是一个元组（tuple），其中包含的每个元素代表该维度上的元素数量。
+&gt;
+&gt; ### 如何获取形状
+&gt;
+&gt; 你可以通过数组的 `.shape` 属性来访问其形状：
+&gt;
+&gt; ```python
+&gt; import numpy as np
+&gt; 
+&gt; a = np.array([[1, 2, 3], [4, 5, 6]])
+&gt; print(a.shape)  # 输出: (2, 3)
+&gt; ```
+&gt;
+&gt; 在这个例子中，`a` 是一个 2x3 的二维数组，因此它的形状为 `(2, 3)`。
+&gt;
+&gt; ### 形状的组成
+&gt;
+&gt; - 对于一维数组（向量），形状会是 `(n,)`，其中 `n` 是数组中元素的数量。
+&gt; - 对于二维数组（矩阵），形状是 `(m, n)`，其中 `m` 是行数，`n` 是列数。
+&gt; - 对于更高维度的数组，形状会依次包含更多的维度大小。
+&gt;
+&gt; ### 示例
+&gt;
+&gt; 1. **一维数组**：
+&gt;
+&gt;     ```python
+&gt;     arr1d = np.array([1, 2, 3, 4, 5])
+&gt;     print(arr1d.shape)  # 输出: (5,)
+&gt;     ```
+&gt;
+&gt; 2. **二维数组**：
+&gt;
+&gt;     ```python
+&gt;     arr2d = np.array([[1, 2, 3], [4, 5, 6]])
+&gt;     print(arr2d.shape)  # 输出: (2, 3)
+&gt;     ```
+&gt;
+&gt; 3. **三维数组**：
+&gt;
+&gt;     ```python
+&gt;     arr3d = np.array([[[1, 2], [3, 4]], [[5, 6], [7, 8]]])
+&gt;     print(arr3d.shape)  # 输出: (2, 2, 2)
+&gt;     ```
+&gt;
+&gt; ### 修改形状
+&gt;
+&gt; NumPy 也允许你改变数组的形状，而不改变其数据，这可以通过 `reshape` 方法实现：
+&gt;
+&gt; ```python
+&gt; a = np.arange(6)  # 创建一个形状为 (6,) 的数组
+&gt; print(a)  # 输出: [0 1 2 3 4 5]
+&gt; 
+&gt; b = a.reshape((2, 3))  # 将其重新形状为 2x3 的二维数组
+&gt; print(b)
+&gt; # 输出:
+&gt; # [[0 1 2]
+&gt; #  [3 4 5]]
+&gt; ```
+&gt;
+&gt; ### 注意事项
+&gt;
+&gt; - 形状修改操作，如 `reshape`，通常返回数组的视图（view），而不是复制数据。这意味着，原数组和新形状的数组共享相同的数据缓冲区。
+&gt; - 如果指定的新形状与原始数组的元素总数不匹配，`reshape` 操作将失败。
+&gt;
+&gt; 理解并熟悉 NumPy 数组的形状及其操作对于有效地使用 NumPy 进行数据处理和分析至关重要。
 
 ### 一般来说(n,)对应的是行向量还是列向量,它与(1,n)有什么区别?
 
-> 在数学和线性代数中，行向量和列向量的区别主要体现在它们的方向和在矩阵中的表示方法上。当我们使用 NumPy 或其他类似的科学计算库时，这种区别也有所体现，尽管在一维数组 `(n,)` 的情况下，并不直接指明是行向量还是列向量。
->
-> ### 一维数组 `(n,)`
->
-> - 当我们谈论一个形状为 `(n,)` 的 NumPy 数组时，我们指的是一个一维数组，它包含 `n` 个元素。**这种数组既不是行向量也不是列向量；它仅仅是一个一维序列。**
->
->   ==需要通过`reshape`或者广播机制使其维度升高之后才可以进行矩阵级别的操作==
->
-> - 在某些上下文中，人们可能会根据操作或预期的应用将其视为行向量或列向量，但从 NumPy 的角度来看，它只是一个一维数组。
->
-> ### 二维数组 `(1, n)` 和 `(n, 1)`
->
-> - 形状为 `(1, n)` 的数组可以被视为一个**行向量**，因为它表示一个只有一行但有多列的二维数组。
-> - 形状为 `(n, 1)` 的数组可以被视为一个**列向量**，因为它表示一个只有一列但有多行的二维数组。
->
-> ### 区别
->
-> - **一维数组 `(n,)`**：
->   - 它只有一个维度，因此不直接表明行向量或列向量的概念。
->   - 在进行某些数学操作时，尤其是涉及到矩阵运算时，可能需要明确地将其转换为二维的行向量或列向量形式。
->
-> - **二维数组 `(1, n)`（行向量）和 `(n, 1)`（列向量）**：
->   - 它们是明确的二维结构，更接近于线性代数中行向量和列向量的定义。
->   - 在矩阵运算中，行向量和列向量的区别非常重要，比如在矩阵乘法中。
->
-> ### 转换示例
->
-> 如果你有一个形状为 `(n,)` 的数组，并希望明确地使用它作为行向量或列向量，你可以通过 `reshape` 方法来改变其形状：
->
-> ```python
-> import numpy as np
-> 
-> # 创建一个形状为 (4,) 的一维数组
-> a = np.array([1, 2, 3, 4])
-> 
-> # 将其转换为形状为 (1, 4) 的行向量
-> row_vec = a.reshape(1, -1)
-> print("Row vector:", row_vec)
-> 
-> # 将其转换为形状为 (4, 1) 的列向量
-> col_vec = a.reshape(-1, 1)
-> print("Column vector:", col_vec)
-> ```
->
-> 这种转换让你能够明确数组的用途（作为行向量还是列向量），并确保在进行矩阵和向量运算时符合预期。
+&gt; 在数学和线性代数中，行向量和列向量的区别主要体现在它们的方向和在矩阵中的表示方法上。当我们使用 NumPy 或其他类似的科学计算库时，这种区别也有所体现，尽管在一维数组 `(n,)` 的情况下，并不直接指明是行向量还是列向量。
+&gt;
+&gt; ### 一维数组 `(n,)`
+&gt;
+&gt; - 当我们谈论一个形状为 `(n,)` 的 NumPy 数组时，我们指的是一个一维数组，它包含 `n` 个元素。**这种数组既不是行向量也不是列向量；它仅仅是一个一维序列。**
+&gt;
+&gt;   ==需要通过`reshape`或者广播机制使其维度升高之后才可以进行矩阵级别的操作==
+&gt;
+&gt; - 在某些上下文中，人们可能会根据操作或预期的应用将其视为行向量或列向量，但从 NumPy 的角度来看，它只是一个一维数组。
+&gt;
+&gt; ### 二维数组 `(1, n)` 和 `(n, 1)`
+&gt;
+&gt; - 形状为 `(1, n)` 的数组可以被视为一个**行向量**，因为它表示一个只有一行但有多列的二维数组。
+&gt; - 形状为 `(n, 1)` 的数组可以被视为一个**列向量**，因为它表示一个只有一列但有多行的二维数组。
+&gt;
+&gt; ### 区别
+&gt;
+&gt; - **一维数组 `(n,)`**：
+&gt;   - 它只有一个维度，因此不直接表明行向量或列向量的概念。
+&gt;   - 在进行某些数学操作时，尤其是涉及到矩阵运算时，可能需要明确地将其转换为二维的行向量或列向量形式。
+&gt;
+&gt; - **二维数组 `(1, n)`（行向量）和 `(n, 1)`（列向量）**：
+&gt;   - 它们是明确的二维结构，更接近于线性代数中行向量和列向量的定义。
+&gt;   - 在矩阵运算中，行向量和列向量的区别非常重要，比如在矩阵乘法中。
+&gt;
+&gt; ### 转换示例
+&gt;
+&gt; 如果你有一个形状为 `(n,)` 的数组，并希望明确地使用它作为行向量或列向量，你可以通过 `reshape` 方法来改变其形状：
+&gt;
+&gt; ```python
+&gt; import numpy as np
+&gt; 
+&gt; # 创建一个形状为 (4,) 的一维数组
+&gt; a = np.array([1, 2, 3, 4])
+&gt; 
+&gt; # 将其转换为形状为 (1, 4) 的行向量
+&gt; row_vec = a.reshape(1, -1)
+&gt; print("Row vector:", row_vec)
+&gt; 
+&gt; # 将其转换为形状为 (4, 1) 的列向量
+&gt; col_vec = a.reshape(-1, 1)
+&gt; print("Column vector:", col_vec)
+&gt; ```
+&gt;
+&gt; 这种转换让你能够明确数组的用途（作为行向量还是列向量），并确保在进行矩阵和向量运算时符合预期。
 
 ###  `s = x.reshape(-1, 1)` 这句话会把x变成什么形状?
 
-> 当你在 NumPy 中使用 `x.reshape(-1, 1)` 时，你实际上是在将数组 `x` 重塑为一个二维数组，其中该数组有一个列和足够多的行来容纳原始数组中的所有元素。
->
-> - ==`-1` 在 `.reshape()` 方法中作为一个参数表示该维度的大小应该被自动计算，以便保持数组中元素的总数不变。==
-> - `1` 表示新数组的第二维（列的数量）应该是 1。
->
-> 因此，不论 `x` 的原始形状如何（只要 `x` 是一个一维数组），`x.reshape(-1, 1)` 都会生成一个形状为 `(n, 1)` 的数组，其中 `n` 是 `x` 中元素的总数。这实质上把 `x` 转换为了一个列向量。
->
-> ### 示例
->
-> ```python
-> import numpy as np
-> 
-> # 假设 x 是一个包含 6 个元素的一维数组
-> x = np.array([1, 2, 3, 4, 5, 6])
-> 
-> # 使用 .reshape(-1, 1) 将 x 转换为一个列向量
-> s = x.reshape(-1, 1)
-> 
-> print(s)
-> # 输出将会是：
-> # [[1]
-> #  [2]
-> #  [3]
-> #  [4]
-> #  [5]
-> #  [6]]
-> ```
->
-> 在这个例子中，`s` 的形状将会是 `(6, 1)`，意味着它有 6 行和 1 列。
+&gt; 当你在 NumPy 中使用 `x.reshape(-1, 1)` 时，你实际上是在将数组 `x` 重塑为一个二维数组，其中该数组有一个列和足够多的行来容纳原始数组中的所有元素。
+&gt;
+&gt; - ==`-1` 在 `.reshape()` 方法中作为一个参数表示该维度的大小应该被自动计算，以便保持数组中元素的总数不变。==
+&gt; - `1` 表示新数组的第二维（列的数量）应该是 1。
+&gt;
+&gt; 因此，不论 `x` 的原始形状如何（只要 `x` 是一个一维数组），`x.reshape(-1, 1)` 都会生成一个形状为 `(n, 1)` 的数组，其中 `n` 是 `x` 中元素的总数。这实质上把 `x` 转换为了一个列向量。
+&gt;
+&gt; ### 示例
+&gt;
+&gt; ```python
+&gt; import numpy as np
+&gt; 
+&gt; # 假设 x 是一个包含 6 个元素的一维数组
+&gt; x = np.array([1, 2, 3, 4, 5, 6])
+&gt; 
+&gt; # 使用 .reshape(-1, 1) 将 x 转换为一个列向量
+&gt; s = x.reshape(-1, 1)
+&gt; 
+&gt; print(s)
+&gt; # 输出将会是：
+&gt; # [[1]
+&gt; #  [2]
+&gt; #  [3]
+&gt; #  [4]
+&gt; #  [5]
+&gt; #  [6]]
+&gt; ```
+&gt;
+&gt; 在这个例子中，`s` 的形状将会是 `(6, 1)`，意味着它有 6 行和 1 列。
 
 ### `axis=`参数
 
-> 在 NumPy 中，`axis` 参数用于指定数组操作的轴（axis）。轴可以理解为数组的某个维度，而 `axis` 的序号决定了操作的方向。对于一个给定的数组，不同的 `axis` 值对应于数组的不同维度。
->
-> 以下是 `axis` 对应的序号和它们所代表的操作方向：
->
-> - `axis=0`：第一个维度，也就是数组的行方向（对于二维数组来说，就是沿着行的方向）。对应每一列
-> - `axis=1`：第二个维度，也就是数组的列方向（对于二维数组来说，就是沿着列的方向）。对应每一行
-> - `axis=2`：第三个维度，对于三维数组来说，可以理解为“页”的方向。
-> - 以此类推，`axis=n` 表示数组的第 `n` 个维度。
->
-> 让我们通过一些具体的例子来说明 `axis` 参数的使用：
->
-> ### 二维数组（矩阵）
->
-> 假设我们有一个二维数组（矩阵）`A`，其形状为 `(m, n)`，即 `A` 有 `m` 行和 `n` 列。
->
-> - `np.sum(A, axis=0)`：计算每一列的和，结果是一个形状为 `(n,)` 的一维数组，每个元素代表对应列的和。
-> - `np.sum(A, axis=1)`：计算每一行的和，结果是一个形状为 `(m,)` 的一维数组，每个元素代表对应行的和。
->
-> ### 三维数组
->
-> 假设我们有一个三维数组 `B`，其形状为 `(p, q, r)`，即 `B` 有 `p` 层，每层有 `q` 行和 `r` 列。
->
-> - `np.sum(B, axis=0)`：计算每个“页”（`q x r` 子矩阵）的和，结果是一个形状为 `(q, r)` 的二维数组，每个元素代表对应“页”的和。
-> - `np.sum(B, axis=1)`：计算每层中每一行的和，结果是一个形状为 `(p, r)` 的二维数组，每个元素代表对应层中对应行的和。
-> - `np.sum(B, axis=2)`：计算每层中每一列的和，结果是一个形状为 `(p, q)` 的二维数组，每个元素代表对应层中对应列的和。
->
-> ### 更高维度的数组
->
-> 对于更高维度的数组，`axis` 的概念是类似的。`axis` 的值告诉 NumPy 沿着哪个维度进行操作。
->
-> ### 注意事项
->
-> - 当使用 `axis` 参数时，要确保你的操作是沿着正确的维度进行的，否则可能会得到意想不到的结果。
-> - 在某些函数中，如 `np.mean`、`np.std`、`np.dot` 等，`axis` 参数也用于指定沿着哪个维度进行计算或减少维度。
-> - 在使用 `axis` 参数时，要记住 NumPy 是按 C 语言风格进行索引的，即第一个维度是 `axis=0`。
->
-> 通过正确使用 `axis` 参数，你可以在 NumPy 中高效地进行各种数组操作。
->
-> ![e0e7c0e870791c6da20a4c5a5ced14a](./aiNote.assets/e0e7c0e870791c6da20a4c5a5ced14a.jpg)
+&gt; 在 NumPy 中，`axis` 参数用于指定数组操作的轴（axis）。轴可以理解为数组的某个维度，而 `axis` 的序号决定了操作的方向。对于一个给定的数组，不同的 `axis` 值对应于数组的不同维度。
+&gt;
+&gt; 以下是 `axis` 对应的序号和它们所代表的操作方向：
+&gt;
+&gt; - `axis=0`：第一个维度，也就是数组的行方向（对于二维数组来说，就是沿着行的方向）。对应每一列
+&gt; - `axis=1`：第二个维度，也就是数组的列方向（对于二维数组来说，就是沿着列的方向）。对应每一行
+&gt; - `axis=2`：第三个维度，对于三维数组来说，可以理解为“页”的方向。
+&gt; - 以此类推，`axis=n` 表示数组的第 `n` 个维度。
+&gt;
+&gt; 让我们通过一些具体的例子来说明 `axis` 参数的使用：
+&gt;
+&gt; ### 二维数组（矩阵）
+&gt;
+&gt; 假设我们有一个二维数组（矩阵）`A`，其形状为 `(m, n)`，即 `A` 有 `m` 行和 `n` 列。
+&gt;
+&gt; - `np.sum(A, axis=0)`：计算每一列的和，结果是一个形状为 `(n,)` 的一维数组，每个元素代表对应列的和。
+&gt; - `np.sum(A, axis=1)`：计算每一行的和，结果是一个形状为 `(m,)` 的一维数组，每个元素代表对应行的和。
+&gt;
+&gt; ### 三维数组
+&gt;
+&gt; 假设我们有一个三维数组 `B`，其形状为 `(p, q, r)`，即 `B` 有 `p` 层，每层有 `q` 行和 `r` 列。
+&gt;
+&gt; - `np.sum(B, axis=0)`：计算每个“页”（`q x r` 子矩阵）的和，结果是一个形状为 `(q, r)` 的二维数组，每个元素代表对应“页”的和。
+&gt; - `np.sum(B, axis=1)`：计算每层中每一行的和，结果是一个形状为 `(p, r)` 的二维数组，每个元素代表对应层中对应行的和。
+&gt; - `np.sum(B, axis=2)`：计算每层中每一列的和，结果是一个形状为 `(p, q)` 的二维数组，每个元素代表对应层中对应列的和。
+&gt;
+&gt; ### 更高维度的数组
+&gt;
+&gt; 对于更高维度的数组，`axis` 的概念是类似的。`axis` 的值告诉 NumPy 沿着哪个维度进行操作。
+&gt;
+&gt; ### 注意事项
+&gt;
+&gt; - 当使用 `axis` 参数时，要确保你的操作是沿着正确的维度进行的，否则可能会得到意想不到的结果。
+&gt; - 在某些函数中，如 `np.mean`、`np.std`、`np.dot` 等，`axis` 参数也用于指定沿着哪个维度进行计算或减少维度。
+&gt; - 在使用 `axis` 参数时，要记住 NumPy 是按 C 语言风格进行索引的，即第一个维度是 `axis=0`。
+&gt;
+&gt; 通过正确使用 `axis` 参数，你可以在 NumPy 中高效地进行各种数组操作。
+&gt;
+&gt; ![e0e7c0e870791c6da20a4c5a5ced14a](./aiNote.assets/e0e7c0e870791c6da20a4c5a5ced14a.jpg)
 
 ## `Pytorch`
 
@@ -609,7 +609,7 @@ if __name__ == '__main__':
 
 ### `Sigmod`函数
 
->  Sigmoid 函数是一个经典的激活函数，通常用于输出层进行二分类问题的概率预测。
+&gt;  Sigmoid 函数是一个经典的激活函数，通常用于输出层进行二分类问题的概率预测。
 
 - 函数
   -  $\sigma(x) = \frac{1}{1+e^{-x}}$
@@ -626,12 +626,12 @@ def sigmoid_derivative(x):
 
 ###  `Relu`函数
 
-> ReLU（Rectified Linear Unit）函数是最常用的隐藏层激活函数之一，因其简单和效果良好而广泛应用。
+&gt; ReLU（Rectified Linear Unit）函数是最常用的隐藏层激活函数之一，因其简单和效果良好而广泛应用。
 
 - 函数
   - $f(x) = max(0,x)$
 - 导数
-  - $f^{(1)}(x) =\begin{cases} 1&\text{x>0}\\0&\text{otherwise}\end{cases} $
+  - $f^{(1)}(x) =\begin{cases} 1&amp;\text{x&gt;0}\\0&amp;\text{otherwise}\end{cases} $
 
 
 
@@ -640,12 +640,12 @@ def relu(x):
     return np.maximum(0, x)
 
 def relu_derivative(x):
-    return (x > 0).astype(x.dtype) # 前面是一个布尔表达式,后面的astype方法可以使得函数返回一个和x数据类型的数据,通过广播机制得到相应矩阵
+    return (x &gt; 0).astype(x.dtype) # 前面是一个布尔表达式,后面的astype方法可以使得函数返回一个和x数据类型的数据,通过广播机制得到相应矩阵
 ```
 
 ### `Softmax`函数
 
-> `Softmax` 函数常用于多分类问题的输出层，它将多个线性输出转换为概率分布。
+&gt; `Softmax` 函数常用于多分类问题的输出层，它将多个线性输出转换为概率分布。
 
 - 函数
   - 对于向量 (x) 的第 (i) 个元素,$Softamx(x)_i = \frac{e^{x_i}}{\sum_{j=1}^{N}e^{x_j}}$
@@ -663,7 +663,7 @@ def softmax(x):
 
 ### `Tanh`函数
 
-> Tanh（双曲正切）函数是 Sigmoid 函数的变种，它将输出值范围调整为了(-1,1).
+&gt; Tanh（双曲正切）函数是 Sigmoid 函数的变种，它将输出值范围调整为了(-1,1).
 
 - 函数
   - $tanh(x) = \cfrac{e^x-e^{-x}}{e^x+e^{-x}}$ 
@@ -751,7 +751,7 @@ Dropout 的效果类似于集成学习中的 Bagging 方法，其中多个模型
 
 ### 工作目录的检验
 
-> 如果工作目录不正确会导致`numpy`的`load`函数找不到相应的文件
+&gt; 如果工作目录不正确会导致`numpy`的`load`函数找不到相应的文件
 
 ```python
 # 导入os模块
@@ -786,59 +786,59 @@ sys.stdout = file
 print("这条信息会被写入到文件中，而不是显示在控制台。")
 ```
 
-> 在 Python 中，如果你想要同时将输出显示在控制台并且记录到文件中，你可以使用 `tee` 函数。`tee` 函数是 `sys` 模块的一部分，它允许你将输出流分发到多个地方。
->
-> 以下是一个示例，展示了如何将标准输出同时重定向到控制台和文件：
->
-> ```python
-> import sys
-> from io import StringIO
-> 
-> # 创建一个 StringIO 对象，它可以被用作文件对象
-> string_io = StringIO()
-> 
-> # 将标准输出重定向到 StringIO 对象和实际的控制台输出
-> sys.stdout = sys.stdout.__class__(sys.stdout.write, sys.stdout.flush, string_io.write)
-> 
-> # 定义一个辅助函数，用于捕获输出并将其写入文件
-> def capture_output():
->     string_io.flush()  # 确保 StringIO 对象中的输出被刷新
->     with open('output.txt', 'a') as file:
->         file.write(string_io.getvalue())  # 将输出写入文件
->     string_io.truncate(0)  # 清空 StringIO 对象的内容
->     string_io.seek(0)  # 重置 StringIO 对象的读写位置
-> 
-> # 现在你可以正常打印输出，它将同时显示在控制台和写入到文件中
-> print("这条信息会显示在控制台和追加到 output.txt 文件中。")
-> 
-> # 捕获并保存输出到文件
-> capture_output()
-> 
-> # 如果你想要在每次打印后都立即将输出写入文件，你可以重写 flush 方法
-> class TeeStream:
->     def __init__(self, stream):
->         self.stream = stream
-> 
->     def write(self, data):
->         self.stream.write(data)
->         sys.stdout.write(data)  # 保持原有的控制台输出
-> 
->     def flush(self):
->         self.stream.flush()
->         sys.stdout.flush()  # 保持原有的控制台输出
-> 
-> # 使用 TeeStream 重定向输出
-> sys.stdout = TeeStream(string_io)
-> 
-> # 现在你可以正常打印输出，它将同时显示在控制台和写入到文件中
-> print("再次打印，输出同样会显示在控制台和追加到 output.txt 文件中。")
-> ```
->
-> 在这个例子中，我们首先创建了一个 `StringIO` 对象来捕获输出。然后我们定义了一个 `TeeStream` 类，它继承自 `sys.stdout` 的类，并重写了 `write` 和 `flush` 方法。这样，当我们调用 `print` 函数时，输出会被同时发送到 `StringIO` 对象和控制台。
->
-> 我们定义了一个 `capture_output` 函数来将 `StringIO` 对象中的内容追加到文件中，并清空 `StringIO` 对象以便下一次捕获输出。在每次打印后，你可以调用 `capture_output` 函数来保存输出到文件。
->
-> 请注意，这种方法会在每次打印后立即将输出写入文件，而不是在程序结束时。如果你希望在程序结束时一次性写入文件，你可以在程序的最后调用 `capture_output` 函数。
+&gt; 在 Python 中，如果你想要同时将输出显示在控制台并且记录到文件中，你可以使用 `tee` 函数。`tee` 函数是 `sys` 模块的一部分，它允许你将输出流分发到多个地方。
+&gt;
+&gt; 以下是一个示例，展示了如何将标准输出同时重定向到控制台和文件：
+&gt;
+&gt; ```python
+&gt; import sys
+&gt; from io import StringIO
+&gt; 
+&gt; # 创建一个 StringIO 对象，它可以被用作文件对象
+&gt; string_io = StringIO()
+&gt; 
+&gt; # 将标准输出重定向到 StringIO 对象和实际的控制台输出
+&gt; sys.stdout = sys.stdout.__class__(sys.stdout.write, sys.stdout.flush, string_io.write)
+&gt; 
+&gt; # 定义一个辅助函数，用于捕获输出并将其写入文件
+&gt; def capture_output():
+&gt;     string_io.flush()  # 确保 StringIO 对象中的输出被刷新
+&gt;     with open('output.txt', 'a') as file:
+&gt;         file.write(string_io.getvalue())  # 将输出写入文件
+&gt;     string_io.truncate(0)  # 清空 StringIO 对象的内容
+&gt;     string_io.seek(0)  # 重置 StringIO 对象的读写位置
+&gt; 
+&gt; # 现在你可以正常打印输出，它将同时显示在控制台和写入到文件中
+&gt; print("这条信息会显示在控制台和追加到 output.txt 文件中。")
+&gt; 
+&gt; # 捕获并保存输出到文件
+&gt; capture_output()
+&gt; 
+&gt; # 如果你想要在每次打印后都立即将输出写入文件，你可以重写 flush 方法
+&gt; class TeeStream:
+&gt;     def __init__(self, stream):
+&gt;         self.stream = stream
+&gt; 
+&gt;     def write(self, data):
+&gt;         self.stream.write(data)
+&gt;         sys.stdout.write(data)  # 保持原有的控制台输出
+&gt; 
+&gt;     def flush(self):
+&gt;         self.stream.flush()
+&gt;         sys.stdout.flush()  # 保持原有的控制台输出
+&gt; 
+&gt; # 使用 TeeStream 重定向输出
+&gt; sys.stdout = TeeStream(string_io)
+&gt; 
+&gt; # 现在你可以正常打印输出，它将同时显示在控制台和写入到文件中
+&gt; print("再次打印，输出同样会显示在控制台和追加到 output.txt 文件中。")
+&gt; ```
+&gt;
+&gt; 在这个例子中，我们首先创建了一个 `StringIO` 对象来捕获输出。然后我们定义了一个 `TeeStream` 类，它继承自 `sys.stdout` 的类，并重写了 `write` 和 `flush` 方法。这样，当我们调用 `print` 函数时，输出会被同时发送到 `StringIO` 对象和控制台。
+&gt;
+&gt; 我们定义了一个 `capture_output` 函数来将 `StringIO` 对象中的内容追加到文件中，并清空 `StringIO` 对象以便下一次捕获输出。在每次打印后，你可以调用 `capture_output` 函数来保存输出到文件。
+&gt;
+&gt; 请注意，这种方法会在每次打印后立即将输出写入文件，而不是在程序结束时。如果你希望在程序结束时一次性写入文件，你可以在程序的最后调用 `capture_output` 函数。
 
 ## 卷积和池化
 
@@ -930,33 +930,33 @@ $text{Output Height} = \left\lfloor \frac{\text{Input Height}}{\text{Stride}} \r
 
 ### 归一化
 
-> 归一化在深度学习中扮演着非常重要的角色，它有助于提高训练过程的稳定性、效率和模型的最终性能。归一化主要有两种类型：数据归一化和批量归一化。
->
-> ### 数据归一化（Data Normalization）
->
-> 数据归一化通常是指对输入数据进行预处理，使其具有统一的尺度。这有助于加速训练过程，并确保模型中的不同参数具有相似的初始尺度。数据归一化的常见方法包括：
->
-> - **最小-最大归一化**（Min-Max Normalization）：将数据缩放到一个固定的范围内，通常是 [0, 1] 或 [-1, 1]。
-> - **Z得分归一化**（Z-Score Normalization）：将数据的均值变为 0，标准差变为 1。
-> - **小数定标归一化**（Decimal Scaling）：通过移动数据的小数点位置来进行归一化。
->
-> 数据归一化有助于改善梯度下降算法的收敛速度和稳定性，因为它确保了所有特征都在相同的尺度上，避免了某些特征在计算梯度时主导其他特征。
->
-> ### 批量归一化（Batch Normalization）
->
-> 批量归一化是一种在网络训练过程中动态进行的归一化技术，它对每个小批量数据进行归一化，并引入了可学习的缩放（gamma）和偏移（beta）参数。批量归一化的主要作用包括：
->
-> 1. **减少内部协变量偏移**：在训练过程中，由于参数更新，每一层的输入分布都会发生变化。批量归一化通过规范化激活值来减少这种分布变化，从而使得每一层的输入更加稳定。
->
-> 2. **加速训练**：由于梯度不会受到饱和或爆炸的影响，批量归一化可以使得更高的学习率得以应用，从而加速模型的收敛。
->
-> 3. **减少过拟合**：批量归一化可以被视为一种正则化技术，因为它为每个小批量数据引入了噪声。这种噪声有助于防止模型对训练数据过度拟合。
->
-> 4. **消除参数初始化的依赖**：由于归一化的存在，模型对参数初始化的选择不那么敏感，这使得模型训练更加灵活。
->
-> 5. **允许更深的网络**：批量归一化使得训练深层网络成为可能，因为即使在深层网络中，梯度也不会消失或爆炸。
->
-> 总的来说，归一化是深度学习中一个关键的预处理和正则化步骤，它有助于提高模型的训练效率和泛化能力。
+&gt; 归一化在深度学习中扮演着非常重要的角色，它有助于提高训练过程的稳定性、效率和模型的最终性能。归一化主要有两种类型：数据归一化和批量归一化。
+&gt;
+&gt; ### 数据归一化（Data Normalization）
+&gt;
+&gt; 数据归一化通常是指对输入数据进行预处理，使其具有统一的尺度。这有助于加速训练过程，并确保模型中的不同参数具有相似的初始尺度。数据归一化的常见方法包括：
+&gt;
+&gt; - **最小-最大归一化**（Min-Max Normalization）：将数据缩放到一个固定的范围内，通常是 [0, 1] 或 [-1, 1]。
+&gt; - **Z得分归一化**（Z-Score Normalization）：将数据的均值变为 0，标准差变为 1。
+&gt; - **小数定标归一化**（Decimal Scaling）：通过移动数据的小数点位置来进行归一化。
+&gt;
+&gt; 数据归一化有助于改善梯度下降算法的收敛速度和稳定性，因为它确保了所有特征都在相同的尺度上，避免了某些特征在计算梯度时主导其他特征。
+&gt;
+&gt; ### 批量归一化（Batch Normalization）
+&gt;
+&gt; 批量归一化是一种在网络训练过程中动态进行的归一化技术，它对每个小批量数据进行归一化，并引入了可学习的缩放（gamma）和偏移（beta）参数。批量归一化的主要作用包括：
+&gt;
+&gt; 1. **减少内部协变量偏移**：在训练过程中，由于参数更新，每一层的输入分布都会发生变化。批量归一化通过规范化激活值来减少这种分布变化，从而使得每一层的输入更加稳定。
+&gt;
+&gt; 2. **加速训练**：由于梯度不会受到饱和或爆炸的影响，批量归一化可以使得更高的学习率得以应用，从而加速模型的收敛。
+&gt;
+&gt; 3. **减少过拟合**：批量归一化可以被视为一种正则化技术，因为它为每个小批量数据引入了噪声。这种噪声有助于防止模型对训练数据过度拟合。
+&gt;
+&gt; 4. **消除参数初始化的依赖**：由于归一化的存在，模型对参数初始化的选择不那么敏感，这使得模型训练更加灵活。
+&gt;
+&gt; 5. **允许更深的网络**：批量归一化使得训练深层网络成为可能，因为即使在深层网络中，梯度也不会消失或爆炸。
+&gt;
+&gt; 总的来说，归一化是深度学习中一个关键的预处理和正则化步骤，它有助于提高模型的训练效率和泛化能力。
 
 批量归一化（Batch Normalization，简称 BN）是一种用于提高神经网络训练稳定性和性能的技术。它通过规范化网络中间层的激活值来减少内部协变量偏移（Internal Covariate Shift），这是指网络各层输入分布的变化。
 
@@ -996,34 +996,34 @@ def forward(self, x):
 
 ## 优化器
 
-> PyTorch 提供了多种优化器，用于在训练神经网络时更新模型的参数。以下是 PyTorch 中一些常见的优化器：
->
-> 1. **SGD（随机梯度下降）**:
->    - `torch.optim.SGD`：标准随机梯度下降优化器。
->    - `torch.optim.SGD` 还支持动量（Momentum），可以通过 `momentum` 参数来启用。
->
-> 2. **Adam（自适应矩估计）**:
->    - `torch.optim.Adam`：结合了动量和 RMSprop 的优点，自适应地调整每个参数的学习率。
->
-> 3. **AdamW（Adam with weight decay）**:
->    - `torch.optim.AdamW`：Adam 优化器的变体，将 L2 权重衰减纳入考虑。
->
-> 4. **RMSprop（均方根传播）**:
->    - `torch.optim.RMSprop`：处理非平稳目标函数的优化器，适用于处理稀疏梯度。
->
-> 5. **Adagrad（自适应梯度）**:
->    - `torch.optim.Adagrad`：自适应学习率的优化器，适用于处理稀疏梯度。
->
-> 6. **Adadelta（Adagrad的扩展）**:
->    - `torch.optim.Adadelta`：Adagrad 的改进版本，旨在减少其学习率单调递减的问题。
->
-> 7. **Adamax（Adam的扩展）**:
->    - `torch.optim.Adamax`：Adam 的变体，使用无穷范数来缩放梯度的每个元素。
->
-> 8. **SparseAdam（稀疏Adam）**:
->    - `torch.optim.SparseAdam`：适用于稀疏梯度的 Adam 优化器。
->
-> 9. **LBFGS（拟牛顿法）**:
->    - `torch.optim.LBFGS`：有限内存 Broyden–Fletcher–Goldfarb–Shanno 算法，适用于小到中等规模的问题。
->
-> 这些优化器都有各自的特点和适用场景。选择哪种优化器取决于具体的问题、数据集和模型架构。在实践中，可能需要尝试多种优化器来找到最适合当前任务的优化策略。
+&gt; PyTorch 提供了多种优化器，用于在训练神经网络时更新模型的参数。以下是 PyTorch 中一些常见的优化器：
+&gt;
+&gt; 1. **SGD（随机梯度下降）**:
+&gt;    - `torch.optim.SGD`：标准随机梯度下降优化器。
+&gt;    - `torch.optim.SGD` 还支持动量（Momentum），可以通过 `momentum` 参数来启用。
+&gt;
+&gt; 2. **Adam（自适应矩估计）**:
+&gt;    - `torch.optim.Adam`：结合了动量和 RMSprop 的优点，自适应地调整每个参数的学习率。
+&gt;
+&gt; 3. **AdamW（Adam with weight decay）**:
+&gt;    - `torch.optim.AdamW`：Adam 优化器的变体，将 L2 权重衰减纳入考虑。
+&gt;
+&gt; 4. **RMSprop（均方根传播）**:
+&gt;    - `torch.optim.RMSprop`：处理非平稳目标函数的优化器，适用于处理稀疏梯度。
+&gt;
+&gt; 5. **Adagrad（自适应梯度）**:
+&gt;    - `torch.optim.Adagrad`：自适应学习率的优化器，适用于处理稀疏梯度。
+&gt;
+&gt; 6. **Adadelta（Adagrad的扩展）**:
+&gt;    - `torch.optim.Adadelta`：Adagrad 的改进版本，旨在减少其学习率单调递减的问题。
+&gt;
+&gt; 7. **Adamax（Adam的扩展）**:
+&gt;    - `torch.optim.Adamax`：Adam 的变体，使用无穷范数来缩放梯度的每个元素。
+&gt;
+&gt; 8. **SparseAdam（稀疏Adam）**:
+&gt;    - `torch.optim.SparseAdam`：适用于稀疏梯度的 Adam 优化器。
+&gt;
+&gt; 9. **LBFGS（拟牛顿法）**:
+&gt;    - `torch.optim.LBFGS`：有限内存 Broyden–Fletcher–Goldfarb–Shanno 算法，适用于小到中等规模的问题。
+&gt;
+&gt; 这些优化器都有各自的特点和适用场景。选择哪种优化器取决于具体的问题、数据集和模型架构。在实践中，可能需要尝试多种优化器来找到最适合当前任务的优化策略。

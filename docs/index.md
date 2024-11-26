@@ -7,7 +7,8 @@ hero:
 
 <script setup>
 import { defineClientComponent } from 'vitepress'
-import { onBeforeUnmount, h } from 'vue'
+import { onMounted, onBeforeUnmount, h } from 'vue'
+let dpr = window.devicePixelRatio || 1
 
 const Effect = defineClientComponent(() => {
   return new Promise((resolve) => {

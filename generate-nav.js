@@ -55,4 +55,4 @@ if (!fs.existsSync(vitepressDir)) {
 
 // 将生成的代码写入 navItems.js 文件
 fs.writeFileSync(navItemsFile, navCode, 'utf-8');
-console.log('导航菜单项已生成到 navItems.js');
+console.log('Navigation menu items have been generated to navItems.js');

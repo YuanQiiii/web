@@ -10,6 +10,10 @@ export default [
     ]
   },
   {
+    "text": "内容",
+    "link": "/内容"
+  },
+  {
     "text": "功能测试",
     "link": "/功能测试"
   },

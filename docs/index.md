@@ -29,6 +29,26 @@ const Effect = defineClientComponent(() => {
         document.body.appendChild(canvas)
         const ctx = canvas.getContext('2d')
     
+        // 设置高分辨率 canvas
+        function setupHiDPICanvas(canvas) {
+          const dpr = window.devicePixelRatio || 1
+          const rect = canvas.getBoundingClientRect()
+          
+          // 设置 canvas 的实际像素尺寸
+          canvas.width = rect.width * dpr
+          canvas.height = rect.height * dpr
+          
+          // 设置 canvas 的 CSS 尺寸
+          canvas.style.width = `${rect.width}px`
+          canvas.style.height = `${rect.height}px`
+          
+          // 缩放绘图上下文以匹配像素比
+          const ctx = canvas.getContext('2d')
+          ctx.scale(dpr, dpr)
+          
+          return { width: rect.width, height: rect.height, dpr }
+        }
+    
         // 1. 首先定义 Particle 类
         class Particle {
           constructor() {
@@ -36,6 +56,7 @@ const Effect = defineClientComponent(() => {
             this.y = Math.random() * canvas.height
             this.vx = (Math.random() - 0.5) * 1.5
             this.vy = (Math.random() - 0.5) * 1.5
+            this.radius = 3
           }
     
           update() {
@@ -49,7 +70,7 @@ const Effect = defineClientComponent(() => {
     
           draw() {
             ctx.beginPath()
-            ctx.arc(this.x, this.y, 3, 0, Math.PI * 2)
+            ctx.arc(this.x, this.y, this.radius * dpr, 0, Math.PI * 2)
             ctx.strokeStyle = 'rgba(125, 125, 125, 0.8)'
             ctx.lineWidth = 2
             ctx.stroke()
@@ -82,8 +103,7 @@ const Effect = defineClientComponent(() => {
     
         // 5. 定义画布调整函数
         function resizeCanvas() {
-          canvas.width = window.innerWidth
-          canvas.height = window.innerHeight
+          const { width, height, dpr } = setupHiDPICanvas(canvas)
           determineDeviceSettings()
           initializeParticles()
         }
@@ -148,7 +168,7 @@ const Effect = defineClientComponent(() => {
             ctx.moveTo(p1.x, p1.y)
             ctx.lineTo(p2.x, p2.y)
             ctx.strokeStyle = connection.color
-            ctx.lineWidth = 0.4
+            ctx.lineWidth = 0.4 * dpr
             ctx.stroke()
           })
         }

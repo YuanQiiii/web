@@ -94,8 +94,8 @@ onMounted(() => {
   // 1. 首先定义 Particle 类
   class Particle {
     constructor() {
-      this.x = Math.random() * canvas.width * 0.8 + canvas.width * 0.1
-      this.y = Math.random() * canvas.height * 0.8 + canvas.height * 0.1
+      this.x = (Math.random() * 2 - 1) * canvas.width * 0.2 + canvas.width * 0.5
+      this.y = (Math.random() * 2 - 1) * canvas.height * 0.2 + canvas.height * 0.5
       this.vx = (Math.random() - 0.5) * 1.5
       this.vy = (Math.random() - 0.5) * 1.5
       this.radius = 3

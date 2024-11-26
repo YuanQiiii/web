@@ -7,10 +7,14 @@ hero:
 
 <script setup>
 import { defineClientComponent } from 'vitepress'
+import { onBeforeUnmount, h } from 'vue'
 
 const Effect = defineClientComponent(() => {
   return new Promise((resolve) => {
     resolve({
+      render() {
+        return h('div') // 使用渲染函数替代 template
+      },
       mounted() {
         // 创建并设置 Canvas
         const canvas = document.createElement('canvas')
@@ -24,11 +28,8 @@ const Effect = defineClientComponent(() => {
 
         document.body.appendChild(canvas)
         const ctx = canvas.getContext('2d')
-        resizeCanvas()
 
-        window.addEventListener('resize', resizeCanvas)
-
-        // 定义粒子类
+        // 1. 首先定义 Particle 类
         class Particle {
           constructor() {
             this.x = Math.random() * canvas.width
@@ -50,28 +51,55 @@ const Effect = defineClientComponent(() => {
             ctx.beginPath()
             ctx.arc(this.x, this.y, 3, 0, Math.PI * 2)
             ctx.strokeStyle = 'rgba(125, 125, 125, 0.8)'
-            ctx.lineWidth = 1
+            ctx.lineWidth = 2
             ctx.stroke()
           }
         }
 
-        // 创建粒子数组
-        const particleCount = 100
-        const particles = Array.from({ length: particleCount }, () => new Particle())
-
-        // 定义连接概率和最大距离
-        const connectionProbability = 0.05
-        const maxDistance = 150 // 最大连接距离，根据需要调整
-
-        // 存储当前连接的数组
+        // 2. 然后声明变量
+        let particleCount = 100
+        let maxDistance = 150
+        let particles = []
         const connections = []
+
+        // 3. 定义设备设置函数
+        function determineDeviceSettings() {
+          const width = window.innerWidth
+          if (width < 768) {
+            particleCount = 50
+            maxDistance = 100
+          } else {
+            particleCount = 200
+            maxDistance = 200
+          }
+        }
+
+        // 4. 定义初始化函数
+        function initializeParticles() {
+          particles = Array.from({ length: particleCount }, () => new Particle())
+          connections.length = 0
+        }
+
+        // 5. 定义画布调整函数
+        function resizeCanvas() {
+          canvas.width = window.innerWidth
+          canvas.height = window.innerHeight
+          determineDeviceSettings()
+          initializeParticles()
+        }
+
+        // 6. 初始化
+        resizeCanvas()
+
+        // 定义连接概率
+        const connectionProbability = 0.05
 
         // 生成随机颜色的函数
         function getRandomColor() {
           const r = Math.floor(Math.random() * 256)
           const g = Math.floor(Math.random() * 256)
           const b = Math.floor(Math.random() * 256)
-          const a = (Math.random() * 0.5 + 0.5).toFixed(2) // 透明度在0.5到1之间
+          const a = (Math.random() * 0.2 + 0.8).toFixed(2) // 透明度在0.5到1之间 
           return `rgba(${r}, ${g}, ${b}, ${a})`
         }
 
@@ -120,7 +148,7 @@ const Effect = defineClientComponent(() => {
             ctx.moveTo(p1.x, p1.y)
             ctx.lineTo(p2.x, p2.y)
             ctx.strokeStyle = connection.color
-            ctx.lineWidth = 0.3
+            ctx.lineWidth = 0.4
             ctx.stroke()
           })
         }
@@ -138,15 +166,16 @@ const Effect = defineClientComponent(() => {
 
         animate()
 
-        // 调整 Canvas 尺寸
-        function resizeCanvas() {
-          canvas.width = window.innerWidth
-          canvas.height = window.innerHeight
+        // 处理窗口大小变化
+        function handleResize() {
+          resizeCanvas()
         }
 
-        // 清理函数
-        this.$once('hook:beforeDestroy', () => {
-          window.removeEventListener('resize', resizeCanvas)
+        window.addEventListener('resize', handleResize)
+
+        // 使用 onBeforeUnmount 替代 this.$once
+        onBeforeUnmount(() => {
+          window.removeEventListener('resize', handleResize)
           document.body.removeChild(canvas)
         })
       }

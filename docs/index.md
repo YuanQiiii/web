@@ -28,7 +28,7 @@ const Effect = defineClientComponent(() => {
 
         document.body.appendChild(canvas)
         const ctx = canvas.getContext('2d')
-
+    
         // 1. 首先定义 Particle 类
         class Particle {
           constructor() {
@@ -37,16 +37,16 @@ const Effect = defineClientComponent(() => {
             this.vx = (Math.random() - 0.5) * 1.5
             this.vy = (Math.random() - 0.5) * 1.5
           }
-
+    
           update() {
             this.x += this.vx
             this.y += this.vy
-
+    
             // 边界反弹
             if (this.x <= 0 || this.x >= canvas.width) this.vx *= -1
             if (this.y <= 0 || this.y >= canvas.height) this.vy *= -1
           }
-
+    
           draw() {
             ctx.beginPath()
             ctx.arc(this.x, this.y, 3, 0, Math.PI * 2)
@@ -55,13 +55,13 @@ const Effect = defineClientComponent(() => {
             ctx.stroke()
           }
         }
-
+    
         // 2. 然后声明变量
         let particleCount = 100
         let maxDistance = 150
         let particles = []
         const connections = []
-
+    
         // 3. 定义设备设置函数
         function determineDeviceSettings() {
           const width = window.innerWidth
@@ -69,17 +69,17 @@ const Effect = defineClientComponent(() => {
             particleCount = 50
             maxDistance = 100
           } else {
-            particleCount = 200
-            maxDistance = 200
+            particleCount = 100
+            maxDistance = 150
           }
         }
-
+    
         // 4. 定义初始化函数
         function initializeParticles() {
           particles = Array.from({ length: particleCount }, () => new Particle())
           connections.length = 0
         }
-
+    
         // 5. 定义画布调整函数
         function resizeCanvas() {
           canvas.width = window.innerWidth
@@ -87,13 +87,13 @@ const Effect = defineClientComponent(() => {
           determineDeviceSettings()
           initializeParticles()
         }
-
+    
         // 6. 初始化
         resizeCanvas()
-
+    
         // 定义连接概率
         const connectionProbability = 0.05
-
+    
         // 生成随机颜色的函数
         function getRandomColor() {
           const r = Math.floor(Math.random() * 256)
@@ -102,7 +102,7 @@ const Effect = defineClientComponent(() => {
           const a = (Math.random() * 0.2 + 0.8).toFixed(2) // 透明度在0.5到1之间 
           return `rgba(${r}, ${g}, ${b}, ${a})`
         }
-
+    
         // 绘制连接线
         function drawConnections() {
           // 清除不再连接的线
@@ -117,7 +117,7 @@ const Effect = defineClientComponent(() => {
               connections.splice(i, 1) // 移除连接
             }
           }
-
+    
           // 添加新的连接
           for (let i = 0; i < particles.length; i++) {
             const p1 = particles[i]
@@ -139,7 +139,7 @@ const Effect = defineClientComponent(() => {
               }
             }
           }
-
+    
           // 绘制所有连接
           connections.forEach((connection) => {
             const p1 = particles[connection.index1]
@@ -152,7 +152,7 @@ const Effect = defineClientComponent(() => {
             ctx.stroke()
           })
         }
-
+    
         // 动画函数
         function animate() {
           ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -163,16 +163,16 @@ const Effect = defineClientComponent(() => {
           drawConnections()
           requestAnimationFrame(animate)
         }
-
+    
         animate()
-
+    
         // 处理窗口大小变化
         function handleResize() {
           resizeCanvas()
         }
-
+    
         window.addEventListener('resize', handleResize)
-
+    
         // 使用 onBeforeUnmount 替代 this.$once
         onBeforeUnmount(() => {
           window.removeEventListener('resize', handleResize)

@@ -1,6 +1,4 @@
 # Page
 
+- 一个小的网页，基于vitepress
 
-::: info
-一个小的网页，基于vitepress
-:::

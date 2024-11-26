@@ -43,6 +43,9 @@ jobs:
       - name: 生成导航菜单
         run: npm run generate-nav
 
+      - name: 生成actions
+        run: npm run generate-actions
+
       - name: 构建站点
         run: npm run build
 

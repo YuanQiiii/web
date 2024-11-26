@@ -5,6 +5,10 @@ export default [
     "link": "/friends"
   },
   {
+    "text": "functions",
+    "link": "/functions"
+  },
+  {
     "text": "笔记",
     "items": [
       {

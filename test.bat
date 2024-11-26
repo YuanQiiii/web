@@ -23,5 +23,4 @@ if %errorlevel% neq 0 (
     exit /b %errorlevel
 )
 
-pause
-exit /b 0
+timeout /t 2

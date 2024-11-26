@@ -47,6 +47,11 @@ jobs:
       - name: Build site
         run: npm run docs:build
 
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: docs/.vitepress/dist
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -55,5 +60,5 @@ jobs:
       pages: write
       id-token: write
     steps:
-      - name: 部署到 GitHub Pages
+      - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v1

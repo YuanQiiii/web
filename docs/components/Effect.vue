@@ -96,8 +96,8 @@ onMounted(() => {
     constructor() {
       this.x = (Math.random() * 2 - 1) * canvas.width * 0.2 + canvas.width * 0.5
       this.y = (Math.random() * 2 - 1) * canvas.height * 0.2 + canvas.height * 0.5
-      this.vx = (Math.random() - 0.5) * 1.5
-      this.vy = (Math.random() - 0.5) * 1.5
+      this.vx = (Math.random() - 0.5) * 3
+      this.vy = (Math.random() - 0.5) * 3
       this.radius = 3
     }
 

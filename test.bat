@@ -1,6 +1,11 @@
 @echo off
 setlocal EnableDelayedExpansion
 
+echo Cleaning previous installations...
+if exist node_modules rmdir /s /q node_modules
+if exist package-lock.json del package-lock.json
+timeout /t 2 > nul
+
 echo Installing dependencies...
 call npm install || goto :error
 timeout /t 2 > nul

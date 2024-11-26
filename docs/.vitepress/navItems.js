@@ -1,29 +1,38 @@
 // 此文件由 generate-nav.js 自动生成，请勿手动修改
 export default [
   {
-    "text": "friends",
-    "link": "/friends"
+    "text": "关于本站",
+    "items": [
+      {
+        "text": "已经修复的问题",
+        "link": "/关于本站/已经修复的问题"
+      }
+    ]
   },
   {
-    "text": "functions",
-    "link": "/functions"
+    "text": "功能测试",
+    "link": "/功能测试"
+  },
+  {
+    "text": "想法",
+    "items": [
+      {
+        "text": "书签",
+        "link": "/想法/书签"
+      },
+      {
+        "text": "零碎的记忆",
+        "link": "/想法/零碎的记忆"
+      }
+    ]
+  },
+  {
+    "text": "朋友",
+    "link": "/朋友"
   },
   {
     "text": "笔记",
     "items": [
-      {
-        "text": "书签",
-        "items": [
-          {
-            "text": "注意",
-            "link": "/笔记/书签/注意"
-          },
-          {
-            "text": "电子书",
-            "link": "/笔记/书签/电子书"
-          }
-        ]
-      },
       {
         "text": "当前的学习重心",
         "items": [

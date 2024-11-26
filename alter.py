@@ -1,5 +1,4 @@
 import os
-import re
 
 # html符号修改成正常符号
 def replace_html_entities(content):

@@ -6,12 +6,12 @@ const indexPath = path.join(__dirname, 'docs/index.md');
 // 指定要递归遍历的目录路径
 const targetDirectory = path.join(__dirname, 'docs');
 // 要忽略的文件列表
-const ignoreFiles = ['index.md', 'friends.md', 'functions.md'];
+const ignoreFiles = ['index.md', '朋友.md', '功能测试.md', "已经修复的问题.md"];
 
 // 主题数组 - 只使用 VitePress 支持的主题
 const themes = ['brand', 'alt'];
 
-// 递归遍历目录，生成 actions
+// 递归遍历目录，生成 actions 内容
 function generateActions(dir) {
   let actions = '';
   const files = fs.readdirSync(dir);
@@ -54,10 +54,10 @@ fs.readFile(indexPath, 'utf8', (err, data) => {
 
   // 保留 actions: 之前的内容
   const header = data.substring(0, actionsIndex + 'actions:'.length);
-  
+
   // 生成新的 actions 内容
   const newActions = generateActions(targetDirectory);
-  
+
   // 组合新的文件内容
   const updatedContent = `${header}\n${newActions}\n---`;
 

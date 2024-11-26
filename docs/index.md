@@ -4,16 +4,15 @@ layout: home
 
 hero:
   name: "Page"
-  text: "a living man"
   actions:
 
     - theme: brand
-      text: 注意
-      link: 笔记/书签/注意.md
+      text: 书签
+      link: 想法/书签.md
 
     - theme: alt
-      text: 电子书
-      link: 笔记/书签/电子书.md
+      text: 零碎的记忆
+      link: 想法/零碎的记忆.md
 
     - theme: brand
       text: 普通心理学B

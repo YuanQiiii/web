@@ -1,5 +1,4 @@
 <script setup>
-import { defineClientComponent } from 'vitepress'
 import { onMounted, onBeforeUnmount, h, ref } from 'vue'
 
 // 全局状态
@@ -8,10 +7,14 @@ let ctx = null
 let dpr = window.devicePixelRatio || 1
 let particles = []
 let connections = []
+let bounds = {
+  width: 0,
+  height: 0
+}
 
 // Canvas 初始化和设置
 function setupHiDPICanvas() {
-  if (!canvas) return
+  if (!canvas) return null
   
   const rect = canvas.getBoundingClientRect()
   canvas.width = rect.width * dpr
@@ -20,41 +23,73 @@ function setupHiDPICanvas() {
   canvas.style.height = `${rect.height}px`
   ctx = canvas.getContext('2d')
   ctx.scale(dpr, dpr)
+  
+  // 返回尺寸对象
+  return {
+    width: rect.width,
+    height: rect.height
+  }
 }
+
+function updateBounds() {
+  if (!canvas) return
+  const rect = canvas.getBoundingClientRect()
+  bounds.width = rect.width
+  bounds.height = rect.height
+}
+
+// 添加防抖以优化性能
+function debounce(func, wait) {
+  let timeout
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout)
+      func(...args)
+    }
+    clearTimeout(timeout)
+    timeout = setTimeout(later, wait)
+  }
+}
+
+// 在 resizeCanvas 函数前定义 debouncedResize
+const debouncedResize = debounce(() => {
+  const dimensions = setupHiDPICanvas()
+  if (!dimensions) return
+  
+  const { width } = dimensions
+  // 根据宽度调整设置
+  if (width < 768) {
+    particleCount = 50
+    maxDistance = 100
+  } else {
+    particleCount = 100
+    maxDistance = 150
+  }
+  
+  // 重新初始化粒子
+  initializeParticles()
+}, 250)
 
 // 生命周期钩子
 onMounted(() => {
-    const canvas = document.createElement('canvas')
-    canvas.style.position = 'fixed'
-    canvas.style.top = '0'
-    canvas.style.left = '0'
-    canvas.style.width = '100%'
-    canvas.style.height = '100%'
-    canvas.style.pointerEvents = 'none'
-    canvas.style.zIndex = '999999'
+  // 创建 canvas
+  canvas = document.createElement('canvas')
+  canvas.style.position = 'fixed'
+  canvas.style.top = '0'
+  canvas.style.left = '0'
+  canvas.style.width = '100%'
+  canvas.style.height = '100%'
+  canvas.style.pointerEvents = 'none'
+  canvas.style.zIndex = '999999'
 
-    document.body.appendChild(canvas)
-    const ctx = canvas.getContext('2d')
-
-    // 设置高分辨率 canvas
-    function setupHiDPICanvas(canvas) {
-        const dpr = window.devicePixelRatio || 1
-        const rect = canvas.getBoundingClientRect()
-
-        // 设置 canvas 的实际像素尺寸
-        canvas.width = rect.width * dpr
-        canvas.height = rect.height * dpr
-
-        // 设置 canvas 的 CSS 尺寸
-        canvas.style.width = `${rect.width}px`
-        canvas.style.height = `${rect.height}px`
-
-        // 缩放绘图上下文以匹配像素比
-        const ctx = canvas.getContext('2d')
-        ctx.scale(dpr, dpr)
-
-        return { width: rect.width, height: rect.height, dpr }
-    }
+  document.body.appendChild(canvas)
+  
+  // 初始化设置
+  setupHiDPICanvas()
+  updateBounds()
+  
+  // 添加事件监听器
+  window.addEventListener('resize', debouncedResize)
 
     // 1. 首先定义 Particle 类
     class Particle {
@@ -70,9 +105,16 @@ onMounted(() => {
             this.x += this.vx
             this.y += this.vy
 
-            // 边界反弹
-            if (this.x <= 0 || this.x >= canvas.width) this.vx *= -1
-            if (this.y <= 0 || this.y >= canvas.height) this.vy *= -1
+            // 使用最新的边界值进行反弹检测
+            if (this.x <= 0 || this.x >= bounds.width) {
+              this.vx *= -1
+              this.x = Math.max(0, Math.min(this.x, bounds.width))
+            }
+            
+            if (this.y <= 0 || this.y >= bounds.height) {
+              this.vy *= -1
+              this.y = Math.max(0, Math.min(this.y, bounds.height))
+            }
         }
 
         draw() {
@@ -110,8 +152,20 @@ onMounted(() => {
 
     // 5. 定义画布调整函数
     function resizeCanvas() {
-        const { width, height, dpr } = setupHiDPICanvas(canvas)
-        determineDeviceSettings()
+        const dimensions = setupHiDPICanvas()
+        if (!dimensions) return
+        
+        const { width } = dimensions
+        // 根据宽度调整设置
+        if (width < 768) {
+          particleCount = 50
+          maxDistance = 100
+        } else {
+          particleCount = 100
+          maxDistance = 150
+        }
+        
+        // 重新初始化粒子
         initializeParticles()
     }
 
@@ -192,15 +246,13 @@ onMounted(() => {
     }
 
     animate()
-
-    // 处理窗口大小变化
-    function handleResize() {
-        resizeCanvas()
-    }
-
-    window.addEventListener('resize', handleResize)
 })
+
 onBeforeUnmount(() => {
+  // 移除事件监听器
+  window.removeEventListener('resize', debouncedResize)
+  
+  // 清理 canvas
   if (canvas && canvas.parentNode) {
     canvas.parentNode.removeChild(canvas)
   }

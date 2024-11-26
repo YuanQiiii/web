@@ -1,10 +1,7 @@
 @echo off
 
 REM automate the git push process
-
-echo Navigate to project directory
-cd /d "C:\Users\exqin\Desktop\web"
-
+echo Start the task
 echo ..........
 
 echo Add all changes

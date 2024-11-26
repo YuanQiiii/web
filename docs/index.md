@@ -7,6 +7,7 @@ hero:
 
 <script setup>
 import { defineClientComponent } from 'vitepress'
+import { onMounted, onUnmounted } from 'vue'
 
 const MouseEffect = defineClientComponent(() => {
   return new Promise((resolve) => {
@@ -57,7 +58,7 @@ const MouseEffect = defineClientComponent(() => {
             const distance = Math.sqrt(dx * dx + dy * dy)
             
             if (distance < 200) {
-              // 修改引力计算，使其与距离成反比
+              // 修改引力计算,使其与距离成反比
               const force = Math.min(1, (1 - distance / 200) * 0.1)
               this.x += dx * force
               this.y += dy * force
@@ -72,8 +73,8 @@ const MouseEffect = defineClientComponent(() => {
             }
             
             // 公转运动
-            this.x += Math.cos(this.orbitAngle) * this.orbitRadius * 0.05
-            this.y += Math.sin(this.orbitAngle) * this.orbitRadius * 0.05
+            this.x += Math.cos(this.orbitAngle) * this.orbitRadius * 0.2
+            this.y += Math.sin(this.orbitAngle) * this.orbitRadius * 0.2
             
             // 随机运动
             // 使用正弦函数使运动更加平滑
@@ -199,10 +200,17 @@ const MouseEffect = defineClientComponent(() => {
         }
         
         animate()
+
+        // 清理函数，组件卸载时移除画布
+        onUnmounted(() => {
+          document.body.removeChild(canvas)
+        })
       }
     })
   })
 })
 </script>
 
-<MouseEffect />
+<ClientOnly>
+  <MouseEffect />
+</ClientOnly>

@@ -5,8 +5,6 @@ import { onMounted, onBeforeUnmount, h, ref } from 'vue'
 let canvas = null
 let ctx = null
 let dpr = window.devicePixelRatio || 1
-let particles = []
-let connections = []
 let bounds = {
   width: 0,
   height: 0
@@ -94,8 +92,8 @@ onMounted(() => {
   // 1. 首先定义 Particle 类
   class Particle {
     constructor() {
-      this.x = (Math.random() * 2 - 1) * canvas.width * 0.2 + canvas.width * 0.5
-      this.y = (Math.random() * 2 - 1) * canvas.height * 0.2 + canvas.height * 0.5
+      this.x = (Math.random() * 2 - 1) * canvas.width * 0.5 + canvas.width * 0.5
+      this.y = (Math.random() * 2 - 1) * canvas.height * 0.5 + canvas.height * 0.5
       this.vx = (Math.random() - 0.5) * 3
       this.vy = (Math.random() - 0.5) * 3
       this.radius = 3
@@ -162,7 +160,7 @@ onMounted(() => {
       maxDistance = 100
     } else {
       particleCount = 100
-      maxDistance = 150
+      maxDistance = 200
     }
 
     // 重新初始化粒子

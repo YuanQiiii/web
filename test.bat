@@ -1,6 +1,10 @@
 @echo off
 setlocal EnableDelayedExpansion
 
+echo Installing dependencies...
+call npm install || goto :error
+timeout /t 2 > nul
+
 echo Generating navigation and actions...
 call npm run generate-nav || goto :error
 call node generate-actions.js || goto :error
@@ -13,14 +17,15 @@ echo Building documentation...
 call npm run docs:build || goto :error
 
 echo Starting development server...
-timeout /t 1 > nul
+
+timeout /t 3 > nul
 call npm run docs:dev || goto :error
 
 :error
 if %errorlevel% neq 0 (
     echo Error occurred. Error code: %errorlevel%
     pause
-    exit /b %errorlevel
+    exit /b %errorlevel%
 )
 
 timeout /t 2

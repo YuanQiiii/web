@@ -9,6 +9,11 @@ hero:
 import { defineClientComponent } from 'vitepress'
 import { onMounted, onUnmounted } from 'vue'
 
+// 线性插值函数
+function lerp(start, end, t) {
+  return start + (end - start) * t
+}
+
 const MouseEffect = defineClientComponent(() => {
   return new Promise((resolve) => {
     resolve({
@@ -60,21 +65,21 @@ const MouseEffect = defineClientComponent(() => {
             if (distance < 200) {
               // 修改引力计算,使其与距离成反比
               const force = Math.min(1, (1 - distance / 200) * 0.1)
-              this.x += dx * force
-              this.y += dy * force
+              this.x = lerp(this.x, mouseX, force)
+              this.y = lerp(this.y, mouseY, force)
               this.orbitAngle += this.orbitSpeed * force * 1
             } else {
               // 缓慢回到原始位置
               const dx = this.originX - this.x
               const dy = this.originY - this.y
-              this.x += dx * 0.02
-              this.y += dy * 0.02
+              this.x = lerp(this.x, this.originX, 0.02)
+              this.y = lerp(this.y, this.originY, 0.02)
               this.orbitAngle += this.orbitSpeed
             }
             
             // 公转运动
-            this.x += Math.cos(this.orbitAngle) * this.orbitRadius * 0.2
-            this.y += Math.sin(this.orbitAngle) * this.orbitRadius * 0.2
+            this.x += Math.cos(this.orbitAngle) * this.orbitRadius * 0.5
+            this.y += Math.sin(this.orbitAngle) * this.orbitRadius * 0.5
             
             // 随机运动
             // 使用正弦函数使运动更加平滑
@@ -91,7 +96,7 @@ const MouseEffect = defineClientComponent(() => {
             const dy = mouseY - this.y
             const distance = Math.sqrt(dx * dx + dy * dy)
             const lineWidth = distance < 200 ? 
-              1 + (1 - distance / 200) * 0.5 : 
+              1 + (1 - distance / 200) * 0.1 : 
               1
             
             // 绘制线条
@@ -104,8 +109,8 @@ const MouseEffect = defineClientComponent(() => {
             
             // 绘制端点空心圆,大小也随距离变化
             const radius = distance < 200 ? 
-              2 + (1 - distance / 200) * 3 : 
-              2
+              1 + (1 - distance / 200) * 0.2 : 
+              1
               
             ctx.beginPath()
             ctx.arc(startX, startY, radius, 0, Math.PI * 2)
@@ -131,7 +136,7 @@ const MouseEffect = defineClientComponent(() => {
         function getLineCount() {
           const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
           const isLowPerformance = window.innerWidth < 768 || isMobile
-          return isLowPerformance ? 50 : 100
+          return isLowPerformance ? 50 : 200
         }
 
         // 创建适量的线条

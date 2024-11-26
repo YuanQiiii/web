@@ -3,7 +3,7 @@ import { onMounted, onBeforeUnmount, h, ref } from 'vue'
 
 // 全局状态
 let canvas = null
-let ctx = null 
+let ctx = null
 let dpr = window.devicePixelRatio || 1
 let particles = []
 let connections = []
@@ -15,7 +15,7 @@ let bounds = {
 // Canvas 初始化和设置
 function setupHiDPICanvas() {
   if (!canvas) return null
-  
+
   const rect = canvas.getBoundingClientRect()
   canvas.width = rect.width * dpr
   canvas.height = rect.height * dpr
@@ -23,7 +23,7 @@ function setupHiDPICanvas() {
   canvas.style.height = `${rect.height}px`
   ctx = canvas.getContext('2d')
   ctx.scale(dpr, dpr)
-  
+
   // 返回尺寸对象
   return {
     width: rect.width,
@@ -55,7 +55,7 @@ function debounce(func, wait) {
 const debouncedResize = debounce(() => {
   const dimensions = setupHiDPICanvas()
   if (!dimensions) return
-  
+
   const { width } = dimensions
   // 根据宽度调整设置
   if (width < 768) {
@@ -65,7 +65,7 @@ const debouncedResize = debounce(() => {
     particleCount = 100
     maxDistance = 150
   }
-  
+
   // 重新初始化粒子
   initializeParticles()
 }, 250)
@@ -83,175 +83,175 @@ onMounted(() => {
   canvas.style.zIndex = '999999'
 
   document.body.appendChild(canvas)
-  
+
   // 初始化设置
   setupHiDPICanvas()
   updateBounds()
-  
+
   // 添加事件监听器
   window.addEventListener('resize', debouncedResize)
 
-    // 1. 首先定义 Particle 类
-    class Particle {
-        constructor() {
-            this.x = Math.random() * canvas.width
-            this.y = Math.random() * canvas.height
-            this.vx = (Math.random() - 0.5) * 1.5
-            this.vy = (Math.random() - 0.5) * 1.5
-            this.radius = 3
-        }
-
-        update() {
-            this.x += this.vx
-            this.y += this.vy
-
-            // 使用最新的边界值进行反弹检测
-            if (this.x <= 0 || this.x >= bounds.width) {
-              this.vx *= -1
-              this.x = Math.max(0, Math.min(this.x, bounds.width))
-            }
-            
-            if (this.y <= 0 || this.y >= bounds.height) {
-              this.vy *= -1
-              this.y = Math.max(0, Math.min(this.y, bounds.height))
-            }
-        }
-
-        draw() {
-            ctx.beginPath()
-            ctx.arc(this.x, this.y, this.radius * dpr, 0, Math.PI * 2)
-            ctx.strokeStyle = 'rgba(125, 125, 125, 0.8)'
-            ctx.lineWidth = 2
-            ctx.stroke()
-        }
+  // 1. 首先定义 Particle 类
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width * 0.8 + canvas.width * 0.1
+      this.y = Math.random() * canvas.height * 0.8 + canvas.height * 0.1
+      this.vx = (Math.random() - 0.5) * 1.5
+      this.vy = (Math.random() - 0.5) * 1.5
+      this.radius = 3
     }
 
-    // 2. 然后声明变量
-    let particleCount = 100
-    let maxDistance = 150
-    let particles = []
-    const connections = []
+    update() {
+      this.x += this.vx
+      this.y += this.vy
 
-    // 3. 定义设备设置函数
-    function determineDeviceSettings() {
-        const width = window.innerWidth
-        if (width < 768) {
-            particleCount = 50
-            maxDistance = 100
-        } else {
-            particleCount = 100
-            maxDistance = 150
+      // 使用最新的边界值进行反弹检测
+      if (this.x <= 0 || this.x >= bounds.width) {
+        this.vx *= -1
+        this.x = Math.max(0, Math.min(this.x, bounds.width))
+      }
+
+      if (this.y <= 0 || this.y >= bounds.height) {
+        this.vy *= -1
+        this.y = Math.max(0, Math.min(this.y, bounds.height))
+      }
+    }
+
+    draw() {
+      ctx.beginPath()
+      ctx.arc(this.x, this.y, this.radius * dpr, 0, Math.PI * 2)
+      ctx.strokeStyle = 'rgba(125, 125, 125, 0.8)'
+      ctx.lineWidth = 2
+      ctx.stroke()
+    }
+  }
+
+  // 2. 然后声明变量
+  let particleCount = 100
+  let maxDistance = 150
+  let particles = []
+  const connections = []
+
+  // 3. 定义设备设置函数
+  function determineDeviceSettings() {
+    const width = window.innerWidth
+    if (width < 768) {
+      particleCount = 50
+      maxDistance = 100
+    } else {
+      particleCount = 100
+      maxDistance = 150
+    }
+  }
+
+  // 4. 定义初始化函数
+  function initializeParticles() {
+    particles = Array.from({ length: particleCount }, () => new Particle())
+    connections.length = 0
+  }
+
+  // 5. 定义画布调整函数
+  function resizeCanvas() {
+    const dimensions = setupHiDPICanvas()
+    if (!dimensions) return
+
+    const { width } = dimensions
+    // 根据宽度调整设置
+    if (width < 768) {
+      particleCount = 50
+      maxDistance = 100
+    } else {
+      particleCount = 100
+      maxDistance = 150
+    }
+
+    // 重新初始化粒子
+    initializeParticles()
+  }
+
+  // 6. 初始化
+  resizeCanvas()
+
+  // 定义连接概率
+  const connectionProbability = 0.05
+
+  // 生成随机颜色的函数
+  function getRandomColor() {
+    const r = Math.floor(Math.random() * 256)
+    const g = Math.floor(Math.random() * 256)
+    const b = Math.floor(Math.random() * 256)
+    const a = (Math.random() * 0.2 + 0.8).toFixed(2) // 透明度在0.5到1之间 
+    return `rgba(${r}, ${g}, ${b}, ${a})`
+  }
+
+  // 绘制连接线
+  function drawConnections() {
+    // 清除不再连接的线
+    for (let i = connections.length - 1; i >= 0; i--) {
+      const connection = connections[i]
+      const p1 = particles[connection.index1]
+      const p2 = particles[connection.index2]
+      const dx = p1.x - p2.x
+      const dy = p1.y - p2.y
+      const distance = Math.sqrt(dx * dx + dy * dy)
+      if (distance > maxDistance) {
+        connections.splice(i, 1) // 移除连接
+      }
+    }
+
+    // 添加新的连接
+    for (let i = 0; i < particles.length; i++) {
+      const p1 = particles[i]
+      for (let j = i + 1; j < particles.length; j++) {
+        const p2 = particles[j]
+        const dx = p1.x - p2.x
+        const dy = p1.y - p2.y
+        const distance = Math.sqrt(dx * dx + dy * dy)
+        if (distance < maxDistance && Math.random() < connectionProbability) {
+          // 检查是否已经存在连接
+          const exists = connections.some(
+            (conn) =>
+              (conn.index1 === i && conn.index2 === j) ||
+              (conn.index1 === j && conn.index2 === i)
+          )
+          if (!exists) {
+            connections.push({ index1: i, index2: j, color: getRandomColor() })
+          }
         }
+      }
     }
 
-    // 4. 定义初始化函数
-    function initializeParticles() {
-        particles = Array.from({ length: particleCount }, () => new Particle())
-        connections.length = 0
-    }
+    // 绘制所有连接
+    connections.forEach((connection) => {
+      const p1 = particles[connection.index1]
+      const p2 = particles[connection.index2]
+      ctx.beginPath()
+      ctx.moveTo(p1.x, p1.y)
+      ctx.lineTo(p2.x, p2.y)
+      ctx.strokeStyle = connection.color
+      ctx.lineWidth = 0.4 * dpr
+      ctx.stroke()
+    })
+  }
 
-    // 5. 定义画布调整函数
-    function resizeCanvas() {
-        const dimensions = setupHiDPICanvas()
-        if (!dimensions) return
-        
-        const { width } = dimensions
-        // 根据宽度调整设置
-        if (width < 768) {
-          particleCount = 50
-          maxDistance = 100
-        } else {
-          particleCount = 100
-          maxDistance = 150
-        }
-        
-        // 重新初始化粒子
-        initializeParticles()
-    }
+  // 动画函数
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    particles.forEach(p => {
+      p.update()
+      p.draw()
+    })
+    drawConnections()
+    requestAnimationFrame(animate)
+  }
 
-    // 6. 初始化
-    resizeCanvas()
-
-    // 定义连接概率
-    const connectionProbability = 0.05
-
-    // 生成随机颜色的函数
-    function getRandomColor() {
-        const r = Math.floor(Math.random() * 256)
-        const g = Math.floor(Math.random() * 256)
-        const b = Math.floor(Math.random() * 256)
-        const a = (Math.random() * 0.2 + 0.8).toFixed(2) // 透明度在0.5到1之间 
-        return `rgba(${r}, ${g}, ${b}, ${a})`
-    }
-
-    // 绘制连接线
-    function drawConnections() {
-        // 清除不再连接的线
-        for (let i = connections.length - 1; i >= 0; i--) {
-            const connection = connections[i]
-            const p1 = particles[connection.index1]
-            const p2 = particles[connection.index2]
-            const dx = p1.x - p2.x
-            const dy = p1.y - p2.y
-            const distance = Math.sqrt(dx * dx + dy * dy)
-            if (distance > maxDistance) {
-                connections.splice(i, 1) // 移除连接
-            }
-        }
-
-        // 添加新的连接
-        for (let i = 0; i < particles.length; i++) {
-            const p1 = particles[i]
-            for (let j = i + 1; j < particles.length; j++) {
-                const p2 = particles[j]
-                const dx = p1.x - p2.x
-                const dy = p1.y - p2.y
-                const distance = Math.sqrt(dx * dx + dy * dy)
-                if (distance < maxDistance && Math.random() < connectionProbability) {
-                    // 检查是否已经存在连接
-                    const exists = connections.some(
-                        (conn) =>
-                            (conn.index1 === i && conn.index2 === j) ||
-                            (conn.index1 === j && conn.index2 === i)
-                    )
-                    if (!exists) {
-                        connections.push({ index1: i, index2: j, color: getRandomColor() })
-                    }
-                }
-            }
-        }
-
-        // 绘制所有连接
-        connections.forEach((connection) => {
-            const p1 = particles[connection.index1]
-            const p2 = particles[connection.index2]
-            ctx.beginPath()
-            ctx.moveTo(p1.x, p1.y)
-            ctx.lineTo(p2.x, p2.y)
-            ctx.strokeStyle = connection.color
-            ctx.lineWidth = 0.4 * dpr
-            ctx.stroke()
-        })
-    }
-
-    // 动画函数
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
-        particles.forEach(p => {
-            p.update()
-            p.draw()
-        })
-        drawConnections()
-        requestAnimationFrame(animate)
-    }
-
-    animate()
+  animate()
 })
 
 onBeforeUnmount(() => {
   // 移除事件监听器
   window.removeEventListener('resize', debouncedResize)
-  
+
   // 清理 canvas
   if (canvas && canvas.parentNode) {
     canvas.parentNode.removeChild(canvas)

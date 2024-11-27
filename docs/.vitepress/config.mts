@@ -1,5 +1,4 @@
 import { defineConfig } from 'vitepress'
-import markdownItMathjax from 'markdown-it-mathjax3'
 import navItems from './navItems' // 导入生成的导航菜单项
 
 export default defineConfig({

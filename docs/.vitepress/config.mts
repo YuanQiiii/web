@@ -12,7 +12,7 @@ export default defineConfig({
     }
   },
   base: '/web/',
-  head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
+  head: [['link', { rel: 'icon', href: '/web/favicon.ico' }]],
   title: "Page",
   description: "a long story",
   themeConfig: {

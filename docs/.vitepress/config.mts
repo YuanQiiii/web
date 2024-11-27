@@ -2,7 +2,6 @@ import { defineConfig } from 'vitepress'
 import navItems from './navItems' // 导入生成的导航菜单项
 
 export default defineConfig({
-  head: [['link', { rel: 'icon', href: '/web/docs/public/favicon.ico' }]],
   lastUpdated: true, // 最后更新时间
   markdown: {
     lineNumbers: true,
@@ -13,6 +12,7 @@ export default defineConfig({
     }
   },
   base: '/web/',
+  head: [['link', { rel: 'icon', href: './web/docs/public/favicon.ico' }]],
   title: "Page",
   description: "a long story",
   themeConfig: {

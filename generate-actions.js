@@ -6,7 +6,7 @@ const indexPath = path.join(__dirname, 'docs/内容.md');
 // 指定要递归遍历的目录路径
 const targetDirectory = path.join(__dirname, 'docs');
 // 要忽略的文件列表
-const ignoreFiles = ['index.md', '朋友.md', '功能测试.md', "日志.md","内容.md"];
+const ignoreFiles = ['index.md', '朋友.md', '测试.md', "日志.md","内容.md","作者.md"];
 
 // 主题数组 - 只使用 VitePress 支持的主题
 const themes = ['brand', 'alt'];

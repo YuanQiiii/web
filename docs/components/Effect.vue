@@ -227,15 +227,15 @@ onBeforeUnmount(() => {
       <div class="controls-content">
         <!-- 控制栏内容保持不变 -->
         <label>
-          粒子数量:
+          粒子数量: {{ particleCount }}
           <input type="range" v-model.number="particleCount" @input="updateParticles" min="10" max="200" />
         </label>
         <label>
-          最大连接距离:
+          最大连接距离:{{ maxDistance }}
           <input type="range" v-model.number="maxDistance" @input="updateConnections" min="10" max="300" />
         </label>
         <label>
-          连接概率:
+          连接概率:{{ connectionProbability }}
           <input type="range" v-model.number="connectionProbability" @input="updateConnections" step="0.01" min="0"
             max="1" />
         </label>
@@ -296,7 +296,7 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  color: white;
+  color: rgba(0, 127, 28, 0.863);
 }
 
 input[type="range"] {

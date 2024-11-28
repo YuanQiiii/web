@@ -258,5 +258,5 @@ if __name__ == "__main__":
     # 在process_markdown_files之后运行process_action_file
     process_action_file()
     generate_sidebar()
-    generate_navigation()
+    #generate_navigation()
     print('preprocess done!')

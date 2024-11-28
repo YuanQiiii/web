@@ -28,7 +28,7 @@ const startCollapseTimer = () => {
   clearCollapseTimer()
   collapseTimeout = setTimeout(() => {
     isExpanded.value = false
-  }, 2000) // 3秒后自动收起
+  }, 500) // 调整后0.5秒后自动收起
 }
 // 清除收起计时器
 const clearCollapseTimer = () => {
@@ -173,7 +173,7 @@ function resetCollapseTimer() {
   clearTimeout(collapseTimeout)
   collapseTimeout = setTimeout(() => {
     isExpanded.value = false
-  }, 2000)
+  }, 500)
 }
 
 // 监听用户操作，重置自动收缩定时器
@@ -252,7 +252,7 @@ onBeforeUnmount(() => {
 .floating-btn {
   position: fixed;
   right: 20px;
-  top: 50%;
+  top: 90%;
   transform: translateY(-50%);
   z-index: 1000;
   cursor: pointer;

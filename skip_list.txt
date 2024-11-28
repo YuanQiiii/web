@@ -2,5 +2,3 @@
 朋友.md
 index.md
 作者.md
-测试.md
-日志.md

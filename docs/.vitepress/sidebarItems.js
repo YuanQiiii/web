@@ -62,12 +62,20 @@ export default [
             "text": "language",
             "items": [
               {
+                "text": "cplusplusNote.md",
+                "link": "/笔记/归档/language/cplusplusNote.md"
+              },
+              {
                 "text": "latexNote.md",
                 "link": "/笔记/归档/language/latexNote.md"
               },
               {
                 "text": "psychology_statistics.md",
                 "link": "/笔记/归档/language/psychology_statistics.md"
+              },
+              {
+                "text": "pythonNote.md",
+                "link": "/笔记/归档/language/pythonNote.md"
               },
               {
                 "text": "rNote.md",

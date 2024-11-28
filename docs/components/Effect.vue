@@ -1,47 +1,63 @@
 <script setup>
-import { onMounted, onBeforeUnmount, h, ref } from 'vue'
+import { onMounted, onBeforeUnmount, ref, watch } from 'vue'
 
-// 声明全局变量
 let canvas = null
 let ctx = null
 let dpr = window.devicePixelRatio || 1
 let particles = []
 let connections = []
-let particleCount = 100
-let maxDistance = 150
-const connectionProbability = 0.05
+const particleCount = ref(100)
+const maxDistance = ref(150)
+const connectionProbability = ref(0.02)
 let bounds = {
   width: 0,
   height: 0
 }
+const controls = ref(null)
+const isExpanded = ref(false)
+let collapseTimeout = null
 
 
-// 定义粒子类
+// 显示控制栏
+const showControls = () => {
+  isExpanded.value = true
+  clearCollapseTimer()
+}
+// 开始收起计时器
+const startCollapseTimer = () => {
+  clearCollapseTimer()
+  collapseTimeout = setTimeout(() => {
+    isExpanded.value = false
+  }, 2000) // 3秒后自动收起
+}
+// 清除收起计时器
+const clearCollapseTimer = () => {
+  if (collapseTimeout) {
+    clearTimeout(collapseTimeout)
+    collapseTimeout = null
+  }
+}
+
 class Particle {
   constructor() {
-    this.x = (Math.random() * 2 - 1) * canvas.width * 0.5 + canvas.width * 0.5
-    this.y = (Math.random() * 2 - 1) * canvas.height * 0.5 + canvas.height * 0.5
-    this.vx = (Math.random() - 0.5) * 3
-    this.vy = (Math.random() - 0.5) * 3
-    this.radius = 3
+    this.x = Math.random() * bounds.width
+    this.y = Math.random() * bounds.height
+    this.vx = (Math.random() * 2 - 1) * 2
+    this.vy = (Math.random() * 2 - 1) * 2
+    this.radius = 2 * dpr
   }
-
   update() {
     this.x += this.vx
     this.y += this.vy
-
-    // 使用最新的边界值进行反弹检测
     if (this.x <= 0 || this.x >= bounds.width) {
       this.vx *= -1
       this.x = Math.max(0, Math.min(this.x, bounds.width))
     }
-
     if (this.y <= 0 || this.y >= bounds.height) {
       this.vy *= -1
       this.y = Math.max(0, Math.min(this.y, bounds.height))
     }
   }
-
   draw() {
     ctx.beginPath()
     ctx.arc(this.x, this.y, this.radius * dpr, 0, Math.PI * 2)
@@ -50,48 +66,18 @@ class Particle {
     ctx.stroke()
   }
 }
-// 粒子数组初始化函数
 function initializeParticles() {
-  particles = Array.from({ length: particleCount }, () => new Particle())
-  connections.length = 0
+  particles = Array.from({ length: particleCount.value }, () => new Particle())
+  connections = []
 }
-
-// 定义设备设置函数
-function determineDeviceSettings() {
-  const width = window.innerWidth
-  if (width < 768) {
-    particleCount = 50
-    maxDistance = 100
-  } else {
-    particleCount = 100
-    maxDistance = 150
-  }
-}
-
-//定义画布调整函数
-function resizeCanvas() {
-  const dimensions = setupHiDPICanvas()
-  if (!dimensions) return
-
-  const { width } = dimensions
-  // 根据宽度调整设置
-  if (width < 768) {
-    particleCount = 50
-    maxDistance = 100
-  } else {
-    particleCount = 100
-    maxDistance = 200
-  }
-
-  // 重新初始化粒子
+function updateParticles() {
   initializeParticles()
 }
-
-
-// Canvas 初始化和设置
+function updateConnections() {
+  connections = []
+}
 function setupHiDPICanvas() {
   if (!canvas) return null
-
   const rect = canvas.getBoundingClientRect()
   canvas.width = rect.width * dpr
   canvas.height = rect.height * dpr
@@ -99,21 +85,15 @@ function setupHiDPICanvas() {
   canvas.style.height = `${rect.height}px`
   ctx = canvas.getContext('2d')
   ctx.scale(dpr, dpr)
-
-  // 返回尺寸对象
   return {
     width: rect.width,
     height: rect.height
   }
 }
-// 更新边界
 function updateBounds() {
-  if (!canvas) return
-  const rect = canvas.getBoundingClientRect()
-  bounds.width = rect.width
-  bounds.height = rect.height
+  bounds.width = window.innerWidth
+  bounds.height = window.innerHeight
 }
-// 添加防抖以优化性能
 function debounce(func, wait) {
   let timeout
   return function executedFunction(...args) {
@@ -125,59 +105,38 @@ function debounce(func, wait) {
     timeout = setTimeout(later, wait)
   }
 }
-
-// 生成随机颜色的函数
 function getRandomColor() {
   const r = Math.floor(Math.random() * 256)
   const g = Math.floor(Math.random() * 256)
   const b = Math.floor(Math.random() * 256)
-  const a = (Math.random() * 0.2 + 0.8).toFixed(2) // 透明度在0.5到1之间 
+  const a = (Math.random() * 0.2 + 0.8).toFixed(2)
   return `rgba(${r}, ${g}, ${b}, ${a})`
 }
 
-// 在 resizeCanvas 函数前定义 debouncedResize
 const debouncedResize = debounce(() => {
-  const dimensions = setupHiDPICanvas()
-  if (!dimensions) return
-
-  const { width } = dimensions
-  // 根据宽度调整设置
-  if (width < 768) {
-    particleCount = 50
-    maxDistance = 100
-  } else {
-    particleCount = 100
-    maxDistance = 150
-  }
-
-  // 重新初始化粒子
+  updateBounds()
   initializeParticles()
 }, 250)
-// 绘制连接线
 function drawConnections() {
-  // 清除不再连接的线
   for (let i = connections.length - 1; i >= 0; i--) {
     const connection = connections[i]
     const p1 = particles[connection.index1]
     const p2 = particles[connection.index2]
     const dx = p1.x - p2.x
     const dy = p1.y - p2.y
-    const distance = Math.sqrt(dx * dx + dy * dy)
-    if (distance > maxDistance) {
-      connections.splice(i, 1) // 移除连接
+    const distance = Math.hypot(dx, dy)
+    if (distance > maxDistance.value) {
+      connections.splice(i, 1)
     }
   }
-
-  // 添加新的连接
   for (let i = 0; i < particles.length; i++) {
     const p1 = particles[i]
     for (let j = i + 1; j < particles.length; j++) {
       const p2 = particles[j]
       const dx = p1.x - p2.x
       const dy = p1.y - p2.y
-      const distance = Math.sqrt(dx * dx + dy * dy)
-      if (distance < maxDistance && Math.random() < connectionProbability) {
-        // 检查是否已经存在连接
+      const distance = Math.hypot(dx, dy)
+      if (distance < maxDistance.value && Math.random() < connectionProbability.value) {
         const exists = connections.some(
           (conn) =>
             (conn.index1 === i && conn.index2 === j) ||
@@ -189,8 +148,6 @@ function drawConnections() {
       }
     }
   }
-
-  // 绘制所有连接
   connections.forEach((connection) => {
     const p1 = particles[connection.index1]
     const p2 = particles[connection.index2]
@@ -203,7 +160,6 @@ function drawConnections() {
   })
 }
 
-// 动画函数
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   particles.forEach(p => {
@@ -213,14 +169,24 @@ function animate() {
   drawConnections()
   requestAnimationFrame(animate)
 }
+function resetCollapseTimer() {
+  clearTimeout(collapseTimeout)
+  collapseTimeout = setTimeout(() => {
+    isExpanded.value = false
+  }, 2000)
+}
 
+// 监听用户操作，重置自动收缩定时器
+watch(
+  [particleCount, maxDistance, connectionProbability],
+  () => {
+    if (isExpanded.value) {
+      resetCollapseTimer()
+    }
+  }
+)
 
-
-
-
-// 生命周期钩子
 onMounted(() => {
-  // 创建 canvas
   canvas = document.createElement('canvas')
   canvas.style.position = 'fixed'
   canvas.style.top = '0'
@@ -229,42 +195,111 @@ onMounted(() => {
   canvas.style.height = '100%'
   canvas.style.pointerEvents = 'none'
   canvas.style.zIndex = '999999'
-  // 添加到 body
   document.body.appendChild(canvas)
-  // 初始化设置
   setupHiDPICanvas()
-  // 更新边界
   updateBounds()
-  // 添加事件监听器
+  initializeParticles()
   window.addEventListener('resize', debouncedResize)
-  // 重新设置canvas
-  resizeCanvas()
-  // 动画开始
+  debouncedResize()
   animate()
 })
 
 onBeforeUnmount(() => {
-  // 移除事件监听器
+  clearCollapseTimer()
   window.removeEventListener('resize', debouncedResize)
-
-  // 清理 canvas
   if (canvas && canvas.parentNode) {
     canvas.parentNode.removeChild(canvas)
   }
 })
+
 </script>
 
-
-
-
 <template>
-  <div class="effect-container"></div>
+  <div class="effect-container">
+    <!-- 悬浮窗 -->
+    <div class="floating-btn" :class="{ 'hidden': isExpanded }" @click="showControls">
+      <span class="icon">⚙️</span>
+    </div>
+
+    <!-- 控制栏 -->
+    <div ref="controls" class="controls-panel" :class="{ 'expanded': isExpanded }" @mouseleave="startCollapseTimer"
+      @mouseenter="clearCollapseTimer">
+      <div class="controls-content">
+        <!-- 控制栏内容保持不变 -->
+        <label>
+          粒子数量:
+          <input type="range" v-model.number="particleCount" @input="updateParticles" min="10" max="200" />
+        </label>
+        <label>
+          最大连接距离:
+          <input type="range" v-model.number="maxDistance" @input="updateConnections" min="10" max="300" />
+        </label>
+        <label>
+          连接概率:
+          <input type="range" v-model.number="connectionProbability" @input="updateConnections" step="0.01" min="0"
+            max="1" />
+        </label>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
 .effect-container {
-  width: 100%;
-  height: 100%;
   position: relative;
+}
+
+.floating-btn {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10px;
+  border-radius: 50%;
+  transition: opacity 0.3s ease;
+}
+
+.floating-btn.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.controls-panel {
+  position: fixed;
+  right: -280px;
+  /* 控制栏初始位置在屏幕外 */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 250px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 10px;
+  transition: right 0.3s ease;
+  z-index: 999;
+}
+
+.controls-panel.expanded {
+  right: 20px;
+}
+
+.controls-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.controls-content label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: white;
+}
+
+input[type="range"] {
+  width: 100%;
 }
 </style>

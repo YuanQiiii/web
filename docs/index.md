@@ -1,9 +1,10 @@
 ---
 layout: home
+
 hero:
   name: "Start Page"
   text: "Hello World!"
-  action:
+  actions:
     - theme: brand
       text: 作者
       link: 关于/作者.md

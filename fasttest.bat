@@ -1,13 +1,8 @@
 @echo off
 setlocal EnableDelayedExpansion
 
-echo Generating navigation and actions...
-call npm run generate-nav || goto :error
-call node generate-actions.js || goto :error
-
 echo Running Python scripts...
-call python check.py || goto :error
-call python alter.py || goto :error
+call python preprocess.py || goto :error
 
 echo Building documentation...
 call npm run docs:build || goto :error

@@ -26,6 +26,9 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Run Python Preprocess Script
+        run: python preprocess.py
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -38,11 +41,6 @@ jobs:
           rm -f package-lock.json
           npm install
         
-      - name: Generate navigation
-        run: npm run generate-nav
-
-      - name: Generate actions
-        run: npm run generate-actions
 
       - name: Build site
         run: npm run docs:build

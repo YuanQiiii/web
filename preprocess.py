@@ -190,7 +190,9 @@ def get_items(dir, base_path=''):
                 })
         elif os.path.isfile(full_path) and entry.endswith('.md'):
             # 遇到 Markdown 文件
-            name = os.path.splitext(entry)[0]
+            name = os.path.splitext(entry)[0]+os.path.splitext(entry)[1]
+            #print(name)
+
             # 忽略skip_list中的文件
             if name.lower() not in skip_list:
                 items.append({

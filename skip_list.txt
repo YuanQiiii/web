@@ -1,6 +1,6 @@
-内容
-朋友
-index
-作者
-测试
-日志
+内容.md
+朋友.md
+index.md
+作者.md
+测试.md
+日志.md

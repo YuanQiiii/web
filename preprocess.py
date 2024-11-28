@@ -197,6 +197,7 @@ def get_items(dir, base_path=''):
             if name.lower() not in skip_list:
                 items.append({
                     'text': name,
+                    'collapsed': 'false',
                     'link': os.path.join('/', base_path, name).replace(os.sep, '/')
                 })
     return items

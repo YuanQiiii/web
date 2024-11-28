@@ -24,8 +24,78 @@ export default [
         "text": "归档",
         "items": [
           {
-            "text": "programNote.md",
-            "link": "/笔记/归档/programNote.md"
+            "text": "ai",
+            "items": [
+              {
+                "text": "aibasisNote.md",
+                "link": "/笔记/归档/ai/aibasisNote.md"
+              },
+              {
+                "text": "aiNote.md",
+                "link": "/笔记/归档/ai/aiNote.md"
+              },
+              {
+                "text": "Q&A.md",
+                "link": "/笔记/归档/ai/Q&A.md"
+              }
+            ]
+          },
+          {
+            "text": "general_psychology",
+            "items": [
+              {
+                "text": "general_psychology.md",
+                "link": "/笔记/归档/general_psychology/general_psychology.md"
+              }
+            ]
+          },
+          {
+            "text": "hpc",
+            "items": [
+              {
+                "text": "hpcNote.md",
+                "link": "/笔记/归档/hpc/hpcNote.md"
+              }
+            ]
+          },
+          {
+            "text": "language",
+            "items": [
+              {
+                "text": "latexNote.md",
+                "link": "/笔记/归档/language/latexNote.md"
+              },
+              {
+                "text": "psychology_statistics.md",
+                "link": "/笔记/归档/language/psychology_statistics.md"
+              },
+              {
+                "text": "rNote.md",
+                "link": "/笔记/归档/language/rNote.md"
+              },
+              {
+                "text": "todo_list.md",
+                "link": "/笔记/归档/language/todo_list.md"
+              }
+            ]
+          },
+          {
+            "text": "other",
+            "items": [
+              {
+                "text": "debugger.md",
+                "link": "/笔记/归档/other/debugger.md"
+              }
+            ]
+          },
+          {
+            "text": "program",
+            "items": [
+              {
+                "text": "programNote.md",
+                "link": "/笔记/归档/program/programNote.md"
+              }
+            ]
           }
         ]
       },

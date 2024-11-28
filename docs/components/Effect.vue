@@ -93,8 +93,6 @@ function setupHiDPICanvas() {
 function updateBounds() {
   bounds.width = window.innerWidth
   bounds.height = window.innerHeight
-  canvas.width = bounds.width
-  canvas.height = bounds.height
 }
 function debounce(func, wait) {
   let timeout

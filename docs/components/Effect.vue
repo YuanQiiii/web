@@ -6,8 +6,8 @@ let ctx = null
 let dpr = window.devicePixelRatio || 1
 let particles = []
 let connections = []
-const particleCount = ref(100)
-const maxDistance = ref(150)
+const particleCount = ref(50)
+const maxDistance = ref(100)
 const connectionProbability = ref(0.02)
 let bounds = {
   width: 0,
@@ -194,7 +194,7 @@ onMounted(() => {
   canvas.style.width = '100%'
   canvas.style.height = '100%'
   canvas.style.pointerEvents = 'none'
-  canvas.style.zIndex = '999999'
+  canvas.style.zIndex = '999'
   document.body.appendChild(canvas)
   setupHiDPICanvas()
   updateBounds()
@@ -279,7 +279,7 @@ onBeforeUnmount(() => {
   padding: 20px;
   border-radius: 10px;
   transition: right 0.3s ease;
-  z-index: 999;
+  z-index: 100000;
 }
 
 .controls-panel.expanded {

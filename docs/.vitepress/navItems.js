@@ -42,15 +42,24 @@ export default [
     "text": "笔记",
     "items": [
       {
+        "text": "归档",
+        "items": [
+          {
+            "text": "programNote",
+            "link": "/笔记/归档/programNote"
+          }
+        ]
+      },
+      {
         "text": "当前的学习重心",
         "items": [
           {
-            "text": "普通心理学B",
-            "link": "/笔记/当前的学习重心/普通心理学B"
+            "text": "gp",
+            "link": "/笔记/当前的学习重心/gp"
           },
           {
-            "text": "社会心理学",
-            "link": "/笔记/当前的学习重心/社会心理学"
+            "text": "sp",
+            "link": "/笔记/当前的学习重心/sp"
           }
         ]
       }

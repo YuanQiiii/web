@@ -1,5 +1,5 @@
 
-import navItems from './navItems' // 导入生成的导航菜单项
+//import navItems from './navItems' // 导入生成的导航菜单项
 import sidebarItems from './sidebarItems' // 导入生成的侧边栏
 
 export default {
@@ -22,9 +22,9 @@ export default {
     search: {
       provider: 'local'
     },
-    nav: [
-      ...navItems // 合并生成的导航菜单项
-    ],
+    //nav: [
+    //  ...navItems // 合并生成的导航菜单项
+    //],
     sidebar: [
       ...sidebarItems // 合并生成的侧边栏
     ]

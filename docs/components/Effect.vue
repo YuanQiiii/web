@@ -96,9 +96,7 @@ function setupCanvas() {
   ctx = canvas.getContext('2d');
 }
 function updateBounds() {
-  isFirstFrame = true
-  frameTimeHistory = []
-  lastFrameTime = 0
+
   bounds.width = window.innerWidth
   bounds.height = window.innerHeight
   canvas.width = bounds.width * dpr
@@ -130,6 +128,9 @@ function getRandomColor() {
 const debouncedResize = debounce(() => {
   updateBounds()
   initializeParticles()
+  isFirstFrame = true
+  frameTimeHistory = []
+  lastFrameTime = 0
 }, 250)
 function drawConnections() {
   for (let i = connections.length - 1; i >= 0; i--) {
@@ -271,7 +272,6 @@ watch(
       if (isPausedByPerformance) {
         isPausedByPerformance = false
         resumeAnimation()
-        console.log('Animation resumed by user interaction')
       }
     }
   }

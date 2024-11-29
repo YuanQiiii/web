@@ -128,9 +128,6 @@ function getRandomColor() {
 const debouncedResize = debounce(() => {
   updateBounds()
   initializeParticles()
-  isFirstFrame = true
-  frameTimeHistory = []
-  lastFrameTime = 0
 }, 250)
 function drawConnections() {
   for (let i = connections.length - 1; i >= 0; i--) {
@@ -170,9 +167,6 @@ function drawConnections() {
     ctx.stroke()
   })
 }
-
-
-
 
 // 使用 requestAnimationFrame 的回调函数优化
 let animationId

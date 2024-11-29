@@ -1,23 +1,31 @@
 <script setup>
 import { onMounted, onBeforeUnmount, ref, watch } from 'vue'
-
+// 渲染相关变量
 let canvas = null
 let ctx = null
 let dpr = window.devicePixelRatio || 1
 let particles = []
 let connections = []
 const particleCount = ref(50)
-const maxDistanceSquared = ref(10000)
+const distance = ref(100)
+const maxDistanceSquared = computed(() => distance.value * distance.value)
 const connectionProbability = ref(0.02)
 const showPerformanceAlert = ref(false)
 let bounds = {
   width: 0,
   height: 0
 }
-
+// 控制栏相关变量
 const controls = ref(null)
 const isExpanded = ref(false)
 let collapseTimeout = null
+// 性能监控变量,初始化标志
+let lastFrameTime = 0
+let frameTimeHistory = []
+let isFirstFrame = true
+const FRAME_HISTORY_LENGTH = 60
+const FRAME_TIME_THRESHOLD = 1000 / 50
+let isPausedByPerformance = false
 
 
 function calculateDistance(p1, p2) {
@@ -25,8 +33,6 @@ function calculateDistance(p1, p2) {
   const dy = p1.y - p2.y
   return dx * dx + dy * dy // 返回距离平方
 }
-
-
 // 显示控制栏
 const showControls = () => {
   isExpanded.value = true
@@ -90,6 +96,9 @@ function setupCanvas() {
   ctx = canvas.getContext('2d');
 }
 function updateBounds() {
+  isFirstFrame = true
+  frameTimeHistory = []
+  lastFrameTime = 0
   bounds.width = window.innerWidth
   bounds.height = window.innerHeight
   canvas.width = bounds.width * dpr
@@ -183,13 +192,7 @@ const render = () => {
 }
 
 
-// 1. 修改性能监控变量,添加初始化标志
-let lastFrameTime = 0
-let frameTimeHistory = []
-let isFirstFrame = true  // 添加首帧标志
-const FRAME_HISTORY_LENGTH = 60
-const FRAME_TIME_THRESHOLD = 1000 / 50
-let isPausedByPerformance = false
+
 
 
 // 2. 修改性能检测函数
@@ -223,9 +226,6 @@ const checkPerformance = () => {
     }
   }
 }
-
-
-
 
 // 3. 在动画循环中添加性能检测
 
@@ -263,7 +263,7 @@ const resumeAnimation = () => {
 
 // 监听用户操作，重置自动收缩定时器
 watch(
-  [particleCount, maxDistanceSquared, connectionProbability],
+  [particleCount, distance, connectionProbability],
   () => {
     if (isExpanded.value) {
       resetCollapseTimer()
@@ -354,8 +354,8 @@ onBeforeUnmount(() => {
           <input type="range" v-model.number="particleCount" @input="updateParticles" min="10" max="200" />
         </label>
         <label>
-          最大连接距离:{{ maxDistanceSquared }}
-          <input type="range" v-model.number="maxDistanceSquared" @input="updateConnections" min="10000" max="40000" />
+          最大连接距离:{{ distance }}
+          <input type="range" v-model.number="distance" @input="updateConnections" min="10" max="200" />
         </label>
         <label>
           连接概率:{{ connectionProbability }}
@@ -396,17 +396,15 @@ onBeforeUnmount(() => {
   left: 50%;
   transform: translateX(-50%);
   /* 更强的背景色和不透明度 */
-  background: linear-gradient(
-    to right,
-    rgba(255, 50, 50, 0.25),
-    rgba(255, 80, 80, 0.3)
-  );
+  background: linear-gradient(to right,
+      rgba(255, 50, 50, 0.25),
+      rgba(255, 80, 80, 0.3));
   /* 加深文字颜色并添加文字阴影 */
   color: #ff1111;
   text-shadow: 0 0 2px rgba(255, 0, 0, 0.3);
   padding: 10px 20px;
   /* 增强投影效果 */
-  box-shadow: 
+  box-shadow:
     0 2px 8px rgba(255, 0, 0, 0.25),
     inset 0 0 15px rgba(255, 0, 0, 0.1);
   border-radius: 4px;
@@ -424,9 +422,17 @@ onBeforeUnmount(() => {
 }
 
 @keyframes glow {
-  0% { box-shadow: 0 0 5px rgba(255, 0, 0, 0.3), inset 0 0 15px rgba(255, 0, 0, 0.1); }
-  50% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.5), inset 0 0 25px rgba(255, 0, 0, 0.2); }
-  100% { box-shadow: 0 0 5px rgba(255, 0, 0, 0.3), inset 0 0 15px rgba(255, 0, 0, 0.1); }
+  0% {
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.3), inset 0 0 15px rgba(255, 0, 0, 0.1);
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5), inset 0 0 25px rgba(255, 0, 0, 0.2);
+  }
+
+  100% {
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.3), inset 0 0 15px rgba(255, 0, 0, 0.1);
+  }
 }
 
 .controls-panel {

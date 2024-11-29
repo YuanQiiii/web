@@ -4,7 +4,7 @@ import sidebarItems from './sidebarItems' // 导入生成的侧边栏
 
 export default {
   vite: {
-    assetsInclude: ['**/*.jpg', '**/*.JPG', '**/*.jpeg', '**/*.JPEG'],
+    assetsInclude: ['**/*.jpg', '**/*.JPG', '**/*.jpeg', '**/*.JPEG', '**/*.gif', '**/*.GIF'],
   },
   lastUpdated: true, // 使用 git 提交获取时间戳，使默认主题能够显示页面的上次更新时间
   ignoreDeadLinks: true, // 不会因死链接而使构建失败

@@ -6364,7 +6364,7 @@ class Solution:
 
 动画如下:
 
-![二叉树中序遍历(迭代法)](./codeNote.assets/二叉树中序遍历(迭代法).gif)
+![二叉树中序遍历(迭代法)](./codeNote.assets/二叉树中序遍历（迭代法）.gif)
 
 ```c++
 class Solution {
@@ -8131,7 +8131,7 @@ class Solution:
 >
 > **示例 2:**
 >
-> ![img](C:\Users\exqin\Desktop\Blog\codeNote.assets\ex2.jpg)
+> ![img](./codeNote.assets/ex2.jpg)
 >
 > ```
 > 输入:p = [1,2], q = [1,null,2]

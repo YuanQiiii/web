@@ -66,6 +66,7 @@ def convert_img_tags_to_markdown(content):
         print(f"转换过程中出错: {e}")
         return content
 
+
 def convert_punctuations(content):
     '''
     将Markdown内容中的中文标点符号替换为对应的英文标点符号。
@@ -102,8 +103,20 @@ def convert_punctuations(content):
         def replace(match):
             return punctuation_map[match.group()]
         
+        # 找到所有 Markdown 图片语句的位置
+        image_pattern = re.compile(r'!\[.*?\]\(.*?\)')
+        image_blocks = [(m.start(), m.end()) for m in image_pattern.finditer(content)]
+        
         # 执行替换
-        converted_content = pattern.sub(replace, content)
+        def replacement(match):
+            match_pos = match.start()
+            # 检查是否在 Markdown 图片语句中
+            in_image_block = any(start <= match_pos < end for start, end in image_blocks)
+            if in_image_block:
+                return match.group()  # 不替换
+            return replace(match)
+        
+        converted_content = pattern.sub(replacement, content)
         return converted_content
     except Exception as e:
         print(f"替换标点符号时出错: {e}")

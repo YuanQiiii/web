@@ -30,6 +30,10 @@ export default {
     //],
     sidebar: [
       ...sidebarItems // 合并生成的侧边栏
-    ]
+    ],
+    socialLinks: [
+      {
+        icon: 'github', link: 'https://github.com/YuanQiiii'
+      }]
   }
 }

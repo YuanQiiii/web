@@ -1,6 +1,33 @@
 <script setup>
-import { onMounted, onBeforeUnmount, ref, watch } from 'vue'
-// 渲染相关变量
+import { onMounted, onBeforeUnmount, ref, watch, reactive } from 'vue'
+
+/*
+初始化阶段：
+- onMounted 中创建 canvas 元素并初始化
+- 设置画布尺寸和缩放比例
+- 初始化粒子系统
+- 启动动画循环
+动画循环：
+- 清空画布
+- 更新所有粒子位置
+- 绘制粒子
+- 计算和绘制连接线
+- 性能检测
+交互控制：
+- 控制面板的显示/隐藏
+- 参数调整(粒子数量、连接距离、连接概率)
+- 性能监控和自动暂停
+*/
+
+/*
+- 每帧都重新计算所有可能的连接
+- 多重循环导致复杂度为 O(n²)
+*/
+
+
+
+
+const state = reactive({ showPanel: false })
 let canvas = null
 let ctx = null
 let dpr = window.devicePixelRatio || 1
@@ -15,11 +42,7 @@ let bounds = {
   width: 0,
   height: 0
 }
-// 控制栏相关变量
-const controls = ref(null)
-const isExpanded = ref(false)
-let collapseTimeout = null
-// 性能监控变量,初始化标志
+
 let lastFrameTime = 0
 let frameTimeHistory = []
 let isFirstFrame = true
@@ -33,27 +56,11 @@ let poorPerformanceCount = 0
 function calculateDistance(p1, p2) {
   const dx = p1.x - p2.x
   const dy = p1.y - p2.y
-  return dx * dx + dy * dy // 返回距离平方
+  return dx * dx + dy * dy
 }
-// 显示控制栏
-const showControls = () => {
-  isExpanded.value = true
-  clearCollapseTimer()
-}
-// 开始收起计时器
-const startCollapseTimer = () => {
-  clearCollapseTimer()
-  collapseTimeout = setTimeout(() => {
-    isExpanded.value = false
-  }, 500) // 调整后0.5秒后自动收起
-}
-// 清除收起计时器
-const clearCollapseTimer = () => {
-  if (collapseTimeout) {
-    clearTimeout(collapseTimeout)
-    collapseTimeout = null
-  }
-}
+
+
+
 
 class Particle {
   constructor() {
@@ -105,7 +112,7 @@ function updateBounds() {
   canvas.height = bounds.height * dpr
   canvas.style.width = `${bounds.width}px`
   canvas.style.height = `${bounds.height}px`
-  ctx.setTransform(1, 0, 0, 1, 0, 0) // 重置变换矩阵
+  ctx.setTransform(1, 0, 0, 1, 0, 0)
   ctx.scale(dpr, dpr)
 }
 function debounce(func, wait) {
@@ -167,56 +174,41 @@ function drawConnections() {
   })
 }
 
-// 使用 requestAnimationFrame 的回调函数优化
+
 let animationId
 let isAnimating = false
 
-
 const render = () => {
-  // 渲染逻辑
-  // 清空画布
   ctx.clearRect(0, 0, canvas.width, canvas.height)
-  // 绘制粒子
   particles.forEach(p => {
     p.update()
     p.draw()
   })
-  // 绘制连接
   drawConnections()
 }
 
-
-
-
-// 修改性能检测逻辑，区分临时波动和持续问题
 const checkPerformance = () => {
   const currentTime = performance.now()
-
   if (isFirstFrame) {
     lastFrameTime = currentTime
     isFirstFrame = false
     return
   }
-
   const frameTime = currentTime - lastFrameTime
   lastFrameTime = currentTime
-
-  // 添加是否处于调整大小状态的标志
   if (isResizing) {
-    return // 放缩时跳过性能检测
+    return
   }
 
   frameTimeHistory.push(frameTime)
   if (frameTimeHistory.length > FRAME_HISTORY_LENGTH) {
     frameTimeHistory.shift()
   }
-
-  // 只有在收集足够帧数据且不在调整大小时才进行性能检测
   if (frameTimeHistory.length >= Math.min(30, FRAME_HISTORY_LENGTH)) {
     const recentFrames = frameTimeHistory.slice(-10)
     const averageFrameTime = recentFrames.reduce((a, b) => a + b, 0) / recentFrames.length
 
-    // 连续3次检测都超过阈值才暂停
+
     if (averageFrameTime > FRAME_TIME_THRESHOLD) {
       poorPerformanceCount++
       if (poorPerformanceCount >= 3 && !isPausedByPerformance) {
@@ -230,44 +222,38 @@ const checkPerformance = () => {
   }
 }
 
-// 动画循环主函数
+
 const animate = () => {
   if (!isAnimating || !ctx) return
-  // 添加性能检测
+
   checkPerformance()
   render()
   animationId = requestAnimationFrame(animate)
 }
 
 
-function resetCollapseTimer() {
-  clearTimeout(collapseTimeout)
-  collapseTimeout = setTimeout(() => {
-    isExpanded.value = false
-  }, 500)
-}
+
 
 const resumeAnimation = () => {
   if (!isAnimating) {
-    // 重置所有性能检测相关状态
-    showPerformanceAlert.value = false // 隐藏提示
+
+    showPerformanceAlert.value = false
     isFirstFrame = true
     frameTimeHistory = []
     lastFrameTime = 0
     isPausedByPerformance = false
-    // 启动动画
+
     isAnimating = true
     animate()
   }
 }
 
-// 监听用户操作，重置自动收缩定时器
+
 watch(
   [particleCount, distance, connectionProbability],
   () => {
     if (isExpanded.value) {
-      resetCollapseTimer()
-      // 如果是因性能问题暂停的，则尝试恢复动画
+
       if (isPausedByPerformance) {
         isPausedByPerformance = false
         resumeAnimation()
@@ -288,7 +274,7 @@ const pauseAnimation = () => {
 }
 
 
-// 页面不可见时暂停,可见时恢复
+
 const handleVisibilityChange = () => {
   if (document.hidden) {
     pauseAnimation()
@@ -297,29 +283,27 @@ const handleVisibilityChange = () => {
   }
 }
 const debouncedResize = debounce(() => {
-  isResizing = true // 标记开始调整大小
+  isResizing = true
 
-  // 更新画布和粒子
+
   updateBounds()
   initializeParticles()
 
-  // 设置一个短暂延时后恢复性能检测
+
   setTimeout(() => {
     isResizing = false
-    // 重置性能检测相关状态
+
     frameTimeHistory = []
     isFirstFrame = true
     poorPerformanceCount = 0
 
-    // 如果之前因性能问题暂停了动画，尝试恢复
+
     if (isPausedByPerformance) {
       isPausedByPerformance = false
       resumeAnimation()
     }
-  }, 500) // 给足够时间让画面稳定
+  }, 500)
 }, 100)
-
-
 onMounted(() => {
   canvas = document.createElement('canvas')
   canvas.style.position = 'fixed'
@@ -349,13 +333,12 @@ onMounted(() => {
 
 
 onBeforeUnmount(() => {
-  // 清理时要记得取消
+
   isAnimating = false
   if (animationId) {
     cancelAnimationFrame(animationId)
     animationId = null
   }
-  clearCollapseTimer()
   window.removeEventListener('resize', () => {
     debouncedResize();
   })
@@ -369,36 +352,40 @@ onBeforeUnmount(() => {
 })
 
 </script>
-
 <template>
   <div class="effect-container">
-    <!-- 添加提示组件 -->
     <div v-if="showPerformanceAlert" class="performance-alert">
       因性能不足而暂停动画，请调整参数
     </div>
-    <!-- 悬浮窗 -->
-    <div class="floating-btn" :class="{ 'hidden': isExpanded }" @click="showControls">
-      <span class="icon">⚙️</span>
-    </div>
 
-    <!-- 控制栏 -->
-    <div ref="controls" class="controls-panel" :class="{ 'expanded': isExpanded }" @mouseleave="startCollapseTimer"
-      @mouseenter="clearCollapseTimer">
-      <div class="controls-content">
-        <!-- 控制栏内容保持不变 -->
-        <label>
-          粒子数量: {{ particleCount }}
-          <input type="range" v-model.number="particleCount" @input="updateParticles" min="10" max="200" />
-        </label>
-        <label>
-          最大连接距离:{{ distance }}
-          <input type="range" v-model.number="distance" @input="updateConnections" min="10" max="200" />
-        </label>
-        <label>
-          连接概率:{{ connectionProbability }}
-          <input type="range" v-model.number="connectionProbability" @input="updateConnections" step="0.01" min="0"
-            max="1" />
-        </label>
+    <div class="control-panel" :class="{ 'expanded': state.showPanel }">
+      <div class="control-header" @click="state.showPanel = !state.showPanel">
+        <span class="control-title">⚙️</span>
+        <span class="control-toggle">{{ state.showPanel ? '−' : '+' }}</span>
+      </div>
+      <div class="control-content" v-if="state.showPanel">
+        <div class="control-item">
+          <label>
+            粒子数量
+            <input type="range" v-model.number="particleCount" @input="updateParticles" min="10" max="200" />
+            <span class="value">{{ particleCount }}</span>
+          </label>
+        </div>
+        <div class="control-item">
+          <label>
+            最大连接距离
+            <input type="range" v-model.number="distance" @input="updateConnections" min="10" max="200" />
+            <span class="value">{{ distance }}</span>
+          </label>
+        </div>
+        <div class="control-item">
+          <label>
+            连接概率
+            <input type="range" v-model.number="connectionProbability" @input="updateConnections" step="0.01" min="0"
+              max="1" />
+            <span class="value">{{ connectionProbability }}</span>
+          </label>
+        </div>
       </div>
     </div>
   </div>
@@ -407,144 +394,98 @@ onBeforeUnmount(() => {
 <style scoped>
 .effect-container {
   position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-.floating-btn {
+.control-panel {
   position: fixed;
+  bottom: 20px;
   right: 20px;
-  top: 90%;
-  transform: translateY(-50%);
+  width: 36px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  overflow: hidden;
   z-index: 1000;
+  transition: all 0.3s ease;
   cursor: pointer;
-  /* 增强背景和毛玻璃效果 */
-  background: linear-gradient(145deg,
-      rgba(255, 255, 255, 0.3),
-      rgba(255, 255, 255, 0.2));
-  backdrop-filter: blur(8px);
-  /* 增加内边距和尺寸 */
-  padding: 12px;
-  border-radius: 50%;
-  /* 添加边框和阴影 */
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.15),
-    inset 0 0 20px rgba(255, 255, 255, 0.2);
-  /* 平滑过渡效果 */
-  transition: all 0.3s ease;
-
-  /* 悬停效果 */
-  &:hover {
-    transform: translateY(-52%);
-    background: linear-gradient(145deg,
-        rgba(255, 255, 255, 0.4),
-        rgba(255, 255, 255, 0.3));
-    box-shadow:
-      0 6px 16px rgba(0, 0, 0, 0.2),
-      inset 0 0 25px rgba(255, 255, 255, 0.25);
-  }
 }
 
-.floating-btn.hidden {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-45%);
+.control-panel:hover {
+  background: rgba(255, 255, 255, 0.5);
 }
 
-.performance-alert {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  /* 更强的背景色和不透明度 */
-  background: linear-gradient(to right,
-      rgba(255, 50, 50, 0.25),
-      rgba(255, 80, 80, 0.3));
-  /* 加深文字颜色并添加文字阴影 */
-  color: #ff1111;
-  text-shadow: 0 0 2px rgba(255, 0, 0, 0.3);
-  padding: 10px 20px;
-  /* 增强投影效果 */
-  box-shadow:
-    0 2px 8px rgba(255, 0, 0, 0.25),
-    inset 0 0 15px rgba(255, 0, 0, 0.1);
-  border-radius: 4px;
-  /* 更醒目的边框 */
-  border: 2px solid rgba(255, 51, 51, 0.8);
-  z-index: 1000;
-  font-size: 14px;
-  font-weight: bold;
-  pointer-events: none;
-  transition: all 0.3s ease;
-  /* 增强微光动画效果 */
-  animation: glow 2s infinite;
-  /* 添加磨砂玻璃效果 */
-  backdrop-filter: blur(2px);
+.control-panel.expanded {
+  width: 260px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
 }
 
-@keyframes glow {
-  0% {
-    box-shadow: 0 0 5px rgba(255, 0, 0, 0.3), inset 0 0 15px rgba(255, 0, 0, 0.1);
-  }
-
-  50% {
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5), inset 0 0 25px rgba(255, 0, 0, 0.2);
-  }
-
-  100% {
-    box-shadow: 0 0 5px rgba(255, 0, 0, 0.3), inset 0 0 15px rgba(255, 0, 0, 0.1);
-  }
-}
-
-.controls-panel {
-  position: fixed;
-  right: -280px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 250px;
-  /* 增强毛玻璃效果和背景 */
-  background: linear-gradient(145deg,
-      rgba(255, 255, 255, 0.25),
-      rgba(255, 255, 255, 0.15));
-  backdrop-filter: blur(12px);
-  padding: 20px;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-  z-index: 100000;
-  /* 添加边框和阴影 */
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.15),
-    inset 0 0 20px rgba(255, 255, 255, 0.2);
-}
-
-.controls-panel.expanded {
-  right: 20px;
-  /* 展开时添加额外效果 */
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.2),
-    inset 0 0 30px rgba(255, 255, 255, 0.25);
-}
-
-.controls-content {
+.control-header {
+  height: 36px;
+  width: 36px;
   display: flex;
-  flex-direction: column;
-  gap: 15px;
+  justify-content: center;
+  align-items: center;
 }
 
-.controls-content label {
+.control-toggle {
+  font-size: 18px;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.control-toggle:hover {
+  color: #000;
+}
+
+.expanded .control-toggle {
+  transform: rotate(180deg);
+}
+
+.control-content {
+  padding: 16px;
+  opacity: 0;
+  max-height: 0;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.expanded .control-content {
+  opacity: 1;
+  max-height: 500px;
+}
+
+.control-item {
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.control-item:last-child {
+  margin-bottom: 0;
+}
+
+.control-item label {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  /* 更改字体颜色和效果 */
-  color: rgba(0, 0, 0, 0.85);
   font-weight: 500;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.2);
 }
 
-/* 添加输入控件样式 */
-.controls-content input[type="range"] {
+.control-item input[type="range"] {
+  width: 100%;
+  margin-bottom: 4px;
   accent-color: #007f1c;
-  height: 4px;
-  border-radius: 2px;
+}
+
+.control-item .value {
+  font-size: 12px;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.control-item:hover .value {
+  color: #000;
 }
 </style>

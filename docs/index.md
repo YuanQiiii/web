@@ -15,18 +15,12 @@ hero:
       text: 朋友
       link: 朋友.md
 ---
-
 <script setup>
-import { defineClientComponent } from 'vitepress'
-const Effect = defineClientComponent(() => {
-  return import('./components/Effect.vue')
-})
-const CommitCount = defineClientComponent(() => {
-  return import('./components/CommitCount.vue')
-})
+import EffectSelector from './components/EffectSelector.vue'
+import CommitCount from './components/CommitCount.vue'
 </script>
 
 <ClientOnly>
-  <Effect/>
+  <EffectSelector/>
   <CommitCount/>
 </ClientOnly>

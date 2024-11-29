@@ -235,7 +235,6 @@ const animate = () => {
   if (!isAnimating || !ctx) return
   // 添加性能检测
   checkPerformance()
-
   render()
   animationId = requestAnimationFrame(animate)
 }
@@ -311,7 +310,7 @@ onMounted(() => {
   setupCanvas()
   updateBounds()
   initializeParticles()
-  window.addEventListener('resize', debouncedResize)
+  window.addEventListener('resize', debouncedResize, animate)
   isAnimating = true
   animate()
   document.addEventListener('visibilitychange', handleVisibilityChange)

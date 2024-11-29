@@ -41,38 +41,32 @@ onMounted(async () => {
             <span class="error-icon">⚠️</span>
             {{ errorMessage }}
         </span>
-        <span v-else>Total Commits: {{ commitCount }}</span>
+        <span v-else>Commits: {{ commitCount }}</span>
     </div>
 </template>
 
 <style scoped>
 .commit-count {
     position: fixed;
-    left: 1rem;
-    bottom: 1rem;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    /* 增加背景不透明度，添加渐变 */
+    left: 0.75rem;
+    bottom: 0.75rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 3px;
     background: linear-gradient(to right,
             rgba(255, 255, 255, 0.25),
             rgba(255, 255, 255, 0.35));
-    /* 增强毛玻璃效果 */
     backdrop-filter: blur(8px);
-    font-size: 0.95rem;
-    /* 加深文字颜色 */
+    font-size: 0.85rem;
     color: rgba(0, 0, 0, 0.85);
-    /* 增强阴影效果 */
     box-shadow:
-        0 4px 12px rgba(0, 0, 0, 0.15),
-        inset 0 0 20px rgba(255, 255, 255, 0.2);
+        0 2px 8px rgba(0, 0, 0, 0.12),
+        inset 0 0 16px rgba(255, 255, 255, 0.2);
     z-index: 100;
     transition: all 0.3s ease;
-    min-height: 2.5rem;
+    min-height: 2rem;
     display: flex;
     align-items: center;
-    /* 添加文字阴影 */
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    /* 添加边框 */
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -81,7 +75,7 @@ onMounted(async () => {
             rgba(255, 50, 50, 0.25),
             rgba(255, 80, 80, 0.35));
     border: 1px solid rgba(255, 0, 0, 0.4);
-    text-shadow: 0 1px 2px rgba(255, 0, 0, 0.1);
+    text-shadow: 0 1px 1px rgba(255, 0, 0, 0.1);
 }
 
 .error-message {
@@ -89,19 +83,19 @@ onMounted(async () => {
     font-weight: bold;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
 }
 
 .error-icon {
-    font-size: 1.1rem;
-    text-shadow: 0 0 4px rgba(255, 0, 0, 0.3);
+    font-size: 1rem;
+    text-shadow: 0 0 3px rgba(255, 0, 0, 0.3);
 }
 
 .commit-count:hover {
     opacity: 0.95;
     transform: translateY(-1px);
     box-shadow:
-        0 6px 16px rgba(0, 0, 0, 0.2),
-        inset 0 0 25px rgba(255, 255, 255, 0.25);
+        0 4px 12px rgba(0, 0, 0, 0.15),
+        inset 0 0 20px rgba(255, 255, 255, 0.25);
 }
 </style>

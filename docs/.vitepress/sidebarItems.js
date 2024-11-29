@@ -55,6 +55,40 @@ export default [
             ]
           },
           {
+            "text": "data_algorithm",
+            "collapsed": false,
+            "items": [
+              {
+                "text": "algorithmNote.md",
+                "link": "/笔记/归档/data_algorithm/algorithmNote.md"
+              },
+              {
+                "text": "algorithm_note.md",
+                "link": "/笔记/归档/data_algorithm/algorithm_note.md"
+              },
+              {
+                "text": "codeNote.md",
+                "link": "/笔记/归档/data_algorithm/codeNote.md"
+              },
+              {
+                "text": "dp_code.md",
+                "link": "/笔记/归档/data_algorithm/dp_code.md"
+              },
+              {
+                "text": "exercise.md",
+                "link": "/笔记/归档/data_algorithm/exercise.md"
+              },
+              {
+                "text": "problem_solution.md",
+                "link": "/笔记/归档/data_algorithm/problem_solution.md"
+              },
+              {
+                "text": "recursion_code.md",
+                "link": "/笔记/归档/data_algorithm/recursion_code.md"
+              }
+            ]
+          },
+          {
             "text": "general_psychology",
             "collapsed": false,
             "items": [

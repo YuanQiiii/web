@@ -1,3 +1,4 @@
+::: v-pre
 ## H:The Sierpinski Fractal
 
 > 描述
@@ -107,3 +108,4 @@ int main() {
 
 
  
+:::

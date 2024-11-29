@@ -7,15 +7,24 @@ let dpr = window.devicePixelRatio || 1
 let particles = []
 let connections = []
 const particleCount = ref(50)
-const maxDistance = ref(100)
+const maxDistanceSquared = ref(10000)
 const connectionProbability = ref(0.02)
+const showPerformanceAlert = ref(false)
 let bounds = {
   width: 0,
   height: 0
 }
+
 const controls = ref(null)
 const isExpanded = ref(false)
 let collapseTimeout = null
+
+
+function calculateDistance(p1, p2) {
+  const dx = p1.x - p2.x
+  const dy = p1.y - p2.y
+  return dx * dx + dy * dy // 返回距离平方
+}
 
 
 // 显示控制栏
@@ -118,10 +127,8 @@ function drawConnections() {
     const connection = connections[i]
     const p1 = particles[connection.index1]
     const p2 = particles[connection.index2]
-    const dx = p1.x - p2.x
-    const dy = p1.y - p2.y
-    const distance = Math.hypot(dx, dy)
-    if (distance > maxDistance.value) {
+    const distanceSquared = calculateDistance(p1, p2)
+    if (distanceSquared > maxDistanceSquared.value) {
       connections.splice(i, 1)
     }
   }
@@ -129,10 +136,8 @@ function drawConnections() {
     const p1 = particles[i]
     for (let j = i + 1; j < particles.length; j++) {
       const p2 = particles[j]
-      const dx = p1.x - p2.x
-      const dy = p1.y - p2.y
-      const distance = Math.hypot(dx, dy)
-      if (distance < maxDistance.value && Math.random() < connectionProbability.value) {
+      const distanceSquared = calculateDistance(p1, p2)
+      if (distanceSquared < maxDistanceSquared.value && Math.random() < connectionProbability.value) {
         const exists = connections.some(
           (conn) =>
             (conn.index1 === i && conn.index2 === j) ||
@@ -156,15 +161,85 @@ function drawConnections() {
   })
 }
 
-function animate() {
+
+
+
+// 使用 requestAnimationFrame 的回调函数优化
+let animationId
+let isAnimating = false
+
+
+const render = () => {
+  // 渲染逻辑
+  // 清空画布
   ctx.clearRect(0, 0, canvas.width, canvas.height)
+  // 绘制粒子
   particles.forEach(p => {
     p.update()
     p.draw()
   })
+  // 绘制连接
   drawConnections()
-  requestAnimationFrame(animate)
 }
+
+
+// 1. 修改性能监控变量,添加初始化标志
+let lastFrameTime = 0
+let frameTimeHistory = []
+let isFirstFrame = true  // 添加首帧标志
+const FRAME_HISTORY_LENGTH = 60
+const FRAME_TIME_THRESHOLD = 1000 / 50
+let isPausedByPerformance = false
+
+
+// 2. 修改性能检测函数
+const checkPerformance = () => {
+  const currentTime = performance.now()
+
+  if (isFirstFrame) {
+    lastFrameTime = currentTime
+    isFirstFrame = false
+    return
+  }
+
+  const frameTime = currentTime - lastFrameTime
+  lastFrameTime = currentTime
+
+  frameTimeHistory.push(frameTime)
+  if (frameTimeHistory.length > FRAME_HISTORY_LENGTH) {
+    frameTimeHistory.shift()
+  }
+
+  // 增加缓冲期，收集足够的新数据再进行判断
+  if (frameTimeHistory.length >= Math.min(10, FRAME_HISTORY_LENGTH)) {
+    // 只使用最近的帧数据计算平均值
+    const recentFrames = frameTimeHistory.slice(-10)
+    const averageFrameTime = recentFrames.reduce((a, b) => a + b, 0) / recentFrames.length
+
+    if (averageFrameTime > FRAME_TIME_THRESHOLD && !isPausedByPerformance) {
+      isPausedByPerformance = true
+      showPerformanceAlert.value = true // 显示提示
+      pauseAnimation()
+    }
+  }
+}
+
+
+
+
+// 3. 在动画循环中添加性能检测
+
+// 动画循环主函数
+const animate = () => {
+  if (!isAnimating || !ctx) return
+  // 添加性能检测
+  checkPerformance()
+
+  render()
+  animationId = requestAnimationFrame(animate)
+}
+
+
 function resetCollapseTimer() {
   clearTimeout(collapseTimeout)
   collapseTimeout = setTimeout(() => {
@@ -172,15 +247,53 @@ function resetCollapseTimer() {
   }, 500)
 }
 
+const resumeAnimation = () => {
+  if (!isAnimating) {
+    // 重置所有性能检测相关状态
+    showPerformanceAlert.value = false // 隐藏提示
+    isFirstFrame = true
+    frameTimeHistory = []
+    lastFrameTime = 0
+    isPausedByPerformance = false
+    // 启动动画
+    isAnimating = true
+    animate()
+  }
+}
+
 // 监听用户操作，重置自动收缩定时器
 watch(
-  [particleCount, maxDistance, connectionProbability],
+  [particleCount, maxDistanceSquared, connectionProbability],
   () => {
     if (isExpanded.value) {
       resetCollapseTimer()
+      // 如果是因性能问题暂停的，则尝试恢复动画
+      if (isPausedByPerformance) {
+        isPausedByPerformance = false
+        resumeAnimation()
+        console.log('Animation resumed by user interaction')
+      }
     }
   }
 )
+
+const pauseAnimation = () => {
+  isAnimating = false
+  if (animationId) {
+    cancelAnimationFrame(animationId)
+    animationId = null
+  }
+}
+
+
+// 页面不可见时暂停,可见时恢复
+const handleVisibilityChange = () => {
+  if (document.hidden) {
+    pauseAnimation()
+  } else {
+    resumeAnimation()
+  }
+}
 
 onMounted(() => {
   canvas = document.createElement('canvas')
@@ -190,19 +303,29 @@ onMounted(() => {
   canvas.style.width = '100%'
   canvas.style.height = '100%'
   canvas.style.pointerEvents = 'none'
-  canvas.style.zIndex = '9'
+  canvas.style.zIndex = '0'
   document.body.appendChild(canvas)
   setupCanvas()
   updateBounds()
   initializeParticles()
   window.addEventListener('resize', debouncedResize)
-  debouncedResize()
+  isAnimating = true
   animate()
+  document.addEventListener('visibilitychange', handleVisibilityChange)
+  checkPerformance()
 })
 
+
 onBeforeUnmount(() => {
+  // 清理时要记得取消
+  isAnimating = false
+  if (animationId) {
+    cancelAnimationFrame(animationId)
+    animationId = null
+  }
   clearCollapseTimer()
   window.removeEventListener('resize', debouncedResize)
+  document.removeEventListener('visibilitychange', handleVisibilityChange)
   if (canvas && canvas.parentNode) {
     canvas.parentNode.removeChild(canvas)
   }
@@ -212,6 +335,10 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="effect-container">
+    <!-- 添加提示组件 -->
+    <div v-if="showPerformanceAlert" class="performance-alert">
+      因性能不足而暂停动画，请调整参数
+    </div>
     <!-- 悬浮窗 -->
     <div class="floating-btn" :class="{ 'hidden': isExpanded }" @click="showControls">
       <span class="icon">⚙️</span>
@@ -227,8 +354,8 @@ onBeforeUnmount(() => {
           <input type="range" v-model.number="particleCount" @input="updateParticles" min="10" max="200" />
         </label>
         <label>
-          最大连接距离:{{ maxDistance }}
-          <input type="range" v-model.number="maxDistance" @input="updateConnections" min="10" max="300" />
+          最大连接距离:{{ maxDistanceSquared }}
+          <input type="range" v-model.number="maxDistanceSquared" @input="updateConnections" min="10000" max="40000" />
         </label>
         <label>
           连接概率:{{ connectionProbability }}
@@ -261,6 +388,45 @@ onBeforeUnmount(() => {
 .floating-btn.hidden {
   opacity: 0;
   pointer-events: none;
+}
+
+.performance-alert {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  /* 更强的背景色和不透明度 */
+  background: linear-gradient(
+    to right,
+    rgba(255, 50, 50, 0.25),
+    rgba(255, 80, 80, 0.3)
+  );
+  /* 加深文字颜色并添加文字阴影 */
+  color: #ff1111;
+  text-shadow: 0 0 2px rgba(255, 0, 0, 0.3);
+  padding: 10px 20px;
+  /* 增强投影效果 */
+  box-shadow: 
+    0 2px 8px rgba(255, 0, 0, 0.25),
+    inset 0 0 15px rgba(255, 0, 0, 0.1);
+  border-radius: 4px;
+  /* 更醒目的边框 */
+  border: 2px solid rgba(255, 51, 51, 0.8);
+  z-index: 1000;
+  font-size: 14px;
+  font-weight: bold;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  /* 增强微光动画效果 */
+  animation: glow 2s infinite;
+  /* 添加磨砂玻璃效果 */
+  backdrop-filter: blur(2px);
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 5px rgba(255, 0, 0, 0.3), inset 0 0 15px rgba(255, 0, 0, 0.1); }
+  50% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.5), inset 0 0 25px rgba(255, 0, 0, 0.2); }
+  100% { box-shadow: 0 0 5px rgba(255, 0, 0, 0.3), inset 0 0 15px rgba(255, 0, 0, 0.1); }
 }
 
 .controls-panel {

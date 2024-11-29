@@ -14,6 +14,8 @@ npm run docs:dev || goto :error
 echo done
 exit /b 0
 
+timeout /t 3
+
 :error
 echo error at : %errorlevel%
 pause

@@ -6463,7 +6463,7 @@ public:
 
 看代码有点抽象我们来看一下动画(中序遍历):
 
-![中序遍历迭代(统一写法)](./codeNote.assets/中序遍历迭代(统一写法).gif)
+![中序遍历迭代(统一写法)](./codeNote.assets/中序遍历迭代（统一写法）.gif)
 
 动画中,result数组就是最终结果集.
 
@@ -8129,16 +8129,8 @@ class Solution:
 > 输出:true
 > ```
 >
+>
 > **示例 2:**
->
-> ![img](./codeNote.assets/ex2.jpg)
->
-> ```
-> 输入:p = [1,2], q = [1,null,2]
-> 输出:false
-> ```
->
-> **示例 3:**
 >
 > ![img](./codeNote.assets/ex3.jpg)
 >

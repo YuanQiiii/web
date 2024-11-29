@@ -76,23 +76,19 @@ function updateParticles() {
 function updateConnections() {
   connections = []
 }
-function setupHiDPICanvas() {
-  if (!canvas) return null
-  const rect = canvas.getBoundingClientRect()
-  canvas.width = rect.width * dpr
-  canvas.height = rect.height * dpr
-  canvas.style.width = `${rect.width}px`
-  canvas.style.height = `${rect.height}px`
-  ctx = canvas.getContext('2d')
-  ctx.scale(dpr, dpr)
-  return {
-    width: rect.width,
-    height: rect.height
-  }
+function setupCanvas() {
+  if (!canvas) return null;
+  ctx = canvas.getContext('2d');
 }
 function updateBounds() {
   bounds.width = window.innerWidth
   bounds.height = window.innerHeight
+  canvas.width = bounds.width * dpr
+  canvas.height = bounds.height * dpr
+  canvas.style.width = `${bounds.width}px`
+  canvas.style.height = `${bounds.height}px`
+  ctx.setTransform(1, 0, 0, 1, 0, 0) // 重置变换矩阵
+  ctx.scale(dpr, dpr)
 }
 function debounce(func, wait) {
   let timeout
@@ -194,9 +190,9 @@ onMounted(() => {
   canvas.style.width = '100%'
   canvas.style.height = '100%'
   canvas.style.pointerEvents = 'none'
-  canvas.style.zIndex = '999'
+  canvas.style.zIndex = '9'
   document.body.appendChild(canvas)
-  setupHiDPICanvas()
+  setupCanvas()
   updateBounds()
   initializeParticles()
   window.addEventListener('resize', debouncedResize)

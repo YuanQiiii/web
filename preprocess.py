@@ -181,11 +181,12 @@ def get_items(dir, base_path=''):
     for entry in entries:
         full_path = os.path.join(dir, entry)
         if os.path.isdir(full_path):
-            # 遇到目录，递归处理
+            # 遇到目录，递归处理, 最多6层
             sub_items = get_items(full_path, os.path.join(base_path, entry).replace(os.sep, '/'))
             if sub_items:
                 items.append({
                     'text': entry,
+                    'collapsed': False,# 要在生成的字典中将 'collapsed' 的值设置为布尔值 False 而不是字符串 'false'，可以直接使用 Python 的布尔值 False。
                     'items': sub_items
                 })
         elif os.path.isfile(full_path) and entry.endswith('.md'):
@@ -196,8 +197,7 @@ def get_items(dir, base_path=''):
             # 忽略skip_list中的文件
             if name.lower() not in skip_list:
                 items.append({
-                    'text': name,
-                    'collapsed': 'false',
+                    'text': name, 
                     'link': os.path.join('/', base_path, name).replace(os.sep, '/')
                 })
     return items

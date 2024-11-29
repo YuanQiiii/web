@@ -6636,7 +6636,7 @@ class Solution:
 >
 > **示例 1:**
 >
-> ![img](C:\Users\exqin\Desktop\Blog\codeNote.assets\tree1.jpg)
+> ![img](./codeNote.assets/tree1-1707752897746-80.jpg)
 >
 > ```
 > 输入:root = [3,9,20,null,null,15,7]

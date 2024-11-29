@@ -8,7 +8,7 @@ let particles = []
 let connections = []
 const particleCount = ref(50)
 const distance = ref(100)
-const maxDistanceSquared = computed(() => distance.value * distance.value)
+const maxDistanceSquared = ref(distance.value * distance.value)
 const connectionProbability = ref(0.02)
 const showPerformanceAlert = ref(false)
 let bounds = {
@@ -276,6 +276,9 @@ watch(
     }
   }
 )
+watch(distance, (newValue) => {
+  maxDistanceSquared.value = newValue * newValue
+})
 
 const pauseAnimation = () => {
   isAnimating = false

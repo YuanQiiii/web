@@ -15,7 +15,7 @@ export default {
   },
   base: '/web/', // 部署站点的基础路径
   head: [['link', { rel: 'icon', href: '/web/favicon.ico' }]], // 网站图标
-  title: "Page",
+  title: "Home",
   description: "a long story",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config

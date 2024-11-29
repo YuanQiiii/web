@@ -304,12 +304,17 @@ onMounted(() => {
   setupCanvas()
   updateBounds()
   initializeParticles()
-  window.addEventListener('resize', debouncedResize, resumeAnimation)
-  isAnimating = true
-  animate()
-  document.addEventListener('visibilitychange', handleVisibilityChange)
-  checkPerformance()
-})
+  window.addEventListener('resize', () => {
+    debouncedResize();
+    resumeAnimation();
+  });
+  document.addEventListener('visibilitychange', () => {
+    handleVisibilityChange();
+    resumeAnimation();
+  }
+  )
+}
+)
 
 
 onBeforeUnmount(() => {
@@ -320,8 +325,14 @@ onBeforeUnmount(() => {
     animationId = null
   }
   clearCollapseTimer()
-  window.removeEventListener('resize', debouncedResize)
-  document.removeEventListener('visibilitychange', handleVisibilityChange)
+  window.removeEventListener('resize', () => {
+    debouncedResize();
+    resumeAnimation();
+  })
+  document.removeEventListener('visibilitychange', () => {
+    handleVisibilityChange();
+    resumeAnimation();
+  })
   if (canvas && canvas.parentNode) {
     canvas.parentNode.removeChild(canvas)
   }

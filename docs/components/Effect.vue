@@ -310,7 +310,7 @@ onMounted(() => {
   setupCanvas()
   updateBounds()
   initializeParticles()
-  window.addEventListener('resize', debouncedResize, animate)
+  window.addEventListener('resize', debouncedResize, resumeAnimation)
   isAnimating = true
   animate()
   document.addEventListener('visibilitychange', handleVisibilityChange)

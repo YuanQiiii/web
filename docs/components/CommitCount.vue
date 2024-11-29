@@ -52,35 +52,56 @@ onMounted(async () => {
     bottom: 1rem;
     padding: 0.5rem 1rem;
     border-radius: 4px;
-    background: rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4px);
-    font-size: 0.9rem;
-    color: rgba(0, 0, 0, 0.7);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* 增加背景不透明度，添加渐变 */
+    background: linear-gradient(to right,
+            rgba(255, 255, 255, 0.25),
+            rgba(255, 255, 255, 0.35));
+    /* 增强毛玻璃效果 */
+    backdrop-filter: blur(8px);
+    font-size: 0.95rem;
+    /* 加深文字颜色 */
+    color: rgba(0, 0, 0, 0.85);
+    /* 增强阴影效果 */
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.15),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
     z-index: 100;
     transition: all 0.3s ease;
     min-height: 2.5rem;
     display: flex;
     align-items: center;
+    /* 添加文字阴影 */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    /* 添加边框 */
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .commit-count.has-error {
-    background: rgba(255, 0, 0, 0.1);
-    border: 1px solid rgba(255, 0, 0, 0.3);
+    background: linear-gradient(to right,
+            rgba(255, 50, 50, 0.25),
+            rgba(255, 80, 80, 0.35));
+    border: 1px solid rgba(255, 0, 0, 0.4);
+    text-shadow: 0 1px 2px rgba(255, 0, 0, 0.1);
 }
 
 .error-message {
-    color: #ff4444;
+    color: #ff2222;
+    font-weight: bold;
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
 .error-icon {
-    font-size: 1rem;
+    font-size: 1.1rem;
+    text-shadow: 0 0 4px rgba(255, 0, 0, 0.3);
 }
 
 .commit-count:hover {
-    opacity: 0.8;
+    opacity: 0.95;
+    transform: translateY(-1px);
+    box-shadow:
+        0 6px 16px rgba(0, 0, 0, 0.2),
+        inset 0 0 25px rgba(255, 255, 255, 0.25);
 }
 </style>

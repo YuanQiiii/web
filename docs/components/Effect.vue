@@ -24,8 +24,10 @@ let lastFrameTime = 0
 let frameTimeHistory = []
 let isFirstFrame = true
 const FRAME_HISTORY_LENGTH = 60
-const FRAME_TIME_THRESHOLD = 1000 / 50
+const FRAME_TIME_THRESHOLD = 1000 / 40
 let isPausedByPerformance = false
+let isResizing = false
+let poorPerformanceCount = 0
 
 
 function calculateDistance(p1, p2) {
@@ -125,10 +127,7 @@ function getRandomColor() {
   return `rgba(${r}, ${g}, ${b}, ${a})`
 }
 
-const debouncedResize = debounce(() => {
-  updateBounds()
-  initializeParticles()
-}, 250)
+
 function drawConnections() {
   for (let i = connections.length - 1; i >= 0; i--) {
     const connection = connections[i]
@@ -189,8 +188,7 @@ const render = () => {
 
 
 
-
-// 2. 修改性能检测函数
+// 修改性能检测逻辑，区分临时波动和持续问题
 const checkPerformance = () => {
   const currentTime = performance.now()
 
@@ -203,26 +201,34 @@ const checkPerformance = () => {
   const frameTime = currentTime - lastFrameTime
   lastFrameTime = currentTime
 
+  // 添加是否处于调整大小状态的标志
+  if (isResizing) {
+    return // 放缩时跳过性能检测
+  }
+
   frameTimeHistory.push(frameTime)
   if (frameTimeHistory.length > FRAME_HISTORY_LENGTH) {
     frameTimeHistory.shift()
   }
 
-  // 增加缓冲期，收集足够的新数据再进行判断
-  if (frameTimeHistory.length >= Math.min(10, FRAME_HISTORY_LENGTH)) {
-    // 只使用最近的帧数据计算平均值
+  // 只有在收集足够帧数据且不在调整大小时才进行性能检测
+  if (frameTimeHistory.length >= Math.min(30, FRAME_HISTORY_LENGTH)) {
     const recentFrames = frameTimeHistory.slice(-10)
     const averageFrameTime = recentFrames.reduce((a, b) => a + b, 0) / recentFrames.length
 
-    if (averageFrameTime > FRAME_TIME_THRESHOLD && !isPausedByPerformance) {
-      isPausedByPerformance = true
-      showPerformanceAlert.value = true // 显示提示
-      pauseAnimation()
+    // 连续3次检测都超过阈值才暂停
+    if (averageFrameTime > FRAME_TIME_THRESHOLD) {
+      poorPerformanceCount++
+      if (poorPerformanceCount >= 3 && !isPausedByPerformance) {
+        isPausedByPerformance = true
+        showPerformanceAlert.value = true
+        pauseAnimation()
+      }
+    } else {
+      poorPerformanceCount = 0
     }
   }
 }
-
-// 3. 在动画循环中添加性能检测
 
 // 动画循环主函数
 const animate = () => {
@@ -290,6 +296,29 @@ const handleVisibilityChange = () => {
     resumeAnimation()
   }
 }
+const debouncedResize = debounce(() => {
+  isResizing = true // 标记开始调整大小
+
+  // 更新画布和粒子
+  updateBounds()
+  initializeParticles()
+
+  // 设置一个短暂延时后恢复性能检测
+  setTimeout(() => {
+    isResizing = false
+    // 重置性能检测相关状态
+    frameTimeHistory = []
+    isFirstFrame = true
+    poorPerformanceCount = 0
+
+    // 如果之前因性能问题暂停了动画，尝试恢复
+    if (isPausedByPerformance) {
+      isPausedByPerformance = false
+      resumeAnimation()
+    }
+  }, 500) // 给足够时间让画面稳定
+}, 100)
+
 
 onMounted(() => {
   canvas = document.createElement('canvas')
@@ -304,6 +333,8 @@ onMounted(() => {
   setupCanvas()
   updateBounds()
   initializeParticles()
+  isAnimating = true
+  animate()
   window.addEventListener('resize', () => {
     debouncedResize();
     resumeAnimation();
@@ -327,7 +358,6 @@ onBeforeUnmount(() => {
   clearCollapseTimer()
   window.removeEventListener('resize', () => {
     debouncedResize();
-    resumeAnimation();
   })
   document.removeEventListener('visibilitychange', () => {
     handleVisibilityChange();
@@ -386,15 +416,38 @@ onBeforeUnmount(() => {
   transform: translateY(-50%);
   z-index: 1000;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 10px;
+  /* 增强背景和毛玻璃效果 */
+  background: linear-gradient(145deg,
+      rgba(255, 255, 255, 0.3),
+      rgba(255, 255, 255, 0.2));
+  backdrop-filter: blur(8px);
+  /* 增加内边距和尺寸 */
+  padding: 12px;
   border-radius: 50%;
-  transition: opacity 0.3s ease;
+  /* 添加边框和阴影 */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    inset 0 0 20px rgba(255, 255, 255, 0.2);
+  /* 平滑过渡效果 */
+  transition: all 0.3s ease;
+
+  /* 悬停效果 */
+  &:hover {
+    transform: translateY(-52%);
+    background: linear-gradient(145deg,
+        rgba(255, 255, 255, 0.4),
+        rgba(255, 255, 255, 0.3));
+    box-shadow:
+      0 6px 16px rgba(0, 0, 0, 0.2),
+      inset 0 0 25px rgba(255, 255, 255, 0.25);
+  }
 }
 
 .floating-btn.hidden {
   opacity: 0;
   pointer-events: none;
+  transform: translateY(-45%);
 }
 
 .performance-alert {
@@ -445,20 +498,31 @@ onBeforeUnmount(() => {
 .controls-panel {
   position: fixed;
   right: -280px;
-  /* 控制栏初始位置在屏幕外 */
   top: 50%;
   transform: translateY(-50%);
   width: 250px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  /* 增强毛玻璃效果和背景 */
+  background: linear-gradient(145deg,
+      rgba(255, 255, 255, 0.25),
+      rgba(255, 255, 255, 0.15));
+  backdrop-filter: blur(12px);
   padding: 20px;
   border-radius: 10px;
-  transition: right 0.3s ease;
+  transition: all 0.3s ease;
   z-index: 100000;
+  /* 添加边框和阴影 */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.15),
+    inset 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
 .controls-panel.expanded {
   right: 20px;
+  /* 展开时添加额外效果 */
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 0 30px rgba(255, 255, 255, 0.25);
 }
 
 .controls-content {
@@ -471,10 +535,16 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  color: rgba(0, 127, 28, 0.863);
+  /* 更改字体颜色和效果 */
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.2);
 }
 
-input[type="range"] {
-  width: 100%;
+/* 添加输入控件样式 */
+.controls-content input[type="range"] {
+  accent-color: #007f1c;
+  height: 4px;
+  border-radius: 2px;
 }
 </style>

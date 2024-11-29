@@ -18,7 +18,6 @@ hero:
 
 <script setup>
 import { defineClientComponent } from 'vitepress'
-
 const Effect = defineClientComponent(() => {
   return import('./components/Effect.vue')
 })
@@ -29,4 +28,5 @@ const CommitCount = defineClientComponent(() => {
 
 <ClientOnly>
   <Effect/>
+  <CommitCount/>
 </ClientOnly>

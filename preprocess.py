@@ -113,6 +113,59 @@ actions = "" # 生成的actions内容
 themes = ['brand', 'alt'] # 主题列表
 actions_target_file = 'docs\内容.md' # 修改的目标文件的路径
 
+def replace_unclosed_html_tags(content):
+    # 定义C++常用库和模板类型
+    cpp_keywords = {
+        'algorithm', 'array', 'bitset', 'deque', 'exception', 'fstream', 
+        'functional', 'iomanip', 'ios', 'iosfwd', 'iostream', 'istream', 
+        'iterator', 'limits', 'list', 'locale', 'map', 'memory', 'new', 
+        'numeric', 'ostream', 'queue', 'random', 'regex', 'set', 'sstream', 
+        'stack', 'stdexcept', 'streambuf', 'string', 'strstream', 'tuple', 
+        'typeinfo', 'utility', 'valarray', 'vector', 'int', 'double', 'float',
+        'char', 'bool', 'void', 'T', 'U', 'V', 'InputIterator', 'OutputIterator',
+        'Point', 'A','ctime','cstring','cmath','cstdlib','cctype','cstdio','cstdarg','lines','typename','Key','cstddef','State','climits'
+    }
+    # 定义代码块的标记
+    code_block_start = '```'
+    code_block_end = '```'
+    # 找到所有代码块的位置
+    code_blocks = []
+    in_code_block = False
+    lines = content.split('\n')
+    start = 0
+    for i, line in enumerate(lines):
+        if code_block_start in line:
+            if not in_code_block:
+                start = content.find(line)
+                in_code_block = True
+            else:
+                end = content.find(line) + len(line)
+                code_blocks.append((start, end))
+                in_code_block = False
+
+    # 定义引号内容的正则表达式
+    quote_pattern = re.compile(r'\'.*?\'')
+    # 找到所有引号内容的位置
+    quote_blocks = [(m.start(), m.end()) for m in quote_pattern.finditer(content)]
+    
+    # 找到所有的标签
+    tags = re.finditer(r'<[^>]{1,10}>', content)
+    for tag_match in tags:
+        tag = tag_match.group()
+        tag_pos = tag_match.start()
+        
+        # 检查是否在代码块中
+        in_code_block = any(start <= tag_pos < end for start, end in code_blocks)
+        # 检查是否在引号中
+        in_quote = any(start <= tag_pos < end for start, end in quote_blocks)
+                
+        if not in_code_block and not in_quote:
+            if tag[1:-1].lower() in cpp_keywords or tag[1:-1] in cpp_keywords:
+                continue
+            else:
+                # print(f"{tag}")
+                pass
+    return content
 
 def process_markdown_files(directory_path, skip_files):
     global actions
@@ -132,6 +185,8 @@ def process_markdown_files(directory_path, skip_files):
                             content = convert_punctuations(content)
                             # 替换HTML实体为普通字符
                             content = replace_html_entities(content)
+                            # 检查是否有未闭合的HTML标签
+                            content = replace_unclosed_html_tags(content)
                             # 添加v-pre保护标记
                             content = check_markdown_content(content)
                             # 写回f中

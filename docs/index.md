@@ -17,10 +17,12 @@ hero:
       link: 朋友.md
 ---
 
-### <Badge type="info" text="加油写作业" />
+### <Badge type="info" text="写作业" />
+### <Badge type="info" text="READING Neuron Science-Exploring the Brain " />
+### <Badge type="info" text="READING Neuron AI的25种可能 " />
 ### <Badge type="tip" text="废寝忘食" />
-### <Badge type="warning" text="是不是花太多时间了？" />
-### <Badge type="danger" text="该放一放了" />
+### <Badge type="warning" text="合理使用时间" />
+### <Badge type="danger" text="加油" />
 
 
             
@@ -30,8 +32,6 @@ import CommitCount from './components/CommitCount.vue'
 </script>
 
 <ClientOnly>
-          <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
   <EffectSelector/>
   <CommitCount/>
 </ClientOnly>

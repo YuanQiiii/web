@@ -17,7 +17,7 @@ hero:
       link: 朋友.md
 ---
 
-### <Badge type="info" text="default" />
+### <Badge type="info" text="加油写作业" />
 ### <Badge type="tip" text="废寝忘食" />
 ### <Badge type="warning" text="是不是花太多时间了？" />
 ### <Badge type="danger" text="该放一放了" />

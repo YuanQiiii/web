@@ -51,13 +51,12 @@ class Particle {
   }
 
   draw(ctx) {
-    // 修复：使用传入的 ctx 而不是 state.ctx
     ctx.beginPath()
-    ctx.arc(this.x, this.y, this.radius * state.dpr, 0, Math.PI * 2)
-    ctx.strokeStyle = 'rgba(128, 128, 192, 0.7)'  // 边框颜色
-    ctx.lineWidth = 1 * state.dpr  // 调整边框宽度
-    ctx.stroke()  // 绘制边框
-    // 不使用 fill() 方法，保持空心效果
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
+    ctx.strokeStyle = 'rgba(128, 128, 192, 0.7)'
+    ctx.lineWidth = 0.5 * state.dpr  // 调整边框宽度
+    ctx.lineCap = 'round'
+    ctx.stroke()
   }
 }
 
@@ -186,10 +185,12 @@ function render() {
 
   // 绘制连接线
   newConnections.forEach(conn => {
-    const alpha = Math.max(0, 1 - conn.distance / state.maxDistance)
+    const alpha = Math.max(0.1, 1 - conn.distance / state.maxDistance)
     state.offscreenCtx.beginPath()
     state.offscreenCtx.strokeStyle = state.connectionColors.get(conn.id)
-    state.offscreenCtx.lineWidth = 0.2 * state.dpr
+    state.offscreenCtx.lineWidth = 0.5 * state.dpr  // 增加线条宽度
+    state.offscreenCtx.lineCap = 'round'  // 设置线条端点为圆形
+    state.offscreenCtx.lineJoin = 'round' // 设置线条连接处为圆形
     state.offscreenCtx.moveTo(conn.x1, conn.y1)
     state.offscreenCtx.lineTo(conn.x2, conn.y2)
     state.offscreenCtx.stroke()
@@ -210,8 +211,8 @@ function getRandomColor() {
   const r = Math.floor(Math.random() * 256)
   const g = Math.floor(Math.random() * 256)
   const b = Math.floor(Math.random() * 256)
-  const o = Math.floor(Math.random() * 256)
-  return `rgba(${r}, ${g}, ${b}, ${o})`
+  const a = 0.3 + Math.random() * 0.3  // 控制透明度范围在 0.3-0.6 之间
+  return `rgba(${r}, ${g}, ${b}, ${a})`
 }
 
 /* 动画循环 */
@@ -238,6 +239,19 @@ function setupCanvas() {
   state.offscreenCtx = state.offscreenCanvas.getContext('2d')
   state.offscreenCanvas.width = state.bounds.width
   state.offscreenCanvas.height = state.bounds.height
+
+  state.ctx = state.canvas.getContext('2d', {
+    antialias: true
+  })
+  state.offscreenCtx = state.offscreenCanvas.getContext('2d', {
+    antialias: true
+  })
+
+  // 启用抗锯齿
+  state.ctx.imageSmoothingEnabled = true
+  state.ctx.imageSmoothingQuality = 'high'
+  state.offscreenCtx.imageSmoothingEnabled = true
+  state.offscreenCtx.imageSmoothingQuality = 'high'
 }
 
 

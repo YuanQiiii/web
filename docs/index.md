@@ -22,28 +22,16 @@ hero:
 ### <Badge type="warning" text="是不是花太多时间了？" />
 ### <Badge type="danger" text="该放一放了" />
 
+
+            
 <script setup>
 import EffectSelector from './components/EffectSelector.vue'
 import CommitCount from './components/CommitCount.vue'
-import { onMounted } from 'vue'
-
-// 统计脚本加载
-onMounted(() => {
-  const script = document.createElement('script')
-  script.src = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
-  script.async = true
-  document.head.appendChild(script)
-})
 </script>
 
-<template>
-  <ClientOnly>
-    <div>
-      <span id="busuanzi_container_site_pv">
-        本站总访问量<span id="busuanzi_value_site_pv"></span>次
-      </span>
-      <EffectSelector/>
-      <CommitCount/>
-    </div>
-  </ClientOnly>
-</template>
+<ClientOnly>
+          <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+  <EffectSelector/>
+  <CommitCount/>
+</ClientOnly>

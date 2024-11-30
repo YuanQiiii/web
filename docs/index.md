@@ -18,14 +18,14 @@ hero:
 ---
 
 ### <Badge type="info" text="写作业" />
-### <Badge type="info" text="READING Neuron Science-Exploring the Brain " />
-### <Badge type="info" text="READING Neuron AI的25种可能 " />
+### <Badge type="info" text="Neuron Science-Exploring the Brain " />
+### <Badge type="info" text="AI的25种可能 " />
 ### <Badge type="tip" text="废寝忘食" />
 ### <Badge type="warning" text="合理使用时间" />
 ### <Badge type="danger" text="加油" />
 
 
-            
+​            
 <script setup>
 import EffectSelector from './components/EffectSelector.vue'
 import CommitCount from './components/CommitCount.vue'

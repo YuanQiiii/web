@@ -23,6 +23,10 @@ export default [
         "link": "/想法/书签.md"
       },
       {
+        "text": "记录.md",
+        "link": "/想法/记录.md"
+      },
+      {
         "text": "零碎的记忆.md",
         "link": "/想法/零碎的记忆.md"
       }

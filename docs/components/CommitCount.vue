@@ -1,101 +1,181 @@
-<!-- components/CommitCount.vue -->
+<!-- CommitCount.vue -->
 <script setup>
 import { ref, onMounted } from 'vue'
 
-const commitCount = ref(0)
-const loading = ref(true)
+const showDetail = ref(false)
+const commits = ref([])
+const loading = ref(false)
 const error = ref(null)
-const errorMessage = ref('')
+const commitCount = ref(0)
+const latestMessage = ref('')
 
-onMounted(async () => {
+async function fetchCommits() {
+    loading.value = true
+    error.value = null
+
     try {
-        const response = await fetch('https://api.github.com/repos/YuanQiiii/web/commits?per_page=1')
+        const owner = 'YuanQiiii'
+        const repo = 'web'
+        const response = await fetch(
+            `https://api.github.com/repos/${owner}/${repo}/commits`
+        )
+
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`)
-        }
-        const link = response.headers.get('link')
-        if (!link) {
-            throw new Error('No pagination info found')
+            throw new Error('Failed to fetch commits')
         }
 
-        const match = link.match(/&page=(\d+)>; rel="last"/)
-        if (!match) {
-            throw new Error('Could not parse commit count')
-        }
+        const data = await response.json()
+        commits.value = data.map(commit => ({
+            message: commit.commit.message,
+            date: new Date(commit.commit.author.date)
+        }))
 
-        commitCount.value = parseInt(match[1])
+        commitCount.value = commits.value.length
+        latestMessage.value = commits.value[0]?.message || 'No commits'
     } catch (e) {
-        error.value = true
-        errorMessage.value = e.message || 'Failed to fetch commit count'
-        console.error('Error fetching commits:', e)
+        error.value = e.message
     } finally {
         loading.value = false
     }
+}
+
+onMounted(() => {
+    fetchCommits()
 })
 </script>
 
+
 <template>
-    <div class="commit-count" :class="{ 'has-error': error }">
-        <span v-if="loading">Loading commits...</span>
-        <span v-else-if="error" class="error-message">
-            <span class="error-icon">⚠️</span>
-            {{ errorMessage }}
-        </span>
-        <span v-else>Commits: {{ commitCount }}</span>
+    <div class="commit-panel" :class="{ 'expanded': showDetail, 'has-error': error }" @click="showDetail = !showDetail">
+        <div class="commit-header">
+            <span class="commit-icon">📝</span>
+        </div>
+
+        <div class="control-content" v-if="showDetail">
+            <div class="content-wrapper">
+                <div class="commit-item">
+                    <label>Commits Count</label>
+                    <span class="value">{{ commitCount }}</span>
+                </div>
+
+                <div class="commit-item">
+                    <label>Latest Commit</label>
+                    <span class="value message">{{ latestMessage }}</span>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <style scoped>
-.commit-count {
+.commit-panel {
     position: fixed;
-    left: 0.75rem;
-    bottom: 0.75rem;
-    padding: 0.35rem 0.75rem;
-    border-radius: 3px;
-    background: linear-gradient(to right,
-            rgba(255, 255, 255, 0.25),
-            rgba(255, 255, 255, 0.35));
-    backdrop-filter: blur(8px);
-    font-size: 0.85rem;
-    color: rgba(0, 0, 0, 0.85);
-    box-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.12),
-        inset 0 0 16px rgba(255, 255, 255, 0.2);
-    z-index: 100;
+    bottom: 20px;
+    left: 20px;
+    width: 36px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1000;
+    color: #000;
     transition: all 0.3s ease;
-    min-height: 2rem;
-    display: flex;
-    align-items: center;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
 }
 
-.commit-count.has-error {
+.commit-panel:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.commit-panel.expanded {
+    width: 260px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.commit-header {
+    height: 36px;
+    width: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.commit-icon {
+    font-size: 18px;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.control-content {
+    padding: 16px;
+    opacity: 0;
+    max-height: 0;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.expanded .control-content {
+    opacity: 1;
+    max-height: 500px;
+}
+
+.commit-item {
+    width: 100%;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #000;
+}
+
+.commit-item:last-child {
+    margin-bottom: 0;
+}
+
+.commit-item label {
+    font-weight: 600;
+    /* 加粗标签 */
+    font-size: 12px;
+    color: #1a1a1a;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    margin-bottom: 5px;
+}
+
+.value {
+    text-align: center;
+    font-size: 12px;
+    color: #1a1a1a;
+    font-weight: 400;
+    transition: color 0.3s ease;
+    width: 100%;
+}
+
+.message {
+    max-width: 100%;
+    word-break: break-word;
+}
+
+.commit-panel.has-error {
     background: linear-gradient(to right,
             rgba(255, 50, 50, 0.25),
             rgba(255, 80, 80, 0.35));
     border: 1px solid rgba(255, 0, 0, 0.4);
-    text-shadow: 0 1px 1px rgba(255, 0, 0, 0.1);
 }
 
 .error-message {
-    color: #ff2222;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
+    color: #e60000;
+    font-weight: 600;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .error-icon {
     font-size: 1rem;
-    text-shadow: 0 0 3px rgba(255, 0, 0, 0.3);
-}
-
-.commit-count:hover {
-    opacity: 0.95;
-    transform: translateY(-1px);
-    box-shadow:
-        0 4px 12px rgba(0, 0, 0, 0.15),
-        inset 0 0 20px rgba(255, 255, 255, 0.25);
 }
 </style>

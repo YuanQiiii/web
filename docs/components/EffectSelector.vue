@@ -16,7 +16,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import Effect from './Effect.vue'
-import EffectExtreme from './Effect_extreme.vue'
+import EffectExtreme from './EffectExtreme.vue'
 
 const selectedEffect = ref('Effect')
 

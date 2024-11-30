@@ -2,13 +2,13 @@
 <script setup>
 import { onMounted, onBeforeUnmount, reactive } from 'vue'
 
-let canvas = null
-let ctx = null
-let offscreenCanvas = null
-let offscreenCtx = null
-const dpr = window.devicePixelRatio || 1
-
+/* 集中状态管理 */
 const state = reactive({
+    canvas: null,
+    ctx: null,
+    offscreenCanvas: null,
+    offscreenCtx: null,
+    dpr: window.devicePixelRatio || 1,
     isAnimating: false,
     particleCount: 300,       // 粒子数量
     particles: [],
@@ -21,9 +21,10 @@ const state = reactive({
     centerX: 0,
     centerY: 0,
     showPanel: false,
+    bounds: { width: 0, height: 0 }
 })
 
-const bounds = { width: 0, height: 0 }
+
 function getRandomColor() {
     const r = Math.floor(Math.random() * 256)
     const g = Math.floor(Math.random() * 256)
@@ -99,34 +100,34 @@ function initializeParticles() {
 }
 
 function setupCanvas() {
-    ctx = canvas.getContext('2d')
-    offscreenCanvas = document.createElement('canvas')
-    offscreenCtx = offscreenCanvas.getContext('2d')
+    state.ctx = state.canvas.getContext('2d')
+    state.offscreenCanvas = document.createElement('canvas')
+    state.offscreenCtx = state.offscreenCanvas.getContext('2d')
 }
 
 function updateBounds() {
-    bounds.width = window.innerWidth
-    bounds.height = window.innerHeight
+    state.bounds.width = window.innerWidth
+    state.bounds.height = window.innerHeight
 
-    state.centerX = bounds.width / 2
-    state.centerY = bounds.height / 2
+    state.centerX = state.bounds.width / 2
+    state.centerY = state.bounds.height / 2
 
-    canvas.width = bounds.width * dpr
-    canvas.height = bounds.height * dpr
-    canvas.style.width = `${bounds.width}px`
-    canvas.style.height = `${bounds.height}px`
+    state.canvas.width = state.bounds.width * state.dpr
+    state.canvas.height = state.bounds.height * state.dpr
+    state.canvas.style.width = `${state.bounds.width}px`
+    state.canvas.style.height = `${state.bounds.height}px`
 
-    offscreenCanvas.width = canvas.width
-    offscreenCanvas.height = canvas.height
+    state.offscreenCanvas.width = state.canvas.width
+    state.offscreenCanvas.height = state.canvas.height
 
-    ctx.scale(dpr, dpr)
+    state.ctx.scale(state.dpr, state.dpr)
 }
 
 function render() {
     state.rotationX += state.rotationSpeedX
     state.rotationY += state.rotationSpeedY
 
-    offscreenCtx.clearRect(0, 0, offscreenCanvas.width, offscreenCanvas.height)
+    state.offscreenCtx.clearRect(0, 0, state.offscreenCanvas.width, state.offscreenCanvas.height)
 
     // 绘制粒子
     state.particles.forEach(particle => {
@@ -138,11 +139,11 @@ function render() {
 
     // 批量绘制
     state.particles.forEach(particle => {
-        particle.draw(offscreenCtx)
+        particle.draw(state.offscreenCtx)
     })
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    ctx.drawImage(offscreenCanvas, 0, 0)
+    state.ctx.clearRect(0, 0, state.canvas.width, state.canvas.height)
+    state.ctx.drawImage(state.offscreenCanvas, 0, 0)
 }
 
 function animate() {
@@ -152,8 +153,8 @@ function animate() {
 }
 
 onMounted(() => {
-    canvas = document.createElement('canvas')
-    Object.assign(canvas.style, {
+    state.canvas = document.createElement('canvas')
+    Object.assign(state.canvas.style, {
         position: 'fixed',
         top: '0',
         left: '0',
@@ -162,7 +163,7 @@ onMounted(() => {
         pointerEvents: 'none',
         zIndex: '0',
     })
-    document.body.appendChild(canvas)
+    document.body.appendChild(state.canvas)
 
     setupCanvas()
     updateBounds()
@@ -179,17 +180,16 @@ onMounted(() => {
 onBeforeUnmount(() => {
     state.isAnimating = false
     window.removeEventListener('resize', updateBounds)
-    if (canvas && canvas.parentNode) canvas.parentNode.removeChild(canvas)
+    if (state.canvas && state.canvas.parentNode) state.canvas.parentNode.removeChild(state.canvas)
 })
 </script>
 
 <template>
     <div class="effect-container">
-        <!-- 控制面板 -->
         <div class="control-panel" :class="{ 'expanded': state.showPanel }">
             <div class="control-header" @click="state.showPanel = !state.showPanel">
                 <span class="control-title">⚙️</span>
-                <span class="control-toggle">{{ state.showPanel ? '−' : '+' }}</span>
+
             </div>
 
             <div class="control-content" v-if="state.showPanel">

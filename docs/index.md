@@ -4,6 +4,7 @@ layout: home
 hero:
   name: "Start Page"
   text: "Hello World!"
+  
   actions:
     - theme: brand
       text: 作者
@@ -15,6 +16,13 @@ hero:
       text: 朋友
       link: 朋友.md
 ---
+
+### <Badge type="info" text="default" />
+### <Badge type="tip" text="废寝忘食" />
+### <Badge type="warning" text="是不是花太多时间了？" />
+### <Badge type="danger" text="该放一放了" />
+
+
 <script setup>
 import EffectSelector from './components/EffectSelector.vue'
 import CommitCount from './components/CommitCount.vue'

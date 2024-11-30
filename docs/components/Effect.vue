@@ -1,396 +1,358 @@
+<!-- Effect.vue -->
 <script setup>
-import { onMounted, onBeforeUnmount, ref, watch, reactive } from 'vue'
+import { onMounted, onBeforeUnmount, reactive } from 'vue'
 
-/*
-初始化阶段：
-- onMounted 中创建 canvas 元素并初始化
-- 设置画布尺寸和缩放比例
-- 初始化粒子系统
-- 启动动画循环
-动画循环：
-- 清空画布
-- 更新所有粒子位置
-- 绘制粒子
-- 计算和绘制连接线
-- 性能检测
-交互控制：
-- 控制面板的显示/隐藏
-- 参数调整(粒子数量、连接距离、连接概率)
-- 性能监控和自动暂停
-*/
-
-/*
-- 每帧都重新计算所有可能的连接
-- 多重循环导致复杂度为 O(n²)
-*/
-
-
+/* 集中状态管理 */
+const state = reactive({
+  canvas: null,
+  ctx: null,
+  offscreenCanvas: null,
+  offscreenCtx: null,
+  dpr: window.devicePixelRatio || 1,
+  particles: [],
+  grid: {},
+  gridSize: 100, // 网格大小，可根据需要调整
+  particleCount: 50,
+  maxDistance: 100,
+  connectionProbability: 0.02,
+  bounds: {
+    width: 0,
+    height: 0
+  },
+  isAnimating: false,
+  animationId: null,
+  showPanel: false,
+  connectionColors: new Map(), // 存储连接的颜色
+})
 
 
-const state = reactive({ showPanel: false })
-let canvas = null
-let ctx = null
-let dpr = window.devicePixelRatio || 1
-let particles = []
-let connections = []
-const particleCount = ref(50)
-const distance = ref(100)
-const maxDistanceSquared = ref(distance.value * distance.value)
-const connectionProbability = ref(0.02)
-const showPerformanceAlert = ref(false)
-let bounds = {
-  width: 0,
-  height: 0
-}
-
-let lastFrameTime = 0
-let frameTimeHistory = []
-let isFirstFrame = true
-const FRAME_HISTORY_LENGTH = 60
-const FRAME_TIME_THRESHOLD = 1000 / 40
-let isPausedByPerformance = false
-let isResizing = false
-let poorPerformanceCount = 0
-
-
-function calculateDistance(p1, p2) {
-  const dx = p1.x - p2.x
-  const dy = p1.y - p2.y
-  return dx * dx + dy * dy
-}
-
-
-
-
+/* 粒子类 */
 class Particle {
   constructor() {
-    this.x = Math.random() * bounds.width
-    this.y = Math.random() * bounds.height
+    this.x = Math.random() * state.bounds.width
+    this.y = Math.random() * state.bounds.height
     this.vx = (Math.random() * 2 - 1) * 2
     this.vy = (Math.random() * 2 - 1) * 2
-    this.radius = 2 * dpr
+    this.radius = 3 * state.dpr
   }
+
   update() {
     this.x += this.vx
     this.y += this.vy
-    if (this.x <= 0 || this.x >= bounds.width) {
-      this.vx *= -1
-      this.x = Math.max(0, Math.min(this.x, bounds.width))
-    }
-    if (this.y <= 0 || this.y >= bounds.height) {
-      this.vy *= -1
-      this.y = Math.max(0, Math.min(this.y, bounds.height))
-    }
-  }
-  draw() {
-    ctx.beginPath()
-    ctx.arc(this.x, this.y, this.radius * dpr, 0, Math.PI * 2)
-    ctx.strokeStyle = 'rgba(125, 125, 125, 0.8)'
-    ctx.lineWidth = 2
-    ctx.stroke()
-  }
-}
-function initializeParticles() {
-  particles = Array.from({ length: particleCount.value }, () => new Particle())
-  connections = []
-}
-function updateParticles() {
-  initializeParticles()
-}
-function updateConnections() {
-  connections = []
-}
-function setupCanvas() {
-  if (!canvas) return null;
-  ctx = canvas.getContext('2d');
-}
-function updateBounds() {
 
-  bounds.width = window.innerWidth
-  bounds.height = window.innerHeight
-  canvas.width = bounds.width * dpr
-  canvas.height = bounds.height * dpr
-  canvas.style.width = `${bounds.width}px`
-  canvas.style.height = `${bounds.height}px`
-  ctx.setTransform(1, 0, 0, 1, 0, 0)
-  ctx.scale(dpr, dpr)
-}
-function debounce(func, wait) {
-  let timeout
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(timeout)
-      func(...args)
+    if (this.x <= 0 || this.x >= state.bounds.width) {
+      this.vx *= -1
+      this.x = Math.max(0, Math.min(this.x, state.bounds.width))
     }
-    clearTimeout(timeout)
-    timeout = setTimeout(later, wait)
+    if (this.y <= 0 || this.y >= state.bounds.height) {
+      this.vy *= -1
+      this.y = Math.max(0, Math.min(this.y, state.bounds.height))
+    }
+  }
+
+  draw(ctx) {
+    // 修复：使用传入的 ctx 而不是 state.ctx
+    ctx.beginPath()
+    ctx.arc(this.x, this.y, this.radius * state.dpr, 0, Math.PI * 2)
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)'  // 边框颜色
+    ctx.lineWidth = 1 * state.dpr  // 调整边框宽度
+    ctx.stroke()  // 绘制边框
+    // 不使用 fill() 方法，保持空心效果
   }
 }
+
+/* 初始化粒子 */
+function initializeParticles() {
+  state.particles = []
+  for (let i = 0; i < state.particleCount; i++) {
+    state.particles.push(new Particle())
+  }
+}
+
+/* 初始化网格 */
+function initializeGrid() {
+  state.grid = {}
+  const cols = Math.ceil(state.bounds.width / state.gridSize)
+  const rows = Math.ceil(state.bounds.height / state.gridSize)
+  for (let i = 0; i <= cols; i++) {
+    state.grid[i] = {}
+    for (let j = 0; j <= rows; j++) {
+      state.grid[i][j] = []
+    }
+  }
+}
+
+/* 更新粒子数量 */
+function updateParticles() {
+  resetState()
+}
+
+/* 更新网格 */
+function updateGrid() {
+  initializeGrid()
+  state.particles.forEach(particle => {
+    const col = Math.floor(particle.x / state.gridSize)
+    const row = Math.floor(particle.y / state.gridSize)
+    state.grid[col][row].push(particle)
+  })
+}
+
+/* 获取相邻网格中的粒子 */
+function getNeighbors(col, row) {
+  const neighbors = []
+  for (let i = col - 1; i <= col + 1; i++) {
+    for (let j = row - 1; j <= row + 1; j++) {
+      if (state.grid[i] && state.grid[i][j]) {
+        neighbors.push(...state.grid[i][j])
+      }
+    }
+  }
+  return neighbors
+}
+
+function getConnectionId(p1, p2) {
+  // 确保相同的两个粒子生成相同的ID
+  const id1 = state.particles.indexOf(p1)
+  const id2 = state.particles.indexOf(p2)
+  return id1 < id2 ? `${id1}-${id2}` : `${id2}-${id1}`
+}
+
+
+/* 绘制粒子和连接 */
+// 修改 render 函数中的连接线绘制部分
+function render() {
+  // 清空离屏画布
+  state.offscreenCtx.clearRect(0, 0, state.bounds.width, state.bounds.height)
+
+  // 更新所有粒子
+  state.particles.forEach(particle => {
+    particle.update()
+  })
+
+  // 更新网格
+  updateGrid()
+
+  // 批量绘制连接线
+
+  const newConnections = []
+  const maxDistanceSquared = state.maxDistance ** 2
+  state.offscreenCtx.lineWidth = 0.2 * state.dpr
+
+  // 遍历网格检查连接
+  for (let col in state.grid) {
+    for (let row in state.grid[col]) {
+      const cellParticles = state.grid[col][row]
+      if (cellParticles.length > 0) {
+        const neighbors = getNeighbors(parseInt(col), parseInt(row))
+        cellParticles.forEach(particle => {
+          neighbors.forEach(other => {
+            if (particle !== other) {
+              const dx = particle.x - other.x
+              const dy = particle.y - other.y
+              const distanceSquared = dx * dx + dy * dy
+
+              if (distanceSquared < maxDistanceSquared) {
+                const connectionId = getConnectionId(particle, other)
+
+                // 使用缓存的颜色或生成新颜色
+                if (!state.connectionColors.has(connectionId) && Math.random() < state.connectionProbability) {
+                  state.connectionColors.set(connectionId, getRandomColor())
+                }
+
+                if (state.connectionColors.has(connectionId)) {
+                  newConnections.push({
+                    id: connectionId,
+                    x1: particle.x,
+                    y1: particle.y,
+                    x2: other.x,
+                    y2: other.y,
+                    distance: Math.sqrt(distanceSquared)
+                  })
+                }
+              }
+            }
+          })
+        })
+      }
+    }
+  }
+
+  // 清理断开的连接
+  for (const [id, _] of state.connectionColors) {
+    if (!newConnections.some(conn => conn.id === id)) {
+      state.connectionColors.delete(id)
+    }
+  }
+
+  // 绘制连接线
+  newConnections.forEach(conn => {
+    const alpha = Math.max(0, 1 - conn.distance / state.maxDistance)
+    state.offscreenCtx.beginPath()
+    state.offscreenCtx.strokeStyle = state.connectionColors.get(conn.id)
+    state.offscreenCtx.moveTo(conn.x1, conn.y1)
+    state.offscreenCtx.lineTo(conn.x2, conn.y2)
+    state.offscreenCtx.stroke()
+  })
+
+  // 批量绘制粒子
+  state.particles.forEach(particle => {
+    particle.draw(state.offscreenCtx)
+  })
+
+  // 一次性将离屏画布内容复制到主画布
+  state.ctx.clearRect(0, 0, state.bounds.width, state.bounds.height)
+  state.ctx.drawImage(state.offscreenCanvas, 0, 0)
+}
+
+/* 获取随机颜色 */
 function getRandomColor() {
   const r = Math.floor(Math.random() * 256)
   const g = Math.floor(Math.random() * 256)
   const b = Math.floor(Math.random() * 256)
-  const a = (Math.random() * 0.2 + 0.8).toFixed(2)
-  return `rgba(${r}, ${g}, ${b}, ${a})`
+  const o = Math.floor(Math.random() * 256)
+  return `rgba(${r}, ${g}, ${b}, ${o})`
 }
 
-
-function drawConnections() {
-  for (let i = connections.length - 1; i >= 0; i--) {
-    const connection = connections[i]
-    const p1 = particles[connection.index1]
-    const p2 = particles[connection.index2]
-    const distanceSquared = calculateDistance(p1, p2)
-    if (distanceSquared > maxDistanceSquared.value) {
-      connections.splice(i, 1)
-    }
-  }
-  for (let i = 0; i < particles.length; i++) {
-    const p1 = particles[i]
-    for (let j = i + 1; j < particles.length; j++) {
-      const p2 = particles[j]
-      const distanceSquared = calculateDistance(p1, p2)
-      if (distanceSquared < maxDistanceSquared.value && Math.random() < connectionProbability.value) {
-        const exists = connections.some(
-          (conn) =>
-            (conn.index1 === i && conn.index2 === j) ||
-            (conn.index1 === j && conn.index2 === i)
-        )
-        if (!exists) {
-          connections.push({ index1: i, index2: j, color: getRandomColor() })
-        }
-      }
-    }
-  }
-  connections.forEach((connection) => {
-    const p1 = particles[connection.index1]
-    const p2 = particles[connection.index2]
-    ctx.beginPath()
-    ctx.moveTo(p1.x, p1.y)
-    ctx.lineTo(p2.x, p2.y)
-    ctx.strokeStyle = connection.color
-    ctx.lineWidth = 0.4 * dpr
-    ctx.stroke()
-  })
-}
-
-
-let animationId
-let isAnimating = false
-
-const render = () => {
-  ctx.clearRect(0, 0, canvas.width, canvas.height)
-  particles.forEach(p => {
-    p.update()
-    p.draw()
-  })
-  drawConnections()
-}
-
-const checkPerformance = () => {
-  const currentTime = performance.now()
-  if (isFirstFrame) {
-    lastFrameTime = currentTime
-    isFirstFrame = false
-    return
-  }
-  const frameTime = currentTime - lastFrameTime
-  lastFrameTime = currentTime
-  if (isResizing) {
-    return
-  }
-
-  frameTimeHistory.push(frameTime)
-  if (frameTimeHistory.length > FRAME_HISTORY_LENGTH) {
-    frameTimeHistory.shift()
-  }
-  if (frameTimeHistory.length >= Math.min(30, FRAME_HISTORY_LENGTH)) {
-    const recentFrames = frameTimeHistory.slice(-10)
-    const averageFrameTime = recentFrames.reduce((a, b) => a + b, 0) / recentFrames.length
-
-
-    if (averageFrameTime > FRAME_TIME_THRESHOLD) {
-      poorPerformanceCount++
-      if (poorPerformanceCount >= 3 && !isPausedByPerformance) {
-        isPausedByPerformance = true
-        showPerformanceAlert.value = true
-        pauseAnimation()
-      }
-    } else {
-      poorPerformanceCount = 0
-    }
-  }
-}
-
-
-const animate = () => {
-  if (!isAnimating || !ctx) return
-
-  checkPerformance()
+/* 动画循环 */
+function animate() {
+  if (!state.isAnimating) return
   render()
-  animationId = requestAnimationFrame(animate)
+  state.animationId = requestAnimationFrame(animate)
+}
+
+/* 设置画布 */
+function setupCanvas() {
+  if (!state.canvas) return
+  state.ctx = state.canvas.getContext('2d')
+  state.bounds.width = window.innerWidth
+  state.bounds.height = window.innerHeight
+  state.canvas.width = state.bounds.width * state.dpr
+  state.canvas.height = state.bounds.height * state.dpr
+  state.canvas.style.width = `${state.bounds.width}px`
+  state.canvas.style.height = `${state.bounds.height}px`
+  state.ctx.scale(state.dpr, state.dpr)
+
+  // 设置离屏画布
+  state.offscreenCanvas = document.createElement('canvas')
+  state.offscreenCtx = state.offscreenCanvas.getContext('2d')
+  state.offscreenCanvas.width = state.bounds.width
+  state.offscreenCanvas.height = state.bounds.height
 }
 
 
+/* 事件处理 */
+function handleResize() {
+  setupCanvas()
+  resetState()
+}
 
+function handleVisibilityChange() {
+  if (document.hidden) {
+    pauseAnimation()
+  } else {
+    startAnimation()
+  }
+}
 
-const resumeAnimation = () => {
-  if (!isAnimating) {
-
-    showPerformanceAlert.value = false
-    isFirstFrame = true
-    frameTimeHistory = []
-    lastFrameTime = 0
-    isPausedByPerformance = false
-
-    isAnimating = true
+/* 启动动画 */
+function startAnimation() {
+  if (!state.isAnimating) {
+    state.isAnimating = true
     animate()
   }
 }
 
-
-watch(
-  [particleCount, distance, connectionProbability],
-  () => {
-    if (isExpanded.value) {
-
-      if (isPausedByPerformance) {
-        isPausedByPerformance = false
-        resumeAnimation()
-      }
-    }
-  }
-)
-watch(distance, (newValue) => {
-  maxDistanceSquared.value = newValue * newValue
-})
-
-const pauseAnimation = () => {
-  isAnimating = false
-  if (animationId) {
-    cancelAnimationFrame(animationId)
-    animationId = null
+/* 暂停动画 */
+function pauseAnimation() {
+  state.isAnimating = false
+  if (state.animationId) {
+    cancelAnimationFrame(state.animationId)
+    state.animationId = null
   }
 }
 
-
-
-const handleVisibilityChange = () => {
-  if (document.hidden) {
-    pauseAnimation()
-  } else {
-    resumeAnimation()
-  }
-}
-const debouncedResize = debounce(() => {
-  isResizing = true
-
-
-  updateBounds()
+/* 重置状态 */
+function resetState() {
   initializeParticles()
+  initializeGrid()
+  // 重置状态时清理连接缓存
+  state.connectionColors.clear()
+}
 
-
-  setTimeout(() => {
-    isResizing = false
-
-    frameTimeHistory = []
-    isFirstFrame = true
-    poorPerformanceCount = 0
-
-
-    if (isPausedByPerformance) {
-      isPausedByPerformance = false
-      resumeAnimation()
-    }
-  }, 500)
-}, 100)
+/* 初始加载 */
 onMounted(() => {
-  canvas = document.createElement('canvas')
-  canvas.style.position = 'fixed'
-  canvas.style.top = '0'
-  canvas.style.left = '0'
-  canvas.style.width = '100%'
-  canvas.style.height = '100%'
-  canvas.style.pointerEvents = 'none'
-  canvas.style.zIndex = '0'
-  document.body.appendChild(canvas)
+  // 创建 canvas
+  state.canvas = document.createElement('canvas')
+  state.canvas.style.position = 'fixed'
+  state.canvas.style.top = '0'
+  state.canvas.style.left = '0'
+  state.canvas.style.width = '100%'
+  state.canvas.style.height = '100%'
+  state.canvas.style.pointerEvents = 'none'
+  state.canvas.style.zIndex = '0'
+  document.body.appendChild(state.canvas)
+
+  // 设置画布和粒子
   setupCanvas()
-  updateBounds()
-  initializeParticles()
-  isAnimating = true
-  animate()
-  window.addEventListener('resize', () => {
-    debouncedResize();
-    resumeAnimation();
-  });
-  document.addEventListener('visibilitychange', () => {
-    handleVisibilityChange();
-    resumeAnimation();
-  }
-  )
-}
-)
+  resetState()
 
+  // 启动动画
+  startAnimation()
 
-onBeforeUnmount(() => {
-
-  isAnimating = false
-  if (animationId) {
-    cancelAnimationFrame(animationId)
-    animationId = null
-  }
-  window.removeEventListener('resize', () => {
-    debouncedResize();
-  })
-  document.removeEventListener('visibilitychange', () => {
-    handleVisibilityChange();
-    resumeAnimation();
-  })
-  if (canvas && canvas.parentNode) {
-    canvas.parentNode.removeChild(canvas)
-  }
+  // 事件绑定
+  window.addEventListener('resize', handleResize)
+  document.addEventListener('visibilitychange', handleVisibilityChange)
 })
 
+/* 组件销毁 */
+onBeforeUnmount(() => {
+  // 事件解绑
+  window.removeEventListener('resize', handleResize)
+  document.removeEventListener('visibilitychange', handleVisibilityChange)
+
+  // 停止动画
+  pauseAnimation()
+
+  // 移除 canvas
+  if (state.canvas && state.canvas.parentNode) {
+    state.canvas.parentNode.removeChild(state.canvas)
+  }
+})
 </script>
+
 <template>
   <div class="effect-container">
-    <div v-if="showPerformanceAlert" class="performance-alert">
-      因性能不足而暂停动画，请调整参数
-    </div>
-
     <div class="control-panel" :class="{ 'expanded': state.showPanel }">
       <div class="control-header" @click="state.showPanel = !state.showPanel">
         <span class="control-title">⚙️</span>
-        <span class="control-toggle">{{ state.showPanel ? '−' : '+' }}</span>
+
       </div>
+
       <div class="control-content" v-if="state.showPanel">
         <div class="control-item">
-          <label>
-            粒子数量
-            <input type="range" v-model.number="particleCount" @input="updateParticles" min="10" max="200" />
-            <span class="value">{{ particleCount }}</span>
-          </label>
+          <label>Particle Count</label>
+          <input type="range" v-model.number="state.particleCount" min="10" max="200" @input="updateParticles" />
+          <span class="value">{{ state.particleCount }}</span>
+
         </div>
+
         <div class="control-item">
-          <label>
-            最大连接距离
-            <input type="range" v-model.number="distance" @input="updateConnections" min="10" max="200" />
-            <span class="value">{{ distance }}</span>
-          </label>
+          <label>Max Distance</label>
+          <input type="range" v-model.number="state.maxDistance" min="50" max="300" @input="updateConnections" />
+          <span class="value">{{ state.maxDistance }}</span>
+
         </div>
+
         <div class="control-item">
-          <label>
-            连接概率
-            <input type="range" v-model.number="connectionProbability" @input="updateConnections" step="0.01" min="0"
-              max="1" />
-            <span class="value">{{ connectionProbability }}</span>
-          </label>
+          <label>Connection Probability</label>
+          <input type="range" v-model.number="state.connectionProbability" step="0.01" min="0" max="1"
+            @input="updateConnections" />
+          <span class="value">{{ state.connectionProbability.toFixed(2) }}</span>
         </div>
       </div>
     </div>
   </div>
 </template>
-
 <style scoped>
 .effect-container {
   position: relative;
@@ -432,11 +394,13 @@ onBeforeUnmount(() => {
 .control-toggle {
   font-size: 18px;
   color: #333;
+  /* 加深图标颜色 */
   transition: all 0.3s ease;
 }
 
 .control-toggle:hover {
   color: #000;
+  /* 悬停时更深 */
 }
 
 .expanded .control-toggle {
@@ -459,6 +423,7 @@ onBeforeUnmount(() => {
 .control-item {
   margin-bottom: 16px;
   color: #333;
+  /* 加深文字颜色 */
 }
 
 .control-item:last-child {
@@ -470,6 +435,7 @@ onBeforeUnmount(() => {
   flex-direction: column;
   gap: 5px;
   font-weight: 500;
+  font-size: 12px;
 }
 
 .control-item input[type="range"] {
@@ -487,5 +453,6 @@ onBeforeUnmount(() => {
 
 .control-item:hover .value {
   color: #000;
+  /* 悬停时更深 */
 }
 </style>

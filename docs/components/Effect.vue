@@ -189,6 +189,7 @@ function render() {
     const alpha = Math.max(0, 1 - conn.distance / state.maxDistance)
     state.offscreenCtx.beginPath()
     state.offscreenCtx.strokeStyle = state.connectionColors.get(conn.id)
+    state.offscreenCtx.lineWidth = 0.2 * state.dpr
     state.offscreenCtx.moveTo(conn.x1, conn.y1)
     state.offscreenCtx.lineTo(conn.x2, conn.y2)
     state.offscreenCtx.stroke()

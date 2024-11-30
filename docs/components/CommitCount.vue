@@ -17,23 +17,30 @@ async function fetchCommits() {
         const owner = 'YuanQiiii'
         const repo = 'web'
         const response = await fetch(
-            `https://api.github.com/repos/${owner}/${repo}/commits`
+            `https://api.github.com/repos/${owner}/${repo}/commits?per_page=1`
         )
 
         if (!response.ok) {
             throw new Error('Failed to fetch commits')
         }
 
-        const data = await response.json()
-        commits.value = data.map(commit => ({
-            message: commit.commit.message,
-            date: new Date(commit.commit.author.date)
-        }))
+        // 获取总提交数
+        const linkHeader = response.headers.get('Link')
+        const lastPageMatch = linkHeader?.match(/page=(\d+)>; rel="last"/)
+        commitCount.value = lastPageMatch ? parseInt(lastPageMatch[1]) : 0
 
-        commitCount.value = commits.value.length
-        latestMessage.value = commits.value[0]?.message || 'No commits'
+        // 获取最新提交信息
+        const [latestCommit] = await response.json()
+        if (latestCommit) {
+            latestMessage.value = latestCommit.commit.message || 'No commit message'
+        } else {
+            latestMessage.value = 'No commits'
+        }
+
     } catch (e) {
         error.value = e.message
+        commitCount.value = 0
+        latestMessage.value = ''
     } finally {
         loading.value = false
     }

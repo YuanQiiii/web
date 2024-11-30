@@ -54,7 +54,7 @@ class Particle {
     // 修复：使用传入的 ctx 而不是 state.ctx
     ctx.beginPath()
     ctx.arc(this.x, this.y, this.radius * state.dpr, 0, Math.PI * 2)
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)'  // 边框颜色
+    ctx.strokeStyle = 'rgba(128, 128, 192, 0.7)'  // 边框颜色
     ctx.lineWidth = 1 * state.dpr  // 调整边框宽度
     ctx.stroke()  // 绘制边框
     // 不使用 fill() 方法，保持空心效果

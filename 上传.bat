@@ -4,9 +4,12 @@ REM Automated git push process
 echo Starting task
 echo .......... 
 
-REM Get current date and time
-for /f "tokens=1-2 delims= " %%a in ("%date% %time%") do set datetime=%%a_%%b
-REM Replace colons with dashes in the time to avoid special characters in Git commit messages
+REM Get current date and time up to minutes
+for /f "tokens=1" %%a in ("%date%") do set currentDate=%%a
+set currentTime=%time:~0,5%
+REM Combine date and time
+set "datetime=%currentDate%_%currentTime%"
+REM Replace colons with dashes to avoid special characters in Git commit messages
 set "datetime=%datetime::=-%"
 
 echo Adding all changes

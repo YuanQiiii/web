@@ -4,15 +4,6 @@
 echo "Starting task"
 echo ".........."
 
-# Run ppemail.py first
-echo "Running email processor..."
-python3 ppemail.py
-if [ $? -ne 0 ]; then
-    echo "Failed to process emails"
-    exit 1
-fi
-echo "Email processing completed"
-
 # Get current date and time up to minutes
 currentDate=$(date +%Y-%m-%d)
 currentTime=$(date +%H-%M)

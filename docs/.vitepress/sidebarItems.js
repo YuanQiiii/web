@@ -5,6 +5,10 @@ export default [
     "collapsed": false,
     "items": [
       {
+        "text": "log.md",
+        "link": "/想法/log.md"
+      },
+      {
         "text": "零碎的记忆.md",
         "link": "/想法/零碎的记忆.md"
       },

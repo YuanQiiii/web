@@ -233,7 +233,7 @@ def process_action_file():
                 return
             # 保留 actions: 之前的内容
             header = data[:actions_index + len('actions:')]
-            # print(actions)
+            print(actions)
             # 组合新的文件内容
             updated_content = f'{header}\n{actions}\n---'
             file.seek(0)

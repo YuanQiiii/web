@@ -196,3 +196,191 @@
 [2024-12-02 04:31:54] Deleted email ID b'1'.
 ```
 
+```cmd
+[2024-12-02 04:32:00] upload.sh executed successfully.
+```
+
+```cmd
+[2024-12-02 04:32:10] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:32:10] No new emails to process. Waiting for new emails...
+```
+
+```cmd
+[2024-12-02 04:33:10] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:33:10] No new emails to process. Waiting for new emails...
+```
+
+```cmd
+[2024-12-02 04:34:10] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:34:10] No new emails to process. Waiting for new emails...
+```
+
+```cmd
+[2024-12-02 04:35:10] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:35:10] No new emails to process. Waiting for new emails...
+```
+
+```cmd
+[2024-12-02 04:36:10] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:36:10] No new emails to process. Waiting for new emails...
+```
+
+```cmd
+[2024-12-02 04:37:10] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:37:10] No new emails to process. Waiting for new emails...
+```
+
+```cmd
+[2024-12-02 04:38:10] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:38:10] No new emails to process. Waiting for new emails...
+```
+
+```cmd
+[2024-12-02 04:39:10] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:39:10] No new emails to process. Waiting for new emails...
+```
+
+```cmd
+[2024-12-02 04:40:11] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:40:11] No new emails to process. Waiting for new emails...
+```
+
+```cmd
+[2024-12-02 04:41:11] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:41:11] No new emails to process. Waiting for new emails...
+```
+
+```cmd
+[2024-12-02 04:42:11] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:42:11] No new emails to process. Waiting for new emails...
+```
+
+```cmd
+[2024-12-02 04:43:11] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:43:11] No new emails to process. Waiting for new emails...
+```
+
+```cmd
+[2024-12-02 04:44:11] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:44:11] No new emails to process. Waiting for new emails...
+```
+
+```cmd
+[2024-12-02 04:45:11] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:45:11] No new emails to process. Waiting for new emails...
+```
+
+```cmd
+[2024-12-02 04:46:11] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:46:11] No new emails to process. Waiting for new emails...
+```
+
+```cmd
+[2024-12-02 04:47:11] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:47:11] No new emails to process. Waiting for new emails...
+```
+
+```cmd
+[2024-12-02 04:48:11] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:48:11] No new emails to process. Waiting for new emails...
+```
+
+```cmd
+[2024-12-02 04:49:11] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:49:11] No new emails to process. Waiting for new emails...
+```
+
+```cmd
+[2024-12-02 04:50:11] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:50:11] No new emails to process. Waiting for new emails...
+```
+
+```cmd
+[2024-12-02 04:51:11] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:51:11] No new emails to process. Waiting for new emails...
+```
+
+```cmd
+[2024-12-02 04:52:11] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:52:11] No new emails to process. Waiting for new emails...
+```
+
+```cmd
+[2024-12-02 04:53:11] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:53:11] No new emails to process. Waiting for new emails...
+```
+
+```cmd
+[2024-12-02 04:54:11] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:54:11] No new emails to process. Waiting for new emails...
+```
+

@@ -219,7 +219,7 @@ if __name__ == "__main__":
     EMAIL = "shihuaidexianyu@yeah.net"
     PASSWORD = "EPRk4j4StzAmFExj"
     IMAP_SERVER = "imap.yeah.net"
-    MD_FILE = "output.md"
+    MD_FILE = "./docs/想法/output.md"
 
     processor = EmailProcessor(EMAIL, PASSWORD, IMAP_SERVER, MD_FILE)
     processor.process_all_emails()

@@ -124,7 +124,6 @@ def convert_punctuations(content):
     
 actions = "" # 生成的actions内容
 themes = ['brand', 'alt'] # 主题列表
-actions_target_file = 'docs\内容.md' # 修改的目标文件的路径
 
 def replace_unclosed_html_tags(content):
     # 定义C++常用库和模板类型
@@ -222,26 +221,36 @@ def process_markdown_files(directory_path, skip_files):
     except Exception as e:
         print(f"遍历目录 {directory_path} 时出错: {e}")
 
+# 使用os.path.join()构建跨平台路径
+actions_target_file = os.path.join('docs', '内容.md')
+
 def process_action_file():
     try:
+        # 确保文件存在
+        if not os.path.exists(actions_target_file):
+            print(f'目标文件未找到: {actions_target_file}')
+            return
+            
         with open(actions_target_file, 'r+', encoding='utf-8') as file:
             data = file.read()
-            # 查找 actions: 的位置
             actions_index = data.find('actions:')
             if actions_index == -1:
-                print('Cannot find actions: marker in the file')
+                print(f'在文件 {actions_target_file} 中未找到 actions: 标记')
                 return
-            # 保留 actions: 之前的内容
+                
             header = data[:actions_index + len('actions:')]
-            print(actions)
-            # 组合新的文件内容
             updated_content = f'{header}\n{actions}\n---'
+            
+            # 添加调试信息
+            print(f'正在写入文件: {actions_target_file}')
+            print(f'内容长度: {len(updated_content)}')
+            
             file.seek(0)
             file.truncate()
             file.write(updated_content)
-            print('Actions updated successfully')
+            print('Actions 更新成功')
     except Exception as e:
-        print(f'Error processing file: {e}')
+        print(f'处理文件时出错: {e}')
 
 def get_items(dir, base_path=''):
     items = []

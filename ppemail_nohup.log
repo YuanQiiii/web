@@ -2,16 +2,3 @@ nohup: ignoring input
 Starting task
 ..........
 Adding all changes
-..........
-Committing changes, skip if no changes
-[main 8d8de83] 2024-12-02_04-31
- 5 files changed, 128 insertions(+)
- create mode 100644 output.assets/image0.jpeg
- mode change 100644 => 100755 ppemail.py
- create mode 100644 ppemail_nohup.log
-..........
-Pushing to remote repository
-To github.com:YuanQiiii/web.git
-   eb8ee43..8d8de83  main -> main
-..........
-Task completed

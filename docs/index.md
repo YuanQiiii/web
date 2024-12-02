@@ -15,6 +15,12 @@ hero:
     - theme: brand
       text: 朋友
       link: 朋友.md
+    - theme: brand
+      text: 日常
+      link: 想法/output.md
+    - theme: brand
+      text: log
+      link: 想法/log.md
 ---
 
 ### <Badge type="info" text="写作业" />

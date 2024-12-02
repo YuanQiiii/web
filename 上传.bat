@@ -4,15 +4,6 @@ REM Automated process
 echo Starting task
 echo .......... 
 
-REM Run ppemail.py first
-echo Running email processor...
-python ppemail.py
-if %ERRORLEVEL% NEQ 0 (
-    echo Failed to process emails
-    exit /b 1
-)
-echo Email processing completed
-
 REM Get current date and time up to minutes
 for /f "tokens=1" %%a in ("%date%") do set currentDate=%%a
 set currentTime=%time:~0,5%

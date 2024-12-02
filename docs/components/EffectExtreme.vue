@@ -4,216 +4,215 @@ import { onMounted, onBeforeUnmount, reactive } from 'vue'
 
 /* 集中状态管理 */
 const state = reactive({
-    canvas: null,
-    ctx: null,
-    offscreenCanvas: null,
-    offscreenCtx: null,
-    dpr: window.devicePixelRatio || 1,
-    isAnimating: false,
-    particleCount: 300,       // 粒子数量
-    particles: [],
-    rotationX: 0,             // X 轴旋转角度
-    rotationY: 0,             // Y 轴旋转角度
-    rotationSpeedX: 0.005,    // X 轴旋转速度
-    rotationSpeedY: 0.005,    // Y 轴旋转速度
-    perspective: 800,         // 透视距离
-    sphereRadius: 200,        // 球体半径
-    centerX: 0,
-    centerY: 0,
-    showPanel: false,
-    bounds: { width: 0, height: 0 }
+  canvas: null,
+  ctx: null,
+  offscreenCanvas: null,
+  offscreenCtx: null,
+  dpr: window.devicePixelRatio || 1,
+  isAnimating: false,
+  particleCount: 300,       // 粒子数量
+  particles: [],
+  rotationX: 0,             // X 轴旋转角度
+  rotationY: 0,             // Y 轴旋转角度
+  rotationSpeedX: 0.005,    // X 轴旋转速度
+  rotationSpeedY: 0.005,    // Y 轴旋转速度
+  perspective: 800,         // 透视距离
+  sphereRadius: 200,        // 球体半径
+  centerX: 0,
+  centerY: 0,
+  showPanel: false,
+  bounds: { width: 0, height: 0 }
 })
 
 
 function getRandomColor() {
-    const r = Math.floor(Math.random() * 256)
-    const g = Math.floor(Math.random() * 256)
-    const b = Math.floor(Math.random() * 256)
-    const a = (Math.random() * 0.5 + 0.5).toFixed(2) // 透明度在 0.5 到 1 之间
-    return `rgba(${r}, ${g}, ${b}, ${a})`
+  const r = Math.floor(Math.random() * 256)
+  const g = Math.floor(Math.random() * 256)
+  const b = Math.floor(Math.random() * 256)
+  const a = (Math.random() * 0.5 + 0.5).toFixed(2) // 透明度在 0.5 到 1 之间
+  return `rgba(${r}, ${g}, ${b}, ${a})`
 }
 
 class Particle {
-    constructor() {
-        // 球面坐标随机生成位置
-        const theta = Math.random() * Math.PI * 2
-        const phi = Math.acos(2 * Math.random() - 1)
-        const r = state.sphereRadius * Math.pow(Math.random(), 1 / 3) // 使用立方根使分布更均匀
+  constructor() {
+    // 球面坐标随机生成位置
+    const theta = Math.random() * Math.PI * 2
+    const phi = Math.acos(2 * Math.random() - 1)
+    const r = state.sphereRadius * (Math.random() * (- 0.1) + 1)
 
-        // 3D 坐标
-        this.x3d = r * Math.sin(phi) * Math.cos(theta)
-        this.y3d = r * Math.sin(phi) * Math.sin(theta)
-        this.z3d = r * Math.cos(phi)
+    // 3D 坐标
+    this.x3d = r * Math.sin(phi) * Math.cos(theta)
+    this.y3d = r * Math.sin(phi) * Math.sin(theta)
+    this.z3d = r * Math.cos(phi)
 
-        // 2D 投影坐标
-        this.x = 0
-        this.y = 0
-        this.scale = 1
-        this.alpha = 1
-        this.radius = 2
+    // 2D 投影坐标
+    this.x = 0
+    this.y = 0
+    this.scale = 1
+    this.alpha = 1
+    this.radius = 2
 
-        // 随机颜色
-        this.color = getRandomColor()
-    }
+    // 随机颜色
+    this.color = getRandomColor()
+  }
 
-    project() {
-        // 3D 旋转
-        const cosX = Math.cos(state.rotationX)
-        const sinX = Math.sin(state.rotationX)
-        const cosY = Math.cos(state.rotationY)
-        const sinY = Math.sin(state.rotationY)
+  project() {
+    // 3D 旋转
+    const cosX = Math.cos(state.rotationX)
+    const sinX = Math.sin(state.rotationX)
+    const cosY = Math.cos(state.rotationY)
+    const sinY = Math.sin(state.rotationY)
 
-        // 绕 X 轴旋转
-        let y = this.y3d * cosX - this.z3d * sinX
-        let z = this.y3d * sinX + this.z3d * cosX
-        let x = this.x3d
+    // 绕 X 轴旋转
+    let y = this.y3d * cosX - this.z3d * sinX
+    let z = this.y3d * sinX + this.z3d * cosX
+    let x = this.x3d
 
-        // 绕 Y 轴旋转
-        let x2 = x * cosY - z * sinY
-        let z2 = x * sinY + z * cosY
+    // 绕 Y 轴旋转
+    let x2 = x * cosY - z * sinY
+    let z2 = x * sinY + z * cosY
 
-        // 投影到 2D 平面
-        const scale = state.perspective / (state.perspective + z2)
-        this.x = state.centerX + x2 * scale
-        this.y = state.centerY + y * scale
-        this.scale = scale
-        this.alpha = scale
-    }
+    // 投影到 2D 平面
+    const scale = state.perspective / (state.perspective + z2)
+    this.x = state.centerX + x2 * scale
+    this.y = state.centerY + y * scale
+    this.scale = scale
+    this.alpha = scale
+  }
 
-    update() {
-        this.project()
-    }
+  update() {
+    this.project()
+  }
 
-    draw(ctx) {
-        ctx.beginPath()
-        ctx.arc(this.x, this.y, this.radius * this.scale, 0, Math.PI * 2)
-        ctx.fillStyle = this.color
-        ctx.fill()
-    }
+  draw(ctx) {
+    ctx.beginPath()
+    ctx.arc(this.x, this.y, this.radius * this.scale, 0, Math.PI * 2)
+    ctx.fillStyle = this.color
+    ctx.fill()
+  }
 }
 
 function initializeParticles() {
-    state.particles = []
-    for (let i = 0; i < state.particleCount; i++) {
-        state.particles.push(new Particle())
-    }
+  state.particles = []
+  for (let i = 0; i < state.particleCount; i++) {
+    state.particles.push(new Particle())
+  }
 }
 
 function setupCanvas() {
-    state.ctx = state.canvas.getContext('2d')
-    state.offscreenCanvas = document.createElement('canvas')
-    state.offscreenCtx = state.offscreenCanvas.getContext('2d')
+  state.ctx = state.canvas.getContext('2d')
+  state.offscreenCanvas = document.createElement('canvas')
+  state.offscreenCtx = state.offscreenCanvas.getContext('2d')
 }
 
 function updateBounds() {
-    state.bounds.width = window.innerWidth
-    state.bounds.height = window.innerHeight
+  state.bounds.width = window.innerWidth
+  state.bounds.height = window.innerHeight
 
-    state.centerX = state.bounds.width / 2
-    state.centerY = state.bounds.height / 2
+  state.centerX = state.bounds.width / 2
+  state.centerY = state.bounds.height / 2
 
-    state.canvas.width = state.bounds.width * state.dpr
-    state.canvas.height = state.bounds.height * state.dpr
-    state.canvas.style.width = `${state.bounds.width}px`
-    state.canvas.style.height = `${state.bounds.height}px`
+  state.canvas.width = state.bounds.width * state.dpr
+  state.canvas.height = state.bounds.height * state.dpr
+  state.canvas.style.width = `${state.bounds.width}px`
+  state.canvas.style.height = `${state.bounds.height}px`
 
-    state.offscreenCanvas.width = state.canvas.width
-    state.offscreenCanvas.height = state.canvas.height
+  state.offscreenCanvas.width = state.canvas.width
+  state.offscreenCanvas.height = state.canvas.height
 
-    state.ctx.scale(state.dpr, state.dpr)
+  state.ctx.scale(state.dpr, state.dpr)
 }
 
 function render() {
-    state.rotationX += state.rotationSpeedX
-    state.rotationY += state.rotationSpeedY
+  state.rotationX += state.rotationSpeedX
+  state.rotationY += state.rotationSpeedY
 
-    state.offscreenCtx.clearRect(0, 0, state.offscreenCanvas.width, state.offscreenCanvas.height)
+  state.offscreenCtx.clearRect(0, 0, state.offscreenCanvas.width, state.offscreenCanvas.height)
 
-    // 绘制粒子
-    state.particles.forEach(particle => {
-        particle.update()
-    })
+  // 绘制粒子
+  state.particles.forEach(particle => {
+    particle.update()
+  })
 
-    // 根据 z 坐标排序，模拟深度效果
-    state.particles.sort((a, b) => b.scale - a.scale)
+  // 根据 z 坐标排序，模拟深度效果
+  state.particles.sort((a, b) => b.scale - a.scale)
 
-    // 批量绘制
-    state.particles.forEach(particle => {
-        particle.draw(state.offscreenCtx)
-    })
+  // 批量绘制
+  state.particles.forEach(particle => {
+    particle.draw(state.offscreenCtx)
+  })
 
-    state.ctx.clearRect(0, 0, state.canvas.width, state.canvas.height)
-    state.ctx.drawImage(state.offscreenCanvas, 0, 0)
+  state.ctx.clearRect(0, 0, state.canvas.width, state.canvas.height)
+  state.ctx.drawImage(state.offscreenCanvas, 0, 0)
 }
 
 function animate() {
-    if (!state.isAnimating) return
-    render()
-    requestAnimationFrame(animate)
+  if (!state.isAnimating) return
+  render()
+  requestAnimationFrame(animate)
 }
 
 onMounted(() => {
-    state.canvas = document.createElement('canvas')
-    Object.assign(state.canvas.style, {
-        position: 'fixed',
-        top: '0',
-        left: '0',
-        width: '100%',
-        height: '100%',
-        pointerEvents: 'none',
-        zIndex: '0',
-    })
-    document.body.appendChild(state.canvas)
+  state.canvas = document.createElement('canvas')
+  Object.assign(state.canvas.style, {
+    position: 'fixed',
+    top: '0',
+    left: '0',
+    width: '100%',
+    height: '100%',
+    pointerEvents: 'none',
+    zIndex: '0',
+  })
+  document.body.appendChild(state.canvas)
 
-    setupCanvas()
+  setupCanvas()
+  updateBounds()
+  initializeParticles()
+  state.isAnimating = true
+  animate()
+
+  window.addEventListener('resize', () => {
     updateBounds()
     initializeParticles()
-    state.isAnimating = true
-    animate()
-
-    window.addEventListener('resize', () => {
-        updateBounds()
-        initializeParticles()
-    })
+  })
 })
 
 onBeforeUnmount(() => {
-    state.isAnimating = false
-    window.removeEventListener('resize', updateBounds)
-    if (state.canvas && state.canvas.parentNode) state.canvas.parentNode.removeChild(state.canvas)
+  state.isAnimating = false
+  window.removeEventListener('resize', updateBounds)
+  if (state.canvas && state.canvas.parentNode) state.canvas.parentNode.removeChild(state.canvas)
 })
 </script>
 
 <template>
-    <div class="effect-container">
-        <div class="control-panel" :class="{ 'expanded': state.showPanel }">
-            <div class="control-header" @click="state.showPanel = !state.showPanel">
-                <span class="control-title">⚙️</span>
+  <div class="effect-container">
+    <div class="control-panel" :class="{ 'expanded': state.showPanel }">
+      <div class="control-header" @click="state.showPanel = !state.showPanel">
+        <span class="control-title">⚙️</span>
 
-            </div>
+      </div>
 
-            <div class="control-content" v-if="state.showPanel">
-                <div class="control-item">
-                    <label>Particle Count</label>
-                    <input type="range" v-model.number="state.particleCount" min="100" max="500"
-                        @input="initializeParticles" />
-                    <span class="value">{{ state.particleCount }}</span>
-                </div>
-
-                <div class="control-item">
-                    <label>Rotation Speed X</label>
-                    <input type="range" v-model.number="state.rotationSpeedX" min="-0.01" max="0.01" step="0.0005" />
-                    <span class="value">{{ state.rotationSpeedX.toFixed(4) }}</span>
-                </div>
-
-                <div class="control-item">
-                    <label>Rotation Speed Y</label>
-                    <input type="range" v-model.number="state.rotationSpeedY" min="-0.01" max="0.01" step="0.0005" />
-                    <span class="value">{{ state.rotationSpeedY.toFixed(4) }}</span>
-                </div>
-            </div>
+      <div class="control-content" v-if="state.showPanel">
+        <div class="control-item">
+          <label>Particle Count</label>
+          <input type="range" v-model.number="state.particleCount" min="100" max="500" @input="initializeParticles" />
+          <span class="value">{{ state.particleCount }}</span>
         </div>
+
+        <div class="control-item">
+          <label>Rotation Speed X</label>
+          <input type="range" v-model.number="state.rotationSpeedX" min="-0.01" max="0.01" step="0.0005" />
+          <span class="value">{{ state.rotationSpeedX.toFixed(4) }}</span>
+        </div>
+
+        <div class="control-item">
+          <label>Rotation Speed Y</label>
+          <input type="range" v-model.number="state.rotationSpeedY" min="-0.01" max="0.01" step="0.0005" />
+          <span class="value">{{ state.rotationSpeedY.toFixed(4) }}</span>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <style scoped>
@@ -270,7 +269,7 @@ onBeforeUnmount(() => {
   transform-origin: top;
   transform: scaleY(0);
   opacity: 0;
-  transition: 
+  transition:
     transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -297,7 +296,7 @@ onBeforeUnmount(() => {
   color: #000;
   opacity: 0;
   transform: translateY(10px);
-  transition: 
+  transition:
     opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -307,9 +306,17 @@ onBeforeUnmount(() => {
   transform: translateY(0);
 }
 
-.expanded .control-item:nth-child(1) { transition-delay: 0.1s; }
-.expanded .control-item:nth-child(2) { transition-delay: 0.15s; }
-.expanded .control-item:nth-child(3) { transition-delay: 0.2s; }
+.expanded .control-item:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.expanded .control-item:nth-child(2) {
+  transition-delay: 0.15s;
+}
+
+.expanded .control-item:nth-child(3) {
+  transition-delay: 0.2s;
+}
 
 .control-item label {
   display: flex;

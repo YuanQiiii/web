@@ -10,6 +10,11 @@ currentTime=$(date +%H-%M)
 # Combine date and time
 datetime="${currentDate}_${currentTime}"
 
+echo "Pulling from remote repository"
+git pull || { echo "Failed to pull changes"; exit 1; }
+
+echo ".........."
+
 echo "Adding all changes"
 git add . || { echo "Failed to add changes"; exit 1; }
 

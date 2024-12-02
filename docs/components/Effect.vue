@@ -384,7 +384,8 @@ onBeforeUnmount(() => {
   border-radius: 8px;
   overflow: hidden;
   z-index: 1000;
-  transition: all 0.3s ease;
+  color: #000;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }
 
@@ -409,13 +410,7 @@ onBeforeUnmount(() => {
 .control-toggle {
   font-size: 18px;
   color: #333;
-  /* 加深图标颜色 */
-  transition: all 0.3s ease;
-}
-
-.control-toggle:hover {
-  color: #000;
-  /* 悬停时更深 */
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .expanded .control-toggle {
@@ -424,42 +419,49 @@ onBeforeUnmount(() => {
 
 .control-content {
   padding: 16px;
-  opacity: 0;
-  height: 0;
-  /* 使用 height 替代 max-height */
-  transition: opacity 0.3s ease;
-  overflow: hidden;
-}
-
-/* 添加新的动画处理类 */
-.content-wrapper {
   transform-origin: top;
-  transition: transform 0.3s ease;
-}
-
-.expanded .content-wrapper {
-  transform: scaleY(1);
-}
-
-.collapsed .content-wrapper {
   transform: scaleY(0);
+  opacity: 0;
+  transition: 
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  transform-origin: top;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .expanded .control-content {
+  transform: scaleY(1);
   opacity: 1;
-  height: auto;
-  /* 让高度自适应内容 */
 }
 
 .control-item {
+  width: 100%;
   margin-bottom: 16px;
-  color: #333;
-  /* 加深文字颜色 */
+  display: flex;
+  flex-direction: column;
+  color: #000;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.control-item:last-child {
-  margin-bottom: 0;
+.expanded .control-item {
+  opacity: 1;
+  transform: translateY(0);
 }
+
+.expanded .control-item:nth-child(1) { transition-delay: 0.1s; }
+.expanded .control-item:nth-child(2) { transition-delay: 0.15s; }
+.expanded .control-item:nth-child(3) { transition-delay: 0.2s; }
 
 .control-item label {
   display: flex;
@@ -483,6 +485,5 @@ onBeforeUnmount(() => {
 
 .control-item:hover .value {
   color: #000;
-  /* 悬停时更深 */
 }
 </style>

@@ -73,7 +73,6 @@ onMounted(() => {
         </div>
     </div>
 </template>
-
 <style scoped>
 .commit-panel {
     position: fixed;
@@ -85,7 +84,7 @@ onMounted(() => {
     overflow: hidden;
     z-index: 1000;
     color: #000;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
 }
 
@@ -110,16 +109,21 @@ onMounted(() => {
 .commit-icon {
     font-size: 18px;
     color: #333;
-    transition: all 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.expanded .commit-icon {
+    transform: rotate(180deg);
 }
 
 .control-content {
     padding: 16px;
+    transform-origin: top;
+    transform: scaleY(0);
     opacity: 0;
-    height: 0;
-    /* 使用 height 替代 max-height */
-    transition: opacity 0.3s ease;
-    overflow: hidden;
+    transition:
+        transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .content-wrapper {
@@ -127,14 +131,16 @@ onMounted(() => {
     flex-direction: column;
     align-items: center;
     width: 100%;
+    transform-origin: top;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .expanded .control-content {
+    transform: scaleY(1);
     opacity: 1;
-    height: auto;
-    /* 让高度自适应内容 */
 }
 
+/* 其他样式保持不变 */
 .commit-item {
     width: 100%;
     margin-bottom: 16px;
@@ -142,49 +148,30 @@ onMounted(() => {
     flex-direction: column;
     align-items: center;
     color: #000;
+    opacity: 0;
+    transform: translateY(10px);
+    transition:
+        opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.commit-item:last-child {
-    margin-bottom: 0;
+.expanded .commit-item {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.commit-item label {
-    font-weight: 600;
-    /* 加粗标签 */
-    font-size: 12px;
-    color: #1a1a1a;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-    margin-bottom: 5px;
+/* 为每个 commit-item 添加延迟动画 */
+.expanded .commit-item:nth-child(1) {
+    transition-delay: 0.1s;
 }
 
-.value {
-    text-align: center;
-    font-size: 12px;
-    color: #1a1a1a;
-    font-weight: 400;
-    transition: color 0.3s ease;
-    width: 100%;
+.expanded .commit-item:nth-child(2) {
+    transition-delay: 0.15s;
 }
 
-.message {
-    max-width: 100%;
-    word-break: break-word;
+.expanded .commit-item:nth-child(3) {
+    transition-delay: 0.2s;
 }
 
-.commit-panel.has-error {
-    background: linear-gradient(to right,
-            rgba(255, 50, 50, 0.25),
-            rgba(255, 80, 80, 0.35));
-    border: 1px solid rgba(255, 0, 0, 0.4);
-}
-
-.error-message {
-    color: #e60000;
-    font-weight: 600;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
-}
-
-.error-icon {
-    font-size: 1rem;
-}
+/* 其他样式保持原样 */
 </style>

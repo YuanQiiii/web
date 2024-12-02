@@ -218,119 +218,120 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .effect-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .control-panel {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 36px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 8px;
-    overflow: hidden;
-    z-index: 1000;
-    transition: all 0.3s ease;
-    cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 36px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 1000;
+  color: #000;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
 }
 
 .control-panel:hover {
-    background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .control-panel.expanded {
-    width: 260px;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  width: 260px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
 }
 
 .control-header {
-    height: 36px;
-    width: 36px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 36px;
+  width: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .control-toggle {
-    font-size: 18px;
-    color: #333;
-    /* 加深图标颜色 */
-    transition: all 0.3s ease;
-}
-
-.control-toggle:hover {
-    color: #000;
-    /* 悬停时更深 */
+  font-size: 18px;
+  color: #333;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .expanded .control-toggle {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .control-content {
-    padding: 16px;
-    opacity: 0;
-    height: 0;
-    /* 使用 height 替代 max-height */
-    transition: opacity 0.3s ease;
-    overflow: hidden;
+  padding: 16px;
+  transform-origin: top;
+  transform: scaleY(0);
+  opacity: 0;
+  transition: 
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 添加新的动画处理类 */
 .content-wrapper {
-    transform-origin: top;
-    transition: transform 0.3s ease;
-}
-
-.expanded .content-wrapper {
-    transform: scaleY(1);
-}
-
-.collapsed .content-wrapper {
-    transform: scaleY(0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  transform-origin: top;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .expanded .control-content {
-    opacity: 1;
-    height: auto;
-    /* 让高度自适应内容 */
+  transform: scaleY(1);
+  opacity: 1;
 }
 
 .control-item {
-    margin-bottom: 16px;
-    color: #333;
-    /* 加深文字颜色 */
+  width: 100%;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  color: #000;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.control-item:last-child {
-    margin-bottom: 0;
+.expanded .control-item {
+  opacity: 1;
+  transform: translateY(0);
 }
+
+.expanded .control-item:nth-child(1) { transition-delay: 0.1s; }
+.expanded .control-item:nth-child(2) { transition-delay: 0.15s; }
+.expanded .control-item:nth-child(3) { transition-delay: 0.2s; }
 
 .control-item label {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-weight: 500;
 }
 
 .control-item input[type="range"] {
-    width: 100%;
-    margin-bottom: 4px;
-    accent-color: #007f1c;
+  width: 100%;
+  margin-bottom: 4px;
+  accent-color: #007f1c;
 }
 
 .control-item .value {
-    font-size: 12px;
-    color: #333;
-    font-weight: 500;
-    transition: color 0.3s ease;
+  font-size: 12px;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
 .control-item:hover .value {
-    color: #000;
-    /* 悬停时更深 */
+  color: #000;
 }
 </style>

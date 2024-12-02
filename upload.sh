@@ -4,14 +4,27 @@
 echo "Starting task"
 echo ".........."
 
+# Set timezone to Beijing time
+export TZ="Asia/Shanghai"
+
 # Get current date and time up to minutes
 currentDate=$(date +%Y-%m-%d)
 currentTime=$(date +%H-%M)
 # Combine date and time
 datetime="${currentDate}_${currentTime}"
 
+echo "Stashing local changes"
+git stash || { echo "Failed to stash changes"; exit 1; }
+
+echo ".........."
+
 echo "Pulling from remote repository"
-git pull || { echo "Failed to pull changes"; exit 1; }
+git pull || { echo "Failed to pull changes"; git stash pop; exit 1; }
+
+echo ".........."
+
+echo "Applying stashed changes"
+git stash pop || { echo "Failed to apply stashed changes"; exit 1; }
 
 echo ".........."
 

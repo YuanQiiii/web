@@ -425,14 +425,30 @@ onBeforeUnmount(() => {
 .control-content {
   padding: 16px;
   opacity: 0;
-  max-height: 0;
-  transition: all 0.3s ease;
+  height: 0;
+  /* 使用 height 替代 max-height */
+  transition: opacity 0.3s ease;
   overflow: hidden;
+}
+
+/* 添加新的动画处理类 */
+.content-wrapper {
+  transform-origin: top;
+  transition: transform 0.3s ease;
+}
+
+.expanded .content-wrapper {
+  transform: scaleY(1);
+}
+
+.collapsed .content-wrapper {
+  transform: scaleY(0);
 }
 
 .expanded .control-content {
   opacity: 1;
-  max-height: 500px;
+  height: auto;
+  /* 让高度自适应内容 */
 }
 
 .control-item {
@@ -450,7 +466,6 @@ onBeforeUnmount(() => {
   flex-direction: column;
   gap: 5px;
   font-weight: 500;
-  font-size: 12px;
 }
 
 .control-item input[type="range"] {

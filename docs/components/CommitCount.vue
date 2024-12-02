@@ -116,8 +116,9 @@ onMounted(() => {
 .control-content {
     padding: 16px;
     opacity: 0;
-    max-height: 0;
-    transition: all 0.3s ease;
+    height: 0;
+    /* 使用 height 替代 max-height */
+    transition: opacity 0.3s ease;
     overflow: hidden;
 }
 
@@ -130,7 +131,8 @@ onMounted(() => {
 
 .expanded .control-content {
     opacity: 1;
-    max-height: 500px;
+    height: auto;
+    /* 让高度自适应内容 */
 }
 
 .commit-item {

@@ -183,7 +183,7 @@ class EmailProcessor:
             email_ids = self.get_emails()
             if not email_ids:
                 self.log("No new emails to process. Waiting for new emails...")
-                time.sleep(60)  # 每隔1小时检查一次
+                time.sleep(60)  # 每隔1min检查一次
                 continue
             
             for email_id in email_ids:

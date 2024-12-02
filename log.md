@@ -48,3 +48,35 @@
 [2024-12-02 04:13:33] Deleted email ID b'1'.
 ```
 
+```cmd
+[2024-12-02 04:13:38] upload.sh executed successfully.
+```
+
+```cmd
+[2024-12-02 04:13:48] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:13:48] No new emails to process. Waiting for new emails...
+```
+
+```cmd
+[2024-12-02 04:14:48] Found 0 emails.
+```
+
+```cmd
+[2024-12-02 04:14:48] No new emails to process. Waiting for new emails...
+```
+
+```cmd
+[2024-12-02 04:15:48] Found 1 emails.
+```
+
+```cmd
+[2024-12-02 04:15:48] Appended email '你好啊' to output.md.
+```
+
+```cmd
+[2024-12-02 04:15:49] Deleted email ID b'1'.
+```
+

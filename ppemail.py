@@ -3,7 +3,7 @@ import email
 import os
 from email import message_from_bytes
 from email.header import decode_header
-from datetime import datetime
+from datetime import datetime, timedelta
 import re
 import subprocess
 import time
@@ -150,8 +150,9 @@ class EmailProcessor:
     def append_to_markdown(self, subject, content, image_paths):
         """将内容追加到 Markdown 文件"""
         sanitized_subject = re.sub(r'[^\w\-_\s.]','', subject).lower().replace(' ', '-')
-        current_time = datetime.now().strftime('%Y-%m-%d %H:%M')
-        
+        ptime = datetime.now()
+        ptime = current_time + timedelta(hours=8)
+        current_time = ptime.strftime('%Y-%m-%d %H:%M')
         try:
             with open(self.md_file, 'a', encoding='utf-8') as f:
                 f.write(f'\n## {subject} ({current_time})\n\n')

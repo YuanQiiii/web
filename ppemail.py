@@ -36,7 +36,7 @@ class EmailProcessor:
 
     def log(self, message):
         """将日志消息记录到 log.md 文件中，使用 cmd 代码块"""
-        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        timestamp =(datetime.now() + timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S')
         log_entry = f"[{timestamp}] {message}\n"
         try:
             with open(self.log_file, 'a', encoding='utf-8') as f:

@@ -36,7 +36,7 @@ class EmailProcessor:
 
     def log(self, message):
         """将日志消息记录到 log.md 文件中，使用 cmd 代码块"""
-        timestamp =(datetime.now() + timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S')
+        timestamp = (datetime.now() + timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S')
         log_entry = f"[{timestamp}] {message}\n"
         try:
             with open(self.log_file, 'a', encoding='utf-8') as f:
@@ -149,9 +149,8 @@ class EmailProcessor:
 
     def append_to_markdown(self, subject, content, image_paths):
         """将内容追加到 Markdown 文件"""
-        sanitized_subject = re.sub(r'[^\w\-_\s.]','', subject).lower().replace(' ', '-')
-        ptime = datetime.now()
-        ptime = current_time + timedelta(hours=8)
+        sanitized_subject = re.sub(r'[^\w\-_\s.]', '', subject).lower().replace(' ', '-')
+        ptime = datetime.now() + timedelta(hours=8)
         current_time = ptime.strftime('%Y-%m-%d %H:%M')
         try:
             with open(self.md_file, 'a', encoding='utf-8') as f:

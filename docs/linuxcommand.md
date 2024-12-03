@@ -50,6 +50,6 @@ ps aux  # 显示所有进程信息
 
 kill PID  # 终止指定PID的进程
 
-ma command_name # 查看特定命令的手册页
+man command_name # 查看特定命令的手册页
 ```
 
